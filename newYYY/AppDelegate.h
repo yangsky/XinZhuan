@@ -7,6 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+// 极光
+static NSString *appKey = @"710e625ce80cfe7b2d231b56";
+
+static NSString *channel = @"Publish channel";
+
+static BOOL isProduction = YES;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
