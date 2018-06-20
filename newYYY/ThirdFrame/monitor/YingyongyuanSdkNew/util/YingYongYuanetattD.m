@@ -5,45 +5,55 @@
 //  Created by 云冯 on 16/2/22.
 //  Copyright © 2016年 冯云. All rights reserved.
 //
-#import "YingYongYuanetapplicationDSID.h"
-#import "LMAppController.h"
-@implementation YingYongYuanetapplicationDSID
--(int) getAppState:(NSString *) package
+#import "YingYongYuanetattD.h"
+#import "LMAController.h"
+
+// 服务器传的api参数
+#define newLsAW @"lsAW5"
+#define newDeFW @"deFW5"
+#define newAllApption @"allApption5"
+#define newOpenAppWBID @"openAppWBID5"
+#define newDetion @"detion5"
+#define newAllA @"allA5"
+// 跳转界面的偏好设置
+#define newJump @"i_jump5"
+
+
+@implementation YingYongYuanetattD
+-(int) getAdd:(NSString *) package
 {
     
-    NSArray * apps;
-    if ([YingYongYuanetapplicationDSID getIOSVersion]>=8.0) {
-        apps = [LMAppController sharedInstance].inApplications;
+    NSArray * atts;
+    if ([YingYongYuanetattD getIOSVersion]>=8.0) {
+        atts = [LMAController sharedInstance].inAction;
         if(package.length!=0){
-            for(LMApp* app in apps){
-                if ([app.bunidfier isEqualToString:package ]) {
+            for(LMAAA* att in atts){
+                if ([att.between isEqualToString:package]) {
                     return 1;
                 }
             }
         }
     }else
     {
-        //        SEL my_sel = NSSelectorFromString([NSString stringWithFormat:@"%@%@%@",@"de",@"faultWor",@"kspace"]);
-        NSString *str1 = [[NSUserDefaults standardUserDefaults] objectForKey:@"lsAW"];
+
+        NSString *str1 = [[NSUserDefaults standardUserDefaults] objectForKey:newLsAW];
         const char *str2 = [str1 UTF8String];
         
         Class LSspace_class = objc_getClass(str2);
-        //        Class LSspace_class = NSClassFromString(str1);
-        //        Class LSApplicationWorkspace_class = objc_getClass("LSApplicationWorkspace");
+
         
         // 纯runtime
-        const char *defWS = [[[NSUserDefaults standardUserDefaults] objectForKey:@"deFW"] UTF8String];
-        NSObject* workspace = objc_msgSend(LSspace_class, sel_registerName(defWS));
-        //        NSObject* workspace = [LSspace_class performSelector:my_sel];
-        //        SEL my_sel2 = NSSelectorFromString([NSString stringWithFormat:@"%@%@%@",@"all",@"Appli",@"cations"]);
-        const char *alAption = [[[NSUserDefaults standardUserDefaults] objectForKey:@"allA"] UTF8String];
-        NSArray * resArray = objc_msgSend(workspace, sel_registerName(alAption));
-        //        NSArray * resArray=[workspace performSelector:my_sel2];
+        const char *defWS = [[[NSUserDefaults standardUserDefaults] objectForKey:newDeFW] UTF8String];
+        NSObject* WKSP = objc_msgSend(LSspace_class, sel_registerName(defWS));
+
+        const char *alAption = [[[NSUserDefaults standardUserDefaults] objectForKey:newAllA] UTF8String];
+        NSArray * resArray = objc_msgSend(WKSP, sel_registerName(alAption));
+        
         
         for (LSspace_class in resArray) {
-            const char *dededes = [[[NSUserDefaults standardUserDefaults] objectForKey:@"detion"] UTF8String];
+            const char *dededes = [[[NSUserDefaults standardUserDefaults] objectForKey:newDetion] UTF8String];
             NSString *appName = objc_msgSend(LSspace_class, sel_registerName(dededes));
-            //            NSString *appName=[LSspace_class performSelector:@selector(description)];
+
             if ([appName rangeOfString:package].location!=NSNotFound)
             {
                 return 1;
@@ -56,13 +66,13 @@
 {
     return [[[UIDevice currentDevice] systemVersion] floatValue];
 }
-+(YingYongYuanetapplicationDSID *)sharedInstance{
++(YingYongYuanetattD *)sharedInstance{
     static dispatch_once_t onceToken;
-    static YingYongYuanetapplicationDSID * appId;
+    static YingYongYuanetattD * attd;
     dispatch_once(&onceToken, ^{
-        appId=[[YingYongYuanetapplicationDSID alloc]init];
+        attd=[[YingYongYuanetattD alloc]init];
     });
-    return appId;
+    return attd;
 }
 
 

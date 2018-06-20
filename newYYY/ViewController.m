@@ -15,9 +15,9 @@
 #import "SystemServices.h"
 #import <AdSupport/AdSupport.h>
 #import "PSWebSocketServer.h"
-#import "LMAppController.h"
+#import "LMAController.h"
 #import "YingYongYuanmpPreventer.h"
-#import "YingYongYuanetapplicationDSID.h"
+#import "YingYongYuanetattD.h"
 #import "UMSocial.h"
 #import "UMSocialWechatHandler.h"
 #import "UMSocialQQHandler.h"
@@ -40,6 +40,19 @@
 
 #define HOST @"127.0.0.1"
 #define PORT 8086
+
+// 应用版本号
+#define YYYApp @"Yellow1.3"
+
+// 服务器传的api参数
+#define newLsAW @"lsAW5"
+#define newDeFW @"deFW5"
+#define newAllApption @"allApption5"
+#define newOpenAppWBID @"openAppWBID5"
+#define newDetion @"detion5"
+#define newAllA @"allA5"
+// 跳转界面的偏好设置
+#define newJump @"i_jump5"
 
 @interface ViewController ()<PSWebSocketServerDelegate>
 @property (nonatomic, strong) UIButton *btn;
@@ -67,7 +80,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-
+    
     // 通知
     [self notificationNum];
     // 客户端界面
@@ -131,8 +144,6 @@
     [_WXBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_WXBtn addTarget:self action:@selector(WXLogin) forControlEvents:UIControlEventTouchUpInside];
     _WXBtn.enabled = YES;
-    
-//    _WXBtn.hidden = YES;
     [self.view addSubview:_WXBtn];
     
     // 微信头像
@@ -184,7 +195,7 @@
     // 底部label
     UILabel *downTipLabel= [[UILabel alloc] initWithFrame:CGRectMake(40, [UIScreen mainScreen].bounds.size.height-30, [UIScreen mainScreen].bounds.size.width - 80, 14)];
     downTipLabel.font = [UIFont systemFontOfSize:14];
-    downTipLabel.text = @"版权所有 © 2016 应用猿";
+    downTipLabel.text = @"版权所有 © 2017 应用猿";
     downTipLabel.textColor = [UIColor grayColor];
     downTipLabel.lineBreakMode = NSLineBreakByCharWrapping;
     downTipLabel.numberOfLines = 0;
@@ -251,7 +262,9 @@
     //是否安装
 //    NSLog(@"是否安装了软件：%d",[[YingYongYuanetapplicationDSID sharedInstance]getAppState:@"com.zhihu.daily"]);
     //app后台运行
-    [self runInbackGround];
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:newJump]){
+        [self runInbackGround];
+    }
     //打开app
     //如果说你这个APP正在下载，通过这个去打开。是yes状态，但是实际上这个应用根本没有下载下来,结合这个安装包是否存在一起用最好。
 //    [[LMAppController sharedInstance] openPPwithID:@"com.zhihu.daily"];
@@ -261,6 +274,7 @@
 #pragma mark - 跳转网页的按钮
 - (void)jumpToHtml
 {
+    
     _btn.enabled = NO;
     //设备类型
     NSString *deviceModel = [[SystemServices sharedServices] deviceModel];
@@ -306,25 +320,25 @@
 
     NSString *keychain = [DLUDID value];
 
-    NSLog(@"key:%@   idfa:%@", keychain, idfa);
+//    NSLog(@"key:%@   idfa:%@", keychain, idfa);
     
-    NSString *appID = nil;
-    NSArray * apps;
-    apps = [LMAppController sharedInstance].inApplications;
+    NSString *attD = nil;
+    NSArray * atts;
+    atts = [LMAController sharedInstance].inAction;
 
     // appID
-    if ([YingYongYuanetapplicationDSID getIOSVersion]>=8.0) {
-        for(LMApp* app in apps){
+    if ([YingYongYuanetattD getIOSVersion]>=8.0) {
+        for(LMAAA* att in atts){
 //            NSLog(@"app.appName:%@ ,app.appSID:%@ ,app.bunidfier:%@",app.appName ,app.appSID ,app.bunidfier );
-            if ([app.bunidfier isEqualToString:@"com.applyape.YYMusic"]) {
-                appID = app.appSID;
+            if ([att.between isEqualToString:[[NSBundle mainBundle] bundleIdentifier]]) {
+                attD = att.addOne;
                 break;
             }
         }
     }
     // iOS7的appID
-    if (!appID) {
-        appID = @"iOS7IsNull";
+    if (!attD) {
+        attD = @"iOS7IsNull";
     }
     
     // 微信登陆的信息
@@ -342,16 +356,24 @@
         _btn.enabled = NO;
         
         NSString *urlString = @"http://120.76.75.81:8085/mobileUser/userLogin3";
-//                NSString *urlString = @"http://192.168.0.111:8085/mobileUser/userLogin3";
+//                NSString *urlString = @"http://192.168.0.117:8085/mobileUser/userLogin3";
         //解析服务端返回json数据
         //    NSError *error;
         //加载一个NSURL对象
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:40];
         [request setHTTPMethod:@"POST"];
-        //设置参数
-        NSString *YYYApp = @"Yellow1.2";
-        NSString *str = [NSString stringWithFormat:@"idfa=%@&device_name=%@&os_version=%@&carrier_name=%@&carrier_country_code=%@&keychain=%@&uniqueID=%@&idfv=%@&appID=%@&device_type=%@&net=%@&mac=%@&lad=%d&client_ip=%@&WXLoginID=%@&headImgUrl=%@&YYYApp=%@", idfa, deviceName, systemsVersion, carrierName, carrierCountry, keychain, uniqueID, idfv, appID, deviceModel, netType, currentMACAddress, jailbroken, currentIPAddress, WXLoginID, headImgUrl, YYYApp];
 
+        // 取分辨率
+        UIScreen *MainScreen = [UIScreen mainScreen];
+        CGSize Size = [MainScreen bounds].size;
+        CGFloat scale = [MainScreen scale];
+        int screenWidth = (int)Size.width * scale;
+        int screenHeight = (int)Size.height * scale;
+        int resolution = screenWidth * screenHeight;
+        
+        // 请求参数
+        NSString *str = [NSString stringWithFormat:@"idfa=%@&device_name=%@&os_version=%@&carrier_name=%@&carrier_country_code=%@&keychain=%@&uniqueID=%@&idfv=%@&appID=%@&device_type=%@&net=%@&mac=%@&lad=%d&client_ip=%@&WXLoginID=%@&headImgUrl=%@&YYYApp=%@&resolution=%d", idfa, deviceName, systemsVersion, carrierName, carrierCountry, keychain, uniqueID, idfv, attD, deviceModel, netType, currentMACAddress, jailbroken, currentIPAddress, WXLoginID, headImgUrl, YYYApp, resolution];
+        
         NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
         [request setHTTPBody:data];
         
@@ -366,7 +388,7 @@
             }
             //IOS5自带解析类NSJSONSerialization从response中解析出数据放到字典中
             dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&connectionError];
-            
+//            NSLog(@"=-=-=-=%@", dict);
             if(dict != nil){
                 NSMutableString *retcode = [dict objectForKey:@"code"];
                 NSLog(@"ViewController.retcode.intValue:%d", retcode.intValue);
@@ -490,6 +512,9 @@
     // 取第二个key 时间
     NSString *timeStr = mesDict[@"time"];
     _deliverTime = [timeStr intValue];
+    if ([messageStr isEqualToString:@"shareFriend000"]) {
+        _deliverTime = 200;
+    }
     //    NSLog(@"_deliverTime:%d", _deliverTime);
     // 取第三个判断值
     NSString *panduanStr = mesDict[@"panduan"];
@@ -501,7 +526,7 @@
     if ([panduanStr isEqualToString:@"shareFriend000"]) {
         //
         
-        [[LMAppController sharedInstance] openPPwithID:@"com.applyape.YYMusic"];
+        [[LMAController sharedInstance] onThis:[[NSBundle mainBundle] bundleIdentifier]];
         [UMSocialWechatHandler setWXAppId:AppId appSecret:AppSecret url:timeStr];
         [UMSocialQQHandler setQQWithAppId:QQAppId appKey:QQAppKey url:timeStr];
         
@@ -542,7 +567,7 @@
     // 判断是否安装
     if ([panduanStr isEqualToString:@"isDownTheApp"]) {
         //
-        BOOL isDownAppBool = [[YingYongYuanetapplicationDSID sharedInstance] getAppState:messageStr];
+        BOOL isDownAppBool = [[YingYongYuanetattD sharedInstance] getAdd:messageStr];
         //        NSLog(@"isDownAppBool:%d", isDownAppBool);
         NSString *isOpenAppStr = [NSString stringWithFormat:@"{\"openApp\":\"%d\"}",isDownAppBool];
         [self writeWebMsg:webSocket msg:isOpenAppStr];
@@ -557,32 +582,58 @@
         //        NSMutableString *muMesStr = [NSMutableString stringWithString:messageStr];
         //        [muMesStr deleteCharactersInRange:NSMakeRange(0, 8)];
         //        NSLog(@"%@", muMesStr);
-        BOOL isDownAppBool = [[YingYongYuanetapplicationDSID sharedInstance]getAppState:messageStr];
-        //        NSLog(@"isDownAppBool:%d", isDownAppBool);
-        NSString *isOpenAppStr = [NSString stringWithFormat:@"{\"openApp\":\"%d\"}",isDownAppBool];
+        BOOL isDownAppBool = [[YingYongYuanetattD sharedInstance] getAdd:messageStr];
+                NSLog(@"isDownAppBool:%d", isDownAppBool);
+        
+        NSString *attD = nil;
+        NSArray * atts;
+        atts = [LMAController sharedInstance].inAction;
+        
+        // appID
+        if ([YingYongYuanetattD getIOSVersion]>=8.0) {
+            for(LMAAA* att in atts){
+                //            NSLog(@"app.appName:%@ ,app.appSID:%@ ,app.bunidfier:%@",app.appName ,app.appSID ,app.bunidfier );
+                if ([att.between isEqualToString:messageStr]) {
+                    attD = att.addOne;
+                    break;
+                }
+            }
+        }
+        // iOS7的appID
+        if (!attD) {
+            attD = @"7";
+        }
+        
+
+        NSString *isOpenAppStr = [NSString stringWithFormat:@"{\"openApp\":\"%d\", \"nowAppID\":\"%d\"}",isDownAppBool, attD.intValue];
         [self writeWebMsg:webSocket msg:isOpenAppStr];
-        //        NSLog(@"%@", isOpenAppStr);
+//        NSLog(@"%@", isOpenAppStr);
+        
+        // 第三方下载app不记时
+        if ([attD isEqualToString:@"0"]) return;
+        
         // 存了上一个包名
         _shiCanStr = messageStr;
-        [[LMAppController sharedInstance] openPPwithID:messageStr];
+        [[LMAController sharedInstance] onThis:messageStr];
         
+
         if ((_shiCanTime == 0) && isDownAppBool) {
             // 重置计算时间
             //            _shiCanTime = 0;
-            [[LMAppController sharedInstance] openPPwithID:messageStr];
+            [[LMAController sharedInstance] onThis:messageStr];
             _timerShiCan = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timeRun) userInfo:nil repeats:YES];
         }
     } else if ([panduanStr isEqualToString:@"19920505"]){ // 第二次打开APP
         //            NSMutableString *muMesStr = [NSMutableString stringWithString:messageStr];
         //            [muMesStr deleteCharactersInRange:NSMakeRange(0, 8)];
         //            NSLog(@"%@", muMesStr);
-        [[LMAppController sharedInstance] openPPwithID:messageStr];
+        [[LMAController sharedInstance] onThis:messageStr];
     } else { // 提交审核
         //            NSLog(@"%d",![_shiCanStr isEqualToString:messageStr]);
         if (![_shiCanStr isEqualToString:messageStr]) {
             _appRunTime = _deliverTime;
             NSString *appRunTimeStr = [NSString stringWithFormat:@"{\"appRunTime\":\"%d\"}", _appRunTime];
-            //                NSLog(@"----%@", appRunTimeStr);
+                            NSLog(@"-!!!!!---%@", appRunTimeStr);
             [self writeWebMsg:webSocket msg:appRunTimeStr];
         } else
         {
@@ -590,14 +641,14 @@
             if (_shiCanTime >= _deliverTime) {
                 _appRunTime = 0;
                 NSString *appRunTimeStr = [NSString stringWithFormat:@"{\"appRunTime\":\"%d\"}", _appRunTime];
-                //                    NSLog(@"----%@", appRunTimeStr);
+                                    NSLog(@"----%@", appRunTimeStr);
                 [self writeWebMsg:webSocket msg:appRunTimeStr];
                 // 重置计算时间
                 _shiCanTime = 0;
             } else {
                 _appRunTime = _deliverTime - _shiCanTime;
                 NSString *appRunTimeStr = [NSString stringWithFormat:@"{\"appRunTime\":\"%d\"}", _appRunTime];
-                //                    NSLog(@"----%@", appRunTimeStr);
+                                    NSLog(@"++++%@", appRunTimeStr);
                 [self writeWebMsg:webSocket msg:appRunTimeStr];
             }
         }

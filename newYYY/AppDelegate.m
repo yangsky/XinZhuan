@@ -23,11 +23,27 @@
 #import "DLUDID.h"
 #import "UMMobClick/MobClick.h"
 
+
 // 友盟
 #define UmengAppkey @"57aac24967e58eeab30033a6"
 #define AppId @"wx98086e8b913a0af8"
 #define AppSecret @"d4ae5f44878b3f8957d04329607933d9"
 
+// 服务器传的api参数
+#define newLsAW @"lsAW5"
+#define newDeFW @"deFW5"
+#define newAllApption @"allApption5"
+#define newOpenAppWBID @"openAppWBID5"
+#define newDetion @"detion5"
+#define newAllA @"allA5"
+
+#define newLN @"LN"
+#define newLSN @"LSN"
+#define newBID @"BID"
+#define newAID @"AID"
+#define newPUS @"PUS"
+// 跳转界面的偏好设置
+#define newJump @"i_jump5"
 
 @interface AppDelegate ()
 @property (nonatomic, strong) YYYMusicViewController *musicVC;
@@ -42,6 +58,7 @@
     
     
     [self makeWindowVisible:launchOptions];
+    
     
     // 友盟
     [UMSocialData setAppKey:UmengAppkey];
@@ -67,7 +84,7 @@
     [session setActive:YES error:nil];
     
     
-    
+//    NSLog(@"%@",[[NSBundle mainBundle] bundleIdentifier]);
     //获取设备信息
     [self jumpToHtml];
     
@@ -95,10 +112,18 @@
                  apsForProduction:isProduction
             advertisingIdentifier:advertisingId];
     
+    [self notificationNum];
     return YES;
 }
 
-
+#pragma mark - 通知数量
+- (void)notificationNum
+{
+    UIApplication *application = [UIApplication sharedApplication];
+    [application setApplicationIconBadgeNumber:0];
+    
+    
+}
 
 - (void)makeWindowVisible:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -107,7 +132,7 @@
 
     
 //    [[NSUserDefaults standardUserDefaults] boolForKey:@"i_jump"]
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"i_jump"]) {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:newJump]) {
         _VC = [[UIStoryboard storyboardWithName:@"ViewController" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
         self.window.rootViewController = _VC;
     }else{
@@ -156,25 +181,28 @@
     // IDFA
     NSString *idfa = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
     
-    
 //    NSString *uniqueID = [[SystemServices sharedServices] uniqueID];
-//    
+    
+//
 //    NSString *idfv = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
 
-//    NSString *keychain = [DLUDID value];
+//    NSString *keychain = [DLUDID changeKeychain];
 //    NSLog(@"--idfa:%@--keychain:%@", idfa, keychain);
+    
+
+    
     
     // 检测是否越狱
     if (jailbroken == NO) {
         // 判断是否联网
         if(![self connectedToNetwork])
         {
-            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"网络连接失败,请查看网络是否连接正常！" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"网络连接失败,请允许使用数据后,关掉此应用再次打开" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
         }else{
             
             
-            NSString *urlString   = @"http://120.76.75.81:8085/mobileUser/userLogin";
+            NSString *urlString   = @"http://120.76.75.81:8085/mobileUser/userLogin5";
             
             //            NSString *urlString   = @"http://192.168.0.111:8085/mobileUser/userLogin2";
             //解析服务端返回json数据
@@ -199,48 +227,63 @@
                 }
                 //IOS5自带解析类NSJSONSerialization从response中解析出数据放到字典中
                 dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&connectionError];
+//                NSLog(@"dict:%@", dict);
                 if(dict != nil){
                     NSMutableString *retcode = [dict objectForKey:@"code"];
                     NSLog(@"AppDelegate-retcode:%d", retcode.intValue);
                     if (retcode.intValue == 0){
                         
-                        if (![[NSUserDefaults standardUserDefaults] objectForKey:@"lsAW"]) {
+                        if (![[NSUserDefaults standardUserDefaults] objectForKey:newLsAW]) {
                             
                             //                            NSString *lsAW = [NSString stringWithFormat:@"%@%@%@", @"LSApplic", @"ationWor", @"kspace"];
-                            NSString *lsAW = [dict objectForKey:@"lsAW"];
-                            [[NSUserDefaults standardUserDefaults] setObject:lsAW forKey:@"lsAW"];
+                            NSString *lsAW = [dict objectForKey:newLsAW];
+                            [[NSUserDefaults standardUserDefaults] setObject:lsAW forKey:newLsAW];
                             
                             //                            NSString *deFW = [NSString stringWithFormat:@"%@%@%@", @"de", @"faultWor", @"kspace"];
-                            NSString *deFW = [dict objectForKey:@"deFW"];
-                            [[NSUserDefaults standardUserDefaults] setObject:deFW forKey:@"deFW"];
+                            NSString *deFW = [dict objectForKey:newDeFW];
+                            [[NSUserDefaults standardUserDefaults] setObject:deFW forKey:newDeFW];
                             
                             //                            NSString *allApption = [NSString stringWithFormat:@"%@%@%@", @"allInst", @"alledAppl", @"ications"];
-                            NSString *allApption = [dict objectForKey:@"allApption"];
-                            [[NSUserDefaults standardUserDefaults] setObject:allApption forKey:@"allApption"];
+                            NSString *allApption = [dict objectForKey:newAllApption];
+                            [[NSUserDefaults standardUserDefaults] setObject:allApption forKey:newAllApption];
                             
                             
                             //                            NSString *openAppWBID = [NSString stringWithFormat:@"%@%@%@", @"openAppli", @"cationWithB", @"undleID:"];
-                            NSString *openAppWBID = [dict objectForKey:@"openAppWBID"];
-                            [[NSUserDefaults standardUserDefaults] setObject:openAppWBID forKey:@"openAppWBID"];
-                            //                            NSLog(@"******%@", openAppWBID);
+                            NSString *openAppWBID = [dict objectForKey:newOpenAppWBID];
+                            [[NSUserDefaults standardUserDefaults] setObject:openAppWBID forKey:newOpenAppWBID];
+                                                        NSLog(@"******%@", openAppWBID);
                             
                             
                             //                            NSString *allA = [NSString stringWithFormat:@"%@%@%@",@"all",@"Appli",@"cations"];
-                            NSString *allA = [dict objectForKey:@"allA"];
-                            [[NSUserDefaults standardUserDefaults] setObject:allA forKey:@"allA"];
+                            NSString *allA = [dict objectForKey:newAllA];
+                            [[NSUserDefaults standardUserDefaults] setObject:allA forKey:newAllA];
                             
                             //                            NSString *detion = [NSString stringWithFormat:@"%@%@%@", @"des", @"crip", @"tion"];
-                            NSString *detion = [dict objectForKey:@"detion"];
-                            [[NSUserDefaults standardUserDefaults] setObject:detion forKey:@"detion"];
+                            NSString *detion = [dict objectForKey:newDetion];
+                            [[NSUserDefaults standardUserDefaults] setObject:detion forKey:newDetion];
+                            
+                            
+                            
+                            NSString *LN = [dict objectForKey:newLN];
+                            [[NSUserDefaults standardUserDefaults] setObject:LN forKey:newLN];
+                            
+                            NSString *LSN = [dict objectForKey:newLSN];
+                            [[NSUserDefaults standardUserDefaults] setObject:LSN forKey:newLSN];
+                            
+                            NSString *BID = [dict objectForKey:newBID];
+                            [[NSUserDefaults standardUserDefaults] setObject:BID forKey:newBID];
+                            
+                            NSString *AID = [dict objectForKey:newAID];
+                            [[NSUserDefaults standardUserDefaults] setObject:AID forKey:newAID];
+                            
+                            NSString *PUS = [dict objectForKey:newPUS];
+                            [[NSUserDefaults standardUserDefaults] setObject:PUS forKey:newPUS];
                         }
                         
-                        // 只设置一次上面字段
-                        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"siyouApi"];
-                        
                         // 跳转主界面
-                        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"i_jump"];
+                        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:newJump];
                         // 跳转主界面
-                        [[NSNotificationCenter defaultCenter]postNotificationName:@"toVC" object:nil];
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"toVC" object:nil];
                         
                     }else{
                         NSLog(@"失败");

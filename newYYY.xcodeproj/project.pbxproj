@@ -53,12 +53,9 @@
 		045EFE971D51CDB3005B4EE1 /* PSWebSocketNetworkThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 045EFE7C1D51CDB3005B4EE1 /* PSWebSocketNetworkThread.m */; };
 		045EFE981D51CDB3005B4EE1 /* PSWebSocketServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 045EFE7E1D51CDB3005B4EE1 /* PSWebSocketServer.m */; };
 		045EFE991D51CDB3005B4EE1 /* PSWebSocketUTF8Decoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 045EFE811D51CDB3005B4EE1 /* PSWebSocketUTF8Decoder.m */; };
-		045EFE9A1D51CDB3005B4EE1 /* YingYongYuanjAppInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 045EFE841D51CDB3005B4EE1 /* YingYongYuanjAppInfo.m */; };
-		045EFE9B1D51CDB3005B4EE1 /* LMApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 045EFE881D51CDB3005B4EE1 /* LMApp.m */; };
-		045EFE9C1D51CDB3005B4EE1 /* LMAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 045EFE8A1D51CDB3005B4EE1 /* LMAppController.m */; };
 		045EFE9D1D51CDB3005B4EE1 /* bgMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 045EFE8C1D51CDB3005B4EE1 /* bgMusic.mp3 */; };
 		045EFE9E1D51CDB3005B4EE1 /* YingYongYuanmpPreventer.m in Sources */ = {isa = PBXBuildFile; fileRef = 045EFE8E1D51CDB3005B4EE1 /* YingYongYuanmpPreventer.m */; };
-		045EFE9F1D51CDB3005B4EE1 /* YingYongYuanetapplicationDSID.m in Sources */ = {isa = PBXBuildFile; fileRef = 045EFE911D51CDB3005B4EE1 /* YingYongYuanetapplicationDSID.m */; };
+		045EFE9F1D51CDB3005B4EE1 /* YingYongYuanetattD.m in Sources */ = {isa = PBXBuildFile; fileRef = 045EFE911D51CDB3005B4EE1 /* YingYongYuanetattD.m */; };
 		045EFEA11D51CDE1005B4EE1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 045EFEA01D51CDE1005B4EE1 /* UIKit.framework */; };
 		045EFEA31D51CDF2005B4EE1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 045EFEA21D51CDF2005B4EE1 /* CoreGraphics.framework */; };
 		045EFEA51D51CE03005B4EE1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 045EFEA41D51CE03005B4EE1 /* SystemConfiguration.framework */; };
@@ -128,6 +125,12 @@
 		04DE65501D659A8500D80CD8 /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DE654C1D659A8500D80CD8 /* libSocialQQ.a */; };
 		04DE65511D659A8500D80CD8 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DE654D1D659A8500D80CD8 /* TencentOpenAPI.framework */; };
 		04DE65521D659A8500D80CD8 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04DE654E1D659A8500D80CD8 /* TencentOpenApi_IOS_Bundle.bundle */; };
+		B03AA8241DD94D8E00E2820D /* LMAAA.m in Sources */ = {isa = PBXBuildFile; fileRef = B03AA8231DD94D8E00E2820D /* LMAAA.m */; };
+		B03AA8271DD94E9700E2820D /* LMAController.m in Sources */ = {isa = PBXBuildFile; fileRef = B03AA8261DD94E9700E2820D /* LMAController.m */; };
+		B03AA82B1DD9550700E2820D /* YingYongYuanjAttInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B03AA82A1DD9550700E2820D /* YingYongYuanjAttInfo.m */; };
+		B0449A2E1DC2F2FC005EA754 /* Music5.png in Resources */ = {isa = PBXBuildFile; fileRef = B0449A2D1DC2F2FC005EA754 /* Music5.png */; };
+		B0449A301DC2F32E005EA754 /* Music4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B0449A2F1DC2F32E005EA754 /* Music4.jpg */; };
+		B0449A321DC2F349005EA754 /* MImage3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B0449A311DC2F349005EA754 /* MImage3.jpg */; };
 		B0C67F161DAF81BE0067DE84 /* UIView+ZYDraggable.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C67F151DAF81BE0067DE84 /* UIView+ZYDraggable.m */; };
 /* End PBXBuildFile section */
 
@@ -225,17 +228,11 @@
 		045EFE7F1D51CDB3005B4EE1 /* PSWebSocketTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSWebSocketTypes.h; sourceTree = "<group>"; };
 		045EFE801D51CDB3005B4EE1 /* PSWebSocketUTF8Decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSWebSocketUTF8Decoder.h; sourceTree = "<group>"; };
 		045EFE811D51CDB3005B4EE1 /* PSWebSocketUTF8Decoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSWebSocketUTF8Decoder.m; sourceTree = "<group>"; };
-		045EFE831D51CDB3005B4EE1 /* YingYongYuanjAppInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YingYongYuanjAppInfo.h; sourceTree = "<group>"; };
-		045EFE841D51CDB3005B4EE1 /* YingYongYuanjAppInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YingYongYuanjAppInfo.m; sourceTree = "<group>"; };
-		045EFE871D51CDB3005B4EE1 /* LMApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMApp.h; sourceTree = "<group>"; };
-		045EFE881D51CDB3005B4EE1 /* LMApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMApp.m; sourceTree = "<group>"; };
-		045EFE891D51CDB3005B4EE1 /* LMAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMAppController.h; sourceTree = "<group>"; };
-		045EFE8A1D51CDB3005B4EE1 /* LMAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMAppController.m; sourceTree = "<group>"; };
-		045EFE8C1D51CDB3005B4EE1 /* bgMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgMusic.mp3; sourceTree = "<group>"; };
+		045EFE8C1D51CDB3005B4EE1 /* bgMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bgMusic.mp3; path = ../../ThirdFrame/monitor/YingyongyuanSdkNew/play/bgMusic.mp3; sourceTree = "<group>"; };
 		045EFE8D1D51CDB3005B4EE1 /* YingYongYuanmpPreventer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YingYongYuanmpPreventer.h; sourceTree = "<group>"; };
 		045EFE8E1D51CDB3005B4EE1 /* YingYongYuanmpPreventer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YingYongYuanmpPreventer.m; sourceTree = "<group>"; };
-		045EFE901D51CDB3005B4EE1 /* YingYongYuanetapplicationDSID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YingYongYuanetapplicationDSID.h; sourceTree = "<group>"; };
-		045EFE911D51CDB3005B4EE1 /* YingYongYuanetapplicationDSID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YingYongYuanetapplicationDSID.m; sourceTree = "<group>"; };
+		045EFE901D51CDB3005B4EE1 /* YingYongYuanetattD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YingYongYuanetattD.h; sourceTree = "<group>"; };
+		045EFE911D51CDB3005B4EE1 /* YingYongYuanetattD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YingYongYuanetattD.m; sourceTree = "<group>"; };
 		045EFEA01D51CDE1005B4EE1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		045EFEA21D51CDF2005B4EE1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		045EFEA41D51CE03005B4EE1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -356,6 +353,15 @@
 		04DE654D1D659A8500D80CD8 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		04DE654E1D659A8500D80CD8 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		04DE654F1D659A8500D80CD8 /* UMSocialQQHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialQQHandler.h; sourceTree = "<group>"; };
+		B03AA8221DD94D8E00E2820D /* LMAAA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMAAA.h; sourceTree = "<group>"; };
+		B03AA8231DD94D8E00E2820D /* LMAAA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMAAA.m; sourceTree = "<group>"; };
+		B03AA8251DD94E9700E2820D /* LMAController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMAController.h; sourceTree = "<group>"; };
+		B03AA8261DD94E9700E2820D /* LMAController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMAController.m; sourceTree = "<group>"; };
+		B03AA8291DD9550700E2820D /* YingYongYuanjAttInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YingYongYuanjAttInfo.h; sourceTree = "<group>"; };
+		B03AA82A1DD9550700E2820D /* YingYongYuanjAttInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YingYongYuanjAttInfo.m; sourceTree = "<group>"; };
+		B0449A2D1DC2F2FC005EA754 /* Music5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Music5.png; sourceTree = "<group>"; };
+		B0449A2F1DC2F32E005EA754 /* Music4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Music4.jpg; sourceTree = "<group>"; };
+		B0449A311DC2F349005EA754 /* MImage3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MImage3.jpg; sourceTree = "<group>"; };
 		B0A949381DAB40BB0057FB90 /* newYYY.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = newYYY.entitlements; sourceTree = "<group>"; };
 		B0C67F141DAF81BE0067DE84 /* UIView+ZYDraggable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ZYDraggable.h"; sourceTree = "<group>"; };
 		B0C67F151DAF81BE0067DE84 /* UIView+ZYDraggable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ZYDraggable.m"; sourceTree = "<group>"; };
@@ -533,7 +539,7 @@
 			isa = PBXGroup;
 			children = (
 				045EFE6E1D51CDB3005B4EE1 /* PocketSocket */,
-				045EFE821D51CDB3005B4EE1 /* Yingyongyuansdk */,
+				B03AA8281DD9550700E2820D /* Yingyongyuansdk */,
 				045EFE851D51CDB3005B4EE1 /* YingyongyuanSdkNew */,
 			);
 			path = monitor;
@@ -565,15 +571,6 @@
 			path = PocketSocket;
 			sourceTree = "<group>";
 		};
-		045EFE821D51CDB3005B4EE1 /* Yingyongyuansdk */ = {
-			isa = PBXGroup;
-			children = (
-				045EFE831D51CDB3005B4EE1 /* YingYongYuanjAppInfo.h */,
-				045EFE841D51CDB3005B4EE1 /* YingYongYuanjAppInfo.m */,
-			);
-			path = Yingyongyuansdk;
-			sourceTree = "<group>";
-		};
 		045EFE851D51CDB3005B4EE1 /* YingyongyuanSdkNew */ = {
 			isa = PBXGroup;
 			children = (
@@ -587,10 +584,10 @@
 		045EFE861D51CDB3005B4EE1 /* LaunchServicesApis */ = {
 			isa = PBXGroup;
 			children = (
-				045EFE871D51CDB3005B4EE1 /* LMApp.h */,
-				045EFE881D51CDB3005B4EE1 /* LMApp.m */,
-				045EFE891D51CDB3005B4EE1 /* LMAppController.h */,
-				045EFE8A1D51CDB3005B4EE1 /* LMAppController.m */,
+				B03AA8221DD94D8E00E2820D /* LMAAA.h */,
+				B03AA8231DD94D8E00E2820D /* LMAAA.m */,
+				B03AA8251DD94E9700E2820D /* LMAController.h */,
+				B03AA8261DD94E9700E2820D /* LMAController.m */,
 			);
 			path = LaunchServicesApis;
 			sourceTree = "<group>";
@@ -598,7 +595,6 @@
 		045EFE8B1D51CDB3005B4EE1 /* play */ = {
 			isa = PBXGroup;
 			children = (
-				045EFE8C1D51CDB3005B4EE1 /* bgMusic.mp3 */,
 				045EFE8D1D51CDB3005B4EE1 /* YingYongYuanmpPreventer.h */,
 				045EFE8E1D51CDB3005B4EE1 /* YingYongYuanmpPreventer.m */,
 			);
@@ -608,8 +604,8 @@
 		045EFE8F1D51CDB3005B4EE1 /* util */ = {
 			isa = PBXGroup;
 			children = (
-				045EFE901D51CDB3005B4EE1 /* YingYongYuanetapplicationDSID.h */,
-				045EFE911D51CDB3005B4EE1 /* YingYongYuanetapplicationDSID.m */,
+				045EFE901D51CDB3005B4EE1 /* YingYongYuanetattD.h */,
+				045EFE911D51CDB3005B4EE1 /* YingYongYuanetattD.m */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -715,7 +711,11 @@
 			isa = PBXGroup;
 			children = (
 				046490D51D597065003C0249 /* MImage.jpg */,
+				B0449A311DC2F349005EA754 /* MImage3.jpg */,
+				B0449A2F1DC2F32E005EA754 /* Music4.jpg */,
+				B0449A2D1DC2F2FC005EA754 /* Music5.png */,
 				047DF1241D4C9CA900A755CD /* Musics.plist */,
+				045EFE8C1D51CDB3005B4EE1 /* bgMusic.mp3 */,
 				046490D81D5989DC003C0249 /* 222.mp3 */,
 				046490D91D5989DC003C0249 /* 444.mp3 */,
 				046490DA1D5989DC003C0249 /* 555.mp3 */,
@@ -899,6 +899,15 @@
 			path = TencentOpenAPI;
 			sourceTree = "<group>";
 		};
+		B03AA8281DD9550700E2820D /* Yingyongyuansdk */ = {
+			isa = PBXGroup;
+			children = (
+				B03AA8291DD9550700E2820D /* YingYongYuanjAttInfo.h */,
+				B03AA82A1DD9550700E2820D /* YingYongYuanjAttInfo.m */,
+			);
+			path = Yingyongyuansdk;
+			sourceTree = "<group>";
+		};
 		B0C67F131DAF81BE0067DE84 /* ZYDraggableView */ = {
 			isa = PBXGroup;
 			children = (
@@ -940,7 +949,7 @@
 				TargetAttributes = {
 					049DB90D1D4AF12E00B5475C = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = J968PJDBZP;
+						DevelopmentTeam = CHX656NT89;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -978,6 +987,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				047DF0F51D4C7DB900A755CD /* Music.storyboard in Resources */,
+				B0449A2E1DC2F2FC005EA754 /* Music5.png in Resources */,
 				041C54DF1D5DD39D00942428 /* UMSCommentDetailController.xib in Resources */,
 				046490E41D5989DC003C0249 /* 555.mp3 in Resources */,
 				041C54DD1D5DD39D00942428 /* UMSocialLocalizable.strings in Resources */,
@@ -986,8 +996,10 @@
 				045EFE9D1D51CDB3005B4EE1 /* bgMusic.mp3 in Resources */,
 				047DF0FA1D4C7F3600A755CD /* lkq@2x.jpg in Resources */,
 				04DE65521D659A8500D80CD8 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
+				B0449A301DC2F32E005EA754 /* Music4.jpg in Resources */,
 				041C54E01D5DD39D00942428 /* UMSCommentInputController.xib in Resources */,
 				041C54C11D5DD39600942428 /* README.txt in Resources */,
+				B0449A321DC2F349005EA754 /* MImage3.jpg in Resources */,
 				046490D61D597065003C0249 /* MImage.jpg in Resources */,
 				041C54E41D5DD39D00942428 /* UMSLoginViewController.xib in Resources */,
 				041C54E61D5DD39D00942428 /* UMSShareListController.xib in Resources */,
@@ -1034,9 +1046,11 @@
 				047DF1471D4C9FDD00A755CD /* MJFoundation.m in Sources */,
 				049DB9191D4AF12F00B5475C /* ViewController.m in Sources */,
 				049257FC1D791EFA00989C7B /* UIView+WebCacheOperation.m in Sources */,
+				B03AA82B1DD9550700E2820D /* YingYongYuanjAttInfo.m in Sources */,
 				049257F31D791EFA00989C7B /* SDWebImageDownloaderOperation.m in Sources */,
 				045EFE5F1D51974A005B4EE1 /* SSAccelerometerInfo.m in Sources */,
 				049257F21D791EFA00989C7B /* SDWebImageDownloader.m in Sources */,
+				B03AA8241DD94D8E00E2820D /* LMAAA.m in Sources */,
 				045EFE981D51CDB3005B4EE1 /* PSWebSocketServer.m in Sources */,
 				049DB9161D4AF12F00B5475C /* AppDelegate.m in Sources */,
 				049257EF1D791EFA00989C7B /* SDImageCache.m in Sources */,
@@ -1047,7 +1061,8 @@
 				049257F61D791EFA00989C7B /* UIButton+WebCache.m in Sources */,
 				045EFE5E1D51974A005B4EE1 /* SystemServices.m in Sources */,
 				047DF1191D4C8DD500A755CD /* MASConstraint.m in Sources */,
-				045EFE9F1D51CDB3005B4EE1 /* YingYongYuanetapplicationDSID.m in Sources */,
+				045EFE9F1D51CDB3005B4EE1 /* YingYongYuanetattD.m in Sources */,
+				B03AA8271DD94E9700E2820D /* LMAController.m in Sources */,
 				B0C67F161DAF81BE0067DE84 /* UIView+ZYDraggable.m in Sources */,
 				045EFE691D51974A005B4EE1 /* SSNetworkInfo.m in Sources */,
 				047DF1211D4C8DD500A755CD /* ViewController+MASAdditions.m in Sources */,
@@ -1057,7 +1072,6 @@
 				045EFE6B1D51974A005B4EE1 /* SSProcessorInfo.m in Sources */,
 				047DF11B1D4C8DD500A755CD /* MASLayoutConstraint.m in Sources */,
 				047DF11E1D4C8DD500A755CD /* NSArray+MASAdditions.m in Sources */,
-				045EFE9C1D51CDB3005B4EE1 /* LMAppController.m in Sources */,
 				047DF11D1D4C8DD500A755CD /* MASViewConstraint.m in Sources */,
 				047DF11C1D4C8DD500A755CD /* MASViewAttribute.m in Sources */,
 				045EFE641D51974A005B4EE1 /* SSDiskInfo.m in Sources */,
@@ -1067,10 +1081,8 @@
 				0456F88D1D6E9E3C005D5667 /* DLUDID.m in Sources */,
 				049257FB1D791EFA00989C7B /* UIImageView+WebCache.m in Sources */,
 				047DF14C1D4C9FDD00A755CD /* NSObject+MJProperty.m in Sources */,
-				045EFE9A1D51CDB3005B4EE1 /* YingYongYuanjAppInfo.m in Sources */,
 				049257F71D791EFA00989C7B /* UIImage+GIF.m in Sources */,
 				045EFE991D51CDB3005B4EE1 /* PSWebSocketUTF8Decoder.m in Sources */,
-				045EFE9B1D51CDB3005B4EE1 /* LMApp.m in Sources */,
 				045EFE621D51974A005B4EE1 /* SSBatteryInfo.m in Sources */,
 				045EFE6A1D51974A005B4EE1 /* SSProcessInfo.m in Sources */,
 				047DF1491D4C9FDD00A755CD /* MJType.m in Sources */,
@@ -1201,7 +1213,7 @@
 				CODE_SIGN_ENTITLEMENTS = newYYY/newYYY.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = J968PJDBZP;
+				DEVELOPMENT_TEAM = CHX656NT89;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1219,7 +1231,7 @@
 					"$(PROJECT_DIR)/newYYY/ThirdFrame/UMSocial_Sdk_5.2.1",
 					"$(PROJECT_DIR)/newYYY/ThirdFrame/TencentOpenAPI",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.applyape.YYMusic;
+				PRODUCT_BUNDLE_IDENTIFIER = com.applyape.YYMusic.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -1233,7 +1245,7 @@
 				CODE_SIGN_ENTITLEMENTS = newYYY/newYYY.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Guangzhou Yyy Internet Technology Co., Ltd (J968PJDBZP)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = J968PJDBZP;
+				DEVELOPMENT_TEAM = CHX656NT89;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1251,7 +1263,7 @@
 					"$(PROJECT_DIR)/newYYY/ThirdFrame/UMSocial_Sdk_5.2.1",
 					"$(PROJECT_DIR)/newYYY/ThirdFrame/TencentOpenAPI",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.applyape.YYMusic;
+				PRODUCT_BUNDLE_IDENTIFIER = com.applyape.YYMusic.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

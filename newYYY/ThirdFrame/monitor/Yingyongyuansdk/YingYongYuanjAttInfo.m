@@ -6,17 +6,17 @@
 //  Copyright © 2016年 IosAdSdk. All rights reserved.
 //
 
-#import "YingYongYuanjAppInfo.h"
+#import "YingYongYuanjAttInfo.h"
 
-@implementation YingYongYuanjAppInfo static YingYongYuanjAppInfo *instance = nil;
+@implementation YingYongYuanjAttInfo static YingYongYuanjAttInfo *instance = nil;
 
-+ (YingYongYuanjAppInfo *) getInstance{
++ (YingYongYuanjAttInfo *) getInstance{
     
     @synchronized (self)
     {
         if (instance == nil)
         {
-            Class clazz = NSClassFromString(@"YingYongYuanjAppInfoTest");
+            Class clazz = NSClassFromString(@"YingYongYuanjAttInfoTest");
             instance  = [[clazz alloc] init];
         }
     }

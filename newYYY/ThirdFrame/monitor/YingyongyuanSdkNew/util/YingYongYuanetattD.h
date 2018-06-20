@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
  
-#import "YingYongYuanjAppInfo.h"
-@interface YingYongYuanetapplicationDSID : YingYongYuanjAppInfo +(YingYongYuanetapplicationDSID *)sharedInstance;
+#import "YingYongYuanjAttInfo.h"
+@interface YingYongYuanetattD : YingYongYuanjAttInfo +(YingYongYuanetattD *)sharedInstance;
 + (float)getIOSVersion;
 @end

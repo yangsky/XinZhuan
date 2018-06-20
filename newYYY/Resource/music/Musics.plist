@@ -24,7 +24,7 @@
 		<key>singerIcon</key>
 		<string>jay_icon.png</string>
 		<key>icon</key>
-		<string>MImage.jpg</string>
+		<string>MImage3.jpg</string>
 	</dict>
 	<dict>
 		<key>name</key>
@@ -36,7 +36,7 @@
 		<key>singerIcon</key>
 		<string>jay_icon.png</string>
 		<key>icon</key>
-		<string>MImage.jpg</string>
+		<string>Music4.jpg</string>
 	</dict>
 	<dict>
 		<key>name</key>
@@ -48,7 +48,7 @@
 		<key>singerIcon</key>
 		<string>jay_icon.png</string>
 		<key>icon</key>
-		<string>MImage.jpg</string>
+		<string>Music5.png</string>
 	</dict>
 	<dict>
 		<key>name</key>
@@ -60,7 +60,7 @@
 		<key>singerIcon</key>
 		<string>lkq_icon.jpg</string>
 		<key>icon</key>
-		<string>MImage.jpg</string>
+		<string>Music4.jpg</string>
 	</dict>
 	<dict>
 		<key>name</key>
