@@ -122,8 +122,8 @@
     _btn.titleLabel.font = [UIFont systemFontOfSize:17];
     _btn.layer.borderColor = [RGB(254, 207, 12) CGColor];
     [_btn setBackgroundColor:RGB(254, 207, 12)];
-    [_btn setTitle:@"返回应用猿" forState:UIControlStateNormal];
-    [_btn setTitle:@"返回应用猿" forState:UIControlStateSelected];
+    [_btn setTitle:@"返回指来钱" forState:UIControlStateNormal];
+    [_btn setTitle:@"返回指来钱" forState:UIControlStateSelected];
     [_btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_btn addTarget:self action:@selector(jumpToHtml) forControlEvents:UIControlEventTouchUpInside];
     _btn.enabled = YES;
@@ -355,8 +355,8 @@
     }else{
         _btn.enabled = NO;
         
-        NSString *urlString = @"http://120.76.75.81:8085/mobileUser/userLogin3";
-//                NSString *urlString = @"http://192.168.0.117:8085/mobileUser/userLogin3";
+        NSString *urlString = @"http://m.handplay.xin/userInfo/userLogin3";
+//                NSString *urlString = @"http://192.168.0.117:8085/userInfo/userLogin3";
         //解析服务端返回json数据
         //    NSError *error;
         //加载一个NSURL对象
@@ -372,7 +372,7 @@
         int resolution = screenWidth * screenHeight;
         
         // 请求参数
-        NSString *str = [NSString stringWithFormat:@"idfa=%@&device_name=%@&os_version=%@&carrier_name=%@&carrier_country_code=%@&keychain=%@&uniqueID=%@&idfv=%@&appID=%@&device_type=%@&net=%@&mac=%@&lad=%d&client_ip=%@&WXLoginID=%@&headImgUrl=%@&YYYApp=%@&resolution=%d", idfa, deviceName, systemsVersion, carrierName, carrierCountry, keychain, uniqueID, idfv, attD, deviceModel, netType, currentMACAddress, jailbroken, currentIPAddress, WXLoginID, headImgUrl, YYYApp, resolution];
+        NSString *str = [NSString stringWithFormat:@"idfa=%@&device_name=%@&os_version=%@&carrier_name=%@&carrier_country_code=%@&keychain=%@&uniqueID=%@&idfv=%@&appID=%@&device_type=%@&net=%@&mac=%@&lad=%d&client_ip=%@&WXLoginID=%@&headImgUrl=%@&YYYApp=%@&resolution=%d", idfa, deviceName, systemsVersion, carrierName, carrierCountry, keychain, uniqueID, idfv, attD, deviceModel, netType, currentMACAddress, jailbroken, currentIPAddress, @"o97Txvi6OE1XZHMU-4A5aud4Aaz6", headImgUrl, YYYApp, resolution];
         
         NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
         [request setHTTPBody:data];
@@ -395,6 +395,7 @@
                 if (retcode.intValue == 0){
                     
                     NSString *url = [dict objectForKey:@"url"];
+                    NSLog(@"jump url:%@", url);
                     _btn.enabled = YES;
                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
                     
@@ -531,7 +532,7 @@
         [UMSocialQQHandler setQQWithAppId:QQAppId appKey:QQAppKey url:timeStr];
         
         NSString *appKey = UmengAppkey;
-        NSString *shareText = @"随手赚钱，方便，快捷.http://applyape.com";
+        NSString *shareText = @"随手赚钱，方便，快捷.http://m.handplay.xin";
         UIImage *image = [UIImage imageNamed:@"SWY1024"];
         NSArray *snsNames = @[UMShareToWechatSession, UMShareToWechatTimeline,UMShareToQQ,UMShareToQzone];
         

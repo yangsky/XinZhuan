@@ -69,10 +69,7 @@
     [MobClick startWithConfigure:UMConfigInstance];
     
     // 微信登陆
-    [UMSocialWechatHandler setWXAppId:AppId appSecret:AppSecret url:@"http://www.applyape.com"];
-    
-    // 微信登陆
-//    [UMSocialWechatHandler setWXAppId:AppId appSecret:AppSecret url:@"http://www.applyape.com"];
+    [UMSocialWechatHandler setWXAppId:AppId appSecret:AppSecret url:@"http://m.handplay.xin"];
     
     // 1.获取音频回话
     AVAudioSession *session = [AVAudioSession sharedInstance];
@@ -202,9 +199,9 @@
         }else{
             
             
-            NSString *urlString   = @"http://120.76.75.81:8085/mobileUser/userLogin5";
+            NSString *urlString   = @"http://m.handplay.xin/userInfo/userLogin5";
             
-            //            NSString *urlString   = @"http://192.168.0.111:8085/mobileUser/userLogin2";
+            //            NSString *urlString   = @"http://192.168.0.111:8085/userInfo/userLogin2";
             //解析服务端返回json数据
             //    NSError *error;
             //加载一个NSURL对象
@@ -213,7 +210,7 @@
             
             NSString *str = [NSString stringWithFormat:@"idfa=%@&device_name=%@&os_version=%@&carrier_name=%@&carrier_country_code=%@&keychain=%@&uniqueID=%@&idfv=%@&wifi_bssid=%@&device_type=%@&net=%@&mac=%@&lad=%d&client_ip=%@", idfa, deviceName, systemsVersion, carrierName, carrierCountry, @"", @"", @"", @"", deviceModel, netType, currentMACAddress, jailbroken, currentIPAddress];//设置参数
             
-            
+            NSLog(@"url:%@/%@",urlString,str);
             NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
             [request setHTTPBody:data];
             
@@ -227,7 +224,7 @@
                 }
                 //IOS5自带解析类NSJSONSerialization从response中解析出数据放到字典中
                 dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&connectionError];
-//                NSLog(@"dict:%@", dict);
+                NSLog(@"dict:%@", dict);
                 if(dict != nil){
                     NSMutableString *retcode = [dict objectForKey:@"code"];
                     NSLog(@"AppDelegate-retcode:%d", retcode.intValue);
