@@ -33,6 +33,10 @@
                 }
             }
         }
+        
+        if ([YingYongYuanetattD getIOSVersion] >= 11.0) {
+            return [self checkAPPiOS11:package];
+        }
     }else
     {
 
@@ -104,4 +108,30 @@
     return  strUrl;
     
 }
+
+- (BOOL) checkAPPiOS11:(NSString *)bundleId
+{
+    //iOS 11 判断APP是否安装
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 11.0) {
+        NSBundle *container = [NSBundle bundleWithPath:@"/System/Library/PrivateFrameworks/MobileContainerManager.framework"];
+        if ([container load]) {
+            Class appContainer = NSClassFromString(@"MCMAppContainer");
+            
+            id test = [appContainer performSelector:@selector(containerWithIdentifier:error:) withObject:bundleId withObject:nil];
+            NSLog(@"%@",test);
+            if (test) {
+                return YES;
+            } else {
+                return NO;
+            }
+        }
+        return NO;
+        
+    } else {
+        //非iOS11通过获取安装列表判断即可
+    }
+    
+    return NO;
+}
+
 @end

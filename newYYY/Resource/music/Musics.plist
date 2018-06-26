@@ -4,75 +4,75 @@
 <array>
 	<dict>
 		<key>name</key>
-		<string>催眠曲</string>
+		<string>灿若星辰</string>
 		<key>filename</key>
-		<string>222.mp3</string>
+		<string>灿若星辰.mp3</string>
 		<key>singer</key>
-		<string>放轻松</string>
+		<string>面孔乐队</string>
 		<key>singerIcon</key>
 		<string>jay_icon.png</string>
 		<key>icon</key>
-		<string>MImage.jpg</string>
+		<string>灿若星辰.png</string>
 	</dict>
 	<dict>
 		<key>name</key>
-		<string>催眠曲</string>
+		<string>SNH48鞠倩伟</string>
 		<key>filename</key>
-		<string>777.mp3</string>
+		<string>落花成泥.mp3</string>
 		<key>singer</key>
 		<string>聆听</string>
 		<key>singerIcon</key>
 		<string>jay_icon.png</string>
 		<key>icon</key>
-		<string>MImage3.jpg</string>
+		<string>落花成泥.jpg</string>
 	</dict>
 	<dict>
 		<key>name</key>
-		<string>催眠曲</string>
+		<string>许嵩</string>
 		<key>filename</key>
-		<string>555.mp3</string>
+		<string>明智之举.mp3</string>
 		<key>singer</key>
 		<string>慢慢地静下来</string>
 		<key>singerIcon</key>
 		<string>jay_icon.png</string>
 		<key>icon</key>
-		<string>Music4.jpg</string>
+		<string>明智之举.jpeg</string>
 	</dict>
 	<dict>
 		<key>name</key>
-		<string>催眠曲</string>
+		<string>奋斗</string>
 		<key>filename</key>
-		<string>888.mp3</string>
+		<string>那是你离开了北京的生活.mp3</string>
 		<key>singer</key>
 		<string>静听</string>
 		<key>singerIcon</key>
 		<string>jay_icon.png</string>
 		<key>icon</key>
-		<string>Music5.png</string>
+		<string>那是你离开了北京的生活.jpg</string>
 	</dict>
 	<dict>
 		<key>name</key>
-		<string>催眠曲</string>
+		<string>许嵩</string>
 		<key>filename</key>
-		<string>444.mp3</string>
+		<string>如约而至.mp3</string>
 		<key>singer</key>
 		<string>安稳</string>
 		<key>singerIcon</key>
 		<string>lkq_icon.jpg</string>
 		<key>icon</key>
-		<string>Music4.jpg</string>
+		<string>如约而至.jpg</string>
 	</dict>
 	<dict>
 		<key>name</key>
-		<string>催眠曲</string>
+		<string>爱情公寓</string>
 		<key>filename</key>
-		<string>666.mp3</string>
+		<string>我的未来式 (《爱情公寓》十周年合唱版).mp3</string>
 		<key>singer</key>
-		<string>进入自己梦境</string>
+		<string>怀念</string>
 		<key>singerIcon</key>
 		<string>jay_icon.png</string>
 		<key>icon</key>
-		<string>MImage.jpg</string>
+		<string>我的未来式.jpeg</string>
 	</dict>
 </array>
 </plist>

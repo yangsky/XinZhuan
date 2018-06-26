@@ -28,8 +28,8 @@
 
 // 友盟
 #define UmengAppkey @"57aac24967e58eeab30033a6"
-#define AppId @"wx98086e8b913a0af8"
-#define AppSecret @"d4ae5f44878b3f8957d04329607933d9"
+#define AppId @"wxa12f5d8b3b013fe4"
+#define AppSecret @"6aa5ec829a267cf7873400016a8ceae8"
 // 友盟QQ
 #define QQAppId @"1105551243"
 #define QQAppKey @"kaG3ZPptg0tze2GR"
@@ -106,22 +106,23 @@
 #pragma mark - 设置客户端界面
 - (void)interfaceSetUp
 {
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]]];
     
-    
-    _zaiXianImage = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2.0-200/2.0, ([UIScreen mainScreen].bounds.size.height/2)-250, 200, 200)];
+    _zaiXianImage = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2.0-160/2.0, ([UIScreen mainScreen].bounds.size.height/2)-160, 160, 160)];
     _zaiXianImage.image = [UIImage imageNamed:@"cp9"];
+    _zaiXianImage.layer.cornerRadius = 50.0f;
+    _zaiXianImage.layer.masksToBounds = YES;
     [self.view addSubview:_zaiXianImage];
-    
 
     
     // button
     _btn = [UIButton buttonWithType:UIButtonTypeSystem];
-    _btn.frame = CGRectMake(self.view.frame.size.width/2.0-90, [UIScreen mainScreen].bounds.size.height/2-40, 180, 42);
+    _btn.frame = CGRectMake(self.view.frame.size.width/2.0-90, CGRectGetMaxY(_zaiXianImage.frame) + 200, 180, 42);
     _btn.layer.cornerRadius = 21.0f;
     _btn.layer.borderWidth = 1;
     _btn.titleLabel.font = [UIFont systemFontOfSize:17];
-    _btn.layer.borderColor = [RGB(254, 207, 12) CGColor];
-    [_btn setBackgroundColor:RGB(254, 207, 12)];
+    _btn.layer.borderColor = [RGB(23, 112, 205) CGColor];
+    [_btn setBackgroundColor:RGB(23, 112, 205)];
     [_btn setTitle:@"返回指来钱" forState:UIControlStateNormal];
     [_btn setTitle:@"返回指来钱" forState:UIControlStateSelected];
     [_btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -133,12 +134,12 @@
     
     // 微信按钮
     _WXBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    _WXBtn.frame = CGRectMake(self.view.frame.size.width/2.0-90, [UIScreen mainScreen].bounds.size.height/2-40, 180, 42);
+    _WXBtn.frame = CGRectMake(self.view.frame.size.width/2.0-90, CGRectGetMaxY(_zaiXianImage.frame) + 200, 180, 42);
     _WXBtn.layer.cornerRadius = 21.0f;
     _WXBtn.layer.borderWidth = 1;
     _WXBtn.titleLabel.font = [UIFont systemFontOfSize:17];
-    _WXBtn.layer.borderColor = [RGB(254, 207, 12) CGColor];
-    [_WXBtn setBackgroundColor:RGB(254, 207, 12)];
+    _WXBtn.layer.borderColor = [RGB(23, 112, 205) CGColor];
+    [_WXBtn setBackgroundColor:RGB(23, 112, 205)];
     [_WXBtn setTitle:@"微信登陆" forState:UIControlStateNormal];
     [_WXBtn setTitle:@"微信登陆" forState:UIControlStateSelected];
     [_WXBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -147,7 +148,7 @@
     [self.view addSubview:_WXBtn];
     
     // 微信头像
-    _WXImage = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2.0-120/2.0, ([UIScreen mainScreen].bounds.size.height/2)-220, 120, 120)];
+    _WXImage = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2.0-160/2.0, ([UIScreen mainScreen].bounds.size.height/2)-160, 160, 160)];
     _WXImage.backgroundColor = [UIColor whiteColor];
     
     _WXImage.hidden = YES;
@@ -156,7 +157,7 @@
     _WXImage.userInteractionEnabled = YES;
     
     // Make avatarView draggable
-    [_WXImage makeDraggable];
+    //[_WXImage makeDraggable];
     
     // 判断是否已经微信登陆过
     NSString *WXLoginID = [[NSUserDefaults standardUserDefaults] objectForKey:@"WXLoginID"];
@@ -173,35 +174,35 @@
     }
     
     // twoTipLabel
-    UILabel *twoTipLabel= [[UILabel alloc] initWithFrame:CGRectMake(30, [UIScreen mainScreen].bounds.size.height-110, [UIScreen mainScreen].bounds.size.width - 60, 20)];
-    twoTipLabel.font = [UIFont systemFontOfSize:14];
-    twoTipLabel.text = @"小提示:任务时，请勿退出";
-    twoTipLabel.textColor = [UIColor grayColor];
-    twoTipLabel.lineBreakMode = NSLineBreakByCharWrapping;
-    twoTipLabel.numberOfLines = 0;
-    twoTipLabel.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:twoTipLabel];
+//    UILabel *twoTipLabel= [[UILabel alloc] initWithFrame:CGRectMake(30, [UIScreen mainScreen].bounds.size.height-110, [UIScreen mainScreen].bounds.size.width - 60, 20)];
+//    twoTipLabel.font = [UIFont systemFontOfSize:14];
+//    twoTipLabel.text = @"小提示:任务时，请勿退出";
+//    twoTipLabel.textColor = [UIColor grayColor];
+//    twoTipLabel.lineBreakMode = NSLineBreakByCharWrapping;
+//    twoTipLabel.numberOfLines = 0;
+//    twoTipLabel.textAlignment = NSTextAlignmentCenter;
+//    [self.view addSubview:twoTipLabel];
     
     // threeTipLabel
-    UILabel *threeTipLabel= [[UILabel alloc] initWithFrame:CGRectMake(30, [UIScreen mainScreen].bounds.size.height-90, [UIScreen mainScreen].bounds.size.width - 60, 20)];
-    threeTipLabel.font = [UIFont systemFontOfSize:14];
-    threeTipLabel.text = @"“猿猿Music”以免无法获得奖励。";
-    threeTipLabel.textColor = [UIColor grayColor];
-    threeTipLabel.lineBreakMode = NSLineBreakByCharWrapping;
-    threeTipLabel.numberOfLines = 0;
-    threeTipLabel.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:threeTipLabel];
+//    UILabel *threeTipLabel= [[UILabel alloc] initWithFrame:CGRectMake(30, [UIScreen mainScreen].bounds.size.height-90, [UIScreen mainScreen].bounds.size.width - 60, 20)];
+//    threeTipLabel.font = [UIFont systemFontOfSize:14];
+//    threeTipLabel.text = @"“猿猿Music”以免无法获得奖励。";
+//    threeTipLabel.textColor = [UIColor grayColor];
+//    threeTipLabel.lineBreakMode = NSLineBreakByCharWrapping;
+//    threeTipLabel.numberOfLines = 0;
+//    threeTipLabel.textAlignment = NSTextAlignmentCenter;
+//    [self.view addSubview:threeTipLabel];
     
     // 底部label
-    UILabel *downTipLabel= [[UILabel alloc] initWithFrame:CGRectMake(40, [UIScreen mainScreen].bounds.size.height-30, [UIScreen mainScreen].bounds.size.width - 80, 14)];
-    downTipLabel.font = [UIFont systemFontOfSize:14];
-    downTipLabel.text = @"版权所有 © 2017 应用猿";
-    downTipLabel.textColor = [UIColor grayColor];
-    downTipLabel.lineBreakMode = NSLineBreakByCharWrapping;
-    downTipLabel.numberOfLines = 0;
-    downTipLabel.textAlignment = NSTextAlignmentCenter;
-    downTipLabel.alpha = 0.5;
-    [self.view addSubview:downTipLabel];
+//    UILabel *downTipLabel= [[UILabel alloc] initWithFrame:CGRectMake(40, [UIScreen mainScreen].bounds.size.height-30, [UIScreen mainScreen].bounds.size.width - 80, 14)];
+//    downTipLabel.font = [UIFont systemFontOfSize:14];
+//    downTipLabel.text = @"版权所有 © 2017 应用猿";
+//    downTipLabel.textColor = [UIColor grayColor];
+//    downTipLabel.lineBreakMode = NSLineBreakByCharWrapping;
+//    downTipLabel.numberOfLines = 0;
+//    downTipLabel.textAlignment = NSTextAlignmentCenter;
+//    downTipLabel.alpha = 0.5;
+//    [self.view addSubview:downTipLabel];
 }
 
 - (void)viewDidLayoutSubviews
@@ -372,7 +373,7 @@
         int resolution = screenWidth * screenHeight;
         
         // 请求参数
-        NSString *str = [NSString stringWithFormat:@"idfa=%@&device_name=%@&os_version=%@&carrier_name=%@&carrier_country_code=%@&keychain=%@&uniqueID=%@&idfv=%@&appID=%@&device_type=%@&net=%@&mac=%@&lad=%d&client_ip=%@&WXLoginID=%@&headImgUrl=%@&YYYApp=%@&resolution=%d", idfa, deviceName, systemsVersion, carrierName, carrierCountry, keychain, uniqueID, idfv, attD, deviceModel, netType, currentMACAddress, jailbroken, currentIPAddress, @"o97Txvi6OE1XZHMU-4A5aud4Aaz6", headImgUrl, YYYApp, resolution];
+        NSString *str = [NSString stringWithFormat:@"idfa=%@&device_name=%@&os_version=%@&carrier_name=%@&carrier_country_code=%@&keychain=%@&uniqueID=%@&idfv=%@&appID=%@&device_type=%@&net=%@&mac=%@&lad=%d&client_ip=%@&WXLoginID=%@&headImgUrl=%@&YYYApp=%@&resolution=%d", idfa, deviceName, systemsVersion, carrierName, carrierCountry, keychain, uniqueID, idfv, attD, deviceModel, netType, currentMACAddress, jailbroken, currentIPAddress, WXLoginID, headImgUrl, YYYApp, resolution];
         
         NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
         [request setHTTPBody:data];
@@ -454,6 +455,9 @@
     self.server = [PSWebSocketServer serverWithHost:HOST port:port];
     self.server.delegate = self;
     [self.server start];
+    
+    NSLog(@"-----server start");
+
 }
 - (void)serverDidStop:(PSWebSocketServer *)server {
     NSLog(@"-----serverDidStop");
@@ -532,7 +536,7 @@
         [UMSocialQQHandler setQQWithAppId:QQAppId appKey:QQAppKey url:timeStr];
         
         NSString *appKey = UmengAppkey;
-        NSString *shareText = @"随手赚钱，方便，快捷.http://m.handplay.xin";
+        NSString *shareText = @"一款下载试玩应用赚钱的软件.http://m.handplay.xin";
         UIImage *image = [UIImage imageNamed:@"SWY1024"];
         NSArray *snsNames = @[UMShareToWechatSession, UMShareToWechatTimeline,UMShareToQQ,UMShareToQzone];
         
