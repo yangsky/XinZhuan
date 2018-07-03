@@ -123,8 +123,8 @@
     _btn.titleLabel.font = [UIFont systemFontOfSize:17];
     _btn.layer.borderColor = [RGB(23, 112, 205) CGColor];
     [_btn setBackgroundColor:RGB(23, 112, 205)];
-    [_btn setTitle:@"返回指来钱" forState:UIControlStateNormal];
-    [_btn setTitle:@"返回指来钱" forState:UIControlStateSelected];
+    [_btn setTitle:@"进入指来钱" forState:UIControlStateNormal];
+    [_btn setTitle:@"进入指来钱" forState:UIControlStateSelected];
     [_btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_btn addTarget:self action:@selector(jumpToHtml) forControlEvents:UIControlEventTouchUpInside];
     _btn.enabled = YES;

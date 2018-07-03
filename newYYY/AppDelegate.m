@@ -25,7 +25,7 @@
 
 
 // 友盟
-#define UmengAppkey @"507fcab25270157b37000010"
+#define UmengAppkey @"5b3b94eeb27b0a0ca0000069"
 #define AppId @"wxa12f5d8b3b013fe4"
 #define AppSecret @"6aa5ec829a267cf7873400016a8ceae8"
 
@@ -61,12 +61,12 @@
     
     
     // 友盟
-//    [UMSocialData setAppKey:UmengAppkey];
-//    
-//    UMConfigInstance.appKey = UmengAppkey;
-//    UMConfigInstance.channelId = @"App Store";
-//    
-//    [MobClick startWithConfigure:UMConfigInstance];
+    [UMSocialData setAppKey:UmengAppkey];
+    
+    UMConfigInstance.appKey = UmengAppkey;
+    UMConfigInstance.channelId = @"App Store";
+    
+    [MobClick startWithConfigure:UMConfigInstance];
     
     // 微信登陆
     [UMSocialWechatHandler setWXAppId:AppId appSecret:AppSecret url:@"http://m.handplay.xin"];

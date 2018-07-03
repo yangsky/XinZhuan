@@ -1154,8 +1154,7 @@
 						};
 					};
 					EC9BB38220DBE7CF00887B2C = {
-						DevelopmentTeam = CHX656NT89;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -1596,8 +1595,8 @@
 				CODE_SIGN_ENTITLEMENTS = newYYY/newYYY.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = CHX656NT89;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1630,7 +1629,7 @@
 				CODE_SIGN_ENTITLEMENTS = newYYY/newYYY.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Throughtek Co., Ltd.";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = CHX656NT89;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
@@ -1651,8 +1650,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tutk.Kalay.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "dac0498b-c826-48b0-b3e6-ffd0d69ea82c";
+				PROVISIONING_PROFILE_SPECIFIER = Kalay_Dis;
 			};
 			name = Release;
 		};
