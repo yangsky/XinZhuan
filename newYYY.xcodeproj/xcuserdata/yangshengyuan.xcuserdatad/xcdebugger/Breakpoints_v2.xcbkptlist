@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "newYYY/ViewController.m"
-            timestampString = "552325438.690227"
+            timestampString = "552725559.3906929"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "590"
-            endingLineNumber = "590"
+            startingLineNumber = "592"
+            endingLineNumber = "592"
             landmarkName = "-server:webSocket:didReceiveMessage:"
             landmarkType = "7">
          </BreakpointContent>

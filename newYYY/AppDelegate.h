@@ -10,7 +10,7 @@
 
 
 // 极光
-static NSString *appKey = @"710e625ce80cfe7b2d231b56";
+static NSString *appKey = @"73aa1fa64c266d785f90be9b";
 
 static NSString *channel = @"Publish channel";
 

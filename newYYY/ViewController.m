@@ -27,12 +27,12 @@
 
 
 // 友盟
-#define UmengAppkey @"57aac24967e58eeab30033a6"
+#define UmengAppkey @"5b3b94eeb27b0a0ca0000069"
 #define AppId @"wxa12f5d8b3b013fe4"
 #define AppSecret @"6aa5ec829a267cf7873400016a8ceae8"
 // 友盟QQ
-#define QQAppId @"1105551243"
-#define QQAppKey @"kaG3ZPptg0tze2GR"
+#define QQAppId @"1107023030"
+#define QQAppKey @"SX5gPgTl03WY7jrU"
 
 // 定义颜色宏
 #define RGBA(r,g,b,a) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
@@ -106,23 +106,25 @@
 #pragma mark - 设置客户端界面
 - (void)interfaceSetUp
 {
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]]];
+    UIImageView *imgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"bg"]];
+    imgView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    [self.view addSubview:imgView];
     
-    _zaiXianImage = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2.0-160/2.0, ([UIScreen mainScreen].bounds.size.height/2)-160, 160, 160)];
+    _zaiXianImage = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2.0-160/2.0, ([UIScreen mainScreen].bounds.size.height/2) - 240, 160, 160)];
     _zaiXianImage.image = [UIImage imageNamed:@"cp9"];
-    _zaiXianImage.layer.cornerRadius = 50.0f;
+    _zaiXianImage.layer.cornerRadius = 80.0f;
     _zaiXianImage.layer.masksToBounds = YES;
     [self.view addSubview:_zaiXianImage];
 
     
     // button
     _btn = [UIButton buttonWithType:UIButtonTypeSystem];
-    _btn.frame = CGRectMake(self.view.frame.size.width/2.0-90, CGRectGetMaxY(_zaiXianImage.frame) + 200, 180, 42);
-    _btn.layer.cornerRadius = 21.0f;
+    _btn.frame = CGRectMake(self.view.frame.size.width/2.0-90, CGRectGetMaxY(self.view.frame) - 120, 180, 48);
+    _btn.layer.cornerRadius = 10.0f;
     _btn.layer.borderWidth = 1;
     _btn.titleLabel.font = [UIFont systemFontOfSize:17];
-    _btn.layer.borderColor = [RGB(23, 112, 205) CGColor];
-    [_btn setBackgroundColor:RGB(23, 112, 205)];
+    _btn.layer.borderColor = [RGB(251, 131, 99) CGColor];
+    [_btn setBackgroundColor:RGB(251, 131, 99)];
     [_btn setTitle:@"进入指来钱" forState:UIControlStateNormal];
     [_btn setTitle:@"进入指来钱" forState:UIControlStateSelected];
     [_btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -134,12 +136,12 @@
     
     // 微信按钮
     _WXBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    _WXBtn.frame = CGRectMake(self.view.frame.size.width/2.0-90, CGRectGetMaxY(_zaiXianImage.frame) + 200, 180, 42);
-    _WXBtn.layer.cornerRadius = 21.0f;
+    _WXBtn.frame = CGRectMake(self.view.frame.size.width/2.0-90, CGRectGetMaxY(self.view.frame) - 120, 180, 48);
+    _WXBtn.layer.cornerRadius = 10.0f;
     _WXBtn.layer.borderWidth = 1;
     _WXBtn.titleLabel.font = [UIFont systemFontOfSize:17];
-    _WXBtn.layer.borderColor = [RGB(23, 112, 205) CGColor];
-    [_WXBtn setBackgroundColor:RGB(23, 112, 205)];
+    _WXBtn.layer.borderColor = [RGB(251, 131, 99) CGColor];
+    [_WXBtn setBackgroundColor:RGB(251, 131, 99)];
     [_WXBtn setTitle:@"微信登陆" forState:UIControlStateNormal];
     [_WXBtn setTitle:@"微信登陆" forState:UIControlStateSelected];
     [_WXBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -148,7 +150,7 @@
     [self.view addSubview:_WXBtn];
     
     // 微信头像
-    _WXImage = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2.0-160/2.0, ([UIScreen mainScreen].bounds.size.height/2)-160, 160, 160)];
+    _WXImage = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2.0-160/2.0, ([UIScreen mainScreen].bounds.size.height/2)-240, 160, 160)];
     _WXImage.backgroundColor = [UIColor whiteColor];
     
     _WXImage.hidden = YES;
