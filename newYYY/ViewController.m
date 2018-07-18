@@ -39,7 +39,7 @@
 #define RGB(r,g,b) RGBA(r,g,b,1.0f)
 
 #define HOST @"127.0.0.1"
-#define PORT 8086
+#define PORT 9095
 
 // 应用版本号
 #define YYYApp @"Yellow1.3"
@@ -125,8 +125,8 @@
     _btn.titleLabel.font = [UIFont systemFontOfSize:17];
     _btn.layer.borderColor = [RGB(251, 131, 99) CGColor];
     [_btn setBackgroundColor:RGB(251, 131, 99)];
-    [_btn setTitle:@"进入指来钱" forState:UIControlStateNormal];
-    [_btn setTitle:@"进入指来钱" forState:UIControlStateSelected];
+    [_btn setTitle:@"马上赚钱" forState:UIControlStateNormal];
+    [_btn setTitle:@"马上赚钱" forState:UIControlStateSelected];
     [_btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_btn addTarget:self action:@selector(jumpToHtml) forControlEvents:UIControlEventTouchUpInside];
     _btn.enabled = YES;
