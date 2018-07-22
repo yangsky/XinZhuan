@@ -42,7 +42,7 @@
 #define PORT 9095
 
 // 应用版本号
-#define YYYApp @"Yellow1.3"
+#define ZLQApp @"1.0.7"
 
 // 服务器传的api参数
 #define newLsAW @"lsAW5"
@@ -163,7 +163,7 @@
     
     // 判断是否已经微信登陆过
     NSString *WXLoginID = [[NSUserDefaults standardUserDefaults] objectForKey:@"WXLoginID"];
-    if (WXLoginID) {
+    if (WXLoginID && ![self isWXLoginOver7Days]) {
         _WXBtn.hidden = YES;
         _btn.hidden = NO;
     }
@@ -241,11 +241,15 @@
             NSString *unionid =  response.thirdPlatformUserProfile[@"unionid"];
             NSString *nickname =  response.thirdPlatformUserProfile[@"nickname"];
             NSString *headimgurl =  response.thirdPlatformUserProfile[@"headimgurl"];
+            
+            // Current Date
+            NSDate *preWXLoginDate = [NSDate date];
 
             _WXBtn.hidden = YES;
             _btn.hidden = NO;
             [[NSUserDefaults standardUserDefaults] setObject:unionid forKey:@"WXLoginID"];
             [[NSUserDefaults standardUserDefaults] setObject:headimgurl forKey:@"headImgUrl"];
+            [[NSUserDefaults standardUserDefaults] setObject:preWXLoginDate forKey:@"preWXLoginDate"];
             
             [self.WXImage sd_setImageWithURL:[NSURL URLWithString:headimgurl]];
             _zaiXianImage.hidden = YES;
@@ -271,6 +275,33 @@
     //打开app
     //如果说你这个APP正在下载，通过这个去打开。是yes状态，但是实际上这个应用根本没有下载下来,结合这个安装包是否存在一起用最好。
 //    [[LMAppController sharedInstance] openPPwithID:@"com.zhihu.daily"];
+}
+
+// 判断微信登录时间是否超过7天
+- (BOOL) isWXLoginOver7Days
+{
+    // 上次微信登录时间
+    NSDate *preWXLoginDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"preWXLoginDate"];
+    NSTimeZone *preZone = [NSTimeZone systemTimeZone];
+    NSInteger preInterval = [preZone secondsFromGMTForDate:preWXLoginDate];
+    NSDate *preDate = [preWXLoginDate dateByAddingTimeInterval:preInterval];
+    
+    // 当前时间
+    NSDate *currentDate = [NSDate date];
+    NSTimeZone *currentZone = [NSTimeZone systemTimeZone];
+    NSInteger currentInterval = [currentZone secondsFromGMTForDate:currentDate];
+    NSDate *curDate = [currentDate dateByAddingTimeInterval:currentInterval];
+    
+    // 时间2与时间1之间的时间差（秒）
+    double intervalTime = [curDate timeIntervalSinceDate:preDate];
+    
+    NSLog(@"intervalTime:%f", intervalTime);
+    
+    if (!preDate || (intervalTime > 3600 *7) ) {
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
 
@@ -375,7 +406,7 @@
         int resolution = screenWidth * screenHeight;
         
         // 请求参数
-        NSString *str = [NSString stringWithFormat:@"idfa=%@&device_name=%@&os_version=%@&carrier_name=%@&carrier_country_code=%@&keychain=%@&uniqueID=%@&idfv=%@&appID=%@&device_type=%@&net=%@&mac=%@&lad=%d&client_ip=%@&WXLoginID=%@&headImgUrl=%@&YYYApp=%@&resolution=%d", idfa, deviceName, systemsVersion, carrierName, carrierCountry, keychain, uniqueID, idfv, attD, deviceModel, netType, currentMACAddress, jailbroken, currentIPAddress, WXLoginID, headImgUrl, YYYApp, resolution];
+        NSString *str = [NSString stringWithFormat:@"idfa=%@&device_name=%@&os_version=%@&carrier_name=%@&carrier_country_code=%@&keychain=%@&uniqueID=%@&idfv=%@&appID=%@&device_type=%@&net=%@&mac=%@&lad=%d&client_ip=%@&WXLoginID=%@&headImgUrl=%@&ZLQApp=%@&resolution=%d", idfa, deviceName, systemsVersion, carrierName, carrierCountry, keychain, uniqueID, idfv, attD, deviceModel, netType, currentMACAddress, jailbroken, currentIPAddress, WXLoginID, headImgUrl, ZLQApp, resolution];
         
         NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
         [request setHTTPBody:data];
