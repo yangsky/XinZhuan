@@ -24,7 +24,7 @@
 #import "DLUDID.h"
 #import "UIImageView+WebCache.h"
 #import "UIView+ZYDraggable.h"
-
+#import <CommonCrypto/CommonDigest.h>
 
 // 友盟
 #define UmengAppkey @"5b3b94eeb27b0a0ca0000069"
@@ -42,7 +42,7 @@
 #define PORT 9095
 
 // 应用版本号
-#define ZLQApp @"1.0.7"
+#define ZLQApp @"1.0.10"
 
 // 服务器传的api参数
 #define newLsAW @"lsAW5"
@@ -53,6 +53,9 @@
 #define newAllA @"allA5"
 // 跳转界面的偏好设置
 #define newJump @"i_jump5"
+
+// 加密盐值
+#define saltKey @"zLq8yUi0729I"
 
 @interface ViewController ()<PSWebSocketServerDelegate>
 @property (nonatomic, strong) UIButton *btn;
@@ -70,6 +73,11 @@
 @property (nonatomic, assign) int deliverTime;
 @property (nonatomic, strong) NSTimer *timerShiCan;
 @property (nonatomic, strong) NSString *shiCanStr;
+@property (nonatomic, strong) NSTimer *timerAutoDetection;
+
+// 计算检测次数
+@property (nonatomic, assign) NSInteger autoDetectCount;
+
 // 网页连接错误
 @property (nonatomic, assign) NSInteger errorCount;
 
@@ -540,13 +548,13 @@
     // 查看转换是否成功
     NSLog(@"mesDict:%@", mesDict);
     if(err) {
-        //        NSLog(@"json解析失败：%@",err);
+                NSLog(@"json解析失败：%@",err);
         return ;
     }
     // 取第一个key 包名
     NSString *messageStr = nil;
     messageStr = mesDict[@"baoming"];
-    //    NSLog(@"messageStr:%@", messageStr);
+        NSLog(@"messageStr:%@", messageStr);
     // 取第二个key 时间
     NSString *timeStr = mesDict[@"time"];
     _deliverTime = [timeStr intValue];
@@ -556,7 +564,7 @@
     //    NSLog(@"_deliverTime:%d", _deliverTime);
     // 取第三个判断值
     NSString *panduanStr = mesDict[@"panduan"];
-    //    NSLog(@"panduanStr--%@", panduanStr);
+        NSLog(@"panduanStr--%@", panduanStr);
     
 
     
@@ -617,9 +625,9 @@
     // 传是否安装app
     if ([panduanStr isEqualToString:@"19940511"]) { // 打开APP
         // 删除字符串@“19940511”
-        //        NSMutableString *muMesStr = [NSMutableString stringWithString:messageStr];
-        //        [muMesStr deleteCharactersInRange:NSMakeRange(0, 8)];
-        //        NSLog(@"%@", muMesStr);
+                NSMutableString *muMesStr = [NSMutableString stringWithString:messageStr];
+                [muMesStr deleteCharactersInRange:NSMakeRange(0, 8)];
+                NSLog(@"%@", muMesStr);
         BOOL isDownAppBool = [[YingYongYuanetattD sharedInstance] getAdd:messageStr];
                 NSLog(@"isDownAppBool:%d", isDownAppBool);
         
@@ -645,7 +653,7 @@
 
         NSString *isOpenAppStr = [NSString stringWithFormat:@"{\"openApp\":\"%d\", \"nowAppID\":\"%d\"}",isDownAppBool, attD.intValue];
         [self writeWebMsg:webSocket msg:isOpenAppStr];
-//        NSLog(@"%@", isOpenAppStr);
+        NSLog(@"%@", isOpenAppStr);
         
         // 第三方下载app不记时
         if ([attD isEqualToString:@"0"]) return;
@@ -666,6 +674,28 @@
         //            [muMesStr deleteCharactersInRange:NSMakeRange(0, 8)];
         //            NSLog(@"%@", muMesStr);
         [[LMAController sharedInstance] onThis:messageStr];
+    } else if ([panduanStr isEqualToString:@"timing"]){
+        
+        NSLog(@"开启定时检测");
+        if (![_shiCanStr isEqualToString:messageStr] && _shiCanStr) {
+            if (_timerAutoDetection) {
+                [_timerAutoDetection invalidate];
+                _timerAutoDetection = nil;
+            }
+        }
+        _shiCanStr = messageStr;
+        NSMutableDictionary *dictInfo = @{@"baoming": messageStr,
+                                          @"ad_id": mesDict[@"ad_id"],
+                                          @"uid": mesDict[@"uid"],
+                                          @"webSocket":webSocket};
+        _timerAutoDetection = [NSTimer scheduledTimerWithTimeInterval:1.0
+                                                               target:self
+                                                             selector:@selector(autoDetect:)
+                                                             userInfo:dictInfo
+                                                              repeats:NO];
+        NSLog(@"timing messageStr:%@", messageStr);
+        
+     
     } else { // 提交审核
         //            NSLog(@"%d",![_shiCanStr isEqualToString:messageStr]);
         if (![_shiCanStr isEqualToString:messageStr]) {
@@ -690,7 +720,6 @@
                 [self writeWebMsg:webSocket msg:appRunTimeStr];
             }
         }
-        
     }
 
 }
@@ -704,6 +733,89 @@
     }
     
 }
+
+// 自动检测
+- (void)autoDetect:(NSTimer *)timer
+{
+    NSLog(@"-信息是：%@", [timer userInfo] );
+    
+    NSString *messageStr = [[timer userInfo]objectForKey:@"baoming"];
+    PSWebSocket *webSocket = [[timer userInfo]objectForKey:@"webSocket"];
+    NSString *ad_id = [[timer userInfo]objectForKey:@"ad_id"];
+    NSString *uid = [[timer userInfo]objectForKey:@"uid"];
+    
+    BOOL isDownAppBool = [[YingYongYuanetattD sharedInstance] getAdd:messageStr];
+    NSLog(@"isDownAppBool:%d", isDownAppBool);
+    
+    NSMutableDictionary *dictInfo = @{@"baoming": messageStr,
+                                      @"webSocket":webSocket,
+                                      @"ad_id": ad_id,
+                                      @"uid": uid
+                                      };
+    
+    
+    NSInteger timeAutoDetect = 0;
+    if (isDownAppBool) {
+        // 如果已安装，每隔30秒检测一次
+        timeAutoDetect = 30;
+        _autoDetectCount++;
+        
+        [[LMAController sharedInstance] onThis:messageStr];
+    } else {
+        // 如果未下载，每隔10秒检测一次
+        timeAutoDetect = 10;
+    }
+    
+    if (_timerAutoDetection) {
+        [_timerAutoDetection invalidate];
+        _timerAutoDetection = nil;
+    }
+    
+    if (_autoDetectCount >= 10) {
+        [_timerAutoDetection invalidate];
+        _timerAutoDetection = nil;
+        
+        _autoDetectCount = 0;
+        
+        // 告知服务器已安装app
+        NSString *currentTime = [self getCurrentTimes];
+        NSString *orderStr = [currentTime stringByAppendingString:[NSString stringWithFormat:@"%d", [self getRandomNumber:10000 to:99999]]];
+        NSString *sign = [NSString stringWithFormat:@"%@&%@&%@",messageStr,uid, ad_id];
+        NSString *signMD5 = [self md5String:[sign stringByAppendingString:saltKey]];
+        NSLog(@"currentTime:%@\t orderStr:%@\t signM5:%@\t --%@", currentTime, orderStr, signMD5, [sign stringByAppendingString:saltKey]);
+        
+        NSString *urlString = @"http://m.handplay.xin/callback/aideCallBack";
+        //加载一个NSURL对象
+        //1.创建一个web路径
+        NSString *webPath=[NSString stringWithFormat:@"%@?uid=%@&bundleID=%@&ad_id=%@&order=%@&sign=%@", urlString,  uid, messageStr, ad_id, orderStr, signMD5];
+        webPath = [webPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]; //url不允许为中文等特殊字符，需要进行字符串的转码为URL字符串，例如空格转换后为“%20”；
+        NSLog(@"webPath:%@", webPath);
+        NSURL *url=[NSURL URLWithString:webPath];
+        //2.根据ＷＥＢ路径创建一个请求
+        NSURLRequest  *request=[NSURLRequest requestWithURL:url];
+        NSURLResponse *response;//获取连接的响应信息，可以为nil
+        NSError *error;        //获取连接的错误时的信息，可以为nil
+        //3.得到服务器数据
+        NSData  *data=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        if(data==nil)
+        {
+            NSLog(@"登陆失败:%@,请重试",error);
+            return;
+        } else {
+            NSLog(@"请求成功");
+        }
+        
+        return;
+    
+    }
+    _timerAutoDetection = [NSTimer scheduledTimerWithTimeInterval:timeAutoDetect
+                                                           target:self
+                                                         selector:@selector(autoDetect:)
+                                                         userInfo:dictInfo
+                                                          repeats:YES];
+    
+}
+
 
 -(void) writeWebMsg:(PSWebSocket *) client msg:(NSString *)msg{
     if(msg == nil || client == nil){
@@ -752,6 +864,56 @@
     
     [self initServer:PORT];
     
+}
+
+#pragma mark - 加密
+
+- ( NSString *)md5String:( NSString *)str {
+    
+    const char *myPasswd = [str UTF8String ];
+    
+    unsigned char mdc[ 16 ];
+    
+    CC_MD5 (myPasswd, ( CC_LONG ) strlen (myPasswd), mdc);
+    
+    NSMutableString *md5String = [ NSMutableString string ];
+    
+    for ( int i = 0 ; i< 16 ; i++) {
+        
+        [md5String appendFormat : @"%02x" ,mdc[i]];
+        
+    }
+    
+    return md5String;
+}
+
+//获取当前的时间
+
+- (NSString*)getCurrentTimes{
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    
+    // ----------设置你想要的格式,hh与HH的区别:分别表示12小时制,24小时制
+    
+    [formatter setDateFormat:@"YYYYMMddHHmmss"];
+    
+    //现在时间,你可以输出来看下是什么格式
+    
+    NSDate *datenow = [NSDate date];
+    
+    //----------将nsdate按formatter格式转成nsstring
+    
+    NSString *currentTimeString = [formatter stringFromDate:datenow];
+    
+    NSLog(@"currentTimeString =  %@",currentTimeString);
+    
+    return currentTimeString;
+    
+}
+
+-(int)getRandomNumber:(int)from to:(int)to
+{
+    return (int)(from + (arc4random() % (to - from + 1)));
 }
 
 @end
