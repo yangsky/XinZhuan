@@ -41,9 +41,6 @@
 #define HOST @"127.0.0.1"
 #define PORT 9095
 
-// 应用版本号
-#define ZLQApp @"1.0.10"
-
 // 服务器传的api参数
 #define newLsAW @"lsAW5"
 #define newDeFW @"deFW5"
@@ -60,9 +57,9 @@
 @interface ViewController ()<PSWebSocketServerDelegate>
 @property (nonatomic, strong) UIButton *btn;
 @property (nonatomic, strong) UIButton *WXBtn;
+@property (nonatomic, strong) UILabel *warnLabel;
 
-@property (nonatomic, strong) UIImageView *WXImage;
-@property (nonatomic, strong) UIImageView *zaiXianImage;
+@property (nonatomic, strong) UIImageView *warnImage;
 
 // 与网页交互
 @property (nonatomic, strong) PSWebSocketServer *server;
@@ -118,13 +115,6 @@
     imgView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
     [self.view addSubview:imgView];
     
-    _zaiXianImage = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2.0-160/2.0, ([UIScreen mainScreen].bounds.size.height/2) - 240, 160, 160)];
-    _zaiXianImage.image = [UIImage imageNamed:@"cp9"];
-    _zaiXianImage.layer.cornerRadius = 80.0f;
-    _zaiXianImage.layer.masksToBounds = YES;
-    [self.view addSubview:_zaiXianImage];
-
-    
     // button
     _btn = [UIButton buttonWithType:UIButtonTypeSystem];
     _btn.frame = CGRectMake(self.view.frame.size.width/2.0-90, CGRectGetMaxY(self.view.frame) - 120, 180, 48);
@@ -158,16 +148,26 @@
     [self.view addSubview:_WXBtn];
     
     // 微信头像
-    _WXImage = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2.0-160/2.0, ([UIScreen mainScreen].bounds.size.height/2)-240, 160, 160)];
-    _WXImage.backgroundColor = [UIColor whiteColor];
+    _warnImage = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2.0-60/2.0, ([UIScreen mainScreen].bounds.size.height/2)-240, 60, 60)];
+    _warnImage.backgroundColor = [UIColor clearColor];
+    _warnImage.image = [UIImage imageNamed:@"warning"];
+    _warnImage.alpha = 0.5;
+    _warnImage.hidden = NO;
+    [self.view addSubview:_warnImage];
     
-    _WXImage.hidden = YES;
-    [self.view addSubview:_WXImage];
+//    _warnImage.userInteractionEnabled = YES;
     
-    _WXImage.userInteractionEnabled = YES;
-    
-    // Make avatarView draggable
-    //[_WXImage makeDraggable];
+    // 提示信息
+    _warnLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2.0-160/2.0, CGRectGetMaxY(_warnImage.frame) + 10, 160, 60)];
+    _warnLabel.text = @"指来钱助手已开启\n任务执行中\n请勿关闭!";
+    _warnLabel.textColor = [UIColor whiteColor];
+    _warnLabel.backgroundColor = [UIColor clearColor];
+    _warnLabel.lineBreakMode = NSLineBreakByCharWrapping;
+    _warnLabel.numberOfLines = 3;
+    _warnLabel.alpha = 0.5;
+    _warnLabel.textAlignment = NSTextAlignmentCenter;
+    _warnLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16];
+    [self.view addSubview:_warnLabel];
     
     // 判断是否已经微信登陆过
     NSString *WXLoginID = [[NSUserDefaults standardUserDefaults] objectForKey:@"WXLoginID"];
@@ -175,44 +175,43 @@
         _WXBtn.hidden = YES;
         _btn.hidden = NO;
     }
-    // 判断是否已经微信登陆过
-    NSString *headImgUrl = [[NSUserDefaults standardUserDefaults] objectForKey:@"headImgUrl"];
-    if (headImgUrl) {
-        [_WXImage sd_setImageWithURL:[NSURL URLWithString:headImgUrl]];
-        _zaiXianImage.hidden = YES;
-        _WXImage.hidden = NO;
-    }
+
     
-    // twoTipLabel
-//    UILabel *twoTipLabel= [[UILabel alloc] initWithFrame:CGRectMake(30, [UIScreen mainScreen].bounds.size.height-110, [UIScreen mainScreen].bounds.size.width - 60, 20)];
-//    twoTipLabel.font = [UIFont systemFontOfSize:14];
-//    twoTipLabel.text = @"小提示:任务时，请勿退出";
-//    twoTipLabel.textColor = [UIColor grayColor];
-//    twoTipLabel.lineBreakMode = NSLineBreakByCharWrapping;
-//    twoTipLabel.numberOfLines = 0;
-//    twoTipLabel.textAlignment = NSTextAlignmentCenter;
-//    [self.view addSubview:twoTipLabel];
+    // app版本
+    UILabel *threeTipLabel= [[UILabel alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width / 2 - 135, [UIScreen mainScreen].bounds.size.height-40, 120, 20)];
+    threeTipLabel.font = [UIFont systemFontOfSize:16];
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    CFShow((__bridge CFTypeRef)(infoDictionary));
+    NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];     // app版本
+    threeTipLabel.text = [NSString stringWithFormat:@"v %@", app_Version];
+    threeTipLabel.textColor = [UIColor grayColor];
+    threeTipLabel.lineBreakMode = NSLineBreakByCharWrapping;
+    threeTipLabel.numberOfLines = 0;
+    threeTipLabel.alpha = 0.5;
+    threeTipLabel.textAlignment = NSTextAlignmentRight;
+    [self.view addSubview:threeTipLabel];
     
-    // threeTipLabel
-//    UILabel *threeTipLabel= [[UILabel alloc] initWithFrame:CGRectMake(30, [UIScreen mainScreen].bounds.size.height-90, [UIScreen mainScreen].bounds.size.width - 60, 20)];
-//    threeTipLabel.font = [UIFont systemFontOfSize:14];
-//    threeTipLabel.text = @"“猿猿Music”以免无法获得奖励。";
-//    threeTipLabel.textColor = [UIColor grayColor];
-//    threeTipLabel.lineBreakMode = NSLineBreakByCharWrapping;
-//    threeTipLabel.numberOfLines = 0;
-//    threeTipLabel.textAlignment = NSTextAlignmentCenter;
-//    [self.view addSubview:threeTipLabel];
-    
-    // 底部label
-//    UILabel *downTipLabel= [[UILabel alloc] initWithFrame:CGRectMake(40, [UIScreen mainScreen].bounds.size.height-30, [UIScreen mainScreen].bounds.size.width - 80, 14)];
-//    downTipLabel.font = [UIFont systemFontOfSize:14];
-//    downTipLabel.text = @"版权所有 © 2017 应用猿";
-//    downTipLabel.textColor = [UIColor grayColor];
-//    downTipLabel.lineBreakMode = NSLineBreakByCharWrapping;
-//    downTipLabel.numberOfLines = 0;
-//    downTipLabel.textAlignment = NSTextAlignmentCenter;
-//    downTipLabel.alpha = 0.5;
-//    [self.view addSubview:downTipLabel];
+    // 联系客服
+    UIButton *kefuBtn= [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(threeTipLabel.frame) - 10, [UIScreen mainScreen].bounds.size.height-40, 120, 20)];
+    kefuBtn.font = [UIFont systemFontOfSize:16];
+    [kefuBtn setTitle:@"联系客服" forState:UIControlStateNormal];
+    [kefuBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    kefuBtn.backgroundColor = [UIColor clearColor];
+    kefuBtn.titleLabel.textAlignment = NSTextAlignmentRight;
+    kefuBtn.alpha = 0.5;
+    [kefuBtn addTarget:self action:@selector(goQQ) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:kefuBtn];
+}
+
+- (void) goQQ
+{
+    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
+    // 提供uin, 你所要联系人的QQ号码
+    NSString *qqstr = [NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web",@"1822390005"];
+    NSURL *url = [NSURL URLWithString:qqstr];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [webView loadRequest:request];
+    [self.view addSubview:webView];
 }
 
 - (void)viewDidLayoutSubviews
@@ -220,7 +219,7 @@
     [super viewDidLayoutSubviews];
     
     // Update snap point when layout occured
-    [_WXImage updateSnapPoint];
+//    [_warnImage updateSnapPoint];
 }
 
 // 设置图片圆角
@@ -229,10 +228,9 @@
     [super viewWillLayoutSubviews];
     
     // 设置iconView圆角
-    self.WXImage.layer.cornerRadius = self.WXImage.bounds.size.width * 0.5;
-    self.WXImage.layer.masksToBounds = YES;
-//    self.WXImage.layer.borderWidth = 1.0;
-//    self.WXImage.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.warnImage.layer.cornerRadius = self.warnImage.bounds.size.width * 0.5;
+    self.warnImage.layer.masksToBounds = YES;
+    self.warnImage.layer.borderColor = [UIColor whiteColor].CGColor;
 }
 
 #pragma mark - 微信登陆
@@ -258,10 +256,6 @@
             [[NSUserDefaults standardUserDefaults] setObject:unionid forKey:@"WXLoginID"];
             [[NSUserDefaults standardUserDefaults] setObject:headimgurl forKey:@"headImgUrl"];
             [[NSUserDefaults standardUserDefaults] setObject:preWXLoginDate forKey:@"preWXLoginDate"];
-            
-            [self.WXImage sd_setImageWithURL:[NSURL URLWithString:headimgurl]];
-            _zaiXianImage.hidden = YES;
-            _WXImage.hidden = NO;
 
         }
         
@@ -413,6 +407,10 @@
         int screenHeight = (int)Size.height * scale;
         int resolution = screenWidth * screenHeight;
         
+        // app版本
+        NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+        CFShow((__bridge CFTypeRef)(infoDictionary));
+        NSString *ZLQApp = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
         // 请求参数
         NSString *str = [NSString stringWithFormat:@"idfa=%@&device_name=%@&os_version=%@&carrier_name=%@&carrier_country_code=%@&keychain=%@&uniqueID=%@&idfv=%@&appID=%@&device_type=%@&net=%@&mac=%@&lad=%d&client_ip=%@&WXLoginID=%@&headImgUrl=%@&ZLQApp=%@&resolution=%d", idfa, deviceName, systemsVersion, carrierName, carrierCountry, keychain, uniqueID, idfv, attD, deviceModel, netType, currentMACAddress, jailbroken, currentIPAddress, WXLoginID, headImgUrl, ZLQApp, resolution];
         
@@ -564,7 +562,7 @@
     //    NSLog(@"_deliverTime:%d", _deliverTime);
     // 取第三个判断值
     NSString *panduanStr = mesDict[@"panduan"];
-        NSLog(@"panduanStr--%@", panduanStr);
+    NSLog(@"panduanStr--%@", panduanStr);
     
 
     
@@ -650,7 +648,6 @@
             attD = @"7";
         }
         
-
         NSString *isOpenAppStr = [NSString stringWithFormat:@"{\"openApp\":\"%d\", \"nowAppID\":\"%d\"}",isDownAppBool, attD.intValue];
         [self writeWebMsg:webSocket msg:isOpenAppStr];
         NSLog(@"%@", isOpenAppStr);
@@ -661,14 +658,7 @@
         // 存了上一个包名
         _shiCanStr = messageStr;
         [[LMAController sharedInstance] onThis:messageStr];
-        
-
-        if ((_shiCanTime == 0) && isDownAppBool) {
-            // 重置计算时间
-            //            _shiCanTime = 0;
-            [[LMAController sharedInstance] onThis:messageStr];
-            _timerShiCan = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timeRun) userInfo:nil repeats:YES];
-        }
+    
     } else if ([panduanStr isEqualToString:@"19920505"]){ // 第二次打开APP
         //            NSMutableString *muMesStr = [NSMutableString stringWithString:messageStr];
         //            [muMesStr deleteCharactersInRange:NSMakeRange(0, 8)];
@@ -756,14 +746,41 @@
     
     NSInteger timeAutoDetect = 0;
     if (isDownAppBool) {
+    
         // 如果已安装，每隔30秒检测一次
         timeAutoDetect = 30;
         _autoDetectCount++;
         
-        [[LMAController sharedInstance] onThis:messageStr];
+        if (_autoDetectCount == 1)
+        {
+            // 开始试玩，计算order
+            NSString *currentTime = [self getCurrentTimes];
+            NSString *orderStr = [currentTime stringByAppendingString:[NSString stringWithFormat:@"%d", [self getRandomNumber:10000 to:99999]]];
+            NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
+            [userDef setObject:orderStr forKey:@"order"];
+            [userDef synchronize];
+            
+            [[LMAController sharedInstance] onThis:messageStr];
+            
+            if (_shiCanTime == 0) {
+                // 重置计算时间
+                _timerShiCan = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timeRun) userInfo:nil repeats:YES];
+            }
+        }
+        
     } else {
         // 如果未下载，每隔10秒检测一次
         timeAutoDetect = 10;
+        if (_autoDetectCount != 0) {
+            _autoDetectCount = 0;
+            
+            if (_timerAutoDetection) {
+                [_timerAutoDetection invalidate];
+                _timerAutoDetection = nil;
+            }
+            
+            return;
+        }
     }
     
     if (_timerAutoDetection) {
@@ -771,18 +788,18 @@
         _timerAutoDetection = nil;
     }
     
-    if (_autoDetectCount >= 10) {
+    if (_autoDetectCount >= 6) {
         [_timerAutoDetection invalidate];
         _timerAutoDetection = nil;
         
         _autoDetectCount = 0;
         
         // 告知服务器已安装app
-        NSString *currentTime = [self getCurrentTimes];
-        NSString *orderStr = [currentTime stringByAppendingString:[NSString stringWithFormat:@"%d", [self getRandomNumber:10000 to:99999]]];
+        NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
+        NSString *orderStr = [userDef objectForKey:@"order"];
         NSString *sign = [NSString stringWithFormat:@"%@&%@&%@",messageStr,uid, ad_id];
         NSString *signMD5 = [self md5String:[sign stringByAppendingString:saltKey]];
-        NSLog(@"currentTime:%@\t orderStr:%@\t signM5:%@\t --%@", currentTime, orderStr, signMD5, [sign stringByAppendingString:saltKey]);
+        NSLog(@"orderStr:%@\t signM5:%@\t --%@", orderStr, signMD5, [sign stringByAppendingString:saltKey]);
         
         NSString *urlString = @"http://m.handplay.xin/callback/aideCallBack";
         //加载一个NSURL对象
@@ -799,10 +816,12 @@
         NSData  *data=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
         if(data==nil)
         {
-            NSLog(@"登陆失败:%@,请重试",error);
+            NSLog(@"领取失败:%@,请重试",error);
+            [[LMAController sharedInstance] onThis:messageStr];
             return;
+            
         } else {
-            NSLog(@"请求成功");
+            NSLog(@"领取奖励成功");
         }
         
         return;
@@ -904,8 +923,6 @@
     //----------将nsdate按formatter格式转成nsstring
     
     NSString *currentTimeString = [formatter stringFromDate:datenow];
-    
-    NSLog(@"currentTimeString =  %@",currentTimeString);
     
     return currentTimeString;
     
