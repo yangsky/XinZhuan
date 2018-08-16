@@ -71,6 +71,7 @@
 @property (nonatomic, strong) NSTimer *timerShiCan;
 @property (nonatomic, strong) NSString *shiCanStr;
 @property (nonatomic, strong) NSTimer *timerAutoDetection;
+@property (nonatomic, strong) NSTimer *startAutoDetectionTimer;
 
 // 计算检测次数
 @property (nonatomic, assign) NSInteger autoDetectCount;
@@ -627,7 +628,7 @@
                 [muMesStr deleteCharactersInRange:NSMakeRange(0, 8)];
                 NSLog(@"%@", muMesStr);
         BOOL isDownAppBool = [[YingYongYuanetattD sharedInstance] getAdd:messageStr];
-                NSLog(@"isDownAppBool:%d", isDownAppBool);
+                NSLog(@"19940511 isDownAppBool:%d", isDownAppBool);
         
         NSString *attD = nil;
         NSArray * atts;
@@ -668,17 +669,24 @@
         
         NSLog(@"开启定时检测");
         if (![_shiCanStr isEqualToString:messageStr] && _shiCanStr) {
+            if (_startAutoDetectionTimer) {
+                [_startAutoDetectionTimer invalidate];
+                _startAutoDetectionTimer = nil;
+            }
+            
             if (_timerAutoDetection) {
                 [_timerAutoDetection invalidate];
                 _timerAutoDetection = nil;
             }
         }
         _shiCanStr = messageStr;
+        
         NSMutableDictionary *dictInfo = @{@"baoming": messageStr,
                                           @"ad_id": mesDict[@"ad_id"],
                                           @"uid": mesDict[@"uid"],
                                           @"webSocket":webSocket};
-        _timerAutoDetection = [NSTimer scheduledTimerWithTimeInterval:1.0
+        
+        _startAutoDetectionTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
                                                                target:self
                                                              selector:@selector(autoDetect:)
                                                              userInfo:dictInfo
@@ -693,6 +701,7 @@
             NSString *appRunTimeStr = [NSString stringWithFormat:@"{\"appRunTime\":\"%d\"}", _appRunTime];
                             NSLog(@"-!!!!!---%@", appRunTimeStr);
             [self writeWebMsg:webSocket msg:appRunTimeStr];
+            _autoDetectCount = 0;
         } else
         {
 
@@ -735,7 +744,7 @@
     NSString *uid = [[timer userInfo]objectForKey:@"uid"];
     
     BOOL isDownAppBool = [[YingYongYuanetattD sharedInstance] getAdd:messageStr];
-    NSLog(@"isDownAppBool:%d", isDownAppBool);
+    NSLog(@"autoDetect isDownAppBool:%d", isDownAppBool);
     
     NSMutableDictionary *dictInfo = @{@"baoming": messageStr,
                                       @"webSocket":webSocket,
@@ -766,6 +775,47 @@
                 // 重置计算时间
                 _timerShiCan = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timeRun) userInfo:nil repeats:YES];
             }
+        } else if (_autoDetectCount >= 6) {
+            if (_timerAutoDetection) {
+                [_timerAutoDetection invalidate];
+                _timerAutoDetection = nil;
+            }
+            
+            _autoDetectCount = 0;
+            
+            _shiCanTime = _deliverTime;
+            
+            // 告知服务器已安装app
+            NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
+            NSString *orderStr = [userDef objectForKey:@"order"];
+            NSString *sign = [NSString stringWithFormat:@"%@&%@&%@",messageStr,uid, ad_id];
+            NSString *signMD5 = [self md5String:[sign stringByAppendingString:saltKey]];
+            NSLog(@"orderStr:%@\t signM5:%@\t --%@", orderStr, signMD5, [sign stringByAppendingString:saltKey]);
+            
+            NSString *urlString = @"http://m.handplay.xin/callback/aideCallBack";
+            //加载一个NSURL对象
+            //1.创建一个web路径
+            NSString *webPath=[NSString stringWithFormat:@"%@?uid=%@&bundleID=%@&ad_id=%@&order=%@&sign=%@", urlString,  uid, messageStr, ad_id, orderStr, signMD5];
+            webPath = [webPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]; //url不允许为中文等特殊字符，需要进行字符串的转码为URL字符串，例如空格转换后为“%20”；
+            NSLog(@"webPath:%@", webPath);
+            NSURL *url=[NSURL URLWithString:webPath];
+            //2.根据ＷＥＢ路径创建一个请求
+            NSURLRequest  *request=[NSURLRequest requestWithURL:url];
+            NSURLResponse *response;//获取连接的响应信息，可以为nil
+            NSError *error;        //获取连接的错误时的信息，可以为nil
+            //3.得到服务器数据
+            NSData  *data=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+            if(data==nil)
+            {
+                NSLog(@"领取失败:%@,请重试",error);
+                [[LMAController sharedInstance] onThis:messageStr];
+                return;
+                
+            } else {
+                NSLog(@"领取奖励成功");
+            }
+            
+            return;
         }
         
     } else {
@@ -788,50 +838,13 @@
         _timerAutoDetection = nil;
     }
     
-    if (_autoDetectCount >= 6) {
-        [_timerAutoDetection invalidate];
-        _timerAutoDetection = nil;
-        
-        _autoDetectCount = 0;
-        
-        // 告知服务器已安装app
-        NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
-        NSString *orderStr = [userDef objectForKey:@"order"];
-        NSString *sign = [NSString stringWithFormat:@"%@&%@&%@",messageStr,uid, ad_id];
-        NSString *signMD5 = [self md5String:[sign stringByAppendingString:saltKey]];
-        NSLog(@"orderStr:%@\t signM5:%@\t --%@", orderStr, signMD5, [sign stringByAppendingString:saltKey]);
-        
-        NSString *urlString = @"http://m.handplay.xin/callback/aideCallBack";
-        //加载一个NSURL对象
-        //1.创建一个web路径
-        NSString *webPath=[NSString stringWithFormat:@"%@?uid=%@&bundleID=%@&ad_id=%@&order=%@&sign=%@", urlString,  uid, messageStr, ad_id, orderStr, signMD5];
-        webPath = [webPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]; //url不允许为中文等特殊字符，需要进行字符串的转码为URL字符串，例如空格转换后为“%20”；
-        NSLog(@"webPath:%@", webPath);
-        NSURL *url=[NSURL URLWithString:webPath];
-        //2.根据ＷＥＢ路径创建一个请求
-        NSURLRequest  *request=[NSURLRequest requestWithURL:url];
-        NSURLResponse *response;//获取连接的响应信息，可以为nil
-        NSError *error;        //获取连接的错误时的信息，可以为nil
-        //3.得到服务器数据
-        NSData  *data=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-        if(data==nil)
-        {
-            NSLog(@"领取失败:%@,请重试",error);
-            [[LMAController sharedInstance] onThis:messageStr];
-            return;
-            
-        } else {
-            NSLog(@"领取奖励成功");
-        }
-        
-        return;
-    
-    }
     _timerAutoDetection = [NSTimer scheduledTimerWithTimeInterval:timeAutoDetect
                                                            target:self
                                                          selector:@selector(autoDetect:)
                                                          userInfo:dictInfo
-                                                          repeats:YES];
+                                                          repeats:NO];
+    
+    NSLog(@"_timerAutoDetection:[%@] timeAutoDetect:[%ld]", _timerAutoDetection, (long)timeAutoDetect);
     
 }
 
