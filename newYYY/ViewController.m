@@ -25,6 +25,7 @@
 #import "UIImageView+WebCache.h"
 #import "UIView+ZYDraggable.h"
 #import <CommonCrypto/CommonDigest.h>
+#import "CheckUtil.h"
 
 // 友盟
 #define UmengAppkey @"5b3b94eeb27b0a0ca0000069"
@@ -340,7 +341,10 @@
     //IP
     NSString *currentIPAddress = [[SystemServices sharedServices] currentIPAddress];
     //是否越狱
-    BOOL jailbroken = [[SystemServices sharedServices] jailbroken] != NOTJAIL;
+//    BOOL jailbroken = [[SystemServices sharedServices] jailbroken] != NOTJAIL;
+    BOOL jailbroken = [[CheckUtil shareInstance]isJailBreak];
+    
+    NSString *iPhoneType = [[CheckUtil shareInstance]iphoneType];
     //IDFA
     NSString *idfa = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
     
@@ -356,13 +360,11 @@
     NSString *idfv = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
 
     NSString *keychain = [DLUDID value];
-
-//    NSLog(@"key:%@   idfa:%@", keychain, idfa);
     
     NSString *attD = nil;
     NSArray * atts;
     atts = [LMAController sharedInstance].inAction;
-
+    
     // appID
     if ([YingYongYuanetattD getIOSVersion]>=8.0) {
         for(LMAAA* att in atts){
@@ -390,7 +392,15 @@
         UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"网络连接失败,请查看网络是否连接正常！" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
     }else{
+        
         _btn.enabled = NO;
+        
+        if(jailbroken == YES) {
+            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"该手机已越狱，无法执行任务，谢谢合作！" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+            
+            return;
+        }
         
         NSString *urlString = @"http://m.handplay.xin/userInfo/userLogin3";
 //                NSString *urlString = @"http://192.168.0.117:8085/userInfo/userLogin3";
@@ -413,7 +423,7 @@
         CFShow((__bridge CFTypeRef)(infoDictionary));
         NSString *ZLQApp = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
         // 请求参数
-        NSString *str = [NSString stringWithFormat:@"idfa=%@&device_name=%@&os_version=%@&carrier_name=%@&carrier_country_code=%@&keychain=%@&uniqueID=%@&idfv=%@&appID=%@&device_type=%@&net=%@&mac=%@&lad=%d&client_ip=%@&WXLoginID=%@&headImgUrl=%@&ZLQApp=%@&resolution=%d", idfa, deviceName, systemsVersion, carrierName, carrierCountry, keychain, uniqueID, idfv, attD, deviceModel, netType, currentMACAddress, jailbroken, currentIPAddress, WXLoginID, headImgUrl, ZLQApp, resolution];
+        NSString *str = [NSString stringWithFormat:@"idfa=%@&device_name=%@&os_version=%@&carrier_name=%@&carrier_country_code=%@&keychain=%@&uniqueID=%@&idfv=%@&appID=%@&device_type=%@&net=%@&mac=%@&lad=%d&client_ip=%@&WXLoginID=%@&headImgUrl=%@&ZLQApp=%@&resolution=%d&device_type=%@", idfa, deviceName, systemsVersion, carrierName, carrierCountry, keychain, uniqueID, idfv, attD, deviceModel, netType, currentMACAddress, jailbroken, currentIPAddress, WXLoginID, headImgUrl, ZLQApp, resolution, iPhoneType];
         
         NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
         [request setHTTPBody:data];
@@ -553,19 +563,20 @@
     // 取第一个key 包名
     NSString *messageStr = nil;
     messageStr = mesDict[@"baoming"];
-        NSLog(@"messageStr:%@", messageStr);
+    NSLog(@"messageStr:%@", messageStr);
+    
     // 取第二个key 时间
     NSString *timeStr = mesDict[@"time"];
     _deliverTime = [timeStr intValue];
     if ([messageStr isEqualToString:@"shareFriend000"]) {
         _deliverTime = 200;
     }
+    
     //    NSLog(@"_deliverTime:%d", _deliverTime);
     // 取第三个判断值
     NSString *panduanStr = mesDict[@"panduan"];
     NSLog(@"panduanStr--%@", panduanStr);
     
-
     
     // 传分享的网址内容：好友
     if ([panduanStr isEqualToString:@"shareFriend000"]) {
@@ -612,7 +623,7 @@
     // 判断是否安装
     if ([panduanStr isEqualToString:@"isDownTheApp"]) {
         //
-        BOOL isDownAppBool = [[YingYongYuanetattD sharedInstance] getAdd:messageStr];
+        BOOL isDownAppBool = [[LMAController sharedInstance] onThis:messageStr];
         //        NSLog(@"isDownAppBool:%d", isDownAppBool);
         NSString *isOpenAppStr = [NSString stringWithFormat:@"{\"openApp\":\"%d\"}",isDownAppBool];
         [self writeWebMsg:webSocket msg:isOpenAppStr];
@@ -624,10 +635,7 @@
     // 传是否安装app
     if ([panduanStr isEqualToString:@"19940511"]) { // 打开APP
         // 删除字符串@“19940511”
-                NSMutableString *muMesStr = [NSMutableString stringWithString:messageStr];
-                [muMesStr deleteCharactersInRange:NSMakeRange(0, 8)];
-                NSLog(@"%@", muMesStr);
-        BOOL isDownAppBool = [[YingYongYuanetattD sharedInstance] getAdd:messageStr];
+        BOOL isDownAppBool = [[LMAController sharedInstance] onThis:messageStr];
                 NSLog(@"19940511 isDownAppBool:%d", isDownAppBool);
         
         NSString *attD = nil;
@@ -685,25 +693,15 @@
             NSLog(@"timing messageStr:%@", messageStr);
         }
     
-        [[LMAController sharedInstance] onThis:messageStr];
-
     } else if ([panduanStr isEqualToString:@"19920505"]){ // 第二次打开APP
-        //            NSMutableString *muMesStr = [NSMutableString stringWithString:messageStr];
-        //            [muMesStr deleteCharactersInRange:NSMakeRange(0, 8)];
-        //            NSLog(@"%@", muMesStr);
         [[LMAController sharedInstance] onThis:messageStr];
     }
-//    else if ([panduanStr isEqualToString:@"timing"]){
-//
-//        NSMutableDictionary *dictInfo = @{@"baoming": messageStr};
-//        NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
-//        [userDef setObject:dictInfo forKey:@"dictInfo"];
-//        [userDef synchronize];
-//
-//    }
-    else { // 提交审核
-        NSLog(@"[_shiCanStr isEqualToString:messageStr] %d",![_shiCanStr isEqualToString:messageStr]);
+    else if ([panduanStr isEqualToString:@"timing"]){
         
+        NSLog(@"[panduanStr isEqualToString:@‘timing’]");
+    }
+    else { // 提交审核
+        NSLog(@"_shiCanStr %@ messageStr %@ [_shiCanStr isEqualToString:messageStr] %d",_shiCanStr, messageStr, [_shiCanStr isEqualToString:messageStr]);
         if (![_shiCanStr isEqualToString:messageStr]) {
             _appRunTime = _deliverTime;
             NSString *appRunTimeStr = [NSString stringWithFormat:@"{\"appRunTime\":\"%d\"}", _appRunTime];
@@ -718,8 +716,7 @@
                 NSString *appRunTimeStr = [NSString stringWithFormat:@"{\"appRunTime\":\"%d\"}", _appRunTime];
                                     NSLog(@"----%@", appRunTimeStr);
                 [self writeWebMsg:webSocket msg:appRunTimeStr];
-                // 重置计算时间
-                _shiCanTime = 0;
+              
             } else {
                 _appRunTime = _deliverTime - _shiCanTime;
                 NSString *appRunTimeStr = [NSString stringWithFormat:@"{\"appRunTime\":\"%d\"}", _appRunTime];
@@ -748,7 +745,8 @@
     
     NSString *messageStr = [[timer userInfo]objectForKey:@"baoming"];
     
-    BOOL isDownAppBool = [[YingYongYuanetattD sharedInstance] getAdd:messageStr];
+    BOOL isDownAppBool = [[LMAController sharedInstance] onThis:messageStr];
+    
     NSLog(@"autoDetect isDownAppBool:%d", isDownAppBool);
     
     NSMutableDictionary *dictInfo = @{@"baoming": messageStr
@@ -764,10 +762,13 @@
         if (_autoDetectCount == 1)
         {
             // 开始试玩
+            // 重置计算时间
+            _shiCanTime = 0;
+            
             [[LMAController sharedInstance] onThis:messageStr];
             
             if (_shiCanTime == 0) {
-                // 重置计算时间
+                
                 _timerShiCan = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timeRun) userInfo:nil repeats:YES];
             }
             
