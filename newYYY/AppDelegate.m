@@ -22,7 +22,8 @@
 #import "UMSocialWechatHandler.h"
 #import "DLUDID.h"
 #import "UMMobClick/MobClick.h"
-
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 
 // 友盟
 #define UmengAppkey @"5b3b94eeb27b0a0ca0000069"
@@ -59,6 +60,7 @@
     
     [self makeWindowVisible:launchOptions];
     
+    [Fabric with:@[[Crashlytics class]]];
     
     // 友盟
     [UMSocialData setAppKey:UmengAppkey];

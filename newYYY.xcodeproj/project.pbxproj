@@ -116,10 +116,13 @@
 		04DE65501D659A8500D80CD8 /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DE654C1D659A8500D80CD8 /* libSocialQQ.a */; };
 		04DE65511D659A8500D80CD8 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DE654D1D659A8500D80CD8 /* TencentOpenAPI.framework */; };
 		04DE65521D659A8500D80CD8 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04DE654E1D659A8500D80CD8 /* TencentOpenApi_IOS_Bundle.bundle */; };
+		7662A534BE132D2B980C55B2 /* libPods-指来钱.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 952A36354648444EACA149CE /* libPods-指来钱.a */; };
 		B03AA8241DD94D8E00E2820D /* LMAAA.m in Sources */ = {isa = PBXBuildFile; fileRef = B03AA8231DD94D8E00E2820D /* LMAAA.m */; };
 		B03AA8271DD94E9700E2820D /* LMAController.m in Sources */ = {isa = PBXBuildFile; fileRef = B03AA8261DD94E9700E2820D /* LMAController.m */; };
 		B03AA82B1DD9550700E2820D /* YingYongYuanjAttInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B03AA82A1DD9550700E2820D /* YingYongYuanjAttInfo.m */; };
 		B0C67F161DAF81BE0067DE84 /* UIView+ZYDraggable.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C67F151DAF81BE0067DE84 /* UIView+ZYDraggable.m */; };
+		EC33FC1C2153D366008E7ED0 /* CheckUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = EC33FC1B2153D366008E7ED0 /* CheckUtil.m */; };
+		EC33FC1D2153D366008E7ED0 /* CheckUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = EC33FC1B2153D366008E7ED0 /* CheckUtil.m */; };
 		EC9BB38420DBE7CF00887B2C /* MASConstraintMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 047DF1051D4C8DD500A755CD /* MASConstraintMaker.m */; };
 		EC9BB38520DBE7CF00887B2C /* MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 047DF13B1D4C9FDD00A755CD /* MJProperty.m */; };
 		EC9BB38620DBE7CF00887B2C /* SSJailbreakCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 045EFE511D51974A005B4EE1 /* SSJailbreakCheck.m */; };
@@ -199,7 +202,6 @@
 		EC9BB3D120DBE7CF00887B2C /* libUMSocial_Sdk_5.2.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 041C54D11D5DD39D00942428 /* libUMSocial_Sdk_5.2.1.a */; };
 		EC9BB3D220DBE7CF00887B2C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 041C54A91D5DB43300942428 /* libsqlite3.tbd */; };
 		EC9BB3D320DBE7CF00887B2C /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 041C54B91D5DD39600942428 /* libWeChatSDK.a */; };
-		EC9BB3D420DBE7CF00887B2C /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 041C54A51D5DB41D00942428 /* libstdc++.6.0.9.tbd */; };
 		EC9BB3D520DBE7CF00887B2C /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 041C54A61D5DB41D00942428 /* libstdc++.tbd */; };
 		EC9BB3D620DBE7CF00887B2C /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 045EFEB41D51CE62005B4EE1 /* AdSupport.framework */; };
 		EC9BB3D720DBE7CF00887B2C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 045EFEB21D51CE5A005B4EE1 /* Foundation.framework */; };
@@ -473,6 +475,9 @@
 		04DE654D1D659A8500D80CD8 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		04DE654E1D659A8500D80CD8 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		04DE654F1D659A8500D80CD8 /* UMSocialQQHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialQQHandler.h; sourceTree = "<group>"; };
+		32806F82231829E89317CB28 /* libPods-newYYY.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-newYYY.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		52489DC2D318FAD9FF148399 /* Pods-指来钱.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-指来钱.debug.xcconfig"; path = "Pods/Target Support Files/Pods-指来钱/Pods-指来钱.debug.xcconfig"; sourceTree = "<group>"; };
+		952A36354648444EACA149CE /* libPods-指来钱.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-指来钱.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B03AA8221DD94D8E00E2820D /* LMAAA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMAAA.h; sourceTree = "<group>"; };
 		B03AA8231DD94D8E00E2820D /* LMAAA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMAAA.m; sourceTree = "<group>"; };
 		B03AA8251DD94E9700E2820D /* LMAController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMAController.h; sourceTree = "<group>"; };
@@ -482,6 +487,9 @@
 		B0A949381DAB40BB0057FB90 /* newYYY.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = newYYY.entitlements; sourceTree = "<group>"; };
 		B0C67F141DAF81BE0067DE84 /* UIView+ZYDraggable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ZYDraggable.h"; sourceTree = "<group>"; };
 		B0C67F151DAF81BE0067DE84 /* UIView+ZYDraggable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ZYDraggable.m"; sourceTree = "<group>"; };
+		B7F4031988529EB6299429A8 /* Pods-指来钱.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-指来钱.release.xcconfig"; path = "Pods/Target Support Files/Pods-指来钱/Pods-指来钱.release.xcconfig"; sourceTree = "<group>"; };
+		EC33FC1A2153D366008E7ED0 /* CheckUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckUtil.h; sourceTree = "<group>"; };
+		EC33FC1B2153D366008E7ED0 /* CheckUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckUtil.m; sourceTree = "<group>"; };
 		EC9BB40620DBE7CF00887B2C /* 指来钱.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "指来钱.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC9BB40720DBE7CF00887B2C /* ZLQ-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ZLQ-Info.plist"; path = "/Users/yangshengyuan/Documents/app/YYY-test/yyy/猿猿Music/newYYYRunTime/ZLQ/ZLQ-Info.plist"; sourceTree = "<absolute>"; };
 		EC9BB40920DBE91800887B2C /* ZLQAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ZLQAssets.xcassets; sourceTree = "<group>"; };
@@ -540,7 +548,6 @@
 				EC9BB3D120DBE7CF00887B2C /* libUMSocial_Sdk_5.2.1.a in Frameworks */,
 				EC9BB3D220DBE7CF00887B2C /* libsqlite3.tbd in Frameworks */,
 				EC9BB3D320DBE7CF00887B2C /* libWeChatSDK.a in Frameworks */,
-				EC9BB3D420DBE7CF00887B2C /* libstdc++.6.0.9.tbd in Frameworks */,
 				EC9BB3D520DBE7CF00887B2C /* libstdc++.tbd in Frameworks */,
 				EC9BB3D620DBE7CF00887B2C /* AdSupport.framework in Frameworks */,
 				EC9BB3D720DBE7CF00887B2C /* Foundation.framework in Frameworks */,
@@ -557,6 +564,7 @@
 				EC9BB3E220DBE7CF00887B2C /* CoreGraphics.framework in Frameworks */,
 				EC9BB3E320DBE7CF00887B2C /* TencentOpenAPI.framework in Frameworks */,
 				EC9BB3E420DBE7CF00887B2C /* UIKit.framework in Frameworks */,
+				7662A534BE132D2B980C55B2 /* libPods-指来钱.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -791,6 +799,8 @@
 				045EFEA41D51CE03005B4EE1 /* SystemConfiguration.framework */,
 				045EFEA21D51CDF2005B4EE1 /* CoreGraphics.framework */,
 				045EFEA01D51CDE1005B4EE1 /* UIKit.framework */,
+				32806F82231829E89317CB28 /* libPods-newYYY.a */,
+				952A36354648444EACA149CE /* libPods-指来钱.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -995,6 +1005,7 @@
 				049DB9441D4AF83200B5475C /* ThirdFrame */,
 				049DB9101D4AF12F00B5475C /* newYYY */,
 				049DB90F1D4AF12E00B5475C /* Products */,
+				3A7533B99E586372F9CEDF73 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1018,6 +1029,8 @@
 				041C54B51D5DD12D00942428 /* ViewController.storyboard */,
 				049DB9171D4AF12F00B5475C /* ViewController.h */,
 				049DB9181D4AF12F00B5475C /* ViewController.m */,
+				EC33FC1A2153D366008E7ED0 /* CheckUtil.h */,
+				EC33FC1B2153D366008E7ED0 /* CheckUtil.m */,
 				049DB91D1D4AF12F00B5475C /* Assets.xcassets */,
 				049DB9221D4AF12F00B5475C /* Info.plist */,
 				049DB9111D4AF12F00B5475C /* Supporting Files */,
@@ -1064,6 +1077,15 @@
 				04DE654F1D659A8500D80CD8 /* UMSocialQQHandler.h */,
 			);
 			path = TencentOpenAPI;
+			sourceTree = "<group>";
+		};
+		3A7533B99E586372F9CEDF73 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				52489DC2D318FAD9FF148399 /* Pods-指来钱.debug.xcconfig */,
+				B7F4031988529EB6299429A8 /* Pods-指来钱.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		B03AA8281DD9550700E2820D /* Yingyongyuansdk */ = {
@@ -1117,9 +1139,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EC9BB40320DBE7CF00887B2C /* Build configuration list for PBXNativeTarget "指来钱" */;
 			buildPhases = (
+				C5A2C0D2A2AACAE41FCC910E /* [CP] Check Pods Manifest.lock */,
 				EC9BB38320DBE7CF00887B2C /* Sources */,
 				EC9BB3CE20DBE7CF00887B2C /* Frameworks */,
 				EC9BB3E520DBE7CF00887B2C /* Resources */,
+				EC37463B21457250000945B5 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1154,8 +1178,7 @@
 						};
 					};
 					EC9BB38220DBE7CF00887B2C = {
-						DevelopmentTeam = CHX656NT89;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -1258,6 +1281,40 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		C5A2C0D2A2AACAE41FCC910E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-指来钱-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EC37463B21457250000945B5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 881310e9c19578625f61d5543275f63ab2ba9fe6 1a8e300d94b082436e47e982949b2701f0ed40ba3be2b91505ae0a2a897defb1";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		049DB90A1D4AF12E00B5475C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -1284,6 +1341,7 @@
 				047DF1471D4C9FDD00A755CD /* MJFoundation.m in Sources */,
 				049DB9191D4AF12F00B5475C /* ViewController.m in Sources */,
 				049257FC1D791EFA00989C7B /* UIView+WebCacheOperation.m in Sources */,
+				EC33FC1C2153D366008E7ED0 /* CheckUtil.m in Sources */,
 				B03AA82B1DD9550700E2820D /* YingYongYuanjAttInfo.m in Sources */,
 				049257F31D791EFA00989C7B /* SDWebImageDownloaderOperation.m in Sources */,
 				045EFE5F1D51974A005B4EE1 /* SSAccelerometerInfo.m in Sources */,
@@ -1365,6 +1423,7 @@
 				EC9BB39620DBE7CF00887B2C /* MJFoundation.m in Sources */,
 				EC9BB39720DBE7CF00887B2C /* ViewController.m in Sources */,
 				EC9BB39820DBE7CF00887B2C /* UIView+WebCacheOperation.m in Sources */,
+				EC33FC1D2153D366008E7ED0 /* CheckUtil.m in Sources */,
 				EC9BB39920DBE7CF00887B2C /* YingYongYuanjAttInfo.m in Sources */,
 				EC9BB39A20DBE7CF00887B2C /* SDWebImageDownloaderOperation.m in Sources */,
 				EC9BB39B20DBE7CF00887B2C /* SSAccelerometerInfo.m in Sources */,
@@ -1590,20 +1649,23 @@
 		};
 		EC9BB40420DBE7CF00887B2C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52489DC2D318FAD9FF148399 /* Pods-指来钱.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "ZLQ-AppIcon";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "ZLQ-LaunchImage";
 				CODE_SIGN_ENTITLEMENTS = newYYY/newYYY.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = CHX656NT89;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/newYYY/ThirdFrame/TencentOpenAPI",
 					"$(PROJECT_DIR)/newYYY/ThirdFrame",
+					"$(PROJECT_DIR)/Pods/Fabric",
+					"$(PROJECT_DIR)/Pods/Crashlytics",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/ZLQ/ZLQ-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -1615,7 +1677,7 @@
 					"$(PROJECT_DIR)/newYYY/ThirdFrame/UMSocial_Sdk_5.2.1",
 					"$(PROJECT_DIR)/newYYY/ThirdFrame/TencentOpenAPI",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tutk.Kalay.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhangyu.zlq;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1624,20 +1686,23 @@
 		};
 		EC9BB40520DBE7CF00887B2C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B7F4031988529EB6299429A8 /* Pods-指来钱.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "ZLQ-AppIcon";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "ZLQ-LaunchImage";
 				CODE_SIGN_ENTITLEMENTS = newYYY/newYYY.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Throughtek Co., Ltd.";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = CHX656NT89;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: YanHui Tian (ZZUULMUB9X)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: YanHui Tian (ZZUULMUB9X)";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = ZZUULMUB9X;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/newYYY/ThirdFrame/TencentOpenAPI",
 					"$(PROJECT_DIR)/newYYY/ThirdFrame",
+					"$(PROJECT_DIR)/Pods/Fabric",
+					"$(PROJECT_DIR)/Pods/Crashlytics",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/ZLQ/ZLQ-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -1649,10 +1714,10 @@
 					"$(PROJECT_DIR)/newYYY/ThirdFrame/UMSocial_Sdk_5.2.1",
 					"$(PROJECT_DIR)/newYYY/ThirdFrame/TencentOpenAPI",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tutk.Kalay.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhangyu.zlq;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = ZLQ_Dis;
 			};
 			name = Release;
 		};
