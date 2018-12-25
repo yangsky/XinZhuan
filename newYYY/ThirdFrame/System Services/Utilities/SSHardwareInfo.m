@@ -168,6 +168,30 @@
                 NewDeviceType = @"iPhone 6s Plus";
             else if ([DeviceType isEqualToString:@"iPhone8,4"])
                 NewDeviceType = @"iPhone SE";
+            else if ([DeviceType isEqualToString:@"iPhone9,1"])
+                NewDeviceType = @"iPhone 7";
+            else if ([DeviceType isEqualToString:@"iPhone9,2"])
+                NewDeviceType = @"iPhone 7 Plus";
+            else if ([DeviceType isEqualToString:@"iPhone10,1"])
+                NewDeviceType = @"iPhone 8";
+            else if ([DeviceType isEqualToString:@"iPhone10,4"])
+                NewDeviceType = @"iPhone 8";
+            else if ([DeviceType isEqualToString:@"iPhone10,2"])
+                NewDeviceType = @"iPhone 8 Plus";
+            else if ([DeviceType isEqualToString:@"iPhone10,5"])
+                NewDeviceType = @"iPhone 8 Plus";
+            else if ([DeviceType isEqualToString:@"iPhone10,3"])
+                NewDeviceType = @"iPhone X";
+            else if ([DeviceType isEqualToString:@"iPhone10,6"])
+                NewDeviceType = @"iPhone X";
+            else if ([DeviceType isEqualToString:@"iPhone11,8"])
+                NewDeviceType = @"iPhone XR";
+            else if ([DeviceType isEqualToString:@"iPhone11,2"])
+                NewDeviceType = @"iPhone XS";
+            else if ([DeviceType isEqualToString:@"iPhone11,4"])
+                NewDeviceType = @"iPhone XS Max";
+            else if ([DeviceType isEqualToString:@"iPhone11,6"])
+                NewDeviceType = @"iPhone XS Max";
             else if ([DeviceType isEqualToString:@"iPod1,1"])
                 NewDeviceType = @"iPod Touch 1G";
             else if ([DeviceType isEqualToString:@"iPod2,1"])

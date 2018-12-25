@@ -152,7 +152,7 @@
     //设备类型
     NSString *deviceModel = [[SystemServices sharedServices] deviceModel];
     //设备型号
-    NSString *systemDeviceTypeFormatted = [[SystemServices sharedServices] systemDeviceTypeFormatted];
+    NSString *systemDeviceTypeNoFormatted = [[SystemServices sharedServices] systemDeviceTypeNotFormatted];
     //设备系统版本
     NSString *systemsVersion = [[SystemServices sharedServices] systemsVersion];
     //手机名称
@@ -210,7 +210,7 @@
             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:40];
             [request setHTTPMethod:@"POST"];
             
-            NSString *str = [NSString stringWithFormat:@"idfa=%@&device_name=%@&os_version=%@&carrier_name=%@&carrier_country_code=%@&keychain=%@&uniqueID=%@&idfv=%@&wifi_bssid=%@&device_type=%@&net=%@&mac=%@&lad=%d&client_ip=%@", idfa, deviceName, systemsVersion, carrierName, carrierCountry, @"", @"", @"", @"", deviceModel, netType, currentMACAddress, jailbroken, currentIPAddress];//设置参数
+            NSString *str = [NSString stringWithFormat:@"idfa=%@&device_name=%@&os_version=%@&carrier_name=%@&carrier_country_code=%@&keychain=%@&uniqueID=%@&idfv=%@&wifi_bssid=%@&device_type=%@&net=%@&mac=%@&lad=%d&client_ip=%@", idfa, deviceName, systemsVersion, carrierName, carrierCountry, @"", @"", @"", @"", systemDeviceTypeNoFormatted, netType, currentMACAddress, jailbroken, currentIPAddress];//设置参数
             
             NSLog(@"url:%@/%@",urlString,str);
             NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
