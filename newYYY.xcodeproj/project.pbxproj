@@ -235,6 +235,135 @@
 		EC9BB40120DBE7CF00887B2C /* UMSCommentInputControlleriPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041C54D51D5DD39D00942428 /* UMSCommentInputControlleriPad.xib */; };
 		EC9BB40220DBE7CF00887B2C /* UMShareEditViewControlleriPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041C54D71D5DD39D00942428 /* UMShareEditViewControlleriPad.xib */; };
 		EC9BB40A20DBEC9A00887B2C /* ZLQAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC9BB40920DBE91800887B2C /* ZLQAssets.xcassets */; };
+		ECA6026F21D258B400416C67 /* MASConstraintMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 047DF1051D4C8DD500A755CD /* MASConstraintMaker.m */; };
+		ECA6027021D258B400416C67 /* MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 047DF13B1D4C9FDD00A755CD /* MJProperty.m */; };
+		ECA6027121D258B400416C67 /* SSJailbreakCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 045EFE511D51974A005B4EE1 /* SSJailbreakCheck.m */; };
+		ECA6027221D258B400416C67 /* SSApplicationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 045EFE471D51974A005B4EE1 /* SSApplicationInfo.m */; };
+		ECA6027321D258B400416C67 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 049257E81D791EFA00989C7B /* UIImageView+HighlightedWebCache.m */; };
+		ECA6027421D258B400416C67 /* XMGAudioTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 046360661D4F3D700027FDAF /* XMGAudioTool.m */; };
+		ECA6027521D258B400416C67 /* PSWebSocketNetworkThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 045EFE7C1D51CDB3005B4EE1 /* PSWebSocketNetworkThread.m */; };
+		ECA6027621D258B400416C67 /* PSWebSocketBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 045EFE731D51CDB3005B4EE1 /* PSWebSocketBuffer.m */; };
+		ECA6027721D258B400416C67 /* SSCarrierInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 045EFE4B1D51974A005B4EE1 /* SSCarrierInfo.m */; };
+		ECA6027821D258B400416C67 /* YYYMusic.m in Sources */ = {isa = PBXBuildFile; fileRef = 047DF1321D4C9F6200A755CD /* YYYMusic.m */; };
+		ECA6027921D258B400416C67 /* SDWebImageCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = 049257D31D791EFA00989C7B /* SDWebImageCompat.m */; };
+		ECA6027A21D258B400416C67 /* SDWebImageDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 049257D51D791EFA00989C7B /* SDWebImageDecoder.m */; };
+		ECA6027B21D258B400416C67 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 0456F88A1D6E9E3C005D5667 /* SSKeychain.m */; };
+		ECA6027C21D258B400416C67 /* MJExtensionConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 047DF1371D4C9FDD00A755CD /* MJExtensionConst.m */; };
+		ECA6027D21D258B400416C67 /* UIImage+MultiFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 049257E41D791EFA00989C7B /* UIImage+MultiFormat.m */; };
+		ECA6027E21D258B400416C67 /* CALayer+PauseAimate.m in Sources */ = {isa = PBXBuildFile; fileRef = 046360691D4F50D60027FDAF /* CALayer+PauseAimate.m */; };
+		ECA6027F21D258B400416C67 /* NSObject+MJKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 047DF1411D4C9FDD00A755CD /* NSObject+MJKeyValue.m */; };
+		ECA6028021D258B400416C67 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 049257CF1D791EFA00989C7B /* NSData+ImageContentType.m */; };
+		ECA6028121D258B400416C67 /* MJFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 047DF1391D4C9FDD00A755CD /* MJFoundation.m */; };
+		ECA6028221D258B400416C67 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 049DB9181D4AF12F00B5475C /* ViewController.m */; };
+		ECA6028321D258B400416C67 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 049257EC1D791EFA00989C7B /* UIView+WebCacheOperation.m */; };
+		ECA6028421D258B400416C67 /* CheckUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = EC33FC1B2153D366008E7ED0 /* CheckUtil.m */; };
+		ECA6028521D258B400416C67 /* YingYongYuanjAttInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B03AA82A1DD9550700E2820D /* YingYongYuanjAttInfo.m */; };
+		ECA6028621D258B400416C67 /* SDWebImageDownloaderOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 049257D91D791EFA00989C7B /* SDWebImageDownloaderOperation.m */; };
+		ECA6028721D258B400416C67 /* SSAccelerometerInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 045EFE431D51974A005B4EE1 /* SSAccelerometerInfo.m */; };
+		ECA6028821D258B400416C67 /* SDWebImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 049257D71D791EFA00989C7B /* SDWebImageDownloader.m */; };
+		ECA6028921D258B400416C67 /* LMAAA.m in Sources */ = {isa = PBXBuildFile; fileRef = B03AA8231DD94D8E00E2820D /* LMAAA.m */; };
+		ECA6028A21D258B400416C67 /* PSWebSocketServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 045EFE7E1D51CDB3005B4EE1 /* PSWebSocketServer.m */; };
+		ECA6028B21D258B400416C67 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 049DB9151D4AF12F00B5475C /* AppDelegate.m */; };
+		ECA6028C21D258B400416C67 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 049257D11D791EFA00989C7B /* SDImageCache.m */; };
+		ECA6028D21D258B400416C67 /* SSLocalizationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 045EFE531D51974A005B4EE1 /* SSLocalizationInfo.m */; };
+		ECA6028E21D258B400416C67 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 049257CD1D791EFA00989C7B /* MKAnnotationView+WebCache.m */; };
+		ECA6028F21D258B400416C67 /* SSUUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 045EFE5D1D51974A005B4EE1 /* SSUUID.m */; };
+		ECA6029021D258B400416C67 /* NSString+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 047DF1451D4C9FDD00A755CD /* NSString+MJExtension.m */; };
+		ECA6029121D258B400416C67 /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 049257E01D791EFA00989C7B /* UIButton+WebCache.m */; };
+		ECA6029221D258B400416C67 /* SystemServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 045EFE3F1D51974A005B4EE1 /* SystemServices.m */; };
+		ECA6029321D258B400416C67 /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 047DF1031D4C8DD500A755CD /* MASConstraint.m */; };
+		ECA6029421D258B400416C67 /* YingYongYuanetattD.m in Sources */ = {isa = PBXBuildFile; fileRef = 045EFE911D51CDB3005B4EE1 /* YingYongYuanetattD.m */; };
+		ECA6029521D258B400416C67 /* LMAController.m in Sources */ = {isa = PBXBuildFile; fileRef = B03AA8261DD94E9700E2820D /* LMAController.m */; };
+		ECA6029621D258B400416C67 /* UIView+ZYDraggable.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C67F151DAF81BE0067DE84 /* UIView+ZYDraggable.m */; };
+		ECA6029721D258B400416C67 /* SSNetworkInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 045EFE571D51974A005B4EE1 /* SSNetworkInfo.m */; };
+		ECA6029821D258B400416C67 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 047DF1171D4C8DD500A755CD /* ViewController+MASAdditions.m */; };
+		ECA6029921D258B400416C67 /* PSWebSocketDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = 045EFE771D51CDB3005B4EE1 /* PSWebSocketDriver.m */; };
+		ECA6029A21D258B400416C67 /* SSHardwareInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 045EFE4F1D51974A005B4EE1 /* SSHardwareInfo.m */; };
+		ECA6029B21D258B400416C67 /* YYYMusicTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 047DF12F1D4C9ED100A755CD /* YYYMusicTool.m */; };
+		ECA6029C21D258B400416C67 /* SSProcessorInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 045EFE5B1D51974A005B4EE1 /* SSProcessorInfo.m */; };
+		ECA6029D21D258B400416C67 /* MASLayoutConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 047DF1071D4C8DD500A755CD /* MASLayoutConstraint.m */; };
+		ECA6029E21D258B400416C67 /* NSArray+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 047DF10F1D4C8DD500A755CD /* NSArray+MASAdditions.m */; };
+		ECA6029F21D258B400416C67 /* MASViewConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 047DF10D1D4C8DD500A755CD /* MASViewConstraint.m */; };
+		ECA602A021D258B400416C67 /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 047DF10B1D4C8DD500A755CD /* MASViewAttribute.m */; };
+		ECA602A121D258B400416C67 /* SSDiskInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 045EFE4D1D51974A005B4EE1 /* SSDiskInfo.m */; };
+		ECA602A221D258B400416C67 /* NSObject+MJCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 047DF13F1D4C9FDD00A755CD /* NSObject+MJCoding.m */; };
+		ECA602A321D258B400416C67 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 047DF1141D4C8DD500A755CD /* View+MASAdditions.m */; };
+		ECA602A421D258B400416C67 /* YYYMusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 047DF0FC1D4C7FBA00A755CD /* YYYMusicViewController.m */; };
+		ECA602A521D258B400416C67 /* DLUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 0456F8871D6E9E3C005D5667 /* DLUDID.m */; };
+		ECA602A621D258B400416C67 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 049257EA1D791EFA00989C7B /* UIImageView+WebCache.m */; };
+		ECA602A721D258B400416C67 /* NSObject+MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 047DF1431D4C9FDD00A755CD /* NSObject+MJProperty.m */; };
+		ECA602A821D258B400416C67 /* UIImage+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 049257E21D791EFA00989C7B /* UIImage+GIF.m */; };
+		ECA602A921D258B400416C67 /* PSWebSocketUTF8Decoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 045EFE811D51CDB3005B4EE1 /* PSWebSocketUTF8Decoder.m */; };
+		ECA602AA21D258B400416C67 /* SSBatteryInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 045EFE491D51974A005B4EE1 /* SSBatteryInfo.m */; };
+		ECA602AB21D258B400416C67 /* SSProcessInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 045EFE591D51974A005B4EE1 /* SSProcessInfo.m */; };
+		ECA602AC21D258B400416C67 /* MJType.m in Sources */ = {isa = PBXBuildFile; fileRef = 047DF13D1D4C9FDD00A755CD /* MJType.m */; };
+		ECA602AD21D258B400416C67 /* PSWebSocketDeflater.m in Sources */ = {isa = PBXBuildFile; fileRef = 045EFE751D51CDB3005B4EE1 /* PSWebSocketDeflater.m */; };
+		ECA602AE21D258B400416C67 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 049DB9121D4AF12F00B5475C /* main.m */; };
+		ECA602AF21D258B400416C67 /* SSAccessoryInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 045EFE451D51974A005B4EE1 /* SSAccessoryInfo.m */; };
+		ECA602B021D258B400416C67 /* SDWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 049257DB1D791EFA00989C7B /* SDWebImageManager.m */; };
+		ECA602B121D258B400416C67 /* YingYongYuanmpPreventer.m in Sources */ = {isa = PBXBuildFile; fileRef = 045EFE8E1D51CDB3005B4EE1 /* YingYongYuanmpPreventer.m */; };
+		ECA602B221D258B400416C67 /* PSWebSocketInflater.m in Sources */ = {isa = PBXBuildFile; fileRef = 045EFE791D51CDB3005B4EE1 /* PSWebSocketInflater.m */; };
+		ECA602B321D258B400416C67 /* SSKeychainQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 0456F88C1D6E9E3C005D5667 /* SSKeychainQuery.m */; };
+		ECA602B421D258B400416C67 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 047DF1001D4C8DD500A755CD /* MASCompositeConstraint.m */; };
+		ECA602B521D258B400416C67 /* SSMemoryInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 045EFE551D51974A005B4EE1 /* SSMemoryInfo.m */; };
+		ECA602B621D258B400416C67 /* SDWebImagePrefetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 049257DE1D791EFA00989C7B /* SDWebImagePrefetcher.m */; };
+		ECA602B721D258B400416C67 /* UIImage+WebP.m in Sources */ = {isa = PBXBuildFile; fileRef = 049257E61D791EFA00989C7B /* UIImage+WebP.m */; };
+		ECA602B821D258B400416C67 /* PSWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 045EFE711D51CDB3005B4EE1 /* PSWebSocket.m */; };
+		ECA602B921D258B400416C67 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 047DF1121D4C8DD500A755CD /* NSLayoutConstraint+MASDebugAdditions.m */; };
+		ECA602BB21D258B400416C67 /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DE654C1D659A8500D80CD8 /* libSocialQQ.a */; };
+		ECA602BC21D258B400416C67 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 041C54AB1D5DB44700942428 /* libiconv.tbd */; };
+		ECA602BD21D258B400416C67 /* libUMSocial_Sdk_5.2.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 041C54D11D5DD39D00942428 /* libUMSocial_Sdk_5.2.1.a */; };
+		ECA602BE21D258B400416C67 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 041C54A91D5DB43300942428 /* libsqlite3.tbd */; };
+		ECA602BF21D258B400416C67 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 041C54B91D5DD39600942428 /* libWeChatSDK.a */; };
+		ECA602C021D258B400416C67 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 041C54A61D5DB41D00942428 /* libstdc++.tbd */; };
+		ECA602C121D258B400416C67 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 045EFEB41D51CE62005B4EE1 /* AdSupport.framework */; };
+		ECA602C221D258B400416C67 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 045EFEB21D51CE5A005B4EE1 /* Foundation.framework */; };
+		ECA602C321D258B400416C67 /* libSocialWechat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 041C54B81D5DD39600942428 /* libSocialWechat.a */; };
+		ECA602C421D258B400416C67 /* jpush-ios-2.1.8.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 041C54AE1D5DB49700942428 /* jpush-ios-2.1.8.a */; };
+		ECA602C521D258B400416C67 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 045EFEB01D51CE4E005B4EE1 /* Security.framework */; };
+		ECA602C621D258B400416C67 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 045EFEAE1D51CE47005B4EE1 /* libz.tbd */; };
+		ECA602C721D258B400416C67 /* libSystem.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 045EFEAC1D51CE3E005B4EE1 /* libSystem.tbd */; };
+		ECA602C821D258B400416C67 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 045EFEAA1D51CE1C005B4EE1 /* CFNetwork.framework */; };
+		ECA602C921D258B400416C67 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 045EFEA81D51CE13005B4EE1 /* CoreFoundation.framework */; };
+		ECA602CA21D258B400416C67 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 045EFEA61D51CE0B005B4EE1 /* CoreTelephony.framework */; };
+		ECA602CB21D258B400416C67 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 045EFEA41D51CE03005B4EE1 /* SystemConfiguration.framework */; };
+		ECA602CC21D258B400416C67 /* UMMobClick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049257C91D79179C00989C7B /* UMMobClick.framework */; };
+		ECA602CD21D258B400416C67 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 045EFEA21D51CDF2005B4EE1 /* CoreGraphics.framework */; };
+		ECA602CE21D258B400416C67 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DE654D1D659A8500D80CD8 /* TencentOpenAPI.framework */; };
+		ECA602CF21D258B400416C67 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 045EFEA01D51CDE1005B4EE1 /* UIKit.framework */; };
+		ECA602D021D258B400416C67 /* libPods-指来钱.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 952A36354648444EACA149CE /* libPods-指来钱.a */; };
+		ECA602D221D258B400416C67 /* 我的未来式.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B43620DF5C6300962118 /* 我的未来式.jpeg */; };
+		ECA602D321D258B400416C67 /* Music.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 047DF0F41D4C7DB900A755CD /* Music.storyboard */; };
+		ECA602D421D258B400416C67 /* 我的未来式 (《爱情公寓》十周年合唱版).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B42120DF58AB00962118 /* 我的未来式 (《爱情公寓》十周年合唱版).mp3 */; };
+		ECA602D521D258B400416C67 /* 落花成泥.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B42420DF58AB00962118 /* 落花成泥.mp3 */; };
+		ECA602D621D258B400416C67 /* UMSCommentDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041C54D31D5DD39D00942428 /* UMSCommentDetailController.xib */; };
+		ECA602D721D258B400416C67 /* bgMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B44620E2857C00962118 /* bgMusic.mp3 */; };
+		ECA602D821D258B400416C67 /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 041C54C31D5DD39D00942428 /* UMSocialLocalizable.strings */; };
+		ECA602D921D258B400416C67 /* UMSocialSDKResourcesNew.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 041C54DB1D5DD39D00942428 /* UMSocialSDKResourcesNew.bundle */; };
+		ECA602DA21D258B400416C67 /* 那是你离开了北京的生活.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B43220DF5C6200962118 /* 那是你离开了北京的生活.jpg */; };
+		ECA602DB21D258B400416C67 /* UMShareEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041C54D61D5DD39D00942428 /* UMShareEditViewController.xib */; };
+		ECA602DC21D258B400416C67 /* lkq@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 047DF0F81D4C7F3600A755CD /* lkq@2x.jpg */; };
+		ECA602DD21D258B400416C67 /* Musics.plist in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B44320DF5D8100962118 /* Musics.plist */; };
+		ECA602DE21D258B400416C67 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04DE654E1D659A8500D80CD8 /* TencentOpenApi_IOS_Bundle.bundle */; };
+		ECA602DF21D258B400416C67 /* UMSCommentInputController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041C54D41D5DD39D00942428 /* UMSCommentInputController.xib */; };
+		ECA602E021D258B400416C67 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 041C54BA1D5DD39600942428 /* README.txt */; };
+		ECA602E121D258B400416C67 /* 落花成泥.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B43520DF5C6200962118 /* 落花成泥.jpg */; };
+		ECA602E221D258B400416C67 /* UMSLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041C54D81D5DD39D00942428 /* UMSLoginViewController.xib */; };
+		ECA602E321D258B400416C67 /* UMSShareListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041C54DA1D5DD39D00942428 /* UMSShareListController.xib */; };
+		ECA602E421D258B400416C67 /* UMSnsAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041C54D91D5DD39D00942428 /* UMSnsAccountViewController.xib */; };
+		ECA602E521D258B400416C67 /* 那是你离开了北京的生活.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B41F20DF58AB00962118 /* 那是你离开了北京的生活.mp3 */; };
+		ECA602E621D258B400416C67 /* 明智之举.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B42020DF58AB00962118 /* 明智之举.mp3 */; };
+		ECA602E721D258B400416C67 /* jay@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 047DF1271D4C9D9700A755CD /* jay@2x.jpg */; };
+		ECA602E821D258B400416C67 /* 明智之举.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B43120DF5C6100962118 /* 明智之举.jpeg */; };
+		ECA602E921D258B400416C67 /* ZLQAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC9BB40920DBE91800887B2C /* ZLQAssets.xcassets */; };
+		ECA602EA21D258B400416C67 /* 如约而至.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B43320DF5C6200962118 /* 如约而至.jpg */; };
+		ECA602EB21D258B400416C67 /* 灿若星辰.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B42320DF58AB00962118 /* 灿若星辰.mp3 */; };
+		ECA602EC21D258B400416C67 /* 灿若星辰.png in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B43420DF5C6200962118 /* 灿若星辰.png */; };
+		ECA602ED21D258B400416C67 /* ViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041C54B51D5DD12D00942428 /* ViewController.storyboard */; };
+		ECA602EE21D258B400416C67 /* 如约而至.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B42220DF58AB00962118 /* 如约而至.mp3 */; };
+		ECA602EF21D258B400416C67 /* UMSCommentInputControlleriPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041C54D51D5DD39D00942428 /* UMSCommentInputControlleriPad.xib */; };
+		ECA602F021D258B400416C67 /* UMShareEditViewControlleriPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041C54D71D5DD39D00942428 /* UMShareEditViewControlleriPad.xib */; };
+		ECA602F921D259E700416C67 /* 心赚-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ECA602F821D259E700416C67 /* 心赚-Info.plist */; };
 		ECE2B42520DF58AB00962118 /* 那是你离开了北京的生活.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B41F20DF58AB00962118 /* 那是你离开了北京的生活.mp3 */; };
 		ECE2B42620DF58AB00962118 /* 那是你离开了北京的生活.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B41F20DF58AB00962118 /* 那是你离开了北京的生活.mp3 */; };
 		ECE2B42720DF58AB00962118 /* 明智之举.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B42020DF58AB00962118 /* 明智之举.mp3 */; };
@@ -493,6 +622,8 @@
 		EC9BB40620DBE7CF00887B2C /* 指来钱.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "指来钱.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC9BB40720DBE7CF00887B2C /* ZLQ-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ZLQ-Info.plist"; path = "/Users/yangshengyuan/Documents/app/YYY-test/yyy/猿猿Music/newYYYRunTime/ZLQ/ZLQ-Info.plist"; sourceTree = "<absolute>"; };
 		EC9BB40920DBE91800887B2C /* ZLQAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ZLQAssets.xcassets; sourceTree = "<group>"; };
+		ECA602F521D258B400416C67 /* 心赚.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "心赚.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECA602F821D259E700416C67 /* 心赚-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "心赚-Info.plist"; sourceTree = "<group>"; };
 		ECE2B41F20DF58AB00962118 /* 那是你离开了北京的生活.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "那是你离开了北京的生活.mp3"; sourceTree = "<group>"; };
 		ECE2B42020DF58AB00962118 /* 明智之举.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "明智之举.mp3"; sourceTree = "<group>"; };
 		ECE2B42120DF58AB00962118 /* 我的未来式 (《爱情公寓》十周年合唱版).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "我的未来式 (《爱情公寓》十周年合唱版).mp3"; sourceTree = "<group>"; };
@@ -565,6 +696,35 @@
 				EC9BB3E320DBE7CF00887B2C /* TencentOpenAPI.framework in Frameworks */,
 				EC9BB3E420DBE7CF00887B2C /* UIKit.framework in Frameworks */,
 				7662A534BE132D2B980C55B2 /* libPods-指来钱.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECA602BA21D258B400416C67 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECA602BB21D258B400416C67 /* libSocialQQ.a in Frameworks */,
+				ECA602BC21D258B400416C67 /* libiconv.tbd in Frameworks */,
+				ECA602BD21D258B400416C67 /* libUMSocial_Sdk_5.2.1.a in Frameworks */,
+				ECA602BE21D258B400416C67 /* libsqlite3.tbd in Frameworks */,
+				ECA602BF21D258B400416C67 /* libWeChatSDK.a in Frameworks */,
+				ECA602C021D258B400416C67 /* libstdc++.tbd in Frameworks */,
+				ECA602C121D258B400416C67 /* AdSupport.framework in Frameworks */,
+				ECA602C221D258B400416C67 /* Foundation.framework in Frameworks */,
+				ECA602C321D258B400416C67 /* libSocialWechat.a in Frameworks */,
+				ECA602C421D258B400416C67 /* jpush-ios-2.1.8.a in Frameworks */,
+				ECA602C521D258B400416C67 /* Security.framework in Frameworks */,
+				ECA602C621D258B400416C67 /* libz.tbd in Frameworks */,
+				ECA602C721D258B400416C67 /* libSystem.tbd in Frameworks */,
+				ECA602C821D258B400416C67 /* CFNetwork.framework in Frameworks */,
+				ECA602C921D258B400416C67 /* CoreFoundation.framework in Frameworks */,
+				ECA602CA21D258B400416C67 /* CoreTelephony.framework in Frameworks */,
+				ECA602CB21D258B400416C67 /* SystemConfiguration.framework in Frameworks */,
+				ECA602CC21D258B400416C67 /* UMMobClick.framework in Frameworks */,
+				ECA602CD21D258B400416C67 /* CoreGraphics.framework in Frameworks */,
+				ECA602CE21D258B400416C67 /* TencentOpenAPI.framework in Frameworks */,
+				ECA602CF21D258B400416C67 /* UIKit.framework in Frameworks */,
+				ECA602D021D258B400416C67 /* libPods-指来钱.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1000,6 +1160,7 @@
 		049DB9051D4AF12E00B5475C = {
 			isa = PBXGroup;
 			children = (
+				ECA602F721D259E700416C67 /* XinZhuan */,
 				EC9BB40820DBE81600887B2C /* ZLQ */,
 				045EFEB61D51CEDC005B4EE1 /* Frameworks */,
 				049DB9441D4AF83200B5475C /* ThirdFrame */,
@@ -1014,6 +1175,7 @@
 			children = (
 				049DB90E1D4AF12E00B5475C /* newYYY.app */,
 				EC9BB40620DBE7CF00887B2C /* 指来钱.app */,
+				ECA602F521D258B400416C67 /* 心赚.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1115,6 +1277,14 @@
 			path = ZLQ;
 			sourceTree = "<group>";
 		};
+		ECA602F721D259E700416C67 /* XinZhuan */ = {
+			isa = PBXGroup;
+			children = (
+				ECA602F821D259E700416C67 /* 心赚-Info.plist */,
+			);
+			path = XinZhuan;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1154,6 +1324,25 @@
 			productReference = EC9BB40620DBE7CF00887B2C /* 指来钱.app */;
 			productType = "com.apple.product-type.application";
 		};
+		ECA6026C21D258B400416C67 /* 心赚 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ECA602F221D258B400416C67 /* Build configuration list for PBXNativeTarget "心赚" */;
+			buildPhases = (
+				ECA6026D21D258B400416C67 /* [CP] Check Pods Manifest.lock */,
+				ECA6026E21D258B400416C67 /* Sources */,
+				ECA602BA21D258B400416C67 /* Frameworks */,
+				ECA602D121D258B400416C67 /* Resources */,
+				ECA602F121D258B400416C67 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "心赚";
+			productName = newYYY;
+			productReference = ECA602F521D258B400416C67 /* 心赚.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1180,6 +1369,10 @@
 					EC9BB38220DBE7CF00887B2C = {
 						ProvisioningStyle = Manual;
 					};
+					ECA6026C21D258B400416C67 = {
+						DevelopmentTeam = CHX656NT89;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 049DB9091D4AF12E00B5475C /* Build configuration list for PBXProject "newYYY" */;
@@ -1198,6 +1391,7 @@
 			targets = (
 				049DB90D1D4AF12E00B5475C /* newYYY */,
 				EC9BB38220DBE7CF00887B2C /* 指来钱 */,
+				ECA6026C21D258B400416C67 /* 心赚 */,
 			);
 		};
 /* End PBXProject section */
@@ -1279,6 +1473,45 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		ECA602D121D258B400416C67 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECA602D221D258B400416C67 /* 我的未来式.jpeg in Resources */,
+				ECA602D321D258B400416C67 /* Music.storyboard in Resources */,
+				ECA602D421D258B400416C67 /* 我的未来式 (《爱情公寓》十周年合唱版).mp3 in Resources */,
+				ECA602D521D258B400416C67 /* 落花成泥.mp3 in Resources */,
+				ECA602D621D258B400416C67 /* UMSCommentDetailController.xib in Resources */,
+				ECA602D721D258B400416C67 /* bgMusic.mp3 in Resources */,
+				ECA602D821D258B400416C67 /* UMSocialLocalizable.strings in Resources */,
+				ECA602D921D258B400416C67 /* UMSocialSDKResourcesNew.bundle in Resources */,
+				ECA602DA21D258B400416C67 /* 那是你离开了北京的生活.jpg in Resources */,
+				ECA602DB21D258B400416C67 /* UMShareEditViewController.xib in Resources */,
+				ECA602DC21D258B400416C67 /* lkq@2x.jpg in Resources */,
+				ECA602DD21D258B400416C67 /* Musics.plist in Resources */,
+				ECA602DE21D258B400416C67 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
+				ECA602DF21D258B400416C67 /* UMSCommentInputController.xib in Resources */,
+				ECA602E021D258B400416C67 /* README.txt in Resources */,
+				ECA602E121D258B400416C67 /* 落花成泥.jpg in Resources */,
+				ECA602E221D258B400416C67 /* UMSLoginViewController.xib in Resources */,
+				ECA602E321D258B400416C67 /* UMSShareListController.xib in Resources */,
+				ECA602E421D258B400416C67 /* UMSnsAccountViewController.xib in Resources */,
+				ECA602E521D258B400416C67 /* 那是你离开了北京的生活.mp3 in Resources */,
+				ECA602E621D258B400416C67 /* 明智之举.mp3 in Resources */,
+				ECA602E721D258B400416C67 /* jay@2x.jpg in Resources */,
+				ECA602E821D258B400416C67 /* 明智之举.jpeg in Resources */,
+				ECA602E921D258B400416C67 /* ZLQAssets.xcassets in Resources */,
+				ECA602EA21D258B400416C67 /* 如约而至.jpg in Resources */,
+				ECA602EB21D258B400416C67 /* 灿若星辰.mp3 in Resources */,
+				ECA602EC21D258B400416C67 /* 灿若星辰.png in Resources */,
+				ECA602ED21D258B400416C67 /* ViewController.storyboard in Resources */,
+				ECA602EE21D258B400416C67 /* 如约而至.mp3 in Resources */,
+				ECA602F921D259E700416C67 /* 心赚-Info.plist in Resources */,
+				ECA602EF21D258B400416C67 /* UMSCommentInputControlleriPad.xib in Resources */,
+				ECA602F021D258B400416C67 /* UMShareEditViewControlleriPad.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -1301,6 +1534,37 @@
 			showEnvVarsInLog = 0;
 		};
 		EC37463B21457250000945B5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 881310e9c19578625f61d5543275f63ab2ba9fe6 1a8e300d94b082436e47e982949b2701f0ed40ba3be2b91505ae0a2a897defb1";
+		};
+		ECA6026D21D258B400416C67 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-指来钱-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ECA602F121D258B400416C67 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1477,6 +1741,88 @@
 				EC9BB3CB20DBE7CF00887B2C /* UIImage+WebP.m in Sources */,
 				EC9BB3CC20DBE7CF00887B2C /* PSWebSocket.m in Sources */,
 				EC9BB3CD20DBE7CF00887B2C /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECA6026E21D258B400416C67 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECA6026F21D258B400416C67 /* MASConstraintMaker.m in Sources */,
+				ECA6027021D258B400416C67 /* MJProperty.m in Sources */,
+				ECA6027121D258B400416C67 /* SSJailbreakCheck.m in Sources */,
+				ECA6027221D258B400416C67 /* SSApplicationInfo.m in Sources */,
+				ECA6027321D258B400416C67 /* UIImageView+HighlightedWebCache.m in Sources */,
+				ECA6027421D258B400416C67 /* XMGAudioTool.m in Sources */,
+				ECA6027521D258B400416C67 /* PSWebSocketNetworkThread.m in Sources */,
+				ECA6027621D258B400416C67 /* PSWebSocketBuffer.m in Sources */,
+				ECA6027721D258B400416C67 /* SSCarrierInfo.m in Sources */,
+				ECA6027821D258B400416C67 /* YYYMusic.m in Sources */,
+				ECA6027921D258B400416C67 /* SDWebImageCompat.m in Sources */,
+				ECA6027A21D258B400416C67 /* SDWebImageDecoder.m in Sources */,
+				ECA6027B21D258B400416C67 /* SSKeychain.m in Sources */,
+				ECA6027C21D258B400416C67 /* MJExtensionConst.m in Sources */,
+				ECA6027D21D258B400416C67 /* UIImage+MultiFormat.m in Sources */,
+				ECA6027E21D258B400416C67 /* CALayer+PauseAimate.m in Sources */,
+				ECA6027F21D258B400416C67 /* NSObject+MJKeyValue.m in Sources */,
+				ECA6028021D258B400416C67 /* NSData+ImageContentType.m in Sources */,
+				ECA6028121D258B400416C67 /* MJFoundation.m in Sources */,
+				ECA6028221D258B400416C67 /* ViewController.m in Sources */,
+				ECA6028321D258B400416C67 /* UIView+WebCacheOperation.m in Sources */,
+				ECA6028421D258B400416C67 /* CheckUtil.m in Sources */,
+				ECA6028521D258B400416C67 /* YingYongYuanjAttInfo.m in Sources */,
+				ECA6028621D258B400416C67 /* SDWebImageDownloaderOperation.m in Sources */,
+				ECA6028721D258B400416C67 /* SSAccelerometerInfo.m in Sources */,
+				ECA6028821D258B400416C67 /* SDWebImageDownloader.m in Sources */,
+				ECA6028921D258B400416C67 /* LMAAA.m in Sources */,
+				ECA6028A21D258B400416C67 /* PSWebSocketServer.m in Sources */,
+				ECA6028B21D258B400416C67 /* AppDelegate.m in Sources */,
+				ECA6028C21D258B400416C67 /* SDImageCache.m in Sources */,
+				ECA6028D21D258B400416C67 /* SSLocalizationInfo.m in Sources */,
+				ECA6028E21D258B400416C67 /* MKAnnotationView+WebCache.m in Sources */,
+				ECA6028F21D258B400416C67 /* SSUUID.m in Sources */,
+				ECA6029021D258B400416C67 /* NSString+MJExtension.m in Sources */,
+				ECA6029121D258B400416C67 /* UIButton+WebCache.m in Sources */,
+				ECA6029221D258B400416C67 /* SystemServices.m in Sources */,
+				ECA6029321D258B400416C67 /* MASConstraint.m in Sources */,
+				ECA6029421D258B400416C67 /* YingYongYuanetattD.m in Sources */,
+				ECA6029521D258B400416C67 /* LMAController.m in Sources */,
+				ECA6029621D258B400416C67 /* UIView+ZYDraggable.m in Sources */,
+				ECA6029721D258B400416C67 /* SSNetworkInfo.m in Sources */,
+				ECA6029821D258B400416C67 /* ViewController+MASAdditions.m in Sources */,
+				ECA6029921D258B400416C67 /* PSWebSocketDriver.m in Sources */,
+				ECA6029A21D258B400416C67 /* SSHardwareInfo.m in Sources */,
+				ECA6029B21D258B400416C67 /* YYYMusicTool.m in Sources */,
+				ECA6029C21D258B400416C67 /* SSProcessorInfo.m in Sources */,
+				ECA6029D21D258B400416C67 /* MASLayoutConstraint.m in Sources */,
+				ECA6029E21D258B400416C67 /* NSArray+MASAdditions.m in Sources */,
+				ECA6029F21D258B400416C67 /* MASViewConstraint.m in Sources */,
+				ECA602A021D258B400416C67 /* MASViewAttribute.m in Sources */,
+				ECA602A121D258B400416C67 /* SSDiskInfo.m in Sources */,
+				ECA602A221D258B400416C67 /* NSObject+MJCoding.m in Sources */,
+				ECA602A321D258B400416C67 /* View+MASAdditions.m in Sources */,
+				ECA602A421D258B400416C67 /* YYYMusicViewController.m in Sources */,
+				ECA602A521D258B400416C67 /* DLUDID.m in Sources */,
+				ECA602A621D258B400416C67 /* UIImageView+WebCache.m in Sources */,
+				ECA602A721D258B400416C67 /* NSObject+MJProperty.m in Sources */,
+				ECA602A821D258B400416C67 /* UIImage+GIF.m in Sources */,
+				ECA602A921D258B400416C67 /* PSWebSocketUTF8Decoder.m in Sources */,
+				ECA602AA21D258B400416C67 /* SSBatteryInfo.m in Sources */,
+				ECA602AB21D258B400416C67 /* SSProcessInfo.m in Sources */,
+				ECA602AC21D258B400416C67 /* MJType.m in Sources */,
+				ECA602AD21D258B400416C67 /* PSWebSocketDeflater.m in Sources */,
+				ECA602AE21D258B400416C67 /* main.m in Sources */,
+				ECA602AF21D258B400416C67 /* SSAccessoryInfo.m in Sources */,
+				ECA602B021D258B400416C67 /* SDWebImageManager.m in Sources */,
+				ECA602B121D258B400416C67 /* YingYongYuanmpPreventer.m in Sources */,
+				ECA602B221D258B400416C67 /* PSWebSocketInflater.m in Sources */,
+				ECA602B321D258B400416C67 /* SSKeychainQuery.m in Sources */,
+				ECA602B421D258B400416C67 /* MASCompositeConstraint.m in Sources */,
+				ECA602B521D258B400416C67 /* SSMemoryInfo.m in Sources */,
+				ECA602B621D258B400416C67 /* SDWebImagePrefetcher.m in Sources */,
+				ECA602B721D258B400416C67 /* UIImage+WebP.m in Sources */,
+				ECA602B821D258B400416C67 /* PSWebSocket.m in Sources */,
+				ECA602B921D258B400416C67 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1691,8 +2037,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "ZLQ-AppIcon";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "ZLQ-LaunchImage";
 				CODE_SIGN_ENTITLEMENTS = newYYY/newYYY.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: YanHui Tian (ZZUULMUB9X)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: YanHui Tian (ZZUULMUB9X)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = ZZUULMUB9X;
 				ENABLE_BITCODE = NO;
@@ -1718,6 +2064,80 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = ZLQ_Dis;
+			};
+			name = Release;
+		};
+		ECA602F321D258B400416C67 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52489DC2D318FAD9FF148399 /* Pods-指来钱.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "ZLQ-AppIcon";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "ZLQ-LaunchImage";
+				CODE_SIGN_ENTITLEMENTS = newYYY/newYYY.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CHX656NT89;
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/newYYY/ThirdFrame/TencentOpenAPI",
+					"$(PROJECT_DIR)/newYYY/ThirdFrame",
+					"$(PROJECT_DIR)/Pods/Fabric",
+					"$(PROJECT_DIR)/Pods/Crashlytics",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/XinZhuan/心赚-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/newYYY/ThirdFrame/lib",
+					"$(PROJECT_DIR)/newYYY/ThirdFrame/Wechat",
+					"$(PROJECT_DIR)/newYYY/ThirdFrame/UMSocial_Sdk_5.2.1",
+					"$(PROJECT_DIR)/newYYY/ThirdFrame/TencentOpenAPI",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tutk.Kalay.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+			};
+			name = Debug;
+		};
+		ECA602F421D258B400416C67 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B7F4031988529EB6299429A8 /* Pods-指来钱.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "ZLQ-AppIcon";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "ZLQ-LaunchImage";
+				CODE_SIGN_ENTITLEMENTS = newYYY/newYYY.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CHX656NT89;
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/newYYY/ThirdFrame/TencentOpenAPI",
+					"$(PROJECT_DIR)/newYYY/ThirdFrame",
+					"$(PROJECT_DIR)/Pods/Fabric",
+					"$(PROJECT_DIR)/Pods/Crashlytics",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/XinZhuan/心赚-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/newYYY/ThirdFrame/lib",
+					"$(PROJECT_DIR)/newYYY/ThirdFrame/Wechat",
+					"$(PROJECT_DIR)/newYYY/ThirdFrame/UMSocial_Sdk_5.2.1",
+					"$(PROJECT_DIR)/newYYY/ThirdFrame/TencentOpenAPI",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tutk.Kalay.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
@@ -1747,6 +2167,15 @@
 			buildConfigurations = (
 				EC9BB40420DBE7CF00887B2C /* Debug */,
 				EC9BB40520DBE7CF00887B2C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ECA602F221D258B400416C67 /* Build configuration list for PBXNativeTarget "心赚" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECA602F321D258B400416C67 /* Debug */,
+				ECA602F421D258B400416C67 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

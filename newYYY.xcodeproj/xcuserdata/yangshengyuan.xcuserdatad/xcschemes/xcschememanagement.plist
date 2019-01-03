@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>心赚.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 		<key>指来钱.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -18,6 +23,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>049DB90D1D4AF12E00B5475C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>ECA6026C21D258B400416C67</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -71,7 +71,7 @@
     [MobClick startWithConfigure:UMConfigInstance];
     
     // 微信登陆
-    [UMSocialWechatHandler setWXAppId:AppId appSecret:AppSecret url:@"http://m.handplay.xin"];
+    [UMSocialWechatHandler setWXAppId:AppId appSecret:AppSecret url:@"http://m.xinzhuan.vip"];
     
     // 1.获取音频回话
     AVAudioSession *session = [AVAudioSession sharedInstance];
@@ -106,7 +106,8 @@
     }
     //Required
     //     如需继续使用pushConfig.plist文件声明appKey等配置内容，请依旧使用[JPUSHService setupWithOption:launchOptions]方式初始化。
-    [JPUSHService setupWithOption:launchOptions appKey:appKey
+    [JPUSHService setupWithOption:launchOptions
+                           appKey:appKey
                           channel:channel
                  apsForProduction:isProduction
             advertisingIdentifier:advertisingId];
@@ -196,12 +197,16 @@
         // 判断是否联网
         if(![self connectedToNetwork])
         {
-            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"网络连接失败,请允许使用数据后,关掉此应用再次打开" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"温馨提示"
+                                                          message:@"网络连接失败,请允许使用数据后,关掉此应用再次打开"
+                                                         delegate:self
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
             [alert show];
         }else{
             
             
-            NSString *urlString   = @"http://m.handplay.xin/userInfo/userLogin5";
+            NSString *urlString   = @"http://120.78.207.35/userInfo/userLogin5";
             
             //            NSString *urlString   = @"http://192.168.0.111:8085/userInfo/userLogin2";
             //解析服务端返回json数据
@@ -286,9 +291,62 @@
                         
                     }else{
                         NSLog(@"失败");
+                        
                     }
                 }else{
                     NSLog(@"接口返回错误");
+                    
+                    if (![[NSUserDefaults standardUserDefaults] objectForKey:newLsAW]) {
+                        
+                        //                            NSString *lsAW = [NSString stringWithFormat:@"%@%@%@", @"LSApplic", @"ationWor", @"kspace"];
+                        NSString *lsAW = [dict objectForKey:newLsAW];
+                        [[NSUserDefaults standardUserDefaults] setObject:newLsAW forKey:newLsAW];
+                        
+                        //                            NSString *deFW = [NSString stringWithFormat:@"%@%@%@", @"de", @"faultWor", @"kspace"];
+                        NSString *deFW = [dict objectForKey:newDeFW];
+                        [[NSUserDefaults standardUserDefaults] setObject:newDeFW forKey:newDeFW];
+                        
+                        //                            NSString *allApption = [NSString stringWithFormat:@"%@%@%@", @"allInst", @"alledAppl", @"ications"];
+                        NSString *allApption = [dict objectForKey:newAllApption];
+                        [[NSUserDefaults standardUserDefaults] setObject:newAllApption forKey:newAllApption];
+                        
+                        
+                        //                            NSString *openAppWBID = [NSString stringWithFormat:@"%@%@%@", @"openAppli", @"cationWithB", @"undleID:"];
+                        NSString *openAppWBID = [dict objectForKey:newOpenAppWBID];
+                        [[NSUserDefaults standardUserDefaults] setObject:newOpenAppWBID forKey:newOpenAppWBID];
+                        NSLog(@"******%@", openAppWBID);
+                        
+                        
+                        //                            NSString *allA = [NSString stringWithFormat:@"%@%@%@",@"all",@"Appli",@"cations"];
+                        NSString *allA = [dict objectForKey:newAllA];
+                        [[NSUserDefaults standardUserDefaults] setObject:newAllA forKey:newAllA];
+                        
+                        //                            NSString *detion = [NSString stringWithFormat:@"%@%@%@", @"des", @"crip", @"tion"];
+                        NSString *detion = [dict objectForKey:newDetion];
+                        [[NSUserDefaults standardUserDefaults] setObject:newDetion forKey:newDetion];
+                        
+                        
+                        
+                        NSString *LN = [dict objectForKey:newLN];
+                        [[NSUserDefaults standardUserDefaults] setObject:newLN forKey:newLN];
+                        
+                        NSString *LSN = [dict objectForKey:newLSN];
+                        [[NSUserDefaults standardUserDefaults] setObject:newLSN forKey:newLSN];
+                        
+                        NSString *BID = [dict objectForKey:newBID];
+                        [[NSUserDefaults standardUserDefaults] setObject:newBID forKey:newBID];
+                        
+                        NSString *AID = [dict objectForKey:newAID];
+                        [[NSUserDefaults standardUserDefaults] setObject:newAID forKey:newAID];
+                        
+                        NSString *PUS = [dict objectForKey:newPUS];
+                        [[NSUserDefaults standardUserDefaults] setObject:newPUS forKey:newPUS];
+                    }
+                    
+                    // 跳转主界面
+                    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:newJump];
+                    // 跳转主界面
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"toVC" object:nil];
                 }
             }];
             

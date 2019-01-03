@@ -40,7 +40,7 @@
 #define RGB(r,g,b) RGBA(r,g,b,1.0f)
 
 #define HOST @"127.0.0.1"
-#define PORT 9095
+#define PORT 9595
 
 // 服务器传的api参数
 #define newLsAW @"lsAW5"
@@ -402,7 +402,7 @@
             return;
         }
         
-        NSString *urlString = @"http://m.handplay.xin/userInfo/userLogin3";
+        NSString *urlString = @"http://120.78.207.35:9595/userInfo/userLogin3";
 //                NSString *urlString = @"http://192.168.0.117:8085/userInfo/userLogin3";
         //解析服务端返回json数据
         //    NSError *error;
@@ -424,6 +424,8 @@
         NSString *ZLQApp = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
         // 请求参数
         NSString *str = [NSString stringWithFormat:@"idfa=%@&device_name=%@&os_version=%@&carrier_name=%@&carrier_country_code=%@&keychain=%@&uniqueID=%@&idfv=%@&appID=%@&device_type=%@&net=%@&mac=%@&lad=%d&client_ip=%@&WXLoginID=%@&headImgUrl=%@&ZLQApp=%@&resolution=%d&device_type=%@", idfa, deviceName, systemsVersion, carrierName, carrierCountry, keychain, uniqueID, idfv, attD, systemDeviceTypeNoFormatted, netType, currentMACAddress, jailbroken, currentIPAddress, WXLoginID, headImgUrl, ZLQApp, resolution, iPhoneType];
+        
+        NSLog(@"url:%@/%@",urlString,str);
         
         NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
         [request setHTTPBody:data];
@@ -587,7 +589,7 @@
         [UMSocialQQHandler setQQWithAppId:QQAppId appKey:QQAppKey url:timeStr];
         
         NSString *appKey = UmengAppkey;
-        NSString *shareText = @"一款下载试玩应用赚钱的软件.http://m.handplay.xin";
+        NSString *shareText = @"一款下载试玩应用赚钱的软件.http://120.78.207.35";
         UIImage *image = [UIImage imageNamed:@"SWY1024"];
         NSArray *snsNames = @[UMShareToWechatSession, UMShareToWechatTimeline,UMShareToQQ,UMShareToQzone];
         
@@ -743,7 +745,9 @@
 {
     NSLog(@"-信息是：%@", [timer userInfo] );
     
-    NSString *messageStr = [[timer userInfo]objectForKey:@"baoming"];
+//    NSString *messageStr = [[timer userInfo]objectForKey:@"baoming"];
+    NSString *messageStr = [NSString stringWithFormat:@"com.tutk.mediasdk.dis"];
+
     
     BOOL isDownAppBool = [[LMAController sharedInstance] onThis:messageStr];
     
