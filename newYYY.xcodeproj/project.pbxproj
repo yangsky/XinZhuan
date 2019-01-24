@@ -1374,7 +1374,7 @@
 					};
 					ECA6026C21D258B400416C67 = {
 						DevelopmentTeam = ZZUULMUB9X;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -2079,8 +2079,8 @@
 				CODE_SIGN_ENTITLEMENTS = newYYY/newYYY.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = ZZUULMUB9X;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2114,10 +2114,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "XZ-AppIcon";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "XZ-LaunchImage";
 				CODE_SIGN_ENTITLEMENTS = newYYY/newYYY.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: YanHui Tian (ZZUULMUB9X)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: YanHui Tian (ZZUULMUB9X)";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = ZZUULMUB9X;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2140,7 +2140,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.dianle.xinzhuan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = XinZhuan_Dis;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};

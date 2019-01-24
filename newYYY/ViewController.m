@@ -216,7 +216,7 @@
 {
     UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
     // 提供uin, 你所要联系人的QQ号码
-    NSString *qqstr = [NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web",@"1822390005"];
+    NSString *qqstr = [NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web",@"934950667"];
     NSURL *url = [NSURL URLWithString:qqstr];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [webView loadRequest:request];
