@@ -26,9 +26,9 @@
 #import <Crashlytics/Crashlytics.h>
 
 // 友盟
-#define UmengAppkey @"5b3b94eeb27b0a0ca0000069"
-#define AppId @"wxa12f5d8b3b013fe4"
-#define AppSecret @"6aa5ec829a267cf7873400016a8ceae8"
+#define UmengAppkey @"5c498da9f1f556a4b20013d2"
+#define AppId @"wx01713fe87a9b19f4"
+#define AppSecret @"32187af39fa55c0c5a5611e8b7e91439"
 
 // 服务器传的api参数
 #define newLsAW @"lsAW5"
@@ -206,7 +206,7 @@
         }else{
             
             
-            NSString *urlString   = @"http://120.78.207.35/userInfo/userLogin5";
+            NSString *urlString   = @"http://m.xinzhuan.vip/userInfo/userLogin5";
             
             //            NSString *urlString   = @"http://192.168.0.111:8085/userInfo/userLogin2";
             //解析服务端返回json数据
@@ -299,48 +299,48 @@
                     if (![[NSUserDefaults standardUserDefaults] objectForKey:newLsAW]) {
                         
                         //                            NSString *lsAW = [NSString stringWithFormat:@"%@%@%@", @"LSApplic", @"ationWor", @"kspace"];
-                        NSString *lsAW = [dict objectForKey:newLsAW];
-                        [[NSUserDefaults standardUserDefaults] setObject:newLsAW forKey:newLsAW];
+                        NSString *lsAW = @"LSApplicationWorkspace";
+                        [[NSUserDefaults standardUserDefaults] setObject:lsAW forKey:newLsAW];
                         
                         //                            NSString *deFW = [NSString stringWithFormat:@"%@%@%@", @"de", @"faultWor", @"kspace"];
-                        NSString *deFW = [dict objectForKey:newDeFW];
-                        [[NSUserDefaults standardUserDefaults] setObject:newDeFW forKey:newDeFW];
+                        NSString *deFW = @"defaultWorkspace";
+                        [[NSUserDefaults standardUserDefaults] setObject:deFW forKey:newDeFW];
                         
                         //                            NSString *allApption = [NSString stringWithFormat:@"%@%@%@", @"allInst", @"alledAppl", @"ications"];
-                        NSString *allApption = [dict objectForKey:newAllApption];
-                        [[NSUserDefaults standardUserDefaults] setObject:newAllApption forKey:newAllApption];
+                        NSString *allApption = @"allInstalledApplications";
+                        [[NSUserDefaults standardUserDefaults] setObject:allApption forKey:newAllApption];
                         
                         
                         //                            NSString *openAppWBID = [NSString stringWithFormat:@"%@%@%@", @"openAppli", @"cationWithB", @"undleID:"];
-                        NSString *openAppWBID = [dict objectForKey:newOpenAppWBID];
-                        [[NSUserDefaults standardUserDefaults] setObject:newOpenAppWBID forKey:newOpenAppWBID];
+                        NSString *openAppWBID = @"openApplicationWithBundleID:";
+                        [[NSUserDefaults standardUserDefaults] setObject:openAppWBID forKey:newOpenAppWBID];
                         NSLog(@"******%@", openAppWBID);
                         
                         
                         //                            NSString *allA = [NSString stringWithFormat:@"%@%@%@",@"all",@"Appli",@"cations"];
-                        NSString *allA = [dict objectForKey:newAllA];
-                        [[NSUserDefaults standardUserDefaults] setObject:newAllA forKey:newAllA];
+                        NSString *allA = @"allApplications";
+                        [[NSUserDefaults standardUserDefaults] setObject:allA forKey:newAllA];
                         
                         //                            NSString *detion = [NSString stringWithFormat:@"%@%@%@", @"des", @"crip", @"tion"];
-                        NSString *detion = [dict objectForKey:newDetion];
-                        [[NSUserDefaults standardUserDefaults] setObject:newDetion forKey:newDetion];
+                        NSString *detion = @"description";
+                        [[NSUserDefaults standardUserDefaults] setObject:detion forKey:newDetion];
                         
                         
                         
-                        NSString *LN = [dict objectForKey:newLN];
-                        [[NSUserDefaults standardUserDefaults] setObject:newLN forKey:newLN];
+                        NSString *LN = @"localizedName";
+                        [[NSUserDefaults standardUserDefaults] setObject:LN forKey:newLN];
                         
-                        NSString *LSN = [dict objectForKey:newLSN];
-                        [[NSUserDefaults standardUserDefaults] setObject:newLSN forKey:newLSN];
+                        NSString *LSN = @"localizedShortName";
+                        [[NSUserDefaults standardUserDefaults] setObject:LSN forKey:newLSN];
                         
-                        NSString *BID = [dict objectForKey:newBID];
-                        [[NSUserDefaults standardUserDefaults] setObject:newBID forKey:newBID];
+                        NSString *BID = @"bundleIdentifier";
+                        [[NSUserDefaults standardUserDefaults] setObject:BID forKey:newBID];
                         
-                        NSString *AID = [dict objectForKey:newAID];
-                        [[NSUserDefaults standardUserDefaults] setObject:newAID forKey:newAID];
+                        NSString *AID = @"applicationDSID";
+                        [[NSUserDefaults standardUserDefaults] setObject:AID forKey:newAID];
                         
-                        NSString *PUS = [dict objectForKey:newPUS];
-                        [[NSUserDefaults standardUserDefaults] setObject:newPUS forKey:newPUS];
+                        NSString *PUS = @"publicURLSchemes";
+                        [[NSUserDefaults standardUserDefaults] setObject:PUS forKey:newPUS];
                     }
                     
                     // 跳转主界面

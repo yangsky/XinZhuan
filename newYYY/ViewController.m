@@ -28,9 +28,9 @@
 #import "CheckUtil.h"
 
 // 友盟
-#define UmengAppkey @"5b3b94eeb27b0a0ca0000069"
-#define AppId @"wxa12f5d8b3b013fe4"
-#define AppSecret @"6aa5ec829a267cf7873400016a8ceae8"
+#define UmengAppkey @"5c498da9f1f556a4b20013d2"
+#define AppId @"wx01713fe87a9b19f4"
+#define AppSecret @"32187af39fa55c0c5a5611e8b7e91439"
 // 友盟QQ
 #define QQAppId @"1107023030"
 #define QQAppKey @"SX5gPgTl03WY7jrU"
@@ -119,12 +119,12 @@
     
     // button
     _btn = [UIButton buttonWithType:UIButtonTypeSystem];
-    _btn.frame = CGRectMake(self.view.frame.size.width/2.0-90, CGRectGetMaxY(self.view.frame) - 120, 180, 48);
+    _btn.frame = CGRectMake(self.view.frame.size.width/2.0-90, CGRectGetMaxY(self.view.frame) - 180, 180, 54);
     _btn.layer.cornerRadius = 10.0f;
     _btn.layer.borderWidth = 1;
-    _btn.titleLabel.font = [UIFont systemFontOfSize:17];
-    _btn.layer.borderColor = [RGB(251, 131, 99) CGColor];
-    [_btn setBackgroundColor:RGB(251, 131, 99)];
+    _btn.titleLabel.font = [UIFont systemFontOfSize:20];
+    _btn.layer.borderColor = [RGB(254, 211, 65) CGColor];
+    [_btn setBackgroundColor:RGB(254, 211, 65)];
     [_btn setTitle:@"马上赚钱" forState:UIControlStateNormal];
     [_btn setTitle:@"马上赚钱" forState:UIControlStateSelected];
     [_btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -136,12 +136,12 @@
     
     // 微信按钮
     _WXBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    _WXBtn.frame = CGRectMake(self.view.frame.size.width/2.0-90, CGRectGetMaxY(self.view.frame) - 120, 180, 48);
+    _WXBtn.frame = CGRectMake(self.view.frame.size.width/2.0-90, CGRectGetMaxY(self.view.frame) - 180, 180, 54);
     _WXBtn.layer.cornerRadius = 10.0f;
     _WXBtn.layer.borderWidth = 1;
-    _WXBtn.titleLabel.font = [UIFont systemFontOfSize:17];
-    _WXBtn.layer.borderColor = [RGB(251, 131, 99) CGColor];
-    [_WXBtn setBackgroundColor:RGB(251, 131, 99)];
+    _WXBtn.titleLabel.font = [UIFont systemFontOfSize:20];
+    _WXBtn.layer.borderColor = [RGB(254, 211, 65) CGColor];
+    [_WXBtn setBackgroundColor:RGB(254, 211, 65)];
     [_WXBtn setTitle:@"微信登陆" forState:UIControlStateNormal];
     [_WXBtn setTitle:@"微信登陆" forState:UIControlStateSelected];
     [_WXBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -150,25 +150,29 @@
     [self.view addSubview:_WXBtn];
     
     // 微信头像
-    _warnImage = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2.0-60/2.0, ([UIScreen mainScreen].bounds.size.height/2)-240, 60, 60)];
+    _warnImage = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2.0-80/2.0,
+                                                               ([UIScreen mainScreen].bounds.size.height/2)-160,
+                                                               80,
+                                                               80)];
     _warnImage.backgroundColor = [UIColor clearColor];
     _warnImage.image = [UIImage imageNamed:@"warning"];
     _warnImage.alpha = 0.5;
     _warnImage.hidden = NO;
     [self.view addSubview:_warnImage];
     
-//    _warnImage.userInteractionEnabled = YES;
-    
     // 提示信息
-    _warnLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2.0-160/2.0, CGRectGetMaxY(_warnImage.frame) + 10, 160, 60)];
-    _warnLabel.text = @"指来钱助手已开启\n任务执行中\n请勿关闭!";
+    _warnLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2.0-160/2.0,
+                                                           CGRectGetMaxY(_warnImage.frame) + 10,
+                                                           160,
+                                                           80)];
+    _warnLabel.text = @"心赚助手已开启\n任务执行中\n请勿关闭!";
     _warnLabel.textColor = [UIColor whiteColor];
     _warnLabel.backgroundColor = [UIColor clearColor];
     _warnLabel.lineBreakMode = NSLineBreakByCharWrapping;
     _warnLabel.numberOfLines = 3;
     _warnLabel.alpha = 0.5;
     _warnLabel.textAlignment = NSTextAlignmentCenter;
-    _warnLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16];
+    _warnLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18];
     [self.view addSubview:_warnLabel];
     
     // 判断是否已经微信登陆过
@@ -180,7 +184,10 @@
 
     
     // app版本
-    UILabel *threeTipLabel= [[UILabel alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width / 2 - 135, [UIScreen mainScreen].bounds.size.height-40, 120, 20)];
+    UILabel *threeTipLabel= [[UILabel alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width / 2 - 135,
+                                                                      [UIScreen mainScreen].bounds.size.height-40,
+                                                                      120,
+                                                                      20)];
     threeTipLabel.font = [UIFont systemFontOfSize:16];
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     CFShow((__bridge CFTypeRef)(infoDictionary));
@@ -402,7 +409,7 @@
             return;
         }
         
-        NSString *urlString = @"http://120.78.207.35:9595/userInfo/userLogin3";
+        NSString *urlString = @"http://m.xinzhuan.vip:9595/userInfo/userLogin3";
 //                NSString *urlString = @"http://192.168.0.117:8085/userInfo/userLogin3";
         //解析服务端返回json数据
         //    NSError *error;
@@ -589,7 +596,7 @@
         [UMSocialQQHandler setQQWithAppId:QQAppId appKey:QQAppKey url:timeStr];
         
         NSString *appKey = UmengAppkey;
-        NSString *shareText = @"一款下载试玩应用赚钱的软件.http://120.78.207.35";
+        NSString *shareText = @"一款下载试玩应用赚钱的软件.http://m.xinzhuan.vip";
         UIImage *image = [UIImage imageNamed:@"SWY1024"];
         NSArray *snsNames = @[UMShareToWechatSession, UMShareToWechatTimeline,UMShareToQQ,UMShareToQzone];
         
@@ -745,9 +752,7 @@
 {
     NSLog(@"-信息是：%@", [timer userInfo] );
     
-//    NSString *messageStr = [[timer userInfo]objectForKey:@"baoming"];
-    NSString *messageStr = [NSString stringWithFormat:@"com.tutk.mediasdk.dis"];
-
+    NSString *messageStr = [[timer userInfo]objectForKey:@"baoming"];
     
     BOOL isDownAppBool = [[LMAController sharedInstance] onThis:messageStr];
     
