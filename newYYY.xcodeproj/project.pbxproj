@@ -704,19 +704,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ECA602BB21D258B400416C67 /* libSocialQQ.a in Frameworks */,
 				ECA602BC21D258B400416C67 /* libiconv.tbd in Frameworks */,
-				ECA602BD21D258B400416C67 /* libUMSocial_Sdk_5.2.1.a in Frameworks */,
 				ECA602BE21D258B400416C67 /* libsqlite3.tbd in Frameworks */,
-				ECA602BF21D258B400416C67 /* libWeChatSDK.a in Frameworks */,
+				ECA602C721D258B400416C67 /* libSystem.tbd in Frameworks */,
+				ECA602C621D258B400416C67 /* libz.tbd in Frameworks */,
 				ECA602C021D258B400416C67 /* libstdc++.tbd in Frameworks */,
-				ECA602C121D258B400416C67 /* AdSupport.framework in Frameworks */,
-				ECA602C221D258B400416C67 /* Foundation.framework in Frameworks */,
+				ECA602BD21D258B400416C67 /* libUMSocial_Sdk_5.2.1.a in Frameworks */,
+				ECA602BB21D258B400416C67 /* libSocialQQ.a in Frameworks */,
+				ECA602BF21D258B400416C67 /* libWeChatSDK.a in Frameworks */,
 				ECA602C321D258B400416C67 /* libSocialWechat.a in Frameworks */,
 				ECA602C421D258B400416C67 /* jpush-ios-2.1.8.a in Frameworks */,
+				ECA602D021D258B400416C67 /* libPods-指来钱.a in Frameworks */,
 				ECA602C521D258B400416C67 /* Security.framework in Frameworks */,
-				ECA602C621D258B400416C67 /* libz.tbd in Frameworks */,
-				ECA602C721D258B400416C67 /* libSystem.tbd in Frameworks */,
+				ECA602C121D258B400416C67 /* AdSupport.framework in Frameworks */,
+				ECA602C221D258B400416C67 /* Foundation.framework in Frameworks */,
 				ECA602C821D258B400416C67 /* CFNetwork.framework in Frameworks */,
 				ECA602C921D258B400416C67 /* CoreFoundation.framework in Frameworks */,
 				ECA602CA21D258B400416C67 /* CoreTelephony.framework in Frameworks */,
@@ -725,7 +726,6 @@
 				ECA602CD21D258B400416C67 /* CoreGraphics.framework in Frameworks */,
 				ECA602CE21D258B400416C67 /* TencentOpenAPI.framework in Frameworks */,
 				ECA602CF21D258B400416C67 /* UIKit.framework in Frameworks */,
-				ECA602D021D258B400416C67 /* libPods-指来钱.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1373,7 +1373,7 @@
 						ProvisioningStyle = Manual;
 					};
 					ECA6026C21D258B400416C67 = {
-						DevelopmentTeam = ZZUULMUB9X;
+						DevelopmentTeam = CHX656NT89;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1578,7 +1578,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run 881310e9c19578625f61d5543275f63ab2ba9fe6 1a8e300d94b082436e47e982949b2701f0ed40ba3be2b91505ae0a2a897defb1";
+			shellScript = "./Fabric.framework/run 881310e9c19578625f61d5543275f63ab2ba9fe6 1a8e300d94b082436e47e982949b2701f0ed40ba3be2b91505ae0a2a897defb1\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

@@ -46,6 +46,8 @@
 // 跳转界面的偏好设置
 #define newJump @"i_jump5"
 
+#define newUDID @"UDID"
+
 @interface AppDelegate ()
 @property (nonatomic, strong) YYYMusicViewController *musicVC;
 @property (nonatomic, strong) ViewController *VC;
@@ -181,6 +183,8 @@
     // IDFA
     NSString *idfa = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
     
+    NSString *udid = [[NSUserDefaults standardUserDefaults]objectForKey:newUDID];
+    
 //    NSString *uniqueID = [[SystemServices sharedServices] uniqueID];
     
 //
@@ -188,9 +192,6 @@
 
 //    NSString *keychain = [DLUDID changeKeychain];
 //    NSLog(@"--idfa:%@--keychain:%@", idfa, keychain);
-    
-
-    
     
     // 检测是否越狱
     if (jailbroken == NO) {
@@ -215,7 +216,7 @@
             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:40];
             [request setHTTPMethod:@"POST"];
             
-            NSString *str = [NSString stringWithFormat:@"idfa=%@&device_name=%@&os_version=%@&carrier_name=%@&carrier_country_code=%@&keychain=%@&uniqueID=%@&idfv=%@&wifi_bssid=%@&device_type=%@&net=%@&mac=%@&lad=%d&client_ip=%@", idfa, deviceName, systemsVersion, carrierName, carrierCountry, @"", @"", @"", @"", systemDeviceTypeNoFormatted, netType, currentMACAddress, jailbroken, currentIPAddress];//设置参数
+            NSString *str = [NSString stringWithFormat:@"idfa=%@&device_name=%@&os_version=%@&carrier_name=%@&carrier_country_code=%@&keychain=%@&uniqueID=%@&idfv=%@&wifi_bssid=%@&device_type=%@&net=%@&mac=%@&lad=%d&client_ip=%@&udid=%@", idfa, deviceName, systemsVersion, carrierName, carrierCountry, @"", @"", @"", @"", systemDeviceTypeNoFormatted, netType, currentMACAddress, jailbroken, currentIPAddress, udid];//设置参数
             
             NSLog(@"url:%@/%@",urlString,str);
             NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
@@ -415,6 +416,16 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
+    NSString *urlStr  = [NSString stringWithFormat:@"%@", url];
+    if ([urlStr hasPrefix:@"openXinZhuanOne:"]) {
+        NSString *udid = [urlStr substringWithRange:NSMakeRange(24, 40)];
+        NSLog(@"urlStr:%@ udid:%@", urlStr, udid);
+        
+        if (udid && udid.length > 0) {
+            [[NSUserDefaults standardUserDefaults] setObject:udid forKey:newUDID];
+        }
+    }
+   
     return  [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
 }
 

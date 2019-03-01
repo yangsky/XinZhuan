@@ -59,6 +59,7 @@
 @property (nonatomic, strong) UIButton *btn;
 @property (nonatomic, strong) UIButton *WXBtn;
 @property (nonatomic, strong) UILabel *warnLabel;
+@property (nonatomic, strong) UIButton *btnGetUDID;
 
 @property (nonatomic, strong) UIImageView *warnImage;
 
@@ -87,13 +88,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
     // 通知
     [self notificationNum];
     // 客户端界面
     [self interfaceSetUp];
     // 后台监听
     [self backgroundMonitor];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didBecomeActive:)
+                                                 name:UIApplicationDidBecomeActiveNotification
+                                               object:nil];
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:YES];
 }
 
 
@@ -149,6 +160,23 @@
     _WXBtn.enabled = YES;
     [self.view addSubview:_WXBtn];
     
+    // button
+    _btnGetUDID = [UIButton buttonWithType:UIButtonTypeSystem];
+    _btnGetUDID.frame = CGRectMake(self.view.frame.size.width/2.0-90, CGRectGetMaxY(self.view.frame) - 180, 180, 54);
+    _btnGetUDID.layer.cornerRadius = 10.0f;
+    _btnGetUDID.layer.borderWidth = 1;
+    _btnGetUDID.titleLabel.font = [UIFont systemFontOfSize:20];
+    _btnGetUDID.layer.borderColor = [RGB(254, 211, 65) CGColor];
+    [_btnGetUDID setBackgroundColor:RGB(254, 211, 65)];
+    [_btnGetUDID setTitle:@"安装描述文件" forState:UIControlStateNormal];
+    [_btnGetUDID setTitle:@"安装描述文件" forState:UIControlStateSelected];
+    [_btnGetUDID setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_btnGetUDID addTarget:self action:@selector(getUDID) forControlEvents:UIControlEventTouchUpInside];
+    _btnGetUDID.enabled = YES;
+    
+    _btnGetUDID.hidden = YES;
+    [self.view addSubview:_btnGetUDID];
+    
     // 微信头像
     _warnImage = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2.0-80/2.0,
                                                                ([UIScreen mainScreen].bounds.size.height/2)-160,
@@ -175,13 +203,25 @@
     _warnLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18];
     [self.view addSubview:_warnLabel];
     
-    // 判断是否已经微信登陆过
-    NSString *WXLoginID = [[NSUserDefaults standardUserDefaults] objectForKey:@"WXLoginID"];
-    if (WXLoginID && ![self isWXLoginOver7Days]) {
+    
+    // 判断是否存储udid
+    NSString *udid = [[NSUserDefaults standardUserDefaults]objectForKey:@"UDID"];
+    
+    if (!udid || udid.length < 0) {
+        _btnGetUDID.hidden = NO;
         _WXBtn.hidden = YES;
-        _btn.hidden = NO;
-    }
+        _btn.hidden = YES;
+    } else {
+        // 判断是否已经微信登陆过
+        NSString *WXLoginID = [[NSUserDefaults standardUserDefaults] objectForKey:@"WXLoginID"];
+        if (WXLoginID && ![self isWXLoginOver7Days]) {
+            _WXBtn.hidden = YES;
+            _btn.hidden = NO;
+            _btnGetUDID.hidden = YES;
+        }
 
+    }
+ 
     
     // app版本
     UILabel *threeTipLabel= [[UILabel alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width / 2 - 135,
@@ -240,6 +280,12 @@
     self.warnImage.layer.cornerRadius = self.warnImage.bounds.size.width * 0.5;
     self.warnImage.layer.masksToBounds = YES;
     self.warnImage.layer.borderColor = [UIColor whiteColor].CGColor;
+}
+
+#pragma mark - 安装描述文件
+- (void) getUDID
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://m.xinzhuan.vip/udid/getUdidConfig"]];
 }
 
 #pragma mark - 微信登陆
@@ -429,8 +475,10 @@
         NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
         CFShow((__bridge CFTypeRef)(infoDictionary));
         NSString *ZLQApp = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+        NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
+        NSString *udid = [userDef objectForKey:@"UDID"];
         // 请求参数
-        NSString *str = [NSString stringWithFormat:@"idfa=%@&device_name=%@&os_version=%@&carrier_name=%@&carrier_country_code=%@&keychain=%@&uniqueID=%@&idfv=%@&appID=%@&device_type=%@&net=%@&mac=%@&lad=%d&client_ip=%@&WXLoginID=%@&headImgUrl=%@&ZLQApp=%@&resolution=%d&device_type=%@", idfa, deviceName, systemsVersion, carrierName, carrierCountry, keychain, uniqueID, idfv, attD, systemDeviceTypeNoFormatted, netType, currentMACAddress, jailbroken, currentIPAddress, WXLoginID, headImgUrl, ZLQApp, resolution, iPhoneType];
+        NSString *str = [NSString stringWithFormat:@"idfa=%@&device_name=%@&os_version=%@&carrier_name=%@&carrier_country_code=%@&keychain=%@&uniqueID=%@&idfv=%@&appID=%@&device_type=%@&net=%@&mac=%@&lad=%d&client_ip=%@&WXLoginID=%@&headImgUrl=%@&ZLQApp=%@&resolution=%d&device_type=%@&udid=%@", idfa, deviceName, systemsVersion, carrierName, carrierCountry, keychain, uniqueID, idfv, attD, systemDeviceTypeNoFormatted, netType, currentMACAddress, jailbroken, currentIPAddress, WXLoginID, headImgUrl, ZLQApp, resolution, iPhoneType, udid];
         
         NSLog(@"url:%@/%@",urlString,str);
         
@@ -881,4 +929,34 @@
     
 }
 
+#pragma mark - UIApplication Delegate
+- (void)didResignActive:(NSNotification *)notification
+{
+    
+}
+
+- (void)didBecomeActive:(NSNotification *)notification
+{
+    // 判断是否存储udid
+    NSString *udid = [[NSUserDefaults standardUserDefaults]objectForKey:@"UDID"];
+    
+    if (!udid || udid.length < 0) {
+        _btnGetUDID.hidden = NO;
+        _WXBtn.hidden = YES;
+        _btn.hidden = YES;
+    } else {
+        // 判断是否已经微信登陆过
+        NSString *WXLoginID = [[NSUserDefaults standardUserDefaults] objectForKey:@"WXLoginID"];
+        if (WXLoginID && ![self isWXLoginOver7Days]) {
+            _WXBtn.hidden = YES;
+            _btn.hidden = NO;
+            _btnGetUDID.hidden = YES;
+        } else {
+            _WXBtn.hidden = NO;
+            _btn.hidden = YES;
+            _btnGetUDID.hidden = YES;
+        }
+        
+    }
+}
 @end
