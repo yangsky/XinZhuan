@@ -7,6 +7,8 @@ target '心赚' do
 
   pod 'Fabric'
   pod 'Crashlytics'
+  pod 'CocoaHTTPServer'
+  pod 'GTMBase64'
   # Pods for newYYY
 
 end

@@ -26,6 +26,8 @@
 #import "UIView+ZYDraggable.h"
 #import <CommonCrypto/CommonDigest.h>
 #import "CheckUtil.h"
+#import "DLAddToDesktopHandler.h"
+#import "UIImage+DLDataURIImage.h"
 
 // 友盟
 #define UmengAppkey @"5c498da9f1f556a4b20013d2"
@@ -105,6 +107,10 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
+    
+    // 弹框提示
+    [self performSelector:@selector(showShotcutMessage) withObject:self afterDelay:0.5];
+
 }
 
 
@@ -119,6 +125,45 @@
         [application registerUserNotificationSettings:settings];
     }
     
+}
+
+
+
+// 安装快捷链接提示
+-(void) showShotcutMessage
+{
+    NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
+    BOOL isShortCut = [userDef boolForKey:@"shortcut"];
+    
+    if (isShortCut) {
+        return;
+    }
+    
+    //弹框提示是否安装快捷方式
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"快捷方式安装"
+                                                                   message:@"安装快捷方式，提供新的下载入口"
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定"
+                                                      style:UIAlertActionStyleDefault
+                                                    handler:^(UIAlertAction * _Nonnull action) {
+                                                        [self buildShortcut];
+                                                        [userDef setBool:YES forKey:@"shortcut"];
+                                                    }];
+    [alert addAction:action1];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+-(void)buildShortcut
+{
+    DLAddToDesktopHandler *handler = [DLAddToDesktopHandler sharedInsance];
+    NSString *imageString = [[UIImage imageNamed:@"cp9"] dataURISchemeImage];
+    NSString *url = [NSString stringWithFormat:@"https://www.pgyer.com/TW1i"];
+    [handler addToDesktopWithDataURISchemeImage:imageString
+                                          title:@"心赚快捷方式"
+                                      urlScheme:@"shortcut"
+                                 appDownloadUrl:url];
 }
 
 #pragma mark - 设置客户端界面
@@ -250,6 +295,8 @@
     kefuBtn.alpha = 0.5;
     [kefuBtn addTarget:self action:@selector(goQQ) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:kefuBtn];
+    
+   
 }
 
 - (void) goQQ

@@ -115,6 +115,7 @@
             advertisingIdentifier:advertisingId];
     
     [self notificationNum];
+    
     return YES;
 }
 
@@ -416,6 +417,10 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
+    if ([url.scheme isEqualToString:@"shotcut"]) {
+        return YES;
+    }
+    
     NSString *urlStr  = [NSString stringWithFormat:@"%@", url];
     if ([urlStr hasPrefix:@"openXinZhuanOne:"]) {
         NSString *udid = [urlStr substringWithRange:NSMakeRange(24, 40)];
