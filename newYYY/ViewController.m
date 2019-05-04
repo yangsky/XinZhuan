@@ -31,7 +31,7 @@
 
 // 友盟
 #define UmengAppkey @"5c498da9f1f556a4b20013d2"
-#define AppId @"wx01713fe87a9b19f4"
+#define AppId @"wx3f78b31981678d37"
 #define AppSecret @"32187af39fa55c0c5a5611e8b7e91439"
 // 友盟QQ
 #define QQAppId @"1107023030"
@@ -159,9 +159,9 @@
 {
     DLAddToDesktopHandler *handler = [DLAddToDesktopHandler sharedInsance];
     NSString *imageString = [[UIImage imageNamed:@"cp9"] dataURISchemeImage];
-    NSString *url = [NSString stringWithFormat:@"https://www.pgyer.com/TW1i"];
+    NSString *url = [NSString stringWithFormat:@"http://m.xinzhuan.vip"];
     [handler addToDesktopWithDataURISchemeImage:imageString
-                                          title:@"心赚快捷方式"
+                                          title:@"心赚入口"
                                       urlScheme:@"shortcut"
                                  appDownloadUrl:url];
 }

@@ -1397,7 +1397,8 @@
 						ProvisioningStyle = Manual;
 					};
 					ECA6026C21D258B400416C67 = {
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = 4V8KM3JQZJ;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -1406,6 +1407,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 				"zh-Hans",
@@ -2081,8 +2083,8 @@
 				CODE_SIGN_ENTITLEMENTS = newYYY/newYYY.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4V8KM3JQZJ;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2102,7 +2104,7 @@
 					"$(PROJECT_DIR)/newYYY/ThirdFrame/UMSocial_Sdk_5.2.1",
 					"$(PROJECT_DIR)/newYYY/ThirdFrame/TencentOpenAPI",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tutk.Kalay.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dianle.xinzhuan2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2118,8 +2120,8 @@
 				CODE_SIGN_ENTITLEMENTS = newYYY/newYYY.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = CHX656NT89;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4V8KM3JQZJ;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2139,10 +2141,10 @@
 					"$(PROJECT_DIR)/newYYY/ThirdFrame/UMSocial_Sdk_5.2.1",
 					"$(PROJECT_DIR)/newYYY/ThirdFrame/TencentOpenAPI",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tutk.Kalay.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dianle.xinzhuan2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = Kalay_Dis;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
