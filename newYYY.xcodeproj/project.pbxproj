@@ -127,6 +127,7 @@
 		EC46656522773D8800399701 /* DLAddToDesktopHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46655D22773D8800399701 /* DLAddToDesktopHandler.m */; };
 		EC46656622773D8800399701 /* DLBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46656022773D8800399701 /* DLBase64.m */; };
 		EC46656722773D8800399701 /* WebHtml.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EC46656322773D8800399701 /* WebHtml.bundle */; };
+		EC73C802227EA3EC00F8FD9A /* bgMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EC73C7F4227EA3EC00F8FD9A /* bgMusic.mp3 */; };
 		EC9BB38420DBE7CF00887B2C /* MASConstraintMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 047DF1051D4C8DD500A755CD /* MASConstraintMaker.m */; };
 		EC9BB38520DBE7CF00887B2C /* MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 047DF13B1D4C9FDD00A755CD /* MJProperty.m */; };
 		EC9BB38620DBE7CF00887B2C /* SSJailbreakCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 045EFE511D51974A005B4EE1 /* SSJailbreakCheck.m */; };
@@ -334,62 +335,25 @@
 		ECA602CD21D258B400416C67 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 045EFEA21D51CDF2005B4EE1 /* CoreGraphics.framework */; };
 		ECA602CE21D258B400416C67 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DE654D1D659A8500D80CD8 /* TencentOpenAPI.framework */; };
 		ECA602CF21D258B400416C67 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 045EFEA01D51CDE1005B4EE1 /* UIKit.framework */; };
-		ECA602D221D258B400416C67 /* 我的未来式.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B43620DF5C6300962118 /* 我的未来式.jpeg */; };
 		ECA602D321D258B400416C67 /* Music.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 047DF0F41D4C7DB900A755CD /* Music.storyboard */; };
-		ECA602D421D258B400416C67 /* 我的未来式 (《爱情公寓》十周年合唱版).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B42120DF58AB00962118 /* 我的未来式 (《爱情公寓》十周年合唱版).mp3 */; };
-		ECA602D521D258B400416C67 /* 落花成泥.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B42420DF58AB00962118 /* 落花成泥.mp3 */; };
 		ECA602D621D258B400416C67 /* UMSCommentDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041C54D31D5DD39D00942428 /* UMSCommentDetailController.xib */; };
-		ECA602D721D258B400416C67 /* bgMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B44620E2857C00962118 /* bgMusic.mp3 */; };
 		ECA602D821D258B400416C67 /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 041C54C31D5DD39D00942428 /* UMSocialLocalizable.strings */; };
 		ECA602D921D258B400416C67 /* UMSocialSDKResourcesNew.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 041C54DB1D5DD39D00942428 /* UMSocialSDKResourcesNew.bundle */; };
-		ECA602DA21D258B400416C67 /* 那是你离开了北京的生活.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B43220DF5C6200962118 /* 那是你离开了北京的生活.jpg */; };
 		ECA602DB21D258B400416C67 /* UMShareEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041C54D61D5DD39D00942428 /* UMShareEditViewController.xib */; };
 		ECA602DC21D258B400416C67 /* lkq@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 047DF0F81D4C7F3600A755CD /* lkq@2x.jpg */; };
-		ECA602DD21D258B400416C67 /* Musics.plist in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B44320DF5D8100962118 /* Musics.plist */; };
 		ECA602DE21D258B400416C67 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04DE654E1D659A8500D80CD8 /* TencentOpenApi_IOS_Bundle.bundle */; };
 		ECA602DF21D258B400416C67 /* UMSCommentInputController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041C54D41D5DD39D00942428 /* UMSCommentInputController.xib */; };
 		ECA602E021D258B400416C67 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 041C54BA1D5DD39600942428 /* README.txt */; };
-		ECA602E121D258B400416C67 /* 落花成泥.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B43520DF5C6200962118 /* 落花成泥.jpg */; };
 		ECA602E221D258B400416C67 /* UMSLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041C54D81D5DD39D00942428 /* UMSLoginViewController.xib */; };
 		ECA602E321D258B400416C67 /* UMSShareListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041C54DA1D5DD39D00942428 /* UMSShareListController.xib */; };
 		ECA602E421D258B400416C67 /* UMSnsAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041C54D91D5DD39D00942428 /* UMSnsAccountViewController.xib */; };
-		ECA602E521D258B400416C67 /* 那是你离开了北京的生活.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B41F20DF58AB00962118 /* 那是你离开了北京的生活.mp3 */; };
-		ECA602E621D258B400416C67 /* 明智之举.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B42020DF58AB00962118 /* 明智之举.mp3 */; };
 		ECA602E721D258B400416C67 /* jay@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 047DF1271D4C9D9700A755CD /* jay@2x.jpg */; };
-		ECA602E821D258B400416C67 /* 明智之举.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B43120DF5C6100962118 /* 明智之举.jpeg */; };
 		ECA602E921D258B400416C67 /* ZLQAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC9BB40920DBE91800887B2C /* ZLQAssets.xcassets */; };
-		ECA602EA21D258B400416C67 /* 如约而至.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B43320DF5C6200962118 /* 如约而至.jpg */; };
-		ECA602EB21D258B400416C67 /* 灿若星辰.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B42320DF58AB00962118 /* 灿若星辰.mp3 */; };
-		ECA602EC21D258B400416C67 /* 灿若星辰.png in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B43420DF5C6200962118 /* 灿若星辰.png */; };
 		ECA602ED21D258B400416C67 /* ViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041C54B51D5DD12D00942428 /* ViewController.storyboard */; };
-		ECA602EE21D258B400416C67 /* 如约而至.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B42220DF58AB00962118 /* 如约而至.mp3 */; };
 		ECA602EF21D258B400416C67 /* UMSCommentInputControlleriPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041C54D51D5DD39D00942428 /* UMSCommentInputControlleriPad.xib */; };
 		ECA602F021D258B400416C67 /* UMShareEditViewControlleriPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041C54D71D5DD39D00942428 /* UMShareEditViewControlleriPad.xib */; };
 		ECA602F921D259E700416C67 /* 心赚-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ECA602F821D259E700416C67 /* 心赚-Info.plist */; };
 		ECADF05821EB409200D29B7D /* XZAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECADF05721EB409100D29B7D /* XZAssets.xcassets */; };
-		ECE2B42620DF58AB00962118 /* 那是你离开了北京的生活.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B41F20DF58AB00962118 /* 那是你离开了北京的生活.mp3 */; };
-		ECE2B42820DF58AB00962118 /* 明智之举.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B42020DF58AB00962118 /* 明智之举.mp3 */; };
-		ECE2B42A20DF58AB00962118 /* 我的未来式 (《爱情公寓》十周年合唱版).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B42120DF58AB00962118 /* 我的未来式 (《爱情公寓》十周年合唱版).mp3 */; };
-		ECE2B42B20DF58AB00962118 /* 如约而至.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B42220DF58AB00962118 /* 如约而至.mp3 */; };
-		ECE2B42C20DF58AB00962118 /* 如约而至.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B42220DF58AB00962118 /* 如约而至.mp3 */; };
-		ECE2B42D20DF58AB00962118 /* 灿若星辰.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B42320DF58AB00962118 /* 灿若星辰.mp3 */; };
-		ECE2B42E20DF58AB00962118 /* 灿若星辰.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B42320DF58AB00962118 /* 灿若星辰.mp3 */; };
-		ECE2B43020DF58AB00962118 /* 落花成泥.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B42420DF58AB00962118 /* 落花成泥.mp3 */; };
-		ECE2B43720DF5C6300962118 /* 明智之举.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B43120DF5C6100962118 /* 明智之举.jpeg */; };
-		ECE2B43820DF5C6300962118 /* 明智之举.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B43120DF5C6100962118 /* 明智之举.jpeg */; };
-		ECE2B43920DF5C6300962118 /* 那是你离开了北京的生活.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B43220DF5C6200962118 /* 那是你离开了北京的生活.jpg */; };
-		ECE2B43A20DF5C6300962118 /* 那是你离开了北京的生活.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B43220DF5C6200962118 /* 那是你离开了北京的生活.jpg */; };
-		ECE2B43B20DF5C6300962118 /* 如约而至.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B43320DF5C6200962118 /* 如约而至.jpg */; };
-		ECE2B43C20DF5C6300962118 /* 如约而至.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B43320DF5C6200962118 /* 如约而至.jpg */; };
-		ECE2B43D20DF5C6300962118 /* 灿若星辰.png in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B43420DF5C6200962118 /* 灿若星辰.png */; };
-		ECE2B43E20DF5C6300962118 /* 灿若星辰.png in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B43420DF5C6200962118 /* 灿若星辰.png */; };
-		ECE2B43F20DF5C6300962118 /* 落花成泥.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B43520DF5C6200962118 /* 落花成泥.jpg */; };
-		ECE2B44020DF5C6300962118 /* 落花成泥.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B43520DF5C6200962118 /* 落花成泥.jpg */; };
-		ECE2B44120DF5C6300962118 /* 我的未来式.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B43620DF5C6300962118 /* 我的未来式.jpeg */; };
-		ECE2B44220DF5C6300962118 /* 我的未来式.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B43620DF5C6300962118 /* 我的未来式.jpeg */; };
-		ECE2B44420DF5D8100962118 /* Musics.plist in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B44320DF5D8100962118 /* Musics.plist */; };
-		ECE2B44520DF5D8100962118 /* Musics.plist in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B44320DF5D8100962118 /* Musics.plist */; };
-		ECE2B44820E2857C00962118 /* bgMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ECE2B44620E2857C00962118 /* bgMusic.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -623,26 +587,13 @@
 		EC46656022773D8800399701 /* DLBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLBase64.m; sourceTree = "<group>"; };
 		EC46656122773D8800399701 /* DLAddToDesktopHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLAddToDesktopHandler.h; sourceTree = "<group>"; };
 		EC46656322773D8800399701 /* WebHtml.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WebHtml.bundle; sourceTree = "<group>"; };
+		EC73C7F4227EA3EC00F8FD9A /* bgMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgMusic.mp3; sourceTree = "<group>"; };
 		EC9BB40620DBE7CF00887B2C /* 指来钱.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "指来钱.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC9BB40720DBE7CF00887B2C /* ZLQ-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ZLQ-Info.plist"; path = "/Users/yangshengyuan/Documents/app/YYY-test/yyy/猿猿Music/newYYYRunTime/ZLQ/ZLQ-Info.plist"; sourceTree = "<absolute>"; };
 		EC9BB40920DBE91800887B2C /* ZLQAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ZLQAssets.xcassets; sourceTree = "<group>"; };
 		ECA602F521D258B400416C67 /* 心赚.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "心赚.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECA602F821D259E700416C67 /* 心赚-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "心赚-Info.plist"; sourceTree = "<group>"; };
 		ECADF05721EB409100D29B7D /* XZAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = XZAssets.xcassets; sourceTree = "<group>"; };
-		ECE2B41F20DF58AB00962118 /* 那是你离开了北京的生活.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "那是你离开了北京的生活.mp3"; sourceTree = "<group>"; };
-		ECE2B42020DF58AB00962118 /* 明智之举.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "明智之举.mp3"; sourceTree = "<group>"; };
-		ECE2B42120DF58AB00962118 /* 我的未来式 (《爱情公寓》十周年合唱版).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "我的未来式 (《爱情公寓》十周年合唱版).mp3"; sourceTree = "<group>"; };
-		ECE2B42220DF58AB00962118 /* 如约而至.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "如约而至.mp3"; sourceTree = "<group>"; };
-		ECE2B42320DF58AB00962118 /* 灿若星辰.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "灿若星辰.mp3"; sourceTree = "<group>"; };
-		ECE2B42420DF58AB00962118 /* 落花成泥.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "落花成泥.mp3"; sourceTree = "<group>"; };
-		ECE2B43120DF5C6100962118 /* 明智之举.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "明智之举.jpeg"; sourceTree = "<group>"; };
-		ECE2B43220DF5C6200962118 /* 那是你离开了北京的生活.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "那是你离开了北京的生活.jpg"; sourceTree = "<group>"; };
-		ECE2B43320DF5C6200962118 /* 如约而至.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "如约而至.jpg"; sourceTree = "<group>"; };
-		ECE2B43420DF5C6200962118 /* 灿若星辰.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "灿若星辰.png"; sourceTree = "<group>"; };
-		ECE2B43520DF5C6200962118 /* 落花成泥.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "落花成泥.jpg"; sourceTree = "<group>"; };
-		ECE2B43620DF5C6300962118 /* 我的未来式.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "我的未来式.jpeg"; sourceTree = "<group>"; };
-		ECE2B44320DF5D8100962118 /* Musics.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Musics.plist; sourceTree = "<group>"; };
-		ECE2B44620E2857C00962118 /* bgMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bgMusic.mp3; path = newYYY/ThirdFrame/monitor/YingyongyuanSdkNew/play/bgMusic.mp3; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1028,7 +979,7 @@
 		047DF0F61D4C7F3600A755CD /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				047DF0F91D4C7F3600A755CD /* music */,
+				EC73C7EE227EA3EC00F8FD9A /* music */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -1041,27 +992,6 @@
 			);
 			name = image;
 			path = ../Resource/image;
-			sourceTree = "<group>";
-		};
-		047DF0F91D4C7F3600A755CD /* music */ = {
-			isa = PBXGroup;
-			children = (
-				ECE2B42320DF58AB00962118 /* 灿若星辰.mp3 */,
-				ECE2B42420DF58AB00962118 /* 落花成泥.mp3 */,
-				ECE2B42020DF58AB00962118 /* 明智之举.mp3 */,
-				ECE2B41F20DF58AB00962118 /* 那是你离开了北京的生活.mp3 */,
-				ECE2B42220DF58AB00962118 /* 如约而至.mp3 */,
-				ECE2B42120DF58AB00962118 /* 我的未来式 (《爱情公寓》十周年合唱版).mp3 */,
-				ECE2B43420DF5C6200962118 /* 灿若星辰.png */,
-				ECE2B43520DF5C6200962118 /* 落花成泥.jpg */,
-				ECE2B43120DF5C6100962118 /* 明智之举.jpeg */,
-				ECE2B43220DF5C6200962118 /* 那是你离开了北京的生活.jpg */,
-				ECE2B43320DF5C6200962118 /* 如约而至.jpg */,
-				ECE2B43620DF5C6300962118 /* 我的未来式.jpeg */,
-				ECE2B44620E2857C00962118 /* bgMusic.mp3 */,
-				ECE2B44320DF5D8100962118 /* Musics.plist */,
-			);
-			path = music;
 			sourceTree = "<group>";
 		};
 		047DF0FE1D4C8DD500A755CD /* Masonry */ = {
@@ -1294,6 +1224,14 @@
 			path = HTMLTemplet;
 			sourceTree = "<group>";
 		};
+		EC73C7EE227EA3EC00F8FD9A /* music */ = {
+			isa = PBXGroup;
+			children = (
+				EC73C7F4227EA3EC00F8FD9A /* bgMusic.mp3 */,
+			);
+			path = music;
+			sourceTree = "<group>";
+		};
 		EC9BB40820DBE81600887B2C /* ZLQ */ = {
 			isa = PBXGroup;
 			children = (
@@ -1397,8 +1335,7 @@
 						ProvisioningStyle = Manual;
 					};
 					ECA6026C21D258B400416C67 = {
-						DevelopmentTeam = 4V8KM3JQZJ;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -1429,30 +1366,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ECE2B44120DF5C6300962118 /* 我的未来式.jpeg in Resources */,
 				047DF0F51D4C7DB900A755CD /* Music.storyboard in Resources */,
 				041C54DF1D5DD39D00942428 /* UMSCommentDetailController.xib in Resources */,
 				041C54DD1D5DD39D00942428 /* UMSocialLocalizable.strings in Resources */,
 				041C54E71D5DD39D00942428 /* UMSocialSDKResourcesNew.bundle in Resources */,
-				ECE2B43920DF5C6300962118 /* 那是你离开了北京的生活.jpg in Resources */,
 				041C54E21D5DD39D00942428 /* UMShareEditViewController.xib in Resources */,
 				047DF0FA1D4C7F3600A755CD /* lkq@2x.jpg in Resources */,
-				ECE2B44420DF5D8100962118 /* Musics.plist in Resources */,
 				04DE65521D659A8500D80CD8 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				041C54E01D5DD39D00942428 /* UMSCommentInputController.xib in Resources */,
 				041C54C11D5DD39600942428 /* README.txt in Resources */,
-				ECE2B43F20DF5C6300962118 /* 落花成泥.jpg in Resources */,
 				041C54E41D5DD39D00942428 /* UMSLoginViewController.xib in Resources */,
 				041C54E61D5DD39D00942428 /* UMSShareListController.xib in Resources */,
 				041C54E51D5DD39D00942428 /* UMSnsAccountViewController.xib in Resources */,
 				049DB91E1D4AF12F00B5475C /* Assets.xcassets in Resources */,
-				ECE2B43720DF5C6300962118 /* 明智之举.jpeg in Resources */,
 				047DF1291D4C9D9700A755CD /* jay@2x.jpg in Resources */,
-				ECE2B43B20DF5C6300962118 /* 如约而至.jpg in Resources */,
-				ECE2B42D20DF58AB00962118 /* 灿若星辰.mp3 in Resources */,
-				ECE2B43D20DF5C6300962118 /* 灿若星辰.png in Resources */,
 				041C54B61D5DD12D00942428 /* ViewController.storyboard in Resources */,
-				ECE2B42B20DF58AB00962118 /* 如约而至.mp3 in Resources */,
 				041C54E11D5DD39D00942428 /* UMSCommentInputControlleriPad.xib in Resources */,
 				041C54E31D5DD39D00942428 /* UMShareEditViewControlleriPad.xib in Resources */,
 			);
@@ -1462,34 +1390,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ECE2B44220DF5C6300962118 /* 我的未来式.jpeg in Resources */,
 				EC9BB3E620DBE7CF00887B2C /* Music.storyboard in Resources */,
-				ECE2B42A20DF58AB00962118 /* 我的未来式 (《爱情公寓》十周年合唱版).mp3 in Resources */,
-				ECE2B43020DF58AB00962118 /* 落花成泥.mp3 in Resources */,
 				EC9BB3E820DBE7CF00887B2C /* UMSCommentDetailController.xib in Resources */,
-				ECE2B44820E2857C00962118 /* bgMusic.mp3 in Resources */,
 				EC9BB3EA20DBE7CF00887B2C /* UMSocialLocalizable.strings in Resources */,
 				EC9BB3EB20DBE7CF00887B2C /* UMSocialSDKResourcesNew.bundle in Resources */,
-				ECE2B43A20DF5C6300962118 /* 那是你离开了北京的生活.jpg in Resources */,
 				EC9BB3EC20DBE7CF00887B2C /* UMShareEditViewController.xib in Resources */,
 				EC9BB3EE20DBE7CF00887B2C /* lkq@2x.jpg in Resources */,
-				ECE2B44520DF5D8100962118 /* Musics.plist in Resources */,
 				EC9BB3EF20DBE7CF00887B2C /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				EC9BB3F120DBE7CF00887B2C /* UMSCommentInputController.xib in Resources */,
 				EC9BB3F220DBE7CF00887B2C /* README.txt in Resources */,
-				ECE2B44020DF5C6300962118 /* 落花成泥.jpg in Resources */,
 				EC9BB3F520DBE7CF00887B2C /* UMSLoginViewController.xib in Resources */,
 				EC9BB3F620DBE7CF00887B2C /* UMSShareListController.xib in Resources */,
 				EC9BB3F820DBE7CF00887B2C /* UMSnsAccountViewController.xib in Resources */,
-				ECE2B42620DF58AB00962118 /* 那是你离开了北京的生活.mp3 in Resources */,
-				ECE2B42820DF58AB00962118 /* 明智之举.mp3 in Resources */,
 				EC9BB3FC20DBE7CF00887B2C /* jay@2x.jpg in Resources */,
-				ECE2B43820DF5C6300962118 /* 明智之举.jpeg in Resources */,
-				ECE2B43C20DF5C6300962118 /* 如约而至.jpg in Resources */,
-				ECE2B42E20DF58AB00962118 /* 灿若星辰.mp3 in Resources */,
-				ECE2B43E20DF5C6300962118 /* 灿若星辰.png in Resources */,
 				EC9BB40020DBE7CF00887B2C /* ViewController.storyboard in Resources */,
-				ECE2B42C20DF58AB00962118 /* 如约而至.mp3 in Resources */,
 				EC9BB40120DBE7CF00887B2C /* UMSCommentInputControlleriPad.xib in Resources */,
 				EC9BB40220DBE7CF00887B2C /* UMShareEditViewControlleriPad.xib in Resources */,
 			);
@@ -1499,37 +1413,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ECA602D221D258B400416C67 /* 我的未来式.jpeg in Resources */,
 				ECA602D321D258B400416C67 /* Music.storyboard in Resources */,
-				ECA602D421D258B400416C67 /* 我的未来式 (《爱情公寓》十周年合唱版).mp3 in Resources */,
-				ECA602D521D258B400416C67 /* 落花成泥.mp3 in Resources */,
 				ECA602D621D258B400416C67 /* UMSCommentDetailController.xib in Resources */,
-				ECA602D721D258B400416C67 /* bgMusic.mp3 in Resources */,
 				ECA602D821D258B400416C67 /* UMSocialLocalizable.strings in Resources */,
 				ECA602D921D258B400416C67 /* UMSocialSDKResourcesNew.bundle in Resources */,
-				ECA602DA21D258B400416C67 /* 那是你离开了北京的生活.jpg in Resources */,
 				EC46656722773D8800399701 /* WebHtml.bundle in Resources */,
 				ECA602DB21D258B400416C67 /* UMShareEditViewController.xib in Resources */,
 				ECA602DC21D258B400416C67 /* lkq@2x.jpg in Resources */,
-				ECA602DD21D258B400416C67 /* Musics.plist in Resources */,
 				ECADF05821EB409200D29B7D /* XZAssets.xcassets in Resources */,
 				ECA602DE21D258B400416C67 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				ECA602DF21D258B400416C67 /* UMSCommentInputController.xib in Resources */,
 				ECA602E021D258B400416C67 /* README.txt in Resources */,
-				ECA602E121D258B400416C67 /* 落花成泥.jpg in Resources */,
 				ECA602E221D258B400416C67 /* UMSLoginViewController.xib in Resources */,
+				EC73C802227EA3EC00F8FD9A /* bgMusic.mp3 in Resources */,
 				ECA602E321D258B400416C67 /* UMSShareListController.xib in Resources */,
 				ECA602E421D258B400416C67 /* UMSnsAccountViewController.xib in Resources */,
-				ECA602E521D258B400416C67 /* 那是你离开了北京的生活.mp3 in Resources */,
-				ECA602E621D258B400416C67 /* 明智之举.mp3 in Resources */,
 				ECA602E721D258B400416C67 /* jay@2x.jpg in Resources */,
-				ECA602E821D258B400416C67 /* 明智之举.jpeg in Resources */,
 				ECA602E921D258B400416C67 /* ZLQAssets.xcassets in Resources */,
-				ECA602EA21D258B400416C67 /* 如约而至.jpg in Resources */,
-				ECA602EB21D258B400416C67 /* 灿若星辰.mp3 in Resources */,
-				ECA602EC21D258B400416C67 /* 灿若星辰.png in Resources */,
 				ECA602ED21D258B400416C67 /* ViewController.storyboard in Resources */,
-				ECA602EE21D258B400416C67 /* 如约而至.mp3 in Resources */,
 				ECA602F921D259E700416C67 /* 心赚-Info.plist in Resources */,
 				ECA602EF21D258B400416C67 /* UMSCommentInputControlleriPad.xib in Resources */,
 				ECA602F021D258B400416C67 /* UMShareEditViewControlleriPad.xib in Resources */,
@@ -2083,8 +1984,8 @@
 				CODE_SIGN_ENTITLEMENTS = newYYY/newYYY.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4V8KM3JQZJ;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2120,7 +2021,7 @@
 				CODE_SIGN_ENTITLEMENTS = newYYY/newYYY.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 4V8KM3JQZJ;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
@@ -2144,7 +2045,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.dianle.xinzhuan2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = XinZhuan2_Dis;
 			};
 			name = Release;
 		};

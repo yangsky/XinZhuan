@@ -28,7 +28,8 @@
 // 友盟
 #define UmengAppkey @"5c498da9f1f556a4b20013d2"
 #define AppId @"wx3f78b31981678d37"
-#define AppSecret @"32187af39fa55c0c5a5611e8b7e91439"
+#define AppSecret @"5234a71d11eef41576026b942a425000"
+
 
 // 服务器传的api参数
 #define newLsAW @"lsAW5"

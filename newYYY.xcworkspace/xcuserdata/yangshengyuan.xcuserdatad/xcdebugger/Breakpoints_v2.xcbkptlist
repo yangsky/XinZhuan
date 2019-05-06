@@ -9,13 +9,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "newYYY/ThirdFrame/System Services/Utilities/CheckJailBroken.m"
-            timestampString = "559142939.867792"
+            filePath = "newYYY/ViewController.m"
+            timestampString = "578827311.779007"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "-isJailBreak"
+            startingLineNumber = "345"
+            endingLineNumber = "345"
+            landmarkName = "-WXLogin"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "newYYY/AppDelegate.m"
+            timestampString = "578727382.437433"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "459"
+            endingLineNumber = "459"
+            landmarkName = "-application:openURL:sourceApplication:annotation:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
