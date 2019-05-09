@@ -90,10 +90,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // 通知
-    [self notificationNum];
     // 客户端界面
     [self interfaceSetUp];
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:YES];
+    
+    // 通知
+    [self notificationNum];
+    
     // 后台监听
     [self backgroundMonitor];
     
@@ -102,14 +110,10 @@
                                                  name:UIApplicationDidBecomeActiveNotification
                                                object:nil];
     
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:YES];
-    
     // 弹框提示
-    [self performSelector:@selector(showShotcutMessage) withObject:self afterDelay:0.5];
+    [self performSelector:@selector(showShotcutMessage)
+               withObject:self
+               afterDelay:0.5];
 
 }
 
@@ -441,7 +445,6 @@
     //IP
     NSString *currentIPAddress = [[SystemServices sharedServices] currentIPAddress];
     //是否越狱
-//    BOOL jailbroken = [[SystemServices sharedServices] jailbroken] != NOTJAIL;
     BOOL jailbroken = [[CheckUtil shareInstance]isJailBreak];
     
     NSString *iPhoneType = [[CheckUtil shareInstance]iphoneType];
@@ -503,11 +506,14 @@
         }
         
         NSString *urlString = @"http://m.xinzhuan.vip:9595/userInfo/userLogin3";
-//                NSString *urlString = @"http://192.168.0.117:8085/userInfo/userLogin3";
+//        NSString *urlString = @"http://192.168.0.117:8085/userInfo/userLogin3";
         //解析服务端返回json数据
         //    NSError *error;
         //加载一个NSURL对象
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:40];
+        NSMutableURLRequest *request = [NSMutableURLRequest
+                                        requestWithURL:[NSURL URLWithString:urlString]
+                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                       timeoutInterval:40];
         [request setHTTPMethod:@"POST"];
 
         // 取分辨率
@@ -533,7 +539,12 @@
         [request setHTTPBody:data];
         
 
-        [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue new] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
+        [NSURLConnection sendAsynchronousRequest:request
+                                           queue:[NSOperationQueue new]
+                               completionHandler:^(NSURLResponse * _Nullable response,
+                                                   NSData * _Nullable data,
+                                                   NSError * _Nullable connectionError)
+        {
             
             NSMutableDictionary *dict = NULL;
             // 防止重启服务器
