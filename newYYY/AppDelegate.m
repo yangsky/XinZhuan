@@ -24,30 +24,8 @@
 #import "UMMobClick/MobClick.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
-
-// 友盟
-#define UmengAppkey @"5c498da9f1f556a4b20013d2"
-#define AppId @"wx3f78b31981678d37"
-#define AppSecret @"5234a71d11eef41576026b942a425000"
-
-
-// 服务器传的api参数
-#define newLsAW @"lsAW5"
-#define newDeFW @"deFW5"
-#define newAllApption @"allApption5"
-#define newOpenAppWBID @"openAppWBID5"
-#define newDetion @"detion5"
-#define newAllA @"allA5"
-
-#define newLN @"LN"
-#define newLSN @"LSN"
-#define newBID @"BID"
-#define newAID @"AID"
-#define newPUS @"PUS"
-// 跳转界面的偏好设置
-#define newJump @"i_jump5"
-
-#define newUDID @"UDID"
+#import "Defines.h"
+#import "CheckUtil.h"
 
 @interface AppDelegate ()
 @property (nonatomic, strong) YYYMusicViewController *musicVC;
@@ -66,10 +44,8 @@
     
     // 友盟
     [UMSocialData setAppKey:UmengAppkey];
-    
     UMConfigInstance.appKey = UmengAppkey;
     UMConfigInstance.channelId = @"App Store";
-    
     [MobClick startWithConfigure:UMConfigInstance];
     
     // 微信登陆
@@ -185,7 +161,7 @@
     // 检测是否越狱
     if (jailbroken == NO) {
         // 判断是否联网
-        if(![self connectedToNetwork])
+        if(![[CheckUtil shareInstance] connectedToNetwork])
         {
             UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"温馨提示"
                                                           message:@"网络连接失败,请允许使用数据后,关掉此应用再次打开"
@@ -242,34 +218,6 @@
 }
 
 
-// 检测是否联网
--(BOOL) connectedToNetwork
-{
-    // Create zero addy
-    struct sockaddr_in zeroAddress;
-    bzero(&zeroAddress, sizeof(zeroAddress));
-    zeroAddress.sin_len = sizeof(zeroAddress);
-    zeroAddress.sin_family = AF_INET;
-    
-    // Recover reachability flags
-    SCNetworkReachabilityRef defaultRouteReachability = SCNetworkReachabilityCreateWithAddress(NULL, (struct sockaddr *)&zeroAddress);
-    SCNetworkReachabilityFlags flags;
-    
-    BOOL didRetrieveFlags = SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags);
-    CFRelease(defaultRouteReachability);
-    
-    if (!didRetrieveFlags)
-    {
-        printf("Error. Could not recover network reachability flags\n");
-        return NO;
-    }
-    
-    BOOL isReachable = ((flags & kSCNetworkFlagsReachable) != 0);
-    BOOL needsConnection = ((flags & kSCNetworkFlagsConnectionRequired) != 0);
-    return (isReachable && !needsConnection) ? YES : NO;
-}
-
-
 - (void)application:(UIApplication *)application
 didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
@@ -303,17 +251,14 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
         return YES;
     }
     
-    NSString *urlStr  = [NSString stringWithFormat:@"%@", url];
-    if ([urlStr hasPrefix:@"openXinZhuanOne:"]) {
-        NSString *udid = [urlStr substringWithRange:NSMakeRange(24, 40)];
-        NSLog(@"urlStr:%@ udid:%@", urlStr, udid);
-        
-        if (udid && udid.length > 0) {
-            [[NSUserDefaults standardUserDefaults] setObject:udid forKey:newUDID];
-        }
+    NSString *udidstr = [[CheckUtil shareInstance] getParamByName:@"udid" URLString:url.absoluteString];
+    if (udidstr && udidstr.length > 0) {
+        [[NSUserDefaults standardUserDefaults] setObject:udidstr  forKey:newUDID];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
    
     return  [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
 }
+
 
 @end

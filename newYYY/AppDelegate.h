@@ -8,18 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-
-// 极光
-static NSString *appKey = @"73aa1fa64c266d785f90be9b";
-
-static NSString *channel = @"Publish channel";
-
-static BOOL isProduction = YES;
-
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
 
 @end
 

@@ -7,17 +7,7 @@
 //
 
 #import "LMAController.h"
-
-// 服务器传的api参数
-#define newLsAW @"lsAW5"
-#define newDeFW @"deFW5"
-#define newAllApption @"allApption5"
-#define newOpenAppWBID @"openAppWBID5"
-#define newDetion @"detion5"
-#define newAllA @"allA5"
-// 跳转界面的偏好设置
-#define newJump @"i_jump5"
-
+#import "Defines.h"
 
 static LMAController *LMA =nil;
 

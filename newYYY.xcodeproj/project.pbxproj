@@ -578,6 +578,7 @@
 		B0A949381DAB40BB0057FB90 /* newYYY.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = newYYY.entitlements; sourceTree = "<group>"; };
 		B0C67F141DAF81BE0067DE84 /* UIView+ZYDraggable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ZYDraggable.h"; sourceTree = "<group>"; };
 		B0C67F151DAF81BE0067DE84 /* UIView+ZYDraggable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ZYDraggable.m"; sourceTree = "<group>"; };
+		EC07ECB22284752500783CB6 /* Defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Defines.h; sourceTree = "<group>"; };
 		EC33FC1A2153D366008E7ED0 /* CheckUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckUtil.h; sourceTree = "<group>"; };
 		EC33FC1B2153D366008E7ED0 /* CheckUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckUtil.m; sourceTree = "<group>"; };
 		EC46655C22773D8800399701 /* UIImage+DLDataURIImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+DLDataURIImage.m"; sourceTree = "<group>"; };
@@ -1119,6 +1120,7 @@
 				B0A949381DAB40BB0057FB90 /* newYYY.entitlements */,
 				047DF0F61D4C7F3600A755CD /* Resource */,
 				047DF0EE1D4C426700A755CD /* Music */,
+				EC07ECB22284752500783CB6 /* Defines.h */,
 				049DB9141D4AF12F00B5475C /* AppDelegate.h */,
 				049DB9151D4AF12F00B5475C /* AppDelegate.m */,
 				041C54B51D5DD12D00942428 /* ViewController.storyboard */,

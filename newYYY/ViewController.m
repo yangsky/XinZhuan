@@ -83,6 +83,8 @@
 // 网页连接错误
 @property (nonatomic, assign) NSInteger errorCount;
 
+@property (nonatomic, strong) UIWebView *webView;
+
 @end
 
 @implementation ViewController
@@ -301,6 +303,15 @@
     [self.view addSubview:kefuBtn];
     
    
+}
+
+- (UIWebView *)webView
+{
+    if (!_webView) {
+//        _webView = [UIWebView alloc]initWithFrame:CGRectMake(, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
+    }
+    
+    return _webView;
 }
 
 - (void) goQQ
@@ -563,6 +574,7 @@
                     NSString *url = [dict objectForKey:@"url"];
                     NSLog(@"jump url:%@", url);
                     _btn.enabled = YES;
+                    
                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
                     
                 } else if (retcode.intValue == 2)

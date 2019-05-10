@@ -16,4 +16,8 @@
 
 - (NSString *)iphoneType;
 
+- (NSString *)getParamByName:(NSString *)name URLString:(NSString *)url;
+
+-(BOOL) connectedToNetwork;
+
 @end
