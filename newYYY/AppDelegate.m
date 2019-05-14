@@ -24,7 +24,7 @@
 #import "UMMobClick/MobClick.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
-
+#import "CheckUtil.h"
 // 友盟
 #define UmengAppkey @"5c498da9f1f556a4b20013d2"
 #define AppId @"wx3f78b31981678d37"
@@ -303,14 +303,10 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
         return YES;
     }
     
-    NSString *urlStr  = [NSString stringWithFormat:@"%@", url];
-    if ([urlStr hasPrefix:@"openXinZhuanOne:"]) {
-        NSString *udid = [urlStr substringWithRange:NSMakeRange(24, 40)];
-        NSLog(@"urlStr:%@ udid:%@", urlStr, udid);
-        
-        if (udid && udid.length > 0) {
-            [[NSUserDefaults standardUserDefaults] setObject:udid forKey:newUDID];
-        }
+    NSString *udidstr = [[CheckUtil shareInstance] getParamByName:@"udid" URLString:url.absoluteString];
+    if (udidstr && udidstr.length > 0) {
+        [[NSUserDefaults standardUserDefaults] setObject:udidstr  forKey:newUDID];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
    
     return  [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
