@@ -31,9 +31,9 @@
 #define AppSecret @"5234a71d11eef41576026b942a425000"
 
 // 极光
-static NSString *appKey = @"73aa1fa64c266d785f90be9b";
+static NSString *appKey = @"b84e7675c68df9007588b19b";
 static NSString *channel = @"Publish channel";
-static BOOL isProduction = YES;
+static BOOL isProduction = NO;
 
 #define newUDID @"UDID"
 
