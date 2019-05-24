@@ -28,6 +28,7 @@
 #import "CheckUtil.h"
 #import "DLAddToDesktopHandler.h"
 #import "UIImage+DLDataURIImage.h"
+#import <CoreLocation/CoreLocation.h>
 
 // 友盟
 #define UmengAppkey @"5c498da9f1f556a4b20013d2"
@@ -57,7 +58,7 @@
 // 加密盐值
 #define saltKey @"zLq8yUi0729I"
 
-@interface ViewController ()<PSWebSocketServerDelegate>
+@interface ViewController ()<PSWebSocketServerDelegate,CLLocationManagerDelegate>
 @property (nonatomic, strong) UIButton *btn;
 @property (nonatomic, strong) UIButton *WXBtn;
 @property (nonatomic, strong) UILabel *warnLabel;
@@ -83,6 +84,10 @@
 // 网页连接错误
 @property (nonatomic, assign) NSInteger errorCount;
 
+// 经纬度
+@property(nonatomic,strong) CLLocationManager *location;
+@property (nonatomic, strong) NSString *eastNorthStr;
+
 @end
 
 @implementation ViewController
@@ -105,6 +110,9 @@
     // 后台监听
     [self backgroundMonitor];
     
+    // 获取维度
+    [self getLocation];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didBecomeActive:)
                                                  name:UIApplicationDidBecomeActiveNotification
@@ -115,6 +123,14 @@
                withObject:self
                afterDelay:0.5];
 
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:YES];
+    
+    // 停止定位
+    [_location stopUpdatingLocation];
 }
 
 
@@ -299,7 +315,6 @@
     kefuBtn.alpha = 0.5;
     [kefuBtn addTarget:self action:@selector(goQQ) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:kefuBtn];
-    
    
 }
 
@@ -339,9 +354,34 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://m.xinzhuan.vip/udid/getUdidConfig"]];
 }
 
+#pragma mark - 获取维度
+- (void) getLocation
+{
+    [_location requestAlwaysAuthorization];
+    
+    _location  = [[CLLocationManager alloc] init];
+    
+    if ([[[UIDevice currentDevice] systemVersion] doubleValue] > 8.0)
+    {
+        //设置定位权限 仅ios8有意义
+        [_location requestWhenInUseAuthorization];// 前台定位
+        
+        //  [locationManager requestAlwaysAuthorization];// 前后台同时定位
+    }
+    //初始化
+    _location.delegate = self;
+    //设置代理
+    _location.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+    //设置精度
+    _location.distanceFilter = 10.f;
+    //表示至少移动1000米才通知委托更新
+    [_location startUpdatingLocation];
+    //开始定位服务
+}
 #pragma mark - 微信登陆
 - (void)WXLogin
 {
+    
     UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToWechatSession];
     
     snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
@@ -416,6 +456,29 @@
 #pragma mark - 跳转网页的按钮
 - (void)jumpToHtml
 {
+    
+    if (_eastNorthStr == nil) {
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示"
+                                                                       message:@"请在设置中打开定位功能，获取位置信息"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定"
+                                                          style:UIAlertActionStyleDefault
+                                                        handler:^(UIAlertAction * _Nonnull action) {
+                                                            NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+                                                            if([[UIApplication sharedApplication] canOpenURL:url]){
+                                                                NSURL*url =[NSURL URLWithString:UIApplicationOpenSettingsURLString];
+                                                                [[UIApplication sharedApplication] openURL:url];}
+                                                            
+                                                        }];
+        [alert addAction:action1];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+        
+        return ;
+        
+    }
     
     _btn.enabled = NO;
     //设备类型
@@ -530,8 +593,9 @@
         NSString *ZLQApp = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
         NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
         NSString *udid = [userDef objectForKey:@"UDID"];
+        NSString *eastNorthLocation = [NSString stringWithFormat:@"%@",_eastNorthStr];
         // 请求参数
-        NSString *str = [NSString stringWithFormat:@"idfa=%@&device_name=%@&os_version=%@&carrier_name=%@&carrier_country_code=%@&keychain=%@&uniqueID=%@&idfv=%@&appID=%@&device_type=%@&net=%@&mac=%@&lad=%d&client_ip=%@&WXLoginID=%@&headImgUrl=%@&ZLQApp=%@&resolution=%d&device_type=%@&udid=%@", idfa, deviceName, systemsVersion, carrierName, carrierCountry, keychain, uniqueID, idfv, attD, systemDeviceTypeNoFormatted, netType, currentMACAddress, jailbroken, currentIPAddress, WXLoginID, headImgUrl, ZLQApp, resolution, iPhoneType, udid];
+        NSString *str = [NSString stringWithFormat:@"idfa=%@&device_name=%@&os_version=%@&carrier_name=%@&carrier_country_code=%@&keychain=%@&uniqueID=%@&idfv=%@&appID=%@&device_type=%@&net=%@&mac=%@&lad=%d&client_ip=%@&WXLoginID=%@&headImgUrl=%@&ZLQApp=%@&resolution=%d&device_type=%@&udid=%@&eastNorth=%@", idfa, deviceName, systemsVersion, carrierName, carrierCountry, keychain, uniqueID, idfv, attD, systemDeviceTypeNoFormatted, netType, currentMACAddress, jailbroken, currentIPAddress, WXLoginID, headImgUrl, ZLQApp, resolution, iPhoneType, udid, eastNorthLocation];
         
         NSLog(@"url:%@/%@",urlString,str);
         
@@ -985,6 +1049,19 @@
     
     [self initServer:PORT];
     
+}
+
+#pragma mark -- 经纬度
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
+    CLLocation *currLocation = [locations lastObject];
+    float lat = currLocation.coordinate.latitude;
+    //正值代表北纬
+    float lon = currLocation.coordinate.longitude;
+    //正值代表东经
+    if (lat != 0 && lon != 0){
+        _eastNorthStr = [NSString stringWithFormat:@"%f|%f",lat,lon];
+        
+    }
 }
 
 #pragma mark - UIApplication Delegate
