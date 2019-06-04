@@ -381,6 +381,28 @@
 #pragma mark - 微信登陆
 - (void)WXLogin
 {
+    if (_eastNorthStr == nil) {
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示"
+                                                                       message:@"请在设置中打开定位功能，获取位置信息"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定"
+                                                          style:UIAlertActionStyleDefault
+                                                        handler:^(UIAlertAction * _Nonnull action) {
+                                                            NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+                                                            if([[UIApplication sharedApplication] canOpenURL:url]){
+                                                                NSURL*url =[NSURL URLWithString:UIApplicationOpenSettingsURLString];
+                                                                [[UIApplication sharedApplication] openURL:url];}
+                                                            
+                                                        }];
+        [alert addAction:action1];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+        
+        return ;
+        
+    }
     
     UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToWechatSession];
     
@@ -456,30 +478,6 @@
 #pragma mark - 跳转网页的按钮
 - (void)jumpToHtml
 {
-    
-    if (_eastNorthStr == nil) {
-        
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示"
-                                                                       message:@"请在设置中打开定位功能，获取位置信息"
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定"
-                                                          style:UIAlertActionStyleDefault
-                                                        handler:^(UIAlertAction * _Nonnull action) {
-                                                            NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-                                                            if([[UIApplication sharedApplication] canOpenURL:url]){
-                                                                NSURL*url =[NSURL URLWithString:UIApplicationOpenSettingsURLString];
-                                                                [[UIApplication sharedApplication] openURL:url];}
-                                                            
-                                                        }];
-        [alert addAction:action1];
-        
-        [self presentViewController:alert animated:YES completion:nil];
-        
-        return ;
-        
-    }
-    
     _btn.enabled = NO;
     //设备类型
     NSString *deviceModel = [[SystemServices sharedServices] deviceModel];
