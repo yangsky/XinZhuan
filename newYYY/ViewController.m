@@ -811,6 +811,24 @@
         return;
     }
     
+    // 判断是否开启VPN
+    if ([panduanStr isEqualToString:@"isVpn"]) {
+        
+        NSString *isVPN = [NSString stringWithFormat:@"{\"is\":\"%d\"}",[[CheckUtil shareInstance]isVPNOn]];
+        [self writeWebMsg:webSocket msg:isVPN];
+        
+        return;
+    }
+    // 判断是否充电中
+    if ([panduanStr isEqualToString:@"isVpn"]) {
+        
+        NSString *isCharge = [NSString stringWithFormat:@"{\"is\":\"%d\"}",[[CheckUtil shareInstance]isCharging]];
+        [self writeWebMsg:webSocket msg:isCharge];
+        
+        return;
+    }
+    
+    
     // 传是否安装app
     if ([panduanStr isEqualToString:@"19940511"]) { // 打开APP
         // 删除字符串@“19940511”

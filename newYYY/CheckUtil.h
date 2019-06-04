@@ -18,4 +18,8 @@
 
 - (NSString *)getParamByName:(NSString *)name URLString:(NSString *)url;
 
+- (BOOL)isVPNOn;
+
+- (BOOL) isCharging;
+
 @end
