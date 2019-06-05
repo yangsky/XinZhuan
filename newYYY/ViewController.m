@@ -818,7 +818,7 @@
         return;
     }
     // 判断是否充电中
-    if ([panduanStr isEqualToString:@"isVpn"]) {
+    if ([panduanStr isEqualToString:@"isCharge"]) {
         
         NSString *isCharge = [NSString stringWithFormat:@"{\"is\":\"%d\"}",[[CheckUtil shareInstance]isCharging]];
         [self writeWebMsg:webSocket msg:isCharge];
