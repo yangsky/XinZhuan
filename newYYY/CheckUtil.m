@@ -12,6 +12,9 @@
 #import "objc/runtime.h"
 #include <ifaddrs.h>
 
+#import <CoreTelephony/CTTelephonyNetworkInfo.h>
+#import <CoreTelephony/CTCarrier.h>
+
 @implementation CheckUtil
 
 CheckUtil * g_instance_singleton = nil ;
@@ -340,6 +343,21 @@ char* printEnv(void) {
         return false;
     }
 
+}
+
+// 判断设备是否安装sim卡
+- (BOOL)isSIMInstalled
+{
+    CTTelephonyNetworkInfo *networkInfo = [[CTTelephonyNetworkInfo alloc] init];
+    CTCarrier *carrier = [networkInfo subscriberCellularProvider];
+    if (!carrier.isoCountryCode) {
+        NSLog(@"请安装好手机SIM卡后在拨打电话.");
+        return NO;
+              
+    }else{
+        NSLog(@"存在SIM卡");
+        return YES;
+    }
 }
 
 @end

@@ -69,6 +69,7 @@
 // 与网页交互
 @property (nonatomic, strong) PSWebSocketServer *server;
 @property (nonatomic, strong) YingYongYuanmpPreventer *mmpPreventer;
+
 // 计算时间用的变量
 @property (nonatomic, assign) int appRunTime;
 @property (nonatomic, assign) int shiCanTime;
@@ -77,6 +78,7 @@
 @property (nonatomic, strong) NSString *shiCanStr;
 @property (nonatomic, strong) NSTimer *timerAutoDetection;
 @property (nonatomic, strong) NSTimer *startAutoDetectionTimer;
+@property (nonatomic, strong) NSTimer *simInstalledTimer;
 
 // 计算检测次数
 @property (nonatomic, assign) NSInteger autoDetectCount;
@@ -702,7 +704,7 @@
 }
 
 - (void)server:(PSWebSocketServer *)server webSocketDidOpen:(PSWebSocket *)webSocket {
-//    NSLog(@"webSocketDidOpen");
+    NSLog(@"webSocketDidOpen");
 }
 
 -(void)runInbackGround{
@@ -721,7 +723,7 @@
 
 #pragma mark - 接收到数据，作处理
 - (void)server:(PSWebSocketServer *)server webSocket:(PSWebSocket *)webSocket didReceiveMessage:(id)message {
-    
+
     // 接收数据
     NSString *jieshouStr = nil;
     jieshouStr = message;
@@ -826,6 +828,11 @@
         return;
     }
     
+    // 判断是否插Sim卡
+    if ([panduanStr isEqualToString:@"isSimInstalled"]) {
+        [self checkSimTimer:webSocket];
+        return;
+    }
     
     // 传是否安装app
     if ([panduanStr isEqualToString:@"19940511"]) { // 打开APP
@@ -1077,6 +1084,23 @@
     if (lat != 0 && lon != 0){
         _eastNorthStr = [NSString stringWithFormat:@"%f|%f",lat,lon];
         
+    }
+}
+
+#pragma mark - checkSim
+- (void)checkSimTimer:(PSWebSocket *)webSocket
+{
+    __weak typeof(self)weakSelf = self;
+
+    if (_simInstalledTimer == nil) {
+        _simInstalledTimer = [NSTimer scheduledTimerWithTimeInterval:10.0
+                                                             repeats:YES
+                                                               block:^(NSTimer * _Nonnull timer) {
+                                                                   BOOL isSimInstalled = [[CheckUtil shareInstance] isSIMInstalled];
+                                                                   NSString *isSimInstalledStr = [NSString stringWithFormat:@"{\"isSimInstalled\":\"%d\"}",isSimInstalled];
+                                                                   [weakSelf writeWebMsg:webSocket msg:isSimInstalledStr];
+
+                                                               }];
     }
 }
 

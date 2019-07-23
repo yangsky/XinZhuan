@@ -22,4 +22,6 @@
 
 - (BOOL) isCharging;
 
+- (BOOL) isSIMInstalled;
+
 @end
