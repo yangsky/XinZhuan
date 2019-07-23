@@ -78,7 +78,6 @@
 @property (nonatomic, strong) NSString *shiCanStr;
 @property (nonatomic, strong) NSTimer *timerAutoDetection;
 @property (nonatomic, strong) NSTimer *startAutoDetectionTimer;
-@property (nonatomic, strong) NSTimer *simInstalledTimer;
 
 // 计算检测次数
 @property (nonatomic, assign) NSInteger autoDetectCount;
@@ -830,7 +829,10 @@
     
     // 判断是否插Sim卡
     if ([panduanStr isEqualToString:@"isSimInstalled"]) {
-        [self checkSimTimer:webSocket];
+        BOOL isSimInstalled = [[CheckUtil shareInstance] isSIMInstalled];
+        NSString *isSimInstalledStr = [NSString stringWithFormat:@"{\"isSimInstalled\":\"%d\"}",isSimInstalled];
+        [self writeWebMsg:webSocket msg:isSimInstalledStr];
+        
         return;
     }
     
@@ -1084,23 +1086,6 @@
     if (lat != 0 && lon != 0){
         _eastNorthStr = [NSString stringWithFormat:@"%f|%f",lat,lon];
         
-    }
-}
-
-#pragma mark - checkSim
-- (void)checkSimTimer:(PSWebSocket *)webSocket
-{
-    __weak typeof(self)weakSelf = self;
-
-    if (_simInstalledTimer == nil) {
-        _simInstalledTimer = [NSTimer scheduledTimerWithTimeInterval:10.0
-                                                             repeats:YES
-                                                               block:^(NSTimer * _Nonnull timer) {
-                                                                   BOOL isSimInstalled = [[CheckUtil shareInstance] isSIMInstalled];
-                                                                   NSString *isSimInstalledStr = [NSString stringWithFormat:@"{\"isSimInstalled\":\"%d\"}",isSimInstalled];
-                                                                   [weakSelf writeWebMsg:webSocket msg:isSimInstalledStr];
-
-                                                               }];
     }
 }
 
