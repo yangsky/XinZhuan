@@ -116,6 +116,16 @@
 		04DE65501D659A8500D80CD8 /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DE654C1D659A8500D80CD8 /* libSocialQQ.a */; };
 		04DE65511D659A8500D80CD8 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DE654D1D659A8500D80CD8 /* TencentOpenAPI.framework */; };
 		04DE65521D659A8500D80CD8 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04DE654E1D659A8500D80CD8 /* TencentOpenApi_IOS_Bundle.bundle */; };
+		0E5B2948230D4996004E7914 /* BUAdSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0E5B2946230D497D004E7914 /* BUAdSDK.bundle */; };
+		0E5B2949230D4996004E7914 /* BUAdSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E5B2947230D4996004E7914 /* BUAdSDK.framework */; };
+		0E5B294B230D4A06004E7914 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E5B294A230D4A05004E7914 /* StoreKit.framework */; };
+		0E5B294D230D4A16004E7914 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E5B294C230D4A16004E7914 /* MobileCoreServices.framework */; };
+		0E5B294F230D4A21004E7914 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E5B294E230D4A21004E7914 /* MediaPlayer.framework */; };
+		0E5B2951230D4A2E004E7914 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E5B2950230D4A2E004E7914 /* CoreMedia.framework */; };
+		0E5B2953230D4A4B004E7914 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E5B2952230D4A4B004E7914 /* CoreMotion.framework */; };
+		0E5B2955230D4A5E004E7914 /* libresolv.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E5B2954230D4A5E004E7914 /* libresolv.9.tbd */; };
+		0E5B2957230D4A6D004E7914 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E5B2956230D4A6D004E7914 /* libc++.tbd */; };
+		0E5B295A230D4CDA004E7914 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E5B2959230D4CDA004E7914 /* WebKit.framework */; };
 		68D1F67545651F3EDE42E5FD /* libPods-心赚.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71BB8171501E58A938DCE0BD /* libPods-心赚.a */; };
 		B03AA8241DD94D8E00E2820D /* LMAAA.m in Sources */ = {isa = PBXBuildFile; fileRef = B03AA8231DD94D8E00E2820D /* LMAAA.m */; };
 		B03AA8271DD94E9700E2820D /* LMAController.m in Sources */ = {isa = PBXBuildFile; fileRef = B03AA8261DD94E9700E2820D /* LMAController.m */; };
@@ -566,6 +576,17 @@
 		04DE654D1D659A8500D80CD8 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		04DE654E1D659A8500D80CD8 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		04DE654F1D659A8500D80CD8 /* UMSocialQQHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialQQHandler.h; sourceTree = "<group>"; };
+		0E5B2946230D497D004E7914 /* BUAdSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BUAdSDK.bundle; sourceTree = "<group>"; };
+		0E5B2947230D4996004E7914 /* BUAdSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BUAdSDK.framework; sourceTree = "<group>"; };
+		0E5B294A230D4A05004E7914 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		0E5B294C230D4A16004E7914 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		0E5B294E230D4A21004E7914 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		0E5B2950230D4A2E004E7914 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		0E5B2952230D4A4B004E7914 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		0E5B2954230D4A5E004E7914 /* libresolv.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.9.tbd; path = usr/lib/libresolv.9.tbd; sourceTree = SDKROOT; };
+		0E5B2956230D4A6D004E7914 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		0E5B2958230D4AEC004E7914 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/UMSocialLocalizable.strings; sourceTree = "<group>"; };
+		0E5B2959230D4CDA004E7914 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		71BB8171501E58A938DCE0BD /* libPods-心赚.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-心赚.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		82D36D5BEA50066864721BF1 /* Pods-心赚.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-心赚.debug.xcconfig"; path = "Pods/Target Support Files/Pods-心赚/Pods-心赚.debug.xcconfig"; sourceTree = "<group>"; };
 		A89CD9F46AA1F65E536E7E7D /* Pods-心赚.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-心赚.release.xcconfig"; path = "Pods/Target Support Files/Pods-心赚/Pods-心赚.release.xcconfig"; sourceTree = "<group>"; };
@@ -658,18 +679,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E5B295A230D4CDA004E7914 /* WebKit.framework in Frameworks */,
+				0E5B2957230D4A6D004E7914 /* libc++.tbd in Frameworks */,
+				0E5B2955230D4A5E004E7914 /* libresolv.9.tbd in Frameworks */,
+				0E5B2953230D4A4B004E7914 /* CoreMotion.framework in Frameworks */,
+				ECA602C121D258B400416C67 /* AdSupport.framework in Frameworks */,
+				0E5B2951230D4A2E004E7914 /* CoreMedia.framework in Frameworks */,
+				0E5B294F230D4A21004E7914 /* MediaPlayer.framework in Frameworks */,
+				0E5B294D230D4A16004E7914 /* MobileCoreServices.framework in Frameworks */,
+				0E5B294B230D4A06004E7914 /* StoreKit.framework in Frameworks */,
 				ECA602BC21D258B400416C67 /* libiconv.tbd in Frameworks */,
 				ECA602BE21D258B400416C67 /* libsqlite3.tbd in Frameworks */,
 				ECA602C721D258B400416C67 /* libSystem.tbd in Frameworks */,
 				ECA602C621D258B400416C67 /* libz.tbd in Frameworks */,
 				ECA602C021D258B400416C67 /* libstdc++.tbd in Frameworks */,
 				ECA602BD21D258B400416C67 /* libUMSocial_Sdk_5.2.1.a in Frameworks */,
+				0E5B2949230D4996004E7914 /* BUAdSDK.framework in Frameworks */,
 				ECA602BB21D258B400416C67 /* libSocialQQ.a in Frameworks */,
 				ECA602BF21D258B400416C67 /* libWeChatSDK.a in Frameworks */,
 				ECA602C321D258B400416C67 /* libSocialWechat.a in Frameworks */,
 				ECA602C421D258B400416C67 /* jpush-ios-2.1.8.a in Frameworks */,
 				ECA602C521D258B400416C67 /* Security.framework in Frameworks */,
-				ECA602C121D258B400416C67 /* AdSupport.framework in Frameworks */,
 				ECA602C221D258B400416C67 /* Foundation.framework in Frameworks */,
 				ECA602C821D258B400416C67 /* CFNetwork.framework in Frameworks */,
 				ECA602C921D258B400416C67 /* CoreFoundation.framework in Frameworks */,
@@ -899,6 +929,14 @@
 		045EFEB61D51CEDC005B4EE1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0E5B2959230D4CDA004E7914 /* WebKit.framework */,
+				0E5B2956230D4A6D004E7914 /* libc++.tbd */,
+				0E5B2954230D4A5E004E7914 /* libresolv.9.tbd */,
+				0E5B2952230D4A4B004E7914 /* CoreMotion.framework */,
+				0E5B2950230D4A2E004E7914 /* CoreMedia.framework */,
+				0E5B294E230D4A21004E7914 /* MediaPlayer.framework */,
+				0E5B294C230D4A16004E7914 /* MobileCoreServices.framework */,
+				0E5B294A230D4A05004E7914 /* StoreKit.framework */,
 				041C54AB1D5DB44700942428 /* libiconv.tbd */,
 				041C54A91D5DB43300942428 /* libsqlite3.tbd */,
 				041C54A51D5DB41D00942428 /* libstdc++.6.0.9.tbd */,
@@ -1097,6 +1135,7 @@
 				EC9BB40820DBE81600887B2C /* ZLQ */,
 				045EFEB61D51CEDC005B4EE1 /* Frameworks */,
 				049DB9441D4AF83200B5475C /* ThirdFrame */,
+				0E5B2945230D495F004E7914 /* BUAd */,
 				049DB9101D4AF12F00B5475C /* newYYY */,
 				049DB90F1D4AF12E00B5475C /* Products */,
 				3A7533B99E586372F9CEDF73 /* Pods */,
@@ -1173,6 +1212,15 @@
 				04DE654F1D659A8500D80CD8 /* UMSocialQQHandler.h */,
 			);
 			path = TencentOpenAPI;
+			sourceTree = "<group>";
+		};
+		0E5B2945230D495F004E7914 /* BUAd */ = {
+			isa = PBXGroup;
+			children = (
+				0E5B2946230D497D004E7914 /* BUAdSDK.bundle */,
+				0E5B2947230D4996004E7914 /* BUAdSDK.framework */,
+			);
+			path = BUAd;
 			sourceTree = "<group>";
 		};
 		3A7533B99E586372F9CEDF73 /* Pods */ = {
@@ -1349,6 +1397,7 @@
 				en,
 				Base,
 				"zh-Hans",
+				ja,
 			);
 			mainGroup = 049DB9051D4AF12E00B5475C;
 			productRefGroup = 049DB90F1D4AF12E00B5475C /* Products */;
@@ -1424,6 +1473,7 @@
 				ECADF05821EB409200D29B7D /* XZAssets.xcassets in Resources */,
 				ECA602DE21D258B400416C67 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				ECA602DF21D258B400416C67 /* UMSCommentInputController.xib in Resources */,
+				0E5B2948230D4996004E7914 /* BUAdSDK.bundle in Resources */,
 				ECA602E021D258B400416C67 /* README.txt in Resources */,
 				ECA602E221D258B400416C67 /* UMSLoginViewController.xib in Resources */,
 				EC73C802227EA3EC00F8FD9A /* bgMusic.mp3 in Resources */,
@@ -1745,6 +1795,7 @@
 			children = (
 				041C54C41D5DD39D00942428 /* en */,
 				041C54DC1D5DD39D00942428 /* zh-Hans */,
+				0E5B2958230D4AEC004E7914 /* ja */,
 			);
 			name = UMSocialLocalizable.strings;
 			sourceTree = "<group>";
@@ -1995,6 +2046,7 @@
 					"$(PROJECT_DIR)/newYYY/ThirdFrame",
 					"$(PROJECT_DIR)/Pods/Fabric",
 					"$(PROJECT_DIR)/Pods/Crashlytics",
+					"$(PROJECT_DIR)/BUAd",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/XinZhuan/心赚-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -2032,6 +2084,7 @@
 					"$(PROJECT_DIR)/newYYY/ThirdFrame",
 					"$(PROJECT_DIR)/Pods/Fabric",
 					"$(PROJECT_DIR)/Pods/Crashlytics",
+					"$(PROJECT_DIR)/BUAd",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/XinZhuan/心赚-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;

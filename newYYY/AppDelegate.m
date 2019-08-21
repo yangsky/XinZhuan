@@ -25,6 +25,9 @@
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #import "CheckUtil.h"
+#import <BUAdSDK/BUAdSDKManager.h>
+#import "BUAdSDK/BUSplashAdView.h"
+
 // 友盟
 #define UmengAppkey @"5c498da9f1f556a4b20013d2"
 #define AppId @"wx3f78b31981678d37"
@@ -115,6 +118,10 @@
             advertisingIdentifier:advertisingId];
     
     [self notificationNum];
+    
+    // BUAd
+    [BUAdSDKManager setAppID:@"5024719"];
+    [BUAdSDKManager setIsPaidApp:NO];
     
     return YES;
 }

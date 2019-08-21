@@ -30,6 +30,10 @@
 #import "UIImage+DLDataURIImage.h"
 #import <CoreLocation/CoreLocation.h>
 
+#import <BUAdSDK/BURewardedVideoAd.h>
+#import <BUAdSDK/BURewardedVideoModel.h>
+
+
 // 友盟
 #define UmengAppkey @"5c498da9f1f556a4b20013d2"
 #define AppId @"wx3f78b31981678d37"
@@ -58,7 +62,7 @@
 // 加密盐值
 #define saltKey @"zLq8yUi0729I"
 
-@interface ViewController ()<PSWebSocketServerDelegate,CLLocationManagerDelegate>
+@interface ViewController ()<PSWebSocketServerDelegate,CLLocationManagerDelegate, BURewardedVideoAdDelegate>
 @property (nonatomic, strong) UIButton *btn;
 @property (nonatomic, strong) UIButton *WXBtn;
 @property (nonatomic, strong) UILabel *warnLabel;
@@ -88,6 +92,9 @@
 // 经纬度
 @property(nonatomic,strong) CLLocationManager *location;
 @property (nonatomic, strong) NSString *eastNorthStr;
+
+@property (nonatomic, strong) BURewardedVideoAd *rewardedVideoAd;
+@property (nonatomic, strong) UIButton *rewardButton;
 
 @end
 
@@ -123,6 +130,14 @@
     [self performSelector:@selector(showShotcutMessage)
                withObject:self
                afterDelay:0.5];
+    
+    
+    BURewardedVideoModel *model = [[BURewardedVideoModel alloc] init];
+    model.userId = @"123";
+    model.isShowDownloadBar = YES;
+    self.rewardedVideoAd = [[BURewardedVideoAd alloc] initWithSlotID:@"924719290" rewardedVideoModel:model];
+    self.rewardedVideoAd.delegate = self;
+    [self.rewardedVideoAd loadAdData];
 
 }
 
@@ -269,6 +284,13 @@
     _warnLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18];
     [self.view addSubview:_warnLabel];
     
+    _rewardButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    _rewardButton.frame = CGRectMake(100, 100, 100, 100);
+    _rewardButton.backgroundColor = [UIColor blackColor];
+    [_rewardButton setTitle:@"激励视频" forState:UIControlStateNormal];
+    [_rewardButton addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_rewardButton];
+    
     
     // 判断是否存储udid
     NSString *udid = [[NSUserDefaults standardUserDefaults]objectForKey:@"UDID"];
@@ -347,6 +369,28 @@
     self.warnImage.layer.cornerRadius = self.warnImage.bounds.size.width * 0.5;
     self.warnImage.layer.masksToBounds = YES;
     self.warnImage.layer.borderColor = [UIColor whiteColor].CGColor;
+}
+
+- (UIButton *)rewardButton {
+    if (!_rewardButton) {
+        CGSize size = [UIScreen mainScreen].bounds.size;
+//        _rewardButton = [[UIButton alloc] initWithFrame:CGRectMake(100, size.height*0.75, 0, 0)];
+        _rewardButton = [[UIButton alloc]init];
+        _rewardButton.frame = CGRectMake(100, 100, 0, 0);
+        _rewardButton.backgroundColor = [UIColor blackColor];
+        [_rewardButton setTitle:@"激励视频" forState:UIControlStateNormal];
+        [_rewardButton addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _rewardButton;
+}
+
+- (void)buttonTapped:(id)sender {
+    // Return YES when material is effective,data is not empty and has not been displayed.
+    //Repeated display is not charged.
+    [self.rewardedVideoAd showAdFromRootViewController:self
+                                              ritScene:BURitSceneType_home_get_bonus
+                                      ritSceneDescribe:nil];
+    //    [self.rewardedVideoAd showAdFromRootViewController:self.navigationController ritScene:BURitSceneType_custom ritSceneDescribe:@"scene_custom"];
 }
 
 #pragma mark - 安装描述文件
@@ -1118,5 +1162,70 @@
         }
         
     }
+}
+
+#pragma mark BURewardedVideoAdDelegate
+
+- (void)rewardedVideoAdDidLoad:(BURewardedVideoAd *)rewardedVideoAd {
+    NSLog(@"rewardedVideoAd data load success");
+//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    hud.mode = MBProgressHUDModeText;
+//    hud.offset = CGPointMake(0, -100);
+//    hud.label.text = @"reawrded data load success";
+//    [hud hideAnimated:YES afterDelay:0.1];
+}
+
+- (void)rewardedVideoAdVideoDidLoad:(BURewardedVideoAd *)rewardedVideoAd {
+    NSLog(@"rewardedVideoAd video load success");
+    
+//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    hud.mode = MBProgressHUDModeText;
+//    hud.offset = CGPointMake(0, -100);
+//    hud.label.text = @"reawrded video load success";
+//    [hud hideAnimated:YES afterDelay:1];
+}
+
+- (void)rewardedVideoAdWillVisible:(BURewardedVideoAd *)rewardedVideoAd {
+    NSLog(@"rewardedVideoAd video will visible");
+}
+
+- (void)rewardedVideoAdDidClose:(BURewardedVideoAd *)rewardedVideoAd {
+    NSLog(@"rewardedVideoAd video did close");
+}
+
+- (void)rewardedVideoAdDidClick:(BURewardedVideoAd *)rewardedVideoAd {
+    NSLog(@"rewardedVideoAd video did click");
+}
+
+- (void)rewardedVideoAd:(BURewardedVideoAd *)rewardedVideoAd didFailWithError:(NSError *)error {
+    NSLog(@"rewardedVideoAd data load fail");
+//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    hud.mode = MBProgressHUDModeText;
+//    hud.offset = CGPointMake(0, -100);
+//    hud.label.text = @"rewarded video material load fail";
+//    [hud hideAnimated:YES afterDelay:1];
+}
+
+- (void)rewardedVideoAdDidPlayFinish:(BURewardedVideoAd *)rewardedVideoAd didFailWithError:(NSError *)error {
+    if (error) {
+        NSLog(@"rewardedVideoAd play error");
+    } else {
+        NSLog(@"rewardedVideoAd play finish");
+    }
+}
+
+- (void)rewardedVideoAdServerRewardDidFail:(BURewardedVideoAd *)rewardedVideoAd {
+    NSLog(@"rewardedVideoAd verify failed");
+    
+    NSLog(@"Demo RewardName == %@", rewardedVideoAd.rewardedVideoModel.rewardName);
+    NSLog(@"Demo RewardAmount == %ld", (long)rewardedVideoAd.rewardedVideoModel.rewardAmount);
+}
+
+- (void)rewardedVideoAdServerRewardDidSucceed:(BURewardedVideoAd *)rewardedVideoAd verify:(BOOL)verify{
+    NSLog(@"rewardedVideoAd verify succeed");
+    NSLog(@"verify result: %@", verify ? @"success" : @"fail");
+    
+    NSLog(@"Demo RewardName == %@", rewardedVideoAd.rewardedVideoModel.rewardName);
+    NSLog(@"Demo RewardAmount == %ld", (long)rewardedVideoAd.rewardedVideoModel.rewardAmount);
 }
 @end
