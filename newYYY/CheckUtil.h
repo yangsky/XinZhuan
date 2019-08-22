@@ -24,4 +24,6 @@
 
 - (BOOL) isSIMInstalled;
 
+-(BOOL) connectedToNetwork;
+
 @end

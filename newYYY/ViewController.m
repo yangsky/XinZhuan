@@ -65,10 +65,12 @@
 @interface ViewController ()<PSWebSocketServerDelegate,CLLocationManagerDelegate, BURewardedVideoAdDelegate>
 @property (nonatomic, strong) UIButton *btn;
 @property (nonatomic, strong) UIButton *WXBtn;
-@property (nonatomic, strong) UILabel *warnLabel;
+@property (nonatomic, strong) UILabel  *warnLabel;
 @property (nonatomic, strong) UIButton *btnGetUDID;
-
 @property (nonatomic, strong) UIImageView *warnImage;
+@property (nonatomic, strong) UILabel  *threeTipLabel;
+@property (nonatomic, strong) UIButton *kefuBtn;
+@property (nonatomic, strong) UIImageView *imgView;
 
 // 与网页交互
 @property (nonatomic, strong) PSWebSocketServer *server;
@@ -205,151 +207,53 @@
 #pragma mark - 设置客户端界面
 - (void)interfaceSetUp
 {
-    UIImageView *imgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"bg"]];
-    imgView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
-    [self.view addSubview:imgView];
+    // 背景图
+    [self.view addSubview:self.imgView];
     
     // button
-    _btn = [UIButton buttonWithType:UIButtonTypeSystem];
-    _btn.frame = CGRectMake(self.view.frame.size.width/2.0-90, CGRectGetMaxY(self.view.frame) - 180, 180, 54);
-    _btn.layer.cornerRadius = 10.0f;
-    _btn.layer.borderWidth = 1;
-    _btn.titleLabel.font = [UIFont systemFontOfSize:20];
-    _btn.layer.borderColor = [RGB(254, 211, 65) CGColor];
-    [_btn setBackgroundColor:RGB(254, 211, 65)];
-    [_btn setTitle:@"马上赚钱" forState:UIControlStateNormal];
-    [_btn setTitle:@"马上赚钱" forState:UIControlStateSelected];
-    [_btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [_btn addTarget:self action:@selector(jumpToHtml) forControlEvents:UIControlEventTouchUpInside];
-    _btn.enabled = YES;
-    
-    _btn.hidden = YES;
-    [self.view addSubview:_btn];
+    [self.view addSubview:self.btn];
     
     // 微信按钮
-    _WXBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    _WXBtn.frame = CGRectMake(self.view.frame.size.width/2.0-90, CGRectGetMaxY(self.view.frame) - 180, 180, 54);
-    _WXBtn.layer.cornerRadius = 10.0f;
-    _WXBtn.layer.borderWidth = 1;
-    _WXBtn.titleLabel.font = [UIFont systemFontOfSize:20];
-    _WXBtn.layer.borderColor = [RGB(254, 211, 65) CGColor];
-    [_WXBtn setBackgroundColor:RGB(254, 211, 65)];
-    [_WXBtn setTitle:@"微信登陆" forState:UIControlStateNormal];
-    [_WXBtn setTitle:@"微信登陆" forState:UIControlStateSelected];
-    [_WXBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [_WXBtn addTarget:self action:@selector(WXLogin) forControlEvents:UIControlEventTouchUpInside];
-    _WXBtn.enabled = YES;
-    [self.view addSubview:_WXBtn];
+    [self.view addSubview:self.WXBtn];
     
-    // button
-    _btnGetUDID = [UIButton buttonWithType:UIButtonTypeSystem];
-    _btnGetUDID.frame = CGRectMake(self.view.frame.size.width/2.0-90, CGRectGetMaxY(self.view.frame) - 180, 180, 54);
-    _btnGetUDID.layer.cornerRadius = 10.0f;
-    _btnGetUDID.layer.borderWidth = 1;
-    _btnGetUDID.titleLabel.font = [UIFont systemFontOfSize:20];
-    _btnGetUDID.layer.borderColor = [RGB(254, 211, 65) CGColor];
-    [_btnGetUDID setBackgroundColor:RGB(254, 211, 65)];
-    [_btnGetUDID setTitle:@"安装描述文件" forState:UIControlStateNormal];
-    [_btnGetUDID setTitle:@"安装描述文件" forState:UIControlStateSelected];
-    [_btnGetUDID setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [_btnGetUDID addTarget:self action:@selector(getUDID) forControlEvents:UIControlEventTouchUpInside];
-    _btnGetUDID.enabled = YES;
-    
-    _btnGetUDID.hidden = YES;
-    [self.view addSubview:_btnGetUDID];
+    // getudid button
+    [self.view addSubview:self.btnGetUDID];
     
     // 微信头像
-    _warnImage = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2.0-80/2.0,
-                                                               ([UIScreen mainScreen].bounds.size.height/2)-160,
-                                                               80,
-                                                               80)];
-    _warnImage.backgroundColor = [UIColor clearColor];
-    _warnImage.image = [UIImage imageNamed:@"warning"];
-    _warnImage.alpha = 0.5;
-    _warnImage.hidden = NO;
-    [self.view addSubview:_warnImage];
+    [self.view addSubview:self.warnImage];
     
     // 提示信息
-    _warnLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2.0-160/2.0,
-                                                           CGRectGetMaxY(_warnImage.frame) + 10,
-                                                           160,
-                                                           80)];
-    _warnLabel.text = @"心赚助手已开启\n任务执行中\n请勿关闭!";
-    _warnLabel.textColor = [UIColor whiteColor];
-    _warnLabel.backgroundColor = [UIColor clearColor];
-    _warnLabel.lineBreakMode = NSLineBreakByCharWrapping;
-    _warnLabel.numberOfLines = 3;
-    _warnLabel.alpha = 0.5;
-    _warnLabel.textAlignment = NSTextAlignmentCenter;
-    _warnLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18];
-    [self.view addSubview:_warnLabel];
+    [self.view addSubview:self.warnLabel];
     
-    _rewardButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    _rewardButton.frame = CGRectMake(100, 100, 100, 100);
-    _rewardButton.backgroundColor = [UIColor blackColor];
-    [_rewardButton setTitle:@"激励视频" forState:UIControlStateNormal];
-    [_rewardButton addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_rewardButton];
+    // 激励视频
+    [self.view addSubview:self.rewardButton];
     
+    // app版本
+    [self.view addSubview:self.threeTipLabel];
+    
+    // 联系客服
+    [self.view addSubview:self.kefuBtn];
     
     // 判断是否存储udid
     NSString *udid = [[NSUserDefaults standardUserDefaults]objectForKey:@"UDID"];
     
     if (!udid || udid.length < 0) {
-        _btnGetUDID.hidden = NO;
-        _WXBtn.hidden = YES;
-        _btn.hidden = YES;
+        self.btnGetUDID.hidden = NO;
+        self.WXBtn.hidden = YES;
+        self.btn.hidden = YES;
+        self.rewardButton.hidden = YES;
     } else {
         // 判断是否已经微信登陆过
         NSString *WXLoginID = [[NSUserDefaults standardUserDefaults] objectForKey:@"WXLoginID"];
         if (WXLoginID && ![self isWXLoginOver7Days]) {
-            _WXBtn.hidden = YES;
-            _btn.hidden = NO;
-            _btnGetUDID.hidden = YES;
+            self.WXBtn.hidden = YES;
+            self.btn.hidden = NO;
+            self.btnGetUDID.hidden = YES;
+            self.rewardButton.hidden = NO;
         }
 
     }
- 
-    
-    // app版本
-    UILabel *threeTipLabel= [[UILabel alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width / 2 - 135,
-                                                                      [UIScreen mainScreen].bounds.size.height-40,
-                                                                      120,
-                                                                      20)];
-    threeTipLabel.font = [UIFont systemFontOfSize:16];
-    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-    CFShow((__bridge CFTypeRef)(infoDictionary));
-    NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];     // app版本
-    threeTipLabel.text = [NSString stringWithFormat:@"v %@", app_Version];
-    threeTipLabel.textColor = [UIColor grayColor];
-    threeTipLabel.lineBreakMode = NSLineBreakByCharWrapping;
-    threeTipLabel.numberOfLines = 0;
-    threeTipLabel.alpha = 0.5;
-    threeTipLabel.textAlignment = NSTextAlignmentRight;
-    [self.view addSubview:threeTipLabel];
-    
-    // 联系客服
-    UIButton *kefuBtn= [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(threeTipLabel.frame) - 10, [UIScreen mainScreen].bounds.size.height-40, 120, 20)];
-    kefuBtn.font = [UIFont systemFontOfSize:16];
-    [kefuBtn setTitle:@"联系客服" forState:UIControlStateNormal];
-    [kefuBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    kefuBtn.backgroundColor = [UIColor clearColor];
-    kefuBtn.titleLabel.textAlignment = NSTextAlignmentRight;
-    kefuBtn.alpha = 0.5;
-    [kefuBtn addTarget:self action:@selector(goQQ) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:kefuBtn];
    
-}
-
-- (void) goQQ
-{
-    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
-    // 提供uin, 你所要联系人的QQ号码
-    NSString *qqstr = [NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web",@"934950667"];
-    NSURL *url = [NSURL URLWithString:qqstr];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [webView loadRequest:request];
-    [self.view addSubview:webView];
 }
 
 - (void)viewDidLayoutSubviews
@@ -371,26 +275,189 @@
     self.warnImage.layer.borderColor = [UIColor whiteColor].CGColor;
 }
 
+#pragma mark - lazy getter
+
 - (UIButton *)rewardButton {
     if (!_rewardButton) {
-        CGSize size = [UIScreen mainScreen].bounds.size;
-//        _rewardButton = [[UIButton alloc] initWithFrame:CGRectMake(100, size.height*0.75, 0, 0)];
-        _rewardButton = [[UIButton alloc]init];
-        _rewardButton.frame = CGRectMake(100, 100, 0, 0);
-        _rewardButton.backgroundColor = [UIColor blackColor];
-        [_rewardButton setTitle:@"激励视频" forState:UIControlStateNormal];
+        _rewardButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        _rewardButton.frame = CGRectMake(self.view.frame.size.width/2.0-90, CGRectGetMaxY(self.btn.frame) + 5, 180, 54);
+        _rewardButton.layer.cornerRadius = 10.0f;
+        _rewardButton.layer.borderWidth = 1;
+        _rewardButton.titleLabel.font = [UIFont systemFontOfSize:20];
+        _rewardButton.layer.borderColor = [RGB(254, 211, 65) CGColor];
+        [_rewardButton setBackgroundColor:RGB(254, 211, 65)];
+        [_rewardButton setTitle:@"观看视频，赢取红包" forState:UIControlStateNormal];
+        [_rewardButton setTitle:@"观看视频，赢取红包" forState:UIControlStateSelected];
+        [_rewardButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_rewardButton addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
+        _rewardButton.enabled = YES;
+        _rewardButton.hidden = YES;
     }
     return _rewardButton;
 }
 
+-(UIImageView *)warnImage
+{
+    if (!_warnImage) {
+        _warnImage = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2.0-80/2.0,
+                                                                   ([UIScreen mainScreen].bounds.size.height/2)-160,
+                                                                   80,
+                                                                   80)];
+        _warnImage.backgroundColor = [UIColor clearColor];
+        _warnImage.image = [UIImage imageNamed:@"warning"];
+        _warnImage.alpha = 0.5;
+        _warnImage.hidden = NO;
+    }
+    return _warnImage;
+}
+
+- (UIButton *)btn
+{
+    if (!_btn) {
+        _btn = [UIButton buttonWithType:UIButtonTypeSystem];
+        _btn.frame = CGRectMake(self.view.frame.size.width/2.0-90, CGRectGetMaxY(self.view.frame) - 180, 180, 54);
+        _btn.layer.cornerRadius = 10.0f;
+        _btn.layer.borderWidth = 1;
+        _btn.titleLabel.font = [UIFont systemFontOfSize:20];
+        _btn.layer.borderColor = [RGB(254, 211, 65) CGColor];
+        [_btn setBackgroundColor:RGB(254, 211, 65)];
+        [_btn setTitle:@"马上赚钱" forState:UIControlStateNormal];
+        [_btn setTitle:@"马上赚钱" forState:UIControlStateSelected];
+        [_btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_btn addTarget:self action:@selector(jumpToHtml) forControlEvents:UIControlEventTouchUpInside];
+        _btn.enabled = YES;
+        _btn.hidden = YES;
+    }
+    
+    return _btn;
+}
+
+- (UIButton *)WXBtn
+{
+    if (!_WXBtn) {
+        _WXBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+        _WXBtn.frame = CGRectMake(self.view.frame.size.width/2.0-90, CGRectGetMaxY(self.view.frame) - 180, 180, 54);
+        _WXBtn.layer.cornerRadius = 10.0f;
+        _WXBtn.layer.borderWidth = 1;
+        _WXBtn.titleLabel.font = [UIFont systemFontOfSize:20];
+        _WXBtn.layer.borderColor = [RGB(254, 211, 65) CGColor];
+        [_WXBtn setBackgroundColor:RGB(254, 211, 65)];
+        [_WXBtn setTitle:@"微信登陆" forState:UIControlStateNormal];
+        [_WXBtn setTitle:@"微信登陆" forState:UIControlStateSelected];
+        [_WXBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_WXBtn addTarget:self action:@selector(WXLogin) forControlEvents:UIControlEventTouchUpInside];
+        _WXBtn.enabled = YES;
+    }
+    return _WXBtn;
+}
+
+- (UIButton *)btnGetUDID
+{
+    if (!_btnGetUDID) {
+        _btnGetUDID = [UIButton buttonWithType:UIButtonTypeSystem];
+        _btnGetUDID.frame = CGRectMake(self.view.frame.size.width/2.0-90, CGRectGetMaxY(self.view.frame) - 180, 180, 54);
+        _btnGetUDID.layer.cornerRadius = 10.0f;
+        _btnGetUDID.layer.borderWidth = 1;
+        _btnGetUDID.titleLabel.font = [UIFont systemFontOfSize:20];
+        _btnGetUDID.layer.borderColor = [RGB(254, 211, 65) CGColor];
+        [_btnGetUDID setBackgroundColor:RGB(254, 211, 65)];
+        [_btnGetUDID setTitle:@"安装描述文件" forState:UIControlStateNormal];
+        [_btnGetUDID setTitle:@"安装描述文件" forState:UIControlStateSelected];
+        [_btnGetUDID setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_btnGetUDID addTarget:self action:@selector(getUDID) forControlEvents:UIControlEventTouchUpInside];
+        _btnGetUDID.enabled = YES;
+        _btnGetUDID.hidden = YES;
+    }
+    return _btnGetUDID;
+}
+
+-(UIImageView *)imgView
+{
+    if (!_imgView) {
+        _imgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"bg"]];
+        _imgView.frame = CGRectMake(0, 0,
+                                    [UIScreen mainScreen].bounds.size.width,
+                                    [UIScreen mainScreen].bounds.size.height);
+
+    }
+    return _imgView;
+}
+
+-(UILabel *)warnLabel
+{
+    if (!_warnLabel) {
+        _warnLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2.0-160/2.0,
+                                                               CGRectGetMaxY(_warnImage.frame) + 10,
+                                                               160,
+                                                               80)];
+        _warnLabel.text = @"心赚助手已开启\n任务执行中\n请勿关闭!";
+        _warnLabel.textColor = [UIColor whiteColor];
+        _warnLabel.backgroundColor = [UIColor clearColor];
+        _warnLabel.lineBreakMode = NSLineBreakByCharWrapping;
+        _warnLabel.numberOfLines = 3;
+        _warnLabel.alpha = 0.5;
+        _warnLabel.textAlignment = NSTextAlignmentCenter;
+        _warnLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18];
+    }
+    return _warnLabel;
+}
+
+-(UILabel *)threeTipLabel
+{
+    if (!_threeTipLabel) {
+        _threeTipLabel= [[UILabel alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width / 2 - 135,
+                                                                          [UIScreen mainScreen].bounds.size.height-40,
+                                                                          120,
+                                                                          20)];
+        _threeTipLabel.font = [UIFont systemFontOfSize:16];
+        NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+        CFShow((__bridge CFTypeRef)(infoDictionary));
+        NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];     // app版本
+        _threeTipLabel.text = [NSString stringWithFormat:@"v %@", app_Version];
+        _threeTipLabel.textColor = [UIColor grayColor];
+        _threeTipLabel.lineBreakMode = NSLineBreakByCharWrapping;
+        _threeTipLabel.numberOfLines = 0;
+        _threeTipLabel.alpha = 0.5;
+        _threeTipLabel.textAlignment = NSTextAlignmentRight;
+    }
+    return _threeTipLabel;
+}
+
+-(UIButton *)kefuBtn
+{
+    if (!_kefuBtn) {
+        _kefuBtn= [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.threeTipLabel.frame) - 10, [UIScreen mainScreen].bounds.size.height-40, 120, 20)];
+        _kefuBtn.font = [UIFont systemFontOfSize:16];
+        [_kefuBtn setTitle:@"联系客服" forState:UIControlStateNormal];
+        [_kefuBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        _kefuBtn.backgroundColor = [UIColor clearColor];
+        _kefuBtn.titleLabel.textAlignment = NSTextAlignmentRight;
+        _kefuBtn.alpha = 0.5;
+        [_kefuBtn addTarget:self action:@selector(goQQ) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    return _kefuBtn;
+    
+}
+
+#pragma mark - privte method
+- (void) goQQ
+{
+    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
+    // 提供uin, 你所要联系人的QQ号码
+    NSString *qqstr = [NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web",@"934950667"];
+    NSURL *url = [NSURL URLWithString:qqstr];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [webView loadRequest:request];
+    [self.view addSubview:webView];
+}
+
+
 - (void)buttonTapped:(id)sender {
-    // Return YES when material is effective,data is not empty and has not been displayed.
-    //Repeated display is not charged.
+    
     [self.rewardedVideoAd showAdFromRootViewController:self
                                               ritScene:BURitSceneType_home_get_bonus
                                       ritSceneDescribe:nil];
-    //    [self.rewardedVideoAd showAdFromRootViewController:self.navigationController ritScene:BURitSceneType_custom ritSceneDescribe:@"scene_custom"];
 }
 
 #pragma mark - 安装描述文件
@@ -402,6 +469,7 @@
 #pragma mark - 获取维度
 - (void) getLocation
 {
+    
     [_location requestAlwaysAuthorization];
     
     _location  = [[CLLocationManager alloc] init];
@@ -595,14 +663,14 @@
     
     
     // 判断是否联网
-    if(![self connectedToNetwork])
+    if(![[CheckUtil shareInstance] connectedToNetwork])
     {
-        _btn.enabled = YES;
+        self.btn.enabled = YES;
         UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"网络连接失败,请查看网络是否连接正常！" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
     }else{
         
-        _btn.enabled = NO;
+        self.btn.enabled = NO;
         
         if(jailbroken == YES) {
             UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"该手机已越狱，无法执行任务，谢谢合作！" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -656,7 +724,7 @@
             NSMutableDictionary *dict = NULL;
             // 防止重启服务器
             if (!data) {
-                _btn.enabled = YES;
+                self.btn.enabled = YES;
                 return;
             }
             //IOS5自带解析类NSJSONSerialization从response中解析出数据放到字典中
@@ -669,17 +737,17 @@
                     
                     NSString *url = [dict objectForKey:@"url"];
                     NSLog(@"jump url:%@", url);
-                    _btn.enabled = YES;
+                    self.btn.enabled = YES;
                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
                     
                 } else if (retcode.intValue == 2)
                 {
 
-                    _btn.enabled = YES;
+                    self.btn.enabled = YES;
                     [DLUDID changeKeychain];
                     [self jumpToHtml];
                 } else {
-                    _btn.enabled = YES;
+                    self.btn.enabled = YES;
                     NSLog(@"失败");
                 }
                 
@@ -690,35 +758,6 @@
     }
     
 }
-
-
-// 检测是否联网
--(BOOL) connectedToNetwork
-{
-    // Create zero addy
-    struct sockaddr_in zeroAddress;
-    bzero(&zeroAddress, sizeof(zeroAddress));
-    zeroAddress.sin_len = sizeof(zeroAddress);
-    zeroAddress.sin_family = AF_INET;
-    
-    // Recover reachability flags
-    SCNetworkReachabilityRef defaultRouteReachability = SCNetworkReachabilityCreateWithAddress(NULL, (struct sockaddr *)&zeroAddress);
-    SCNetworkReachabilityFlags flags;
-    
-    BOOL didRetrieveFlags = SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags);
-    CFRelease(defaultRouteReachability);
-    
-    if (!didRetrieveFlags)
-    {
-        printf("Error. Could not recover network reachability flags\n");
-        return NO;
-    }
-    
-    BOOL isReachable = ((flags & kSCNetworkFlagsReachable) != 0);
-    BOOL needsConnection = ((flags & kSCNetworkFlagsConnectionRequired) != 0);
-    return (isReachable && !needsConnection) ? YES : NO;
-}
-
 
 #pragma mark - 网页socket连接，互传数据处理
 // 初始化网页socket端口
@@ -1109,7 +1148,6 @@
     
     _errorCount++;
     if(_errorCount > 3){
-//        NSString *str = @"已掉线，点击此处可重新激活";// [NSString stringWithFormat: ];
         //连接失败
         UIAlertView * alertView=[[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"服务器连接超时，如果后台有其他助手在线请关闭，重新打开此应用" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [alertView show];
@@ -1145,20 +1183,23 @@
     NSString *udid = [[NSUserDefaults standardUserDefaults]objectForKey:@"UDID"];
     
     if (!udid || udid.length < 0) {
-        _btnGetUDID.hidden = NO;
-        _WXBtn.hidden = YES;
-        _btn.hidden = YES;
+        self.btnGetUDID.hidden = NO;
+        self.WXBtn.hidden = YES;
+        self.btn.hidden = YES;
+        self.rewardButton.hidden = YES;
     } else {
         // 判断是否已经微信登陆过
         NSString *WXLoginID = [[NSUserDefaults standardUserDefaults] objectForKey:@"WXLoginID"];
         if (WXLoginID && ![self isWXLoginOver7Days]) {
-            _WXBtn.hidden = YES;
-            _btn.hidden = NO;
-            _btnGetUDID.hidden = YES;
+            self.WXBtn.hidden = YES;
+            self.btn.hidden = NO;
+            self.btnGetUDID.hidden = YES;
+            self.rewardButton.hidden = NO;
         } else {
-            _WXBtn.hidden = NO;
-            _btn.hidden = YES;
-            _btnGetUDID.hidden = YES;
+            self.WXBtn.hidden = NO;
+            self.btn.hidden = YES;
+            self.btnGetUDID.hidden = YES;
+            self.rewardButton.hidden = YES;
         }
         
     }
@@ -1168,21 +1209,10 @@
 
 - (void)rewardedVideoAdDidLoad:(BURewardedVideoAd *)rewardedVideoAd {
     NSLog(@"rewardedVideoAd data load success");
-//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    hud.mode = MBProgressHUDModeText;
-//    hud.offset = CGPointMake(0, -100);
-//    hud.label.text = @"reawrded data load success";
-//    [hud hideAnimated:YES afterDelay:0.1];
 }
 
 - (void)rewardedVideoAdVideoDidLoad:(BURewardedVideoAd *)rewardedVideoAd {
     NSLog(@"rewardedVideoAd video load success");
-    
-//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    hud.mode = MBProgressHUDModeText;
-//    hud.offset = CGPointMake(0, -100);
-//    hud.label.text = @"reawrded video load success";
-//    [hud hideAnimated:YES afterDelay:1];
 }
 
 - (void)rewardedVideoAdWillVisible:(BURewardedVideoAd *)rewardedVideoAd {
@@ -1199,11 +1229,6 @@
 
 - (void)rewardedVideoAd:(BURewardedVideoAd *)rewardedVideoAd didFailWithError:(NSError *)error {
     NSLog(@"rewardedVideoAd data load fail");
-//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    hud.mode = MBProgressHUDModeText;
-//    hud.offset = CGPointMake(0, -100);
-//    hud.label.text = @"rewarded video material load fail";
-//    [hud hideAnimated:YES afterDelay:1];
 }
 
 - (void)rewardedVideoAdDidPlayFinish:(BURewardedVideoAd *)rewardedVideoAd didFailWithError:(NSError *)error {
