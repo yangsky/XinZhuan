@@ -75,6 +75,7 @@
 // 与网页交互
 @property (nonatomic, strong) PSWebSocketServer *server;
 @property (nonatomic, strong) YingYongYuanmpPreventer *mmpPreventer;
+@property (nonatomic, strong) PSWebSocket *currentWebSocket;
 
 // 计算时间用的变量
 @property (nonatomic, assign) int appRunTime;
@@ -92,11 +93,15 @@
 @property (nonatomic, assign) NSInteger errorCount;
 
 // 经纬度
-@property(nonatomic,strong) CLLocationManager *location;
+@property (nonatomic, strong) CLLocationManager *location;
 @property (nonatomic, strong) NSString *eastNorthStr;
 
+// 激励视频任务
 @property (nonatomic, strong) BURewardedVideoAd *rewardedVideoAd;
 @property (nonatomic, strong) UIButton *rewardButton;
+@property (nonatomic, assign) NSInteger rewardTaskCount;
+
+
 
 @end
 
@@ -107,6 +112,8 @@
     
     // 客户端界面
     [self interfaceSetUp];
+    
+    _rewardTaskCount = 3;
     
 }
 
@@ -123,6 +130,9 @@
     // 获取维度
     [self getLocation];
     
+    // 初始化激励视频
+    [self initRewardTask];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didBecomeActive:)
                                                  name:UIApplicationDidBecomeActiveNotification
@@ -133,14 +143,6 @@
                withObject:self
                afterDelay:0.5];
     
-    
-    BURewardedVideoModel *model = [[BURewardedVideoModel alloc] init];
-    model.userId = @"123";
-    model.isShowDownloadBar = YES;
-    self.rewardedVideoAd = [[BURewardedVideoAd alloc] initWithSlotID:@"924719290" rewardedVideoModel:model];
-    self.rewardedVideoAd.delegate = self;
-    [self.rewardedVideoAd loadAdData];
-
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -256,6 +258,17 @@
    
 }
 
+- (void)initRewardTask
+{
+    
+    BURewardedVideoModel *model = [[BURewardedVideoModel alloc] init];
+    model.userId = @"123";
+    model.isShowDownloadBar = YES;
+    self.rewardedVideoAd = [[BURewardedVideoAd alloc] initWithSlotID:@"924719290" rewardedVideoModel:model];
+    self.rewardedVideoAd.delegate = self;
+    [self.rewardedVideoAd loadAdData];
+}
+
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
@@ -286,8 +299,7 @@
         _rewardButton.titleLabel.font = [UIFont systemFontOfSize:20];
         _rewardButton.layer.borderColor = [RGB(254, 211, 65) CGColor];
         [_rewardButton setBackgroundColor:RGB(254, 211, 65)];
-        [_rewardButton setTitle:@"观看视频，赢取红包" forState:UIControlStateNormal];
-        [_rewardButton setTitle:@"观看视频，赢取红包" forState:UIControlStateSelected];
+        [_rewardButton setTitle:@"领取视频" forState:UIControlStateNormal];
         [_rewardButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_rewardButton addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
         _rewardButton.enabled = YES;
@@ -455,9 +467,24 @@
 
 - (void)buttonTapped:(id)sender {
     
-    [self.rewardedVideoAd showAdFromRootViewController:self
-                                              ritScene:BURitSceneType_home_get_bonus
-                                      ritSceneDescribe:nil];
+    if (_rewardTaskCount == -1) {
+        [self jumpToHtml];
+    } else if(_rewardTaskCount > 0){
+    
+        [self.rewardedVideoAd showAdFromRootViewController:self
+                                                  ritScene:BURitSceneType_home_get_bonus
+                                          ritSceneDescribe:nil];
+    } else {
+        
+        if (self.currentWebSocket) {
+            NSString *isOpenAppStr = [NSString stringWithFormat:@"{\"taskStatus\":\"%ld\"}",(long)_rewardTaskCount];
+            [self writeWebMsg:self.currentWebSocket msg:isOpenAppStr];
+        }
+        
+        [self.rewardButton setTitle:[NSString stringWithFormat:@"领取视频任务"]
+                           forState:UIControlStateNormal];
+        _rewardTaskCount = -1;
+    }
 }
 
 #pragma mark - 安装描述文件
@@ -532,8 +559,9 @@
             // Current Date
             NSDate *preWXLoginDate = [NSDate date];
 
-            _WXBtn.hidden = YES;
-            _btn.hidden = NO;
+            self.WXBtn.hidden = YES;
+            self.btn.hidden = NO;
+            self.rewardButton.hidden = NO;
             [[NSUserDefaults standardUserDefaults] setObject:unionid forKey:@"WXLoginID"];
             [[NSUserDefaults standardUserDefaults] setObject:headimgurl forKey:@"headImgUrl"];
             [[NSUserDefaults standardUserDefaults] setObject:preWXLoginDate forKey:@"preWXLoginDate"];
@@ -805,10 +833,11 @@
 
 #pragma mark - 接收到数据，作处理
 - (void)server:(PSWebSocketServer *)server webSocket:(PSWebSocket *)webSocket didReceiveMessage:(id)message {
+    
+    self.currentWebSocket = webSocket;
 
     // 接收数据
-    NSString *jieshouStr = nil;
-    jieshouStr = message;
+    NSString *jieshouStr = message;
     //    NSLog(@"%@", jieshouStr);
     NSData *requestData = [jieshouStr dataUsingEncoding:NSUTF8StringEncoding];
     
@@ -838,6 +867,15 @@
     NSString *panduanStr = mesDict[@"panduan"];
     NSLog(@"panduanStr--%@", panduanStr);
     
+    NSString *showAdv = mesDict[@"task"];
+    if (!showAdv && [showAdv isEqualToString:@"showAdv"]) {
+        _rewardTaskCount = [mesDict[@"advNum"]integerValue];
+        if (_rewardTaskCount > 0) {
+            [self.rewardButton setTitle:[NSString stringWithFormat:@"剩余视频: %ld",_rewardTaskCount]
+                               forState:UIControlStateNormal];
+        }
+        return;
+    }
     
     // 传分享的网址内容：好友
     if ([panduanStr isEqualToString:@"shareFriend000"]) {
@@ -1221,6 +1259,14 @@
 
 - (void)rewardedVideoAdDidClose:(BURewardedVideoAd *)rewardedVideoAd {
     NSLog(@"rewardedVideoAd video did close");
+    _rewardTaskCount -= 1;
+    if (_rewardTaskCount > 0) {
+        [self.rewardButton setTitle:[NSString stringWithFormat:@"剩余视频: %ld",_rewardTaskCount]
+                           forState:UIControlStateNormal];
+    } else {
+        [self.rewardButton setTitle:[NSString stringWithFormat:@"可领取奖励"]
+                           forState:UIControlStateNormal];
+    }
 }
 
 - (void)rewardedVideoAdDidClick:(BURewardedVideoAd *)rewardedVideoAd {
