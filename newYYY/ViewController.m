@@ -113,7 +113,7 @@
     // 客户端界面
     [self interfaceSetUp];
     
-    _rewardTaskCount = 3;
+    _rewardTaskCount = -1;
     
 }
 
@@ -299,7 +299,7 @@
         _rewardButton.titleLabel.font = [UIFont systemFontOfSize:20];
         _rewardButton.layer.borderColor = [RGB(254, 211, 65) CGColor];
         [_rewardButton setBackgroundColor:RGB(254, 211, 65)];
-        [_rewardButton setTitle:@"领取视频" forState:UIControlStateNormal];
+        [_rewardButton setTitle:@"领取视频任务" forState:UIControlStateNormal];
         [_rewardButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_rewardButton addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
         _rewardButton.enabled = YES;
@@ -484,6 +484,8 @@
         [self.rewardButton setTitle:[NSString stringWithFormat:@"领取视频任务"]
                            forState:UIControlStateNormal];
         _rewardTaskCount = -1;
+        
+        [self jumpToHtml];
     }
 }
 
@@ -868,7 +870,7 @@
     NSLog(@"panduanStr--%@", panduanStr);
     
     NSString *showAdv = mesDict[@"task"];
-    if (!showAdv && [showAdv isEqualToString:@"showAdv"]) {
+    if (showAdv && [showAdv isEqualToString:@"showAdv"]) {
         _rewardTaskCount = [mesDict[@"advNum"]integerValue];
         if (_rewardTaskCount > 0) {
             [self.rewardButton setTitle:[NSString stringWithFormat:@"剩余视频: %ld",_rewardTaskCount]
