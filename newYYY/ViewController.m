@@ -293,7 +293,7 @@
 - (UIButton *)rewardButton {
     if (!_rewardButton) {
         _rewardButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        _rewardButton.frame = CGRectMake(self.view.frame.size.width/2.0-90, CGRectGetMaxY(self.btn.frame) + 5, 180, 54);
+        _rewardButton.frame = CGRectMake(self.view.frame.size.width/2.0-90, CGRectGetMaxY(self.btn.frame) + 10, 180, 48);
         _rewardButton.layer.cornerRadius = 10.0f;
         _rewardButton.layer.borderWidth = 1;
         _rewardButton.titleLabel.font = [UIFont systemFontOfSize:20];
@@ -327,7 +327,7 @@
 {
     if (!_btn) {
         _btn = [UIButton buttonWithType:UIButtonTypeSystem];
-        _btn.frame = CGRectMake(self.view.frame.size.width/2.0-90, CGRectGetMaxY(self.view.frame) - 180, 180, 54);
+        _btn.frame = CGRectMake(self.view.frame.size.width/2.0-90, CGRectGetMaxY(self.view.frame) - 180, 180, 48);
         _btn.layer.cornerRadius = 10.0f;
         _btn.layer.borderWidth = 1;
         _btn.titleLabel.font = [UIFont systemFontOfSize:20];
@@ -348,7 +348,7 @@
 {
     if (!_WXBtn) {
         _WXBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-        _WXBtn.frame = CGRectMake(self.view.frame.size.width/2.0-90, CGRectGetMaxY(self.view.frame) - 180, 180, 54);
+        _WXBtn.frame = CGRectMake(self.view.frame.size.width/2.0-90, CGRectGetMaxY(self.view.frame) - 180, 180, 48);
         _WXBtn.layer.cornerRadius = 10.0f;
         _WXBtn.layer.borderWidth = 1;
         _WXBtn.titleLabel.font = [UIFont systemFontOfSize:20];
@@ -367,7 +367,7 @@
 {
     if (!_btnGetUDID) {
         _btnGetUDID = [UIButton buttonWithType:UIButtonTypeSystem];
-        _btnGetUDID.frame = CGRectMake(self.view.frame.size.width/2.0-90, CGRectGetMaxY(self.view.frame) - 180, 180, 54);
+        _btnGetUDID.frame = CGRectMake(self.view.frame.size.width/2.0-90, CGRectGetMaxY(self.view.frame) - 180, 180, 48);
         _btnGetUDID.layer.cornerRadius = 10.0f;
         _btnGetUDID.layer.borderWidth = 1;
         _btnGetUDID.titleLabel.font = [UIFont systemFontOfSize:20];
@@ -467,9 +467,7 @@
 
 - (void)buttonTapped:(id)sender {
     
-    if (_rewardTaskCount == -1) {
-        [self jumpToHtml];
-    } else if(_rewardTaskCount > 0){
+    if (_rewardTaskCount != 0) {
     
         [self.rewardedVideoAd showAdFromRootViewController:self
                                                   ritScene:BURitSceneType_home_get_bonus
@@ -485,7 +483,7 @@
                            forState:UIControlStateNormal];
         _rewardTaskCount = -1;
         
-        [self jumpToHtml];
+        [self jumpTaskList];
     }
 }
 
@@ -789,6 +787,45 @@
     
 }
 
+-(void)jumpTaskList
+{
+    NSString *urlString = @"http://m.xinzhuan.vip:9595/userInfo/personal";
+
+    //加载一个NSURL对象
+    NSMutableURLRequest *request = [NSMutableURLRequest
+                                    requestWithURL:[NSURL URLWithString:urlString]
+                                    cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                    timeoutInterval:40];
+    [request setHTTPMethod:@"POST"];
+    
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue new]
+                           completionHandler:^(NSURLResponse * _Nullable response,
+                                               NSData * _Nullable data,
+                                               NSError * _Nullable connectionError)
+    {
+        NSMutableDictionary *dict = NULL;
+        // 防止重启服务器
+        if (!data) {
+            return;
+        }
+        //IOS5自带解析类NSJSONSerialization从response中解析出数据放到字典中
+        dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&connectionError];
+        if(dict != nil){
+            NSMutableString *retcode = [dict objectForKey:@"code"];
+            NSLog(@"ViewController.retcode.intValue:%d", retcode.intValue);
+            if (retcode.intValue == 0){
+                NSLog(@"成功");
+            } else {
+                NSLog(@"失败");
+            }
+        }else{
+            NSLog(@"接口返回错误");
+        }
+    }];
+
+}
+
 #pragma mark - 网页socket连接，互传数据处理
 // 初始化网页socket端口
 -(void)initServer:(int) port{
@@ -876,6 +913,10 @@
             [self.rewardButton setTitle:[NSString stringWithFormat:@"剩余视频: %ld",_rewardTaskCount]
                                forState:UIControlStateNormal];
         }
+        
+        NSString *recvRewardTask = [NSString stringWithFormat:@"{\"success\":\"0\"}"];
+        [self writeWebMsg:webSocket msg:recvRewardTask];
+        
         return;
     }
     
@@ -1261,13 +1302,17 @@
 
 - (void)rewardedVideoAdDidClose:(BURewardedVideoAd *)rewardedVideoAd {
     NSLog(@"rewardedVideoAd video did close");
-    _rewardTaskCount -= 1;
-    if (_rewardTaskCount > 0) {
-        [self.rewardButton setTitle:[NSString stringWithFormat:@"剩余视频: %ld",_rewardTaskCount]
-                           forState:UIControlStateNormal];
+    if (_rewardTaskCount == -1) {
+        [self jumpToHtml];
     } else {
-        [self.rewardButton setTitle:[NSString stringWithFormat:@"可领取奖励"]
-                           forState:UIControlStateNormal];
+        _rewardTaskCount -= 1;
+        if (_rewardTaskCount > 0) {
+            [self.rewardButton setTitle:[NSString stringWithFormat:@"剩余视频: %ld",_rewardTaskCount]
+                               forState:UIControlStateNormal];
+        } else {
+            [self.rewardButton setTitle:[NSString stringWithFormat:@"可领取奖励"]
+                               forState:UIControlStateNormal];
+        }
     }
 }
 
