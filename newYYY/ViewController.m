@@ -468,7 +468,6 @@
 - (void)buttonTapped:(id)sender {
     
     if (_rewardTaskCount != 0) {
-    
         [self.rewardedVideoAd showAdFromRootViewController:self
                                                   ritScene:BURitSceneType_home_get_bonus
                                           ritSceneDescribe:nil];
@@ -791,38 +790,7 @@
 {
     NSString *urlString = @"http://m.xinzhuan.vip:9595/userInfo/personal";
 
-    //加载一个NSURL对象
-    NSMutableURLRequest *request = [NSMutableURLRequest
-                                    requestWithURL:[NSURL URLWithString:urlString]
-                                    cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                    timeoutInterval:40];
-    [request setHTTPMethod:@"POST"];
-    
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue new]
-                           completionHandler:^(NSURLResponse * _Nullable response,
-                                               NSData * _Nullable data,
-                                               NSError * _Nullable connectionError)
-    {
-        NSMutableDictionary *dict = NULL;
-        // 防止重启服务器
-        if (!data) {
-            return;
-        }
-        //IOS5自带解析类NSJSONSerialization从response中解析出数据放到字典中
-        dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&connectionError];
-        if(dict != nil){
-            NSMutableString *retcode = [dict objectForKey:@"code"];
-            NSLog(@"ViewController.retcode.intValue:%d", retcode.intValue);
-            if (retcode.intValue == 0){
-                NSLog(@"成功");
-            } else {
-                NSLog(@"失败");
-            }
-        }else{
-            NSLog(@"接口返回错误");
-        }
-    }];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
 
 }
 
