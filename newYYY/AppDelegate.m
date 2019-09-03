@@ -52,7 +52,7 @@
 
 #define newUDID @"UDID"
 
-@interface AppDelegate ()
+@interface AppDelegate () <BUSplashAdDelegate>
 @property (nonatomic, strong) YYYMusicViewController *musicVC;
 @property (nonatomic, strong) ViewController *VC;
 
@@ -87,8 +87,6 @@
     // 3.激活回话
     [session setActive:YES error:nil];
     
-    
-//    NSLog(@"%@",[[NSBundle mainBundle] bundleIdentifier]);
     //获取设备信息
     [self jumpToHtml];
     
@@ -122,6 +120,15 @@
     // BUAd
     [BUAdSDKManager setAppID:@"5024719"];
     [BUAdSDKManager setIsPaidApp:NO];
+    
+    //开屏广告
+    CGRect frame = [UIScreen mainScreen].bounds;
+    BUSplashAdView *splashView = [[BUSplashAdView alloc] initWithSlotID:@"824719728" frame:frame];
+    splashView.delegate = self;
+    UIWindow *keyWindow = [UIApplication sharedApplication].windows.firstObject;
+    [splashView loadAdData];
+    [keyWindow.rootViewController.view addSubview:splashView];
+    splashView.rootViewController = keyWindow.rootViewController;
     
     return YES;
 }
@@ -319,10 +326,8 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     return  [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
 }
 
--(BOOL)application:(UIApplication *)app
-           openURL:(NSURL *)url
-           options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
-    return YES;
+- (void)splashAdDidClose:(BUSplashAdView *)splashAd {
+    [splashAd removeFromSuperview];
 }
 
 @end
