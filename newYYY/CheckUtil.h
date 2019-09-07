@@ -24,6 +24,8 @@
 
 - (BOOL) isSIMInstalled;
 
--(BOOL) connectedToNetwork;
+- (BOOL) connectedToNetwork;
+
+- (NSString *) md5 : (NSString *) str;
 
 @end

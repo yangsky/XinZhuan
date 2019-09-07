@@ -13,4 +13,5 @@
 + (NSString *)value;
 + (void)save:(NSString *)udid;
 + (NSString *)changeKeychain;
++ (NSString *)appleIDFA;
 @end

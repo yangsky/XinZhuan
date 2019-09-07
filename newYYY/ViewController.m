@@ -473,15 +473,8 @@
                                           ritSceneDescribe:nil];
     } else {
         
-        if (self.currentWebSocket) {
-            NSString *isOpenAppStr = [NSString stringWithFormat:@"{\"taskStatus\":\"%ld\"}",(long)_rewardTaskCount];
-            [self writeWebMsg:self.currentWebSocket msg:isOpenAppStr];
-        }
-        
         [self.rewardButton setTitle:[NSString stringWithFormat:@"领取视频任务"]
                            forState:UIControlStateNormal];
-        _rewardTaskCount = -1;
-        
         [self jumpTaskList];
     }
 }
@@ -788,7 +781,21 @@
 
 -(void)jumpTaskList
 {
-    NSString *urlString = @"http://m.xinzhuan.vip:9595/userInfo/personal";
+    // idfa
+    NSString *idfa = [DLUDID appleIDFA];
+    
+    // timestamp
+    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval a=[dat timeIntervalSince1970];
+    NSString *timestamp = [NSString stringWithFormat:@"%0.f", a];//转为字符型
+    
+    // sign （当前秒级时间戳+“|”+idfa+“|”+“mvc_taskSign”）md5
+    NSString *sign = [[CheckUtil shareInstance]md5:[NSString stringWithFormat:@"%@|%@|mvc_taskSign", timestamp, idfa]];
+    
+    // 跳转到tasklist
+    NSString *urlString = [NSString stringWithFormat:@"http://m.xinzhuan.vip:9595/userInfo/personal?sign=%@&idfa=%@&num=%ld", sign, idfa, (long)_rewardTaskCount];
+    
+    _rewardTaskCount = -1;
 
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
 

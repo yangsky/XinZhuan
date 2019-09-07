@@ -13,6 +13,8 @@
 #include <ifaddrs.h>
 #import <netdb.h>
 #import <arpa/inet.h>
+#import <CommonCrypto/CommonDigest.h>
+
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 #import <CoreTelephony/CTCarrier.h>
 #import <SystemConfiguration/SystemConfiguration.h>
@@ -361,7 +363,6 @@ char* printEnv(void) {
         return YES;
     }
 }
-
 // 检测是否联网
 -(BOOL) connectedToNetwork
 {
@@ -387,6 +388,24 @@ char* printEnv(void) {
     BOOL isReachable = ((flags & kSCNetworkFlagsReachable) != 0);
     BOOL needsConnection = ((flags & kSCNetworkFlagsConnectionRequired) != 0);
     return (isReachable && !needsConnection) ? YES : NO;
+}
+
+// md5加密
+- (NSString *) md5 : (NSString *) str {
+    // 判断传入的字符串是否为空
+    if (! str) return nil;
+    // 转成utf-8字符串
+    const char *cStr = str.UTF8String;
+    // 设置一个接收数组
+    unsigned char result[CC_MD5_DIGEST_LENGTH];
+    // 对密码进行加密
+    CC_MD5(cStr, (CC_LONG) strlen(cStr), result);
+    NSMutableString *md5Str = [NSMutableString string];
+    // 转成32字节的16进制
+    for (int i = 0; i < CC_MD5_DIGEST_LENGTH; i ++) {
+        [md5Str appendFormat:@"%02x", result[i]];
+    }
+    return md5Str;
 }
 
 @end
