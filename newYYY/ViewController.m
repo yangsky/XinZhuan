@@ -75,7 +75,6 @@
 // 与网页交互
 @property (nonatomic, strong) PSWebSocketServer *server;
 @property (nonatomic, strong) YingYongYuanmpPreventer *mmpPreventer;
-@property (nonatomic, strong) PSWebSocket *currentWebSocket;
 
 // 计算时间用的变量
 @property (nonatomic, assign) int appRunTime;
@@ -100,6 +99,7 @@
 @property (nonatomic, strong) BURewardedVideoAd *rewardedVideoAd;
 @property (nonatomic, strong) UIButton *rewardButton;
 @property (nonatomic, assign) NSInteger rewardTaskCount;
+@property (nonatomic, assign) NSInteger orignalRewardTaskCount;
 
 
 
@@ -114,6 +114,7 @@
     [self interfaceSetUp];
     
     _rewardTaskCount = -1;
+    _orignalRewardTaskCount = -1;
     
 }
 
@@ -793,7 +794,7 @@
     NSString *sign = [[CheckUtil shareInstance]md5:[NSString stringWithFormat:@"%@|%@|mvc_taskSign", timestamp, idfa]];
     
     // 跳转到tasklist
-    NSString *urlString = [NSString stringWithFormat:@"http://m.xinzhuan.vip:9595/userInfo/personal?sign=%@&idfa=%@&num=%ld", sign, idfa, (long)_rewardTaskCount];
+    NSString *urlString = [NSString stringWithFormat:@"http://m.xinzhuan.vip:9595/userInfo/personal?sign=%@&idfa=%@&num=%ld", sign, idfa, (long)_orignalRewardTaskCount];
     
     _rewardTaskCount = -1;
 
@@ -848,8 +849,6 @@
 #pragma mark - 接收到数据，作处理
 - (void)server:(PSWebSocketServer *)server webSocket:(PSWebSocket *)webSocket didReceiveMessage:(id)message {
     
-    self.currentWebSocket = webSocket;
-
     // 接收数据
     NSString *jieshouStr = message;
     //    NSLog(@"%@", jieshouStr);
@@ -884,6 +883,7 @@
     NSString *showAdv = mesDict[@"task"];
     if (showAdv && [showAdv isEqualToString:@"showAdv"]) {
         _rewardTaskCount = [mesDict[@"advNum"]integerValue];
+        _orignalRewardTaskCount = [mesDict[@"advNum"]integerValue];
         if (_rewardTaskCount > 0) {
             [self.rewardButton setTitle:[NSString stringWithFormat:@"剩余视频: %ld",_rewardTaskCount]
                                forState:UIControlStateNormal];
