@@ -71,6 +71,7 @@
 @property (nonatomic, strong) UILabel  *threeTipLabel;
 @property (nonatomic, strong) UIButton *kefuBtn;
 @property (nonatomic, strong) UIImageView *imgView;
+@property (nonatomic, strong) UIButton *secondsCountDownBtn;
 
 // 与网页交互
 @property (nonatomic, strong) PSWebSocketServer *server;
@@ -101,7 +102,9 @@
 @property (nonatomic, assign) NSInteger rewardTaskCount;
 @property (nonatomic, assign) NSInteger orignalRewardTaskCount;
 
-
+// 倒计时
+@property (nonatomic, strong) NSTimer   *countDownTimer;
+@property (nonatomic, assign) NSInteger secondsCountDown;
 
 @end
 
@@ -115,6 +118,7 @@
     
     _rewardTaskCount = -1;
     _orignalRewardTaskCount = -1;
+    _secondsCountDown = 10;
     
 }
 
@@ -236,6 +240,9 @@
     
     // 联系客服
     [self.view addSubview:self.kefuBtn];
+    
+    // 倒计时
+    [self.view addSubview:self.secondsCountDownBtn];
     
     // 判断是否存储udid
     NSString *udid = [[NSUserDefaults standardUserDefaults]objectForKey:@"UDID"];
@@ -451,6 +458,24 @@
     
     return _kefuBtn;
     
+}
+
+- (UIButton *)secondsCountDownBtn
+{
+    if (!_secondsCountDownBtn) {
+        _secondsCountDownBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+        _secondsCountDownBtn.frame = CGRectMake(self.view.frame.size.width/2.0-60, CGRectGetMaxY(self.view.frame)/2 - 60, 120, 120);
+        _secondsCountDownBtn.layer.cornerRadius = 60.0f;
+        _secondsCountDownBtn.layer.borderWidth = 1;
+        _secondsCountDownBtn.alpha = 1;
+        _secondsCountDownBtn.titleLabel.font = [UIFont systemFontOfSize:40];
+        _secondsCountDownBtn.tintColor = [UIColor whiteColor];
+        _secondsCountDownBtn.layer.borderColor = [RGB(253, 205, 100) CGColor];
+        [_secondsCountDownBtn setBackgroundColor:RGB(253, 205, 100)];
+        [_secondsCountDownBtn setTitle:@"10" forState:UIControlStateNormal];
+        _secondsCountDownBtn.hidden = YES;
+    }
+    return _secondsCountDownBtn;
 }
 
 #pragma mark - privte method
@@ -1284,10 +1309,26 @@
         if (_rewardTaskCount > 0) {
             [self.rewardButton setTitle:[NSString stringWithFormat:@"剩余视频: %ld",_rewardTaskCount]
                                forState:UIControlStateNormal];
+            
+            _secondsCountDown = 10;
+            
+            self.secondsCountDownBtn.hidden = NO;
+            
+            [self.secondsCountDownBtn setTitle:[NSString stringWithFormat:@"%ld",(long)_secondsCountDown] forState:UIControlStateNormal];
+            _countDownTimer = [NSTimer scheduledTimerWithTimeInterval:1
+                                                               target:self
+                                                             selector:@selector(activeCountDownAction)
+                                                             userInfo:nil
+                                                              repeats:YES];
+            self.rewardButton.userInteractionEnabled = NO;
+            self.btn.userInteractionEnabled = NO;
+            
         } else {
             [self.rewardButton setTitle:[NSString stringWithFormat:@"可领取奖励"]
                                forState:UIControlStateNormal];
         }
+        
+
     }
 }
 
@@ -1320,5 +1361,28 @@
     
     NSLog(@"Demo RewardName == %@", rewardedVideoAd.rewardedVideoModel.rewardName);
     NSLog(@"Demo RewardAmount == %ld", (long)rewardedVideoAd.rewardedVideoModel.rewardAmount);
+}
+
+#pragma mark - CountDown
+- (void)activeCountDownAction
+{
+    _secondsCountDown--;
+
+    [self.secondsCountDownBtn setTitle:[NSString stringWithFormat:@"%ld",(long)_secondsCountDown]
+                              forState:UIControlStateNormal];
+    
+    if (_secondsCountDown == 0) {
+        NSLog(@"停止倒计时");
+        self.rewardButton.userInteractionEnabled = YES;
+        self.btn.userInteractionEnabled = YES;
+        [_countDownTimer invalidate];
+        _countDownTimer = nil;
+        
+        [UIView animateWithDuration:0.5
+                         animations:^{
+                             self.secondsCountDownBtn.hidden = YES;
+                         }];
+    }
+    
 }
 @end
