@@ -118,7 +118,7 @@
     
     _rewardTaskCount = -1;
     _orignalRewardTaskCount = -1;
-    _secondsCountDown = 10;
+    _secondsCountDown = arc4random() % 6 + 10;
     
 }
 
@@ -1310,7 +1310,7 @@
             [self.rewardButton setTitle:[NSString stringWithFormat:@"剩余视频: %ld",_rewardTaskCount]
                                forState:UIControlStateNormal];
             
-            _secondsCountDown = 10;
+            _secondsCountDown = arc4random() % 6 + 10;
             
             self.secondsCountDownBtn.hidden = NO;
             
