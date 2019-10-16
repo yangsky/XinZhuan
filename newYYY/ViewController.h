@@ -17,5 +17,7 @@ static NSString *kGDTMobSDKAppId = @"1105344611";
 
 @property (assign, nonatomic) BOOL isFirstLanuch;
 
+@property (assign, nonatomic) BOOL isShowRewardViedo;
+
 @end
 

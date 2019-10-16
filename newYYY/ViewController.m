@@ -121,6 +121,8 @@
     _orignalRewardTaskCount = -1;
     _secondsCountDown = arc4random() % 6 + 10;
     
+    self.isShowRewardViedo = NO;
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -490,13 +492,6 @@
     if (!_splash) {
         _splash =  [[GDTSplashAd alloc] initWithAppId:kGDTMobSDKAppId placementId:@"9040714184494018"];
         _splash.delegate = self;
-//        UIImage *splashImage = [UIImage imageNamed:@"SplashNormal"];
-//        if (isIPhoneXSeries()) {
-//            splashImage = [UIImage imageNamed:@"SplashX"];
-//        } else if ([UIScreen mainScreen].bounds.size.height == 480) {
-//            splashImage = [UIImage imageNamed:@"SplashSmall"];
-//        }
-//        _splash.backgroundImage = splashImage;
         _splash.fetchDelay = 5;
     }
     
@@ -522,6 +517,8 @@
         [self.rewardedVideoAd showAdFromRootViewController:self
                                                   ritScene:BURitSceneType_home_get_bonus
                                           ritSceneDescribe:nil];
+        
+        self.isShowRewardViedo = YES;
     } else {
         
         [self.rewardButton setTitle:[NSString stringWithFormat:@"领取视频任务"]
@@ -847,6 +844,8 @@
     NSString *urlString = [NSString stringWithFormat:@"http://m.xinzhuan.vip:9595/userInfo/personal?sign=%@&idfa=%@&num=%ld", sign, idfa, (long)_orignalRewardTaskCount];
     
     _rewardTaskCount = -1;
+    
+    self.isShowRewardViedo = NO;
 
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
 
@@ -1308,7 +1307,7 @@
             self.rewardButton.hidden = YES;
         }
         
-        if (!self.isFirstLanuch) {
+        if (!self.isFirstLanuch && !self.isShowRewardViedo) {
             //开屏广告初始化并展示代码
             if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
                 
@@ -1337,8 +1336,11 @@
 
 - (void)rewardedVideoAdDidClose:(BURewardedVideoAd *)rewardedVideoAd {
     NSLog(@"rewardedVideoAd video did close");
+    
     if (_rewardTaskCount == -1) {
         [self jumpToHtml];
+        self.isShowRewardViedo = NO;
+        
     } else {
         _rewardTaskCount -= 1;
         if (_rewardTaskCount > 0) {
@@ -1406,6 +1408,7 @@
 
 - (void)splashAdFailToPresent:(GDTSplashAd *)splashAd withError:(NSError *)error
 {
+    self.splash = nil;
     NSLog(@"%s%@",__FUNCTION__,error);
 }
 
@@ -1431,8 +1434,8 @@
 
 - (void)splashAdClosed:(GDTSplashAd *)splashAd
 {
-    NSLog(@"%s",__FUNCTION__);
     self.splash = nil;
+    NSLog(@"%s",__FUNCTION__);
 }
 
 - (void)splashAdWillPresentFullScreenModal:(GDTSplashAd *)splashAd
