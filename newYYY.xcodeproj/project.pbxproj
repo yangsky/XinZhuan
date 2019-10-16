@@ -126,6 +126,7 @@
 		0E5B2955230D4A5E004E7914 /* libresolv.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E5B2954230D4A5E004E7914 /* libresolv.9.tbd */; };
 		0E5B2957230D4A6D004E7914 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E5B2956230D4A6D004E7914 /* libc++.tbd */; };
 		0E5B295A230D4CDA004E7914 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E5B2959230D4CDA004E7914 /* WebKit.framework */; };
+		0EEDBE9423571B92002F5359 /* libGDTMobSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EEDBE9023571B92002F5359 /* libGDTMobSDK.a */; };
 		68D1F67545651F3EDE42E5FD /* libPods-心赚.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71BB8171501E58A938DCE0BD /* libPods-心赚.a */; };
 		B03AA8241DD94D8E00E2820D /* LMAAA.m in Sources */ = {isa = PBXBuildFile; fileRef = B03AA8231DD94D8E00E2820D /* LMAAA.m */; };
 		B03AA8271DD94E9700E2820D /* LMAController.m in Sources */ = {isa = PBXBuildFile; fileRef = B03AA8261DD94E9700E2820D /* LMAController.m */; };
@@ -587,6 +588,28 @@
 		0E5B2956230D4A6D004E7914 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		0E5B2958230D4AEC004E7914 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/UMSocialLocalizable.strings; sourceTree = "<group>"; };
 		0E5B2959230D4CDA004E7914 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		0EEDBE7E23571B92002F5359 /* GDTRewardVideoAdNetworkAdapterProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDTRewardVideoAdNetworkAdapterProtocol.h; sourceTree = "<group>"; };
+		0EEDBE7F23571B92002F5359 /* GDTNativeExpressAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDTNativeExpressAdView.h; sourceTree = "<group>"; };
+		0EEDBE8023571B92002F5359 /* GDTMobBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDTMobBannerView.h; sourceTree = "<group>"; };
+		0EEDBE8123571B92002F5359 /* GDTUnifiedBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDTUnifiedBannerView.h; sourceTree = "<group>"; };
+		0EEDBE8223571B92002F5359 /* GDTNativeAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDTNativeAd.h; sourceTree = "<group>"; };
+		0EEDBE8323571B92002F5359 /* GDTSDKConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDTSDKConfig.h; sourceTree = "<group>"; };
+		0EEDBE8423571B92002F5359 /* GDTBaseAdNetworkAdapterProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDTBaseAdNetworkAdapterProtocol.h; sourceTree = "<group>"; };
+		0EEDBE8523571B92002F5359 /* GDTMobInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDTMobInterstitial.h; sourceTree = "<group>"; };
+		0EEDBE8623571B92002F5359 /* GDTRewardVideoAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDTRewardVideoAd.h; sourceTree = "<group>"; };
+		0EEDBE8723571B92002F5359 /* GDTSplashAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDTSplashAd.h; sourceTree = "<group>"; };
+		0EEDBE8823571B92002F5359 /* GDTNativeExpressAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDTNativeExpressAd.h; sourceTree = "<group>"; };
+		0EEDBE8923571B92002F5359 /* GDTLogoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDTLogoView.h; sourceTree = "<group>"; };
+		0EEDBE8A23571B92002F5359 /* GDTMediaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDTMediaView.h; sourceTree = "<group>"; };
+		0EEDBE8B23571B92002F5359 /* GDTUnifiedNativeAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDTUnifiedNativeAdView.h; sourceTree = "<group>"; };
+		0EEDBE8C23571B92002F5359 /* GDTHybridAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDTHybridAd.h; sourceTree = "<group>"; };
+		0EEDBE8D23571B92002F5359 /* GDTUnifiedNativeAdDataObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDTUnifiedNativeAdDataObject.h; sourceTree = "<group>"; };
+		0EEDBE8E23571B92002F5359 /* GDTSDKDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDTSDKDefines.h; sourceTree = "<group>"; };
+		0EEDBE8F23571B92002F5359 /* GDTUnifiedInterstitialAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDTUnifiedInterstitialAd.h; sourceTree = "<group>"; };
+		0EEDBE9023571B92002F5359 /* libGDTMobSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGDTMobSDK.a; sourceTree = "<group>"; };
+		0EEDBE9123571B92002F5359 /* GDTRewardVideoAdNetworkConnectorProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDTRewardVideoAdNetworkConnectorProtocol.h; sourceTree = "<group>"; };
+		0EEDBE9223571B92002F5359 /* GDTUnifiedNativeAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDTUnifiedNativeAd.h; sourceTree = "<group>"; };
+		0EEDBE9323571B92002F5359 /* GDTVideoConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDTVideoConfig.h; sourceTree = "<group>"; };
 		71BB8171501E58A938DCE0BD /* libPods-心赚.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-心赚.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		82D36D5BEA50066864721BF1 /* Pods-心赚.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-心赚.debug.xcconfig"; path = "Pods/Target Support Files/Pods-心赚/Pods-心赚.debug.xcconfig"; sourceTree = "<group>"; };
 		A89CD9F46AA1F65E536E7E7D /* Pods-心赚.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-心赚.release.xcconfig"; path = "Pods/Target Support Files/Pods-心赚/Pods-心赚.release.xcconfig"; sourceTree = "<group>"; };
@@ -698,6 +721,7 @@
 				ECA602BB21D258B400416C67 /* libSocialQQ.a in Frameworks */,
 				ECA602BF21D258B400416C67 /* libWeChatSDK.a in Frameworks */,
 				ECA602C321D258B400416C67 /* libSocialWechat.a in Frameworks */,
+				0EEDBE9423571B92002F5359 /* libGDTMobSDK.a in Frameworks */,
 				ECA602C421D258B400416C67 /* jpush-ios-2.1.8.a in Frameworks */,
 				ECA602C521D258B400416C67 /* Security.framework in Frameworks */,
 				ECA602C221D258B400416C67 /* Foundation.framework in Frameworks */,
@@ -1135,6 +1159,7 @@
 				EC9BB40820DBE81600887B2C /* ZLQ */,
 				045EFEB61D51CEDC005B4EE1 /* Frameworks */,
 				049DB9441D4AF83200B5475C /* ThirdFrame */,
+				0EEDBE7D23571B92002F5359 /* GDTAd */,
 				0E5B2945230D495F004E7914 /* BUAd */,
 				049DB9101D4AF12F00B5475C /* newYYY */,
 				049DB90F1D4AF12E00B5475C /* Products */,
@@ -1221,6 +1246,35 @@
 				0E5B2947230D4996004E7914 /* BUAdSDK.framework */,
 			);
 			path = BUAd;
+			sourceTree = "<group>";
+		};
+		0EEDBE7D23571B92002F5359 /* GDTAd */ = {
+			isa = PBXGroup;
+			children = (
+				0EEDBE7E23571B92002F5359 /* GDTRewardVideoAdNetworkAdapterProtocol.h */,
+				0EEDBE7F23571B92002F5359 /* GDTNativeExpressAdView.h */,
+				0EEDBE8023571B92002F5359 /* GDTMobBannerView.h */,
+				0EEDBE8123571B92002F5359 /* GDTUnifiedBannerView.h */,
+				0EEDBE8223571B92002F5359 /* GDTNativeAd.h */,
+				0EEDBE8323571B92002F5359 /* GDTSDKConfig.h */,
+				0EEDBE8423571B92002F5359 /* GDTBaseAdNetworkAdapterProtocol.h */,
+				0EEDBE8523571B92002F5359 /* GDTMobInterstitial.h */,
+				0EEDBE8623571B92002F5359 /* GDTRewardVideoAd.h */,
+				0EEDBE8723571B92002F5359 /* GDTSplashAd.h */,
+				0EEDBE8823571B92002F5359 /* GDTNativeExpressAd.h */,
+				0EEDBE8923571B92002F5359 /* GDTLogoView.h */,
+				0EEDBE8A23571B92002F5359 /* GDTMediaView.h */,
+				0EEDBE8B23571B92002F5359 /* GDTUnifiedNativeAdView.h */,
+				0EEDBE8C23571B92002F5359 /* GDTHybridAd.h */,
+				0EEDBE8D23571B92002F5359 /* GDTUnifiedNativeAdDataObject.h */,
+				0EEDBE8E23571B92002F5359 /* GDTSDKDefines.h */,
+				0EEDBE8F23571B92002F5359 /* GDTUnifiedInterstitialAd.h */,
+				0EEDBE9023571B92002F5359 /* libGDTMobSDK.a */,
+				0EEDBE9123571B92002F5359 /* GDTRewardVideoAdNetworkConnectorProtocol.h */,
+				0EEDBE9223571B92002F5359 /* GDTUnifiedNativeAd.h */,
+				0EEDBE9323571B92002F5359 /* GDTVideoConfig.h */,
+			);
+			path = GDTAd;
 			sourceTree = "<group>";
 		};
 		3A7533B99E586372F9CEDF73 /* Pods */ = {
@@ -1383,8 +1437,7 @@
 						ProvisioningStyle = Manual;
 					};
 					ECA6026C21D258B400416C67 = {
-						DevelopmentTeam = 4V8KM3JQZJ;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -2036,8 +2089,8 @@
 				CODE_SIGN_ENTITLEMENTS = newYYY/newYYY.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4V8KM3JQZJ;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2057,6 +2110,7 @@
 					"$(PROJECT_DIR)/newYYY/ThirdFrame/Wechat",
 					"$(PROJECT_DIR)/newYYY/ThirdFrame/UMSocial_Sdk_5.2.1",
 					"$(PROJECT_DIR)/newYYY/ThirdFrame/TencentOpenAPI",
+					"$(PROJECT_DIR)/GDTAd",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.dianle.xinzhuan2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2074,8 +2128,8 @@
 				CODE_SIGN_ENTITLEMENTS = newYYY/newYYY.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4V8KM3JQZJ;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2095,6 +2149,7 @@
 					"$(PROJECT_DIR)/newYYY/ThirdFrame/Wechat",
 					"$(PROJECT_DIR)/newYYY/ThirdFrame/UMSocial_Sdk_5.2.1",
 					"$(PROJECT_DIR)/newYYY/ThirdFrame/TencentOpenAPI",
+					"$(PROJECT_DIR)/GDTAd",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.dianle.xinzhuan2;
 				PRODUCT_NAME = "$(TARGET_NAME)";

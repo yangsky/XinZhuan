@@ -7,9 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GDTSplashAd.h"
 
-@interface ViewController : UIViewController
+static NSString *kGDTMobSDKAppId = @"1105344611";
 
+@interface ViewController : UIViewController <GDTSplashAdDelegate>
+
+@property (strong, nonatomic) GDTSplashAd *splash;
+
+@property (assign, nonatomic) BOOL isFirstLanuch;
 
 @end
 

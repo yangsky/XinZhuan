@@ -244,8 +244,10 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>always and when use</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>when use</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>

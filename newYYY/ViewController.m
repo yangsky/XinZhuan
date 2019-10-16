@@ -33,6 +33,7 @@
 #import <BUAdSDK/BURewardedVideoAd.h>
 #import <BUAdSDK/BURewardedVideoModel.h>
 
+#import "GDTSDKConfig.h"
 
 // 友盟
 #define UmengAppkey @"5c498da9f1f556a4b20013d2"
@@ -137,6 +138,11 @@
     
     // 初始化激励视频
     [self initRewardTask];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didResignActive:)
+                                                 name:UIApplicationDidEnterBackgroundNotification
+                                               object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didBecomeActive:)
@@ -476,6 +482,25 @@
         _secondsCountDownBtn.hidden = YES;
     }
     return _secondsCountDownBtn;
+}
+
+- (GDTSplashAd *)splash
+{
+    
+    if (!_splash) {
+        _splash =  [[GDTSplashAd alloc] initWithAppId:kGDTMobSDKAppId placementId:@"9040714184494018"];
+        _splash.delegate = self;
+//        UIImage *splashImage = [UIImage imageNamed:@"SplashNormal"];
+//        if (isIPhoneXSeries()) {
+//            splashImage = [UIImage imageNamed:@"SplashX"];
+//        } else if ([UIScreen mainScreen].bounds.size.height == 480) {
+//            splashImage = [UIImage imageNamed:@"SplashSmall"];
+//        }
+//        _splash.backgroundImage = splashImage;
+        _splash.fetchDelay = 5;
+    }
+    
+    return _splash;
 }
 
 #pragma mark - privte method
@@ -1255,7 +1280,7 @@
 #pragma mark - UIApplication Delegate
 - (void)didResignActive:(NSNotification *)notification
 {
-    
+    self.isFirstLanuch = NO;
 }
 
 - (void)didBecomeActive:(NSNotification *)notification
@@ -1283,7 +1308,17 @@
             self.rewardButton.hidden = YES;
         }
         
+        if (!self.isFirstLanuch) {
+            //开屏广告初始化并展示代码
+            if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+                
+                [self.splash loadAdAndShowInWindow: [[UIApplication sharedApplication] keyWindow]];
+                //            [GDTSplashAd preloadSplashOrderWithAppId:kGDTMobSDKAppId
+                //                                         placementId:@"9040714184494018"];
+            }
+        }        
     }
+
 }
 
 #pragma mark BURewardedVideoAdDelegate
@@ -1362,6 +1397,64 @@
     NSLog(@"Demo RewardName == %@", rewardedVideoAd.rewardedVideoModel.rewardName);
     NSLog(@"Demo RewardAmount == %ld", (long)rewardedVideoAd.rewardedVideoModel.rewardAmount);
 }
+
+#pragma mark - GDTSplashAdDelegate
+- (void)splashAdSuccessPresentScreen:(GDTSplashAd *)splashAd
+{
+    NSLog(@"%s",__FUNCTION__);
+}
+
+- (void)splashAdFailToPresent:(GDTSplashAd *)splashAd withError:(NSError *)error
+{
+    NSLog(@"%s%@",__FUNCTION__,error);
+}
+
+- (void)splashAdExposured:(GDTSplashAd *)splashAd
+{
+    NSLog(@"%s",__FUNCTION__);
+}
+
+- (void)splashAdClicked:(GDTSplashAd *)splashAd
+{
+    NSLog(@"%s",__FUNCTION__);
+}
+
+- (void)splashAdApplicationWillEnterBackground:(GDTSplashAd *)splashAd
+{
+    NSLog(@"%s",__FUNCTION__);
+}
+
+- (void)splashAdWillClosed:(GDTSplashAd *)splashAd
+{
+    NSLog(@"%s",__FUNCTION__);
+}
+
+- (void)splashAdClosed:(GDTSplashAd *)splashAd
+{
+    NSLog(@"%s",__FUNCTION__);
+    self.splash = nil;
+}
+
+- (void)splashAdWillPresentFullScreenModal:(GDTSplashAd *)splashAd
+{
+    NSLog(@"%s",__FUNCTION__);
+}
+
+- (void)splashAdDidPresentFullScreenModal:(GDTSplashAd *)splashAd
+{
+    NSLog(@"%s",__FUNCTION__);
+}
+
+- (void)splashAdWillDismissFullScreenModal:(GDTSplashAd *)splashAd
+{
+    NSLog(@"%s",__FUNCTION__);
+}
+
+- (void)splashAdDidDismissFullScreenModal:(GDTSplashAd *)splashAd
+{
+    NSLog(@"%s",__FUNCTION__);
+}
+
 
 #pragma mark - CountDown
 - (void)activeCountDownAction
