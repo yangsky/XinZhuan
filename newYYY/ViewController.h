@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "GDTSplashAd.h"
 
-static NSString *kGDTMobSDKAppId = @"1105344611";
+static NSString *kGDTMobSDKAppId = @"1109845586";
 
 @interface ViewController : UIViewController <GDTSplashAdDelegate>
 

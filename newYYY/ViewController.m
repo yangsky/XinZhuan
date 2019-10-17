@@ -107,6 +107,9 @@
 @property (nonatomic, strong) NSTimer   *countDownTimer;
 @property (nonatomic, assign) NSInteger secondsCountDown;
 
+// GDT
+@property (nonatomic, strong) NSTimer   *gdtTimer;
+@property (nonatomic, assign) NSInteger gdtSecondsCount;
 @end
 
 @implementation ViewController
@@ -430,6 +433,18 @@
     return _warnLabel;
 }
 
+-(NSTimer *)gdtTimer
+{
+    if (!_gdtTimer) {
+        _gdtTimer = [NSTimer scheduledTimerWithTimeInterval:1
+                                                     target:self
+                                                   selector:@selector(activegdtSecondsCountAction)
+                                                   userInfo:nil
+                                                    repeats:YES];
+    }
+    return _gdtTimer;
+}
+
 -(UILabel *)threeTipLabel
 {
     if (!_threeTipLabel) {
@@ -490,7 +505,7 @@
 {
     
     if (!_splash) {
-        _splash =  [[GDTSplashAd alloc] initWithAppId:kGDTMobSDKAppId placementId:@"9040714184494018"];
+        _splash =  [[GDTSplashAd alloc] initWithAppId:kGDTMobSDKAppId placementId:@"4050284700030920"];
         _splash.delegate = self;
         _splash.fetchDelay = 5;
     }
@@ -1276,10 +1291,15 @@
     }
 }
 
-#pragma mark - UIApplication Delegate
+#pragma mark -- UIApplication Delegate
 - (void)didResignActive:(NSNotification *)notification
 {
     self.isFirstLanuch = NO;
+    
+    _gdtSecondsCount = 25;
+    
+    [self.gdtTimer setFireDate:[NSDate date]];
+ 
 }
 
 - (void)didBecomeActive:(NSNotification *)notification
@@ -1307,7 +1327,7 @@
             self.rewardButton.hidden = YES;
         }
         
-        if (!self.isFirstLanuch && !self.isShowRewardViedo) {
+        if (!self.isFirstLanuch && !self.isShowRewardViedo && (_gdtSecondsCount ==0)) {
             //开屏广告初始化并展示代码
             if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
                 
@@ -1320,7 +1340,7 @@
 
 }
 
-#pragma mark BURewardedVideoAdDelegate
+#pragma mark -- BURewardedVideoAdDelegate
 
 - (void)rewardedVideoAdDidLoad:(BURewardedVideoAd *)rewardedVideoAd {
     NSLog(@"rewardedVideoAd data load success");
@@ -1480,5 +1500,20 @@
                          }];
     }
     
+}
+
+#pragma mark -- gdt
+- (void)activegdtSecondsCountAction
+{
+    _gdtSecondsCount--;
+    
+//    NSLog(@"_gdtSecondsCount: %ld", (long)_gdtSecondsCount);
+    
+    if (_gdtSecondsCount == 0) {
+        NSLog(@"停止倒计时");
+        [self.gdtTimer setFireDate:[NSDate distantFuture]];
+        [self.gdtTimer invalidate];
+        self.gdtTimer = nil;
+    }
 }
 @end
