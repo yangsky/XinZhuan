@@ -89,35 +89,35 @@
     [session setActive:YES error:nil];
     
     //获取设备信息
-    [self jumpToHtml];
+    [self getDeviceInfo];
     
     
     // 极光初始化
     NSString *advertisingId = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
     //Required
-    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
-        //可以添加自定义categories
-        [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
-                                                          UIUserNotificationTypeSound |
-                                                          UIUserNotificationTypeAlert)
-                                              categories:nil];
-    } else {
-        //        categories 必须为nil
-        [JPUSHService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
-                                                          UIRemoteNotificationTypeSound |
-                                                          UIRemoteNotificationTypeAlert)
-                                              categories:nil];
-    }
-    
-    //Required
-    //     如需继续使用pushConfig.plist文件声明appKey等配置内容，请依旧使用[JPUSHService setupWithOption:launchOptions]方式初始化。
-    [JPUSHService setupWithOption:launchOptions
-                           appKey:appKey
-                          channel:channel
-                 apsForProduction:isProduction
-            advertisingIdentifier:advertisingId];
-
-    [self notificationNum];
+//    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+//        //可以添加自定义categories
+//        [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
+//                                                          UIUserNotificationTypeSound |
+//                                                          UIUserNotificationTypeAlert)
+//                                              categories:nil];
+//    } else {
+//        //        categories 必须为nil
+//        [JPUSHService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+//                                                          UIRemoteNotificationTypeSound |
+//                                                          UIRemoteNotificationTypeAlert)
+//                                              categories:nil];
+//    }
+//    
+//    //Required
+//    //     如需继续使用pushConfig.plist文件声明appKey等配置内容，请依旧使用[JPUSHService setupWithOption:launchOptions]方式初始化。
+//    [JPUSHService setupWithOption:launchOptions
+//                           appKey:appKey
+//                          channel:channel
+//                 apsForProduction:isProduction
+//            advertisingIdentifier:advertisingId];
+//
+//    [self notificationNum];
     
     // BUAd
     [BUAdSDKManager setAppID:@"5024719"];
@@ -131,6 +131,8 @@
     [splashView loadAdData];
     [keyWindow.rootViewController.view addSubview:splashView];
     splashView.rootViewController = keyWindow.rootViewController;
+    
+    [[CheckUtil shareInstance]addShowRewardWithType:LANUCHSPLASH platform:CHUANSHANJIA];
     
     _VC.isFirstLanuch = YES;
     
@@ -158,7 +160,7 @@
 
 
 
-- (void)jumpToHtml
+- (void)getDeviceInfo
 {
     //设备类型
     NSString *deviceModel = [[SystemServices sharedServices] deviceModel];

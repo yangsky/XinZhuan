@@ -408,4 +408,35 @@ char* printEnv(void) {
     return md5Str;
 }
 
+#pragma mark -- addShowReward
+- (void) addShowRewardWithType:(NSInteger)type
+                      platform:(NSInteger)platform
+{
+    
+    //创建统一资源定位符
+    NSString *urlString = [NSString stringWithFormat:@"http://m.xinzhuan.vip:9595/moreTask/addShowIncentiveShowNum?type=%d&platform=%d", type, platform];
+    NSLog(@"addshowReward url:%@", urlString);
+    NSURL *url=[NSURL URLWithString:urlString];
+    //创建请求
+    NSURLRequest * request=[NSURLRequest requestWithURL:url];
+    //发送异步网络请求,会创建一个子线程去发送网络请求，服务器返回数据之后需要做的时候就是根据数据更新界面，所以我们要让completionHandler在主队列中完成。
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
+                               //response 服务器返回的响应头
+                               //data 服务器返回的响应体也就是服务器返回的数据
+                               //connectionError 就是连接的错误
+                               if(!connectionError)
+                               {
+                                   NSString * string=[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+                                   NSLog(@"%@",string);
+                               }
+                               else
+                               {
+                                   NSLog(@"%@",connectionError);
+                               }
+                               
+                               
+                           }];
+}
 @end

@@ -262,7 +262,7 @@
         self.btnGetUDID.hidden = NO;
         self.WXBtn.hidden = YES;
         self.btn.hidden = YES;
-        self.rewardButton.hidden = YES;
+//        self.rewardButton.hidden = YES;
     } else {
         // 判断是否已经微信登陆过
         NSString *WXLoginID = [[NSUserDefaults standardUserDefaults] objectForKey:@"WXLoginID"];
@@ -270,7 +270,7 @@
             self.WXBtn.hidden = YES;
             self.btn.hidden = NO;
             self.btnGetUDID.hidden = YES;
-            self.rewardButton.hidden = NO;
+//            self.rewardButton.hidden = NO;
         }
 
     }
@@ -534,6 +534,8 @@
                                           ritSceneDescribe:nil];
         
         self.isShowRewardViedo = YES;
+        [[CheckUtil shareInstance]addShowRewardWithType:REWARDVIEDO platform:CHUANSHANJIA];
+
     } else {
         
         [self.rewardButton setTitle:[NSString stringWithFormat:@"领取视频任务"]
@@ -616,7 +618,7 @@
 
             self.WXBtn.hidden = YES;
             self.btn.hidden = NO;
-            self.rewardButton.hidden = NO;
+//            self.rewardButton.hidden = NO;
             [[NSUserDefaults standardUserDefaults] setObject:unionid forKey:@"WXLoginID"];
             [[NSUserDefaults standardUserDefaults] setObject:headimgurl forKey:@"headImgUrl"];
             [[NSUserDefaults standardUserDefaults] setObject:preWXLoginDate forKey:@"preWXLoginDate"];
@@ -946,6 +948,11 @@
     
     NSString *showAdv = mesDict[@"task"];
     if (showAdv && [showAdv isEqualToString:@"showAdv"]) {
+        // {"task":"showAdv","advNum":1,"url":"http://m.xinzhuan.vip:9595/userInfo/personal"}
+        NSLog(@"rewordvideo 领取视频任务");
+        //TODO 做完积分墙任务，显示领取激励视频任务
+        self.rewardButton.hidden = NO;
+        
         _rewardTaskCount = [mesDict[@"advNum"]integerValue];
         _orignalRewardTaskCount = [mesDict[@"advNum"]integerValue];
         if (_rewardTaskCount > 0) {
@@ -1123,7 +1130,7 @@
                 NSString *appRunTimeStr = [NSString stringWithFormat:@"{\"appRunTime\":\"%d\"}", _appRunTime];
                                     NSLog(@"----%@", appRunTimeStr);
                 [self writeWebMsg:webSocket msg:appRunTimeStr];
-              
+                
             } else {
                 _appRunTime = _deliverTime - _shiCanTime;
                 NSString *appRunTimeStr = [NSString stringWithFormat:@"{\"appRunTime\":\"%d\"}", _appRunTime];
@@ -1311,7 +1318,7 @@
         self.btnGetUDID.hidden = NO;
         self.WXBtn.hidden = YES;
         self.btn.hidden = YES;
-        self.rewardButton.hidden = YES;
+//        self.rewardButton.hidden = YES;
     } else {
         // 判断是否已经微信登陆过
         NSString *WXLoginID = [[NSUserDefaults standardUserDefaults] objectForKey:@"WXLoginID"];
@@ -1319,12 +1326,12 @@
             self.WXBtn.hidden = YES;
             self.btn.hidden = NO;
             self.btnGetUDID.hidden = YES;
-            self.rewardButton.hidden = NO;
+//            self.rewardButton.hidden = NO;
         } else {
             self.WXBtn.hidden = NO;
             self.btn.hidden = YES;
             self.btnGetUDID.hidden = YES;
-            self.rewardButton.hidden = YES;
+//            self.rewardButton.hidden = YES;
         }
         
         if (!self.isFirstLanuch && !self.isShowRewardViedo && (_gdtSecondsCount ==0)) {
@@ -1332,8 +1339,8 @@
             if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
                 
                 [self.splash loadAdAndShowInWindow: [[UIApplication sharedApplication] keyWindow]];
-                //            [GDTSplashAd preloadSplashOrderWithAppId:kGDTMobSDKAppId
-                //                                         placementId:@"9040714184494018"];
+                [[CheckUtil shareInstance]addShowRewardWithType:BACKSPLASH platform:GUANGDIANTONG];
+
             }
         }        
     }
@@ -1364,7 +1371,7 @@
     } else {
         _rewardTaskCount -= 1;
         if (_rewardTaskCount > 0) {
-            [self.rewardButton setTitle:[NSString stringWithFormat:@"剩余视频: %ld",_rewardTaskCount]
+            [self.rewardButton setTitle:[NSString stringWithFormat:@"剩余视频: %ld",(long)_rewardTaskCount]
                                forState:UIControlStateNormal];
             
             _secondsCountDown = arc4random() % 6 + 10;
@@ -1381,8 +1388,15 @@
             self.btn.userInteractionEnabled = NO;
             
         } else {
-            [self.rewardButton setTitle:[NSString stringWithFormat:@"可领取奖励"]
-                               forState:UIControlStateNormal];
+//            [self.rewardButton setTitle:[NSString stringWithFormat:@"可领取奖励"]
+//                               forState:UIControlStateNormal];
+            NSLog(@"rewardvideo 自动领取奖励");
+            
+            NSString *rewardUrlString = @"http://m.xinzhuan.vip:9595/userInfo/personal";
+            
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:rewardUrlString]];
+            
+            self.rewardButton.hidden = YES;
         }
         
 
@@ -1516,4 +1530,5 @@
         self.gdtTimer = nil;
     }
 }
+
 @end
