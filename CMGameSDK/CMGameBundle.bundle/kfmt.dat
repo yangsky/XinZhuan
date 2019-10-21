@@ -1,0 +1,13 @@
+gamemoneysdk_public:1 xaid:string ver:string cn:string mcc:short mnc:short brand:string model:string api_level:short rom:string rom_ver:string uptime:int accountid:string cube_ver:string iid:int64 imei:string mac:string
+gamemoneysdk_sdk_ad_action:101 posid:string rawid:string apname:string action:int64 position:byte errcode:int adtitle:string uptime2:int network:byte version:byte pagetype:string pagename:string adstyle:string adchannel:string
+gamemoneysdk_sdk_ad_jilivideo:102 uptime2:int network:byte action:byte
+gamemoneysdk_sdk_business_h5game_errmsg:103 uptime2:int network:byte errmsg:string errcode:int url:string
+gamemoneysdk_sdk_game_h5_wujin:121 uptime2:int network:byte page:byte action:byte x5:short game_ver:string sdk_ver:string game_type:string gamename:string
+gamemoneysdk_sdk_game_main:105 action:int gamename:string x:short y:short
+gamemoneysdk_sdk_gameload:106 game_name:string game_ver:string scene:byte action:short err_code:short update_res_flag:byte x5:byte
+gamemoneysdk_sdk_gametime:107 gamename:string scene:string spantime:int network:byte x5:short game_ver:string
+gamemoneysdk_sdk_tbs_info_report:108 fps:int gamename:string version:short tbs_version:int tbs_package:string
+gamemoneysdk_infoc_active:109 uptime2:int64 sessionid:string
+gamemoneysdk_infoc_sactive:110 uptime2:int64 sessionid:string
+gamemoneysdk_load_web_view:119 op:byte network:byte game_name:string x5:bit url:string error_code:string error_detail:string
+gamemoneysdk_gameplaytime:131 sdk_ver:string game_ver:string game_name:string game_time:int

@@ -116,6 +116,8 @@
 		04DE65501D659A8500D80CD8 /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DE654C1D659A8500D80CD8 /* libSocialQQ.a */; };
 		04DE65511D659A8500D80CD8 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DE654D1D659A8500D80CD8 /* TencentOpenAPI.framework */; };
 		04DE65521D659A8500D80CD8 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04DE654E1D659A8500D80CD8 /* TencentOpenApi_IOS_Bundle.bundle */; };
+		0E359C88235DB81800695C30 /* CMGameSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E359C86235DB81700695C30 /* CMGameSDK.framework */; };
+		0E359C89235DB81800695C30 /* CMGameBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0E359C87235DB81700695C30 /* CMGameBundle.bundle */; };
 		0E5B2948230D4996004E7914 /* BUAdSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0E5B2946230D497D004E7914 /* BUAdSDK.bundle */; };
 		0E5B2949230D4996004E7914 /* BUAdSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E5B2947230D4996004E7914 /* BUAdSDK.framework */; };
 		0E5B294B230D4A06004E7914 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E5B294A230D4A05004E7914 /* StoreKit.framework */; };
@@ -577,6 +579,8 @@
 		04DE654D1D659A8500D80CD8 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		04DE654E1D659A8500D80CD8 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		04DE654F1D659A8500D80CD8 /* UMSocialQQHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialQQHandler.h; sourceTree = "<group>"; };
+		0E359C86235DB81700695C30 /* CMGameSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CMGameSDK.framework; sourceTree = "<group>"; };
+		0E359C87235DB81700695C30 /* CMGameBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CMGameBundle.bundle; sourceTree = "<group>"; };
 		0E5B2946230D497D004E7914 /* BUAdSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BUAdSDK.bundle; sourceTree = "<group>"; };
 		0E5B2947230D4996004E7914 /* BUAdSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BUAdSDK.framework; sourceTree = "<group>"; };
 		0E5B294A230D4A05004E7914 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -704,6 +708,7 @@
 			files = (
 				0E5B295A230D4CDA004E7914 /* WebKit.framework in Frameworks */,
 				0E5B2957230D4A6D004E7914 /* libc++.tbd in Frameworks */,
+				0E359C88235DB81800695C30 /* CMGameSDK.framework in Frameworks */,
 				0E5B2955230D4A5E004E7914 /* libresolv.9.tbd in Frameworks */,
 				0E5B2953230D4A4B004E7914 /* CoreMotion.framework in Frameworks */,
 				ECA602C121D258B400416C67 /* AdSupport.framework in Frameworks */,
@@ -1161,6 +1166,7 @@
 				049DB9441D4AF83200B5475C /* ThirdFrame */,
 				0EEDBE7D23571B92002F5359 /* GDTAd */,
 				0E5B2945230D495F004E7914 /* BUAd */,
+				0E359C85235DB81700695C30 /* CMGameSDK */,
 				049DB9101D4AF12F00B5475C /* newYYY */,
 				049DB90F1D4AF12E00B5475C /* Products */,
 				3A7533B99E586372F9CEDF73 /* Pods */,
@@ -1237,6 +1243,15 @@
 				04DE654F1D659A8500D80CD8 /* UMSocialQQHandler.h */,
 			);
 			path = TencentOpenAPI;
+			sourceTree = "<group>";
+		};
+		0E359C85235DB81700695C30 /* CMGameSDK */ = {
+			isa = PBXGroup;
+			children = (
+				0E359C86235DB81700695C30 /* CMGameSDK.framework */,
+				0E359C87235DB81700695C30 /* CMGameBundle.bundle */,
+			);
+			path = CMGameSDK;
 			sourceTree = "<group>";
 		};
 		0E5B2945230D495F004E7914 /* BUAd */ = {
@@ -1437,7 +1452,8 @@
 						ProvisioningStyle = Manual;
 					};
 					ECA6026C21D258B400416C67 = {
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = 4V8KM3JQZJ;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -1527,6 +1543,7 @@
 				ECA602DE21D258B400416C67 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				ECA602DF21D258B400416C67 /* UMSCommentInputController.xib in Resources */,
 				0E5B2948230D4996004E7914 /* BUAdSDK.bundle in Resources */,
+				0E359C89235DB81800695C30 /* CMGameBundle.bundle in Resources */,
 				ECA602E021D258B400416C67 /* README.txt in Resources */,
 				ECA602E221D258B400416C67 /* UMSLoginViewController.xib in Resources */,
 				EC73C802227EA3EC00F8FD9A /* bgMusic.mp3 in Resources */,
@@ -2089,8 +2106,8 @@
 				CODE_SIGN_ENTITLEMENTS = newYYY/newYYY.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4V8KM3JQZJ;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2100,6 +2117,7 @@
 					"$(PROJECT_DIR)/Pods/Fabric",
 					"$(PROJECT_DIR)/Pods/Crashlytics",
 					"$(PROJECT_DIR)/BUAd",
+					"$(PROJECT_DIR)/CMGameSDK",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/XinZhuan/心赚-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -2128,8 +2146,8 @@
 				CODE_SIGN_ENTITLEMENTS = newYYY/newYYY.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4V8KM3JQZJ;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2139,6 +2157,7 @@
 					"$(PROJECT_DIR)/Pods/Fabric",
 					"$(PROJECT_DIR)/Pods/Crashlytics",
 					"$(PROJECT_DIR)/BUAd",
+					"$(PROJECT_DIR)/CMGameSDK",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/XinZhuan/心赚-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;

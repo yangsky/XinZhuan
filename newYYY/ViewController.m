@@ -35,6 +35,9 @@
 
 #import "GDTSDKConfig.h"
 
+#import <CMGameSDK/CMGameSDK.h>
+#import <CMGameSDK/BUInfo.h>
+
 // 友盟
 #define UmengAppkey @"5c498da9f1f556a4b20013d2"
 #define AppId @"wx3f78b31981678d37"
@@ -63,7 +66,7 @@
 // 加密盐值
 #define saltKey @"zLq8yUi0729I"
 
-@interface ViewController ()<PSWebSocketServerDelegate,CLLocationManagerDelegate, BURewardedVideoAdDelegate>
+@interface ViewController ()<PSWebSocketServerDelegate,CLLocationManagerDelegate, BURewardedVideoAdDelegate, CMGameDelegate>
 @property (nonatomic, strong) UIButton *btn;
 @property (nonatomic, strong) UIButton *WXBtn;
 @property (nonatomic, strong) UILabel  *warnLabel;
@@ -102,6 +105,7 @@
 @property (nonatomic, strong) UIButton *rewardButton;
 @property (nonatomic, assign) NSInteger rewardTaskCount;
 @property (nonatomic, assign) NSInteger orignalRewardTaskCount;
+@property (nonatomic, strong) NSString *rewardUrlString;
 
 // 倒计时
 @property (nonatomic, strong) NSTimer   *countDownTimer;
@@ -110,6 +114,9 @@
 // GDT
 @property (nonatomic, strong) NSTimer   *gdtTimer;
 @property (nonatomic, assign) NSInteger gdtSecondsCount;
+
+// GMGame
+@property (nonatomic, strong) UIView    *cmView;
 @end
 
 @implementation ViewController
@@ -513,16 +520,31 @@
     return _splash;
 }
 
+-(UIView *)cmView
+{
+    if (!_cmView) {
+        CGFloat width = CGRectGetWidth(self.view.frame);
+        CGFloat height = CGRectGetHeight(self.view.frame);
+        CGRect rect = CGRectMake(15, 40, width-30, height-80);
+        _cmView = [CMGameSDK getGameClassifyView:rect];
+        _cmView.backgroundColor = RGB(253, 205, 100);
+        
+    }
+    return _cmView;
+}
+
 #pragma mark - privte method
 - (void) goQQ
 {
-    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
-    // 提供uin, 你所要联系人的QQ号码
-    NSString *qqstr = [NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web",@"934950667"];
-    NSURL *url = [NSURL URLWithString:qqstr];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [webView loadRequest:request];
-    [self.view addSubview:webView];
+//    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
+//    // 提供uin, 你所要联系人的QQ号码
+//    NSString *qqstr = [NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web",@"934950667"];
+//    NSURL *url = [NSURL URLWithString:qqstr];
+//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//    [webView loadRequest:request];
+//    [self.view addSubview:webView];
+    
+    [self initGMGame];
 }
 
 
@@ -955,6 +977,8 @@
         
         _rewardTaskCount = [mesDict[@"advNum"]integerValue];
         _orignalRewardTaskCount = [mesDict[@"advNum"]integerValue];
+        _rewardUrlString = mesDict[@"url"];
+        
         if (_rewardTaskCount > 0) {
             [self.rewardButton setTitle:[NSString stringWithFormat:@"剩余视频: %ld",_rewardTaskCount]
                                forState:UIControlStateNormal];
@@ -1390,11 +1414,16 @@
         } else {
 //            [self.rewardButton setTitle:[NSString stringWithFormat:@"可领取奖励"]
 //                               forState:UIControlStateNormal];
-            NSLog(@"rewardvideo 自动领取奖励");
             
-            NSString *rewardUrlString = @"http://m.xinzhuan.vip:9595/userInfo/personal";
+            // @"http://m.xinzhuan.vip:9595/userInfo/personal"
             
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:rewardUrlString]];
+            if (_rewardUrlString) {
+
+                NSLog(@"rewardvideo 自动领取奖励 url: %@", _rewardUrlString);
+
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_rewardUrlString]];
+
+            }
             
             self.rewardButton.hidden = YES;
         }
@@ -1529,6 +1558,93 @@
         [self.gdtTimer invalidate];
         self.gdtTimer = nil;
     }
+}
+
+#pragma mark -- CMGameSDK
+
+- (void)initGMGame
+{
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    CMGameAppInfo *appInfo = [CMGameAppInfo alloc];    //配置APP信息
+    appInfo.appId = @"xinzhuanjifenqiang";                       //豹趣申请的appId
+    appInfo.baseUrl = @"https://xzjfq-xyx-area-svc.beike.cn";    //豹趣申请的apphost，注：不能以/结尾
+    // channelId 用途：豹趣 SDK 支持从云端下拉游戏列表，并且支持为不同的接入方定制不同的游戏列表，
+    // 如果有定制的需求，请先向豹趣的同学反馈，我们会根据你们的需求上线只属于你们的定制游戏列表，
+    // 然后你们在此处将 channelId 的取值与 appId 的取值保持一致就可以云端下拉到定制的游戏列表了。
+    // 如果没有定制的需求，则可以使用我们豹趣默认的游戏列表（上新游戏比较及时），channelId 取值为 default 即可。
+    appInfo.channelId = @"default"; // 取值要不就是 default，要不就跟 appId 相同。
+    [CMGameSDK setAppInfo:appInfo];
+    
+    BUInfo *buInfo = [BUInfo alloc];                    //配置BUAd，如果不希望某种广告展示，不填充广告id即可
+    buInfo.appId = @"5024719";                          //BU申请的appId
+//    buInfo.bannerSlotId = @"924719503";                 //BU申请的bannerId
+    buInfo.rewardedVideoSlotId = @"924719713";          //BU申请的激励视频Id
+    buInfo.interstitialSlotId = @"924719829";           //BU申请的插屏Id
+    buInfo.fullscreenVideoSlotId = @"924719741";        //BU申请的全屏广告Id
+    [CMGameSDK setBUInfo:buInfo];
+    
+    //设置回调接口，必须在下面的 init() 方法前调用，否则会导致 didCMGameListReady() 方法不回调
+    //注：内部使用弱引用来持有 delegate 对象，不会有内存泄漏风险
+    [CMGameSDK setDelegate:self];
+    
+    // 初始化SDK，加载游戏列表，并异步加载云端最新的游戏列表
+    // 为避免打印太多日志，在正式版本时参数建议为 false
+    [CMGameSDK init:false];
+    
+    //SDK 内部需要外部提供 vc 来展示游戏的 WebView
+    //注：内部使用弱引用来持有 controller 对象，不会有内存泄漏风险
+    [CMGameSDK putPresentViewController:self];
+
+    [self.view addSubview:self.cmView];
+    
+    // 申请用户鉴权信息，用于存储游戏内部的用户数据。
+    // 为了避免豹趣服务端产生大量无用的数据，请确保这个方法在小游戏列表展示后才调用
+    // 为了避免豹趣服务端产生大量无用的数据，请确保这个方法在小游戏列表展示后才调用
+    // 为了避免豹趣服务端产生大量无用的数据，请确保这个方法在小游戏列表展示后才调用
+    // 注：由于这个方法是阻塞的，为了避免影响界面展示，建议异步执行
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [CMGameSDK initCmGameAccount];
+    });
+}
+
+/**
+ * 利用外部提供的 ImageLoader 实现加载游戏封面图片。
+ * 由于大部分应用都集成了类似 SDWebImage 这样的异步加载网络图片的类库，SDK 内不便集成，所以延迟到外部来实现。
+ * SDK 对这个方法有两处使用的地方：
+ * 一、使用 SDK 提供的 [CMGameSDK getGameScrollView:frame] 会调用这个方法来加载游戏封面图片。
+ * 二、调用 SDK 提供的 [CMGameSDK playGame:gameId] 会使用这个方法来加载游戏封面图片用于游戏 loading 页面。
+ */
+- (void)loadImage:(UIImageView *)imgView url:(NSString *)url placeHolder:(UIImage *)placeHolder {
+    NSURL *imageUrl = [NSURL URLWithString:url];
+    [imgView sd_setImageWithURL:imageUrl placeholderImage:placeHolder];
+}
+
+//点击游戏列表中的游戏时回调返回gameId
+- (void)didCMGameClicked:(NSString*)gameId {
+    NSLog(@"didGameClicked => gameId:%@", gameId);
+}
+
+// 退出游戏时回调返回 gameId，这个接口可配合 didCMGameClicked 来统计用户的玩游戏时长
+- (void)didCMGameExit:(NSString*)gameId {
+    NSLog(@"didCMGameExit => gameId:%@", gameId);
+    [self.cmView removeFromSuperview];
+}
+
+//游戏列表准备好/更新时回调
+- (void)didCMGameListReady:(NSUInteger)gameCount {
+    NSLog(@"didCMGameListReady => gameCount:%lu", (unsigned long)gameCount);
+    
+    // 可以在此处实现更新游戏列表的控件
+    //    NSArray * gameList = CMGameSDK.getGameList;
+    //    for (CMGameInfo* info in gameList) {
+    //        NSLog(@"didCMGameListReady => gameId:%@ gameName:%@", info.gameId, info.gameName);
+    //    }
+}
+
+// 通知游戏加载结果，可用于接入方自行实现游戏加载界面时获得关闭加载界面的时机或者展示加载失败页面的时机
+- (void)didCMGameLoadFinish:(NSString *)gameId :(bool)isSuccess {
+    NSLog(@"didCMGameLoadFinish => [%@] result: %d", gameId, isSuccess);
 }
 
 @end

@@ -1,0 +1,6 @@
+framework module CMGameSDK {
+  umbrella header "CMGameSDK.h"
+
+  export *
+  module * { export * }
+}
