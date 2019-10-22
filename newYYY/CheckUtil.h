@@ -17,6 +17,7 @@ enum REWARDTYPE {
     REWARDVIEDO  = 0,        /**< 激励视频    */
     LANUCHSPLASH = 1,        /**< 启动时开屏    */
     BACKSPLASH = 2,          /**< 从后台唤起开屏    */
+    CMGAME = 3,              /**< 猎豹游戏    */
 };
 
 @interface CheckUtil : NSObject

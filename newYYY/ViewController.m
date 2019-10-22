@@ -107,6 +107,7 @@
 @property (nonatomic, assign) NSInteger rewardTaskCount;
 @property (nonatomic, assign) NSInteger orignalRewardTaskCount;
 @property (nonatomic, strong) NSString *rewardUrlString;
+@property (nonatomic, strong) BUSplashAdView *buSplashAdView;
 
 // 倒计时
 @property (nonatomic, strong) NSTimer   *countDownTimer;
@@ -555,6 +556,19 @@
         
     }
     return _cmView;
+}
+
+-(BUSplashAdView *)buSplashAdView
+{
+    if (!_buSplashAdView) {
+        CGRect frame = [UIScreen mainScreen].bounds;
+        _buSplashAdView = [[BUSplashAdView alloc] initWithSlotID:@"824719312" frame:frame];
+        _buSplashAdView.delegate = self;
+        UIWindow *keyWindow = [UIApplication sharedApplication].windows.firstObject;
+        [keyWindow.rootViewController.view addSubview:_buSplashAdView];
+        _buSplashAdView.rootViewController = keyWindow.rootViewController;
+    }
+    return _buSplashAdView;
 }
 
 #pragma mark - privte method
@@ -1355,7 +1369,7 @@
 {
     self.isFirstLanuch = NO;
     
-    _gdtSecondsCount = 25;
+    _gdtSecondsCount = 5;
     
     [self.gdtTimer setFireDate:[NSDate date]];
  
@@ -1395,12 +1409,12 @@
                 
                 //开屏广告
                 CGRect frame = [UIScreen mainScreen].bounds;
-                BUSplashAdView *splashView = [[BUSplashAdView alloc] initWithSlotID:@"824719312" frame:frame];
-                splashView.delegate = self;
+                self.buSplashAdView = [[BUSplashAdView alloc] initWithSlotID:@"824719312" frame:frame];
+                self.buSplashAdView.delegate = self;
                 UIWindow *keyWindow = [UIApplication sharedApplication].windows.firstObject;
-                [splashView loadAdData];
-                [keyWindow.rootViewController.view addSubview:splashView];
-                splashView.rootViewController = keyWindow.rootViewController;
+                [keyWindow.rootViewController.view addSubview:_buSplashAdView];
+                self.buSplashAdView.rootViewController = keyWindow.rootViewController;
+                [self.buSplashAdView loadAdData];
                 
                 [[CheckUtil shareInstance]addShowRewardWithType:BACKSPLASH platform:CHUANSHANJIA];
 
@@ -1667,6 +1681,7 @@
 //点击游戏列表中的游戏时回调返回gameId
 - (void)didCMGameClicked:(NSString*)gameId {
     NSLog(@"didGameClicked => gameId:%@", gameId);
+    [[CheckUtil shareInstance] addShowRewardWithType:CMGAME platform:CHUANSHANJIA];
 }
 
 // 退出游戏时回调返回 gameId，这个接口可配合 didCMGameClicked 来统计用户的玩游戏时长
