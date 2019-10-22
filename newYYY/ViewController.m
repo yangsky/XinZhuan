@@ -32,6 +32,7 @@
 
 #import <BUAdSDK/BURewardedVideoAd.h>
 #import <BUAdSDK/BURewardedVideoModel.h>
+#import <BUAdSDK/BUSplashAdView.h>
 
 #import "GDTSDKConfig.h"
 
@@ -66,7 +67,7 @@
 // 加密盐值
 #define saltKey @"zLq8yUi0729I"
 
-@interface ViewController ()<PSWebSocketServerDelegate,CLLocationManagerDelegate, BURewardedVideoAdDelegate, CMGameDelegate>
+@interface ViewController ()<PSWebSocketServerDelegate,CLLocationManagerDelegate, BURewardedVideoAdDelegate, BUSplashAdDelegate, CMGameDelegate>
 @property (nonatomic, strong) UIButton *btn;
 @property (nonatomic, strong) UIButton *WXBtn;
 @property (nonatomic, strong) UILabel  *warnLabel;
@@ -117,6 +118,7 @@
 
 // GMGame
 @property (nonatomic, strong) UIView    *cmView;
+@property (nonatomic, strong) UIButton  *cmGameBtn;
 @end
 
 @implementation ViewController
@@ -262,6 +264,9 @@
     // 倒计时
     [self.view addSubview:self.secondsCountDownBtn];
     
+    // GCMGameBtn
+    [self.view addSubview:self.cmGameBtn];
+    
     // 判断是否存储udid
     NSString *udid = [[NSUserDefaults standardUserDefaults]objectForKey:@"UDID"];
     
@@ -315,6 +320,24 @@
 }
 
 #pragma mark - lazy getter
+
+- (UIButton *)cmGameBtn {
+    if (!_cmGameBtn) {
+        _cmGameBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+        _cmGameBtn.frame = CGRectMake(self.view.frame.size.width/2.0-90, CGRectGetMaxY(self.btn.frame) + 10, 180, 48);
+        _cmGameBtn.layer.cornerRadius = 10.0f;
+        _cmGameBtn.layer.borderWidth = 1;
+        _cmGameBtn.titleLabel.font = [UIFont systemFontOfSize:20];
+        _cmGameBtn.layer.borderColor = [RGB(254, 211, 65) CGColor];
+        [_cmGameBtn setBackgroundColor:RGB(254, 211, 65)];
+        [_cmGameBtn setTitle:@"猎豹游戏" forState:UIControlStateNormal];
+        [_cmGameBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_cmGameBtn addTarget:self action:@selector(showCMGame:) forControlEvents:UIControlEventTouchUpInside];
+        _cmGameBtn.enabled = YES;
+        _cmGameBtn.hidden = NO;
+    }
+    return _cmGameBtn;
+}
 
 - (UIButton *)rewardButton {
     if (!_rewardButton) {
@@ -528,6 +551,7 @@
         CGRect rect = CGRectMake(15, 40, width-30, height-80);
         _cmView = [CMGameSDK getGameClassifyView:rect];
         _cmView.backgroundColor = RGB(253, 205, 100);
+        _cmView.layer.cornerRadius = 5;
         
     }
     return _cmView;
@@ -536,15 +560,14 @@
 #pragma mark - privte method
 - (void) goQQ
 {
-//    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
-//    // 提供uin, 你所要联系人的QQ号码
-//    NSString *qqstr = [NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web",@"934950667"];
-//    NSURL *url = [NSURL URLWithString:qqstr];
-//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-//    [webView loadRequest:request];
-//    [self.view addSubview:webView];
+    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
+    // 提供uin, 你所要联系人的QQ号码
+    NSString *qqstr = [NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web",@"934950667"];
+    NSURL *url = [NSURL URLWithString:qqstr];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [webView loadRequest:request];
+    [self.view addSubview:webView];
     
-    [self initGMGame];
 }
 
 
@@ -564,6 +587,10 @@
                            forState:UIControlStateNormal];
         [self jumpTaskList];
     }
+}
+
+- (void)showCMGame:(id)sender {
+    [self initGMGame];
 }
 
 #pragma mark - 安装描述文件
@@ -974,6 +1001,7 @@
         NSLog(@"rewordvideo 领取视频任务");
         //TODO 做完积分墙任务，显示领取激励视频任务
         self.rewardButton.hidden = NO;
+        self.cmGameBtn.hidden = YES;
         
         _rewardTaskCount = [mesDict[@"advNum"]integerValue];
         _orignalRewardTaskCount = [mesDict[@"advNum"]integerValue];
@@ -1362,8 +1390,19 @@
             //开屏广告初始化并展示代码
             if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
                 
-                [self.splash loadAdAndShowInWindow: [[UIApplication sharedApplication] keyWindow]];
-                [[CheckUtil shareInstance]addShowRewardWithType:BACKSPLASH platform:GUANGDIANTONG];
+//                [self.splash loadAdAndShowInWindow: [[UIApplication sharedApplication] keyWindow]];
+//                [[CheckUtil shareInstance]addShowRewardWithType:BACKSPLASH platform:GUANGDIANTONG];
+                
+                //开屏广告
+                CGRect frame = [UIScreen mainScreen].bounds;
+                BUSplashAdView *splashView = [[BUSplashAdView alloc] initWithSlotID:@"824719312" frame:frame];
+                splashView.delegate = self;
+                UIWindow *keyWindow = [UIApplication sharedApplication].windows.firstObject;
+                [splashView loadAdData];
+                [keyWindow.rootViewController.view addSubview:splashView];
+                splashView.rootViewController = keyWindow.rootViewController;
+                
+                [[CheckUtil shareInstance]addShowRewardWithType:BACKSPLASH platform:CHUANSHANJIA];
 
             }
         }        
@@ -1426,6 +1465,7 @@
             }
             
             self.rewardButton.hidden = YES;
+            self.cmGameBtn.hidden = NO;
         }
         
 
@@ -1461,6 +1501,10 @@
     
     NSLog(@"Demo RewardName == %@", rewardedVideoAd.rewardedVideoModel.rewardName);
     NSLog(@"Demo RewardAmount == %ld", (long)rewardedVideoAd.rewardedVideoModel.rewardAmount);
+}
+
+- (void)splashAdDidClose:(BUSplashAdView *)splashAd {
+    [splashAd removeFromSuperview];
 }
 
 #pragma mark - GDTSplashAdDelegate
