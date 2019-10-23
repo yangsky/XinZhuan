@@ -293,7 +293,6 @@
 
 - (void)initRewardTask
 {
-    
     BURewardedVideoModel *model = [[BURewardedVideoModel alloc] init];
     model.userId = @"123";
     model.isShowDownloadBar = YES;
@@ -1372,13 +1371,12 @@
 #pragma mark -- UIApplication Delegate
 - (void)didResignActive:(NSNotification *)notification
 {
-    if (!self.isFirstLanuch) {
-        [self getSlotIdWithType:BSPLASH];
-    }
+
+    [self getSlotIdWithType:BSPLASH];
     
     self.isFirstLanuch = NO;
     
-    _gdtSecondsCount = 15;
+    _gdtSecondsCount = 10;
     
     [self.gdtTimer setFireDate:[NSDate date]];
  
@@ -1409,6 +1407,16 @@
 //            self.rewardButton.hidden = YES;
         }
         
+        if (_rewardTaskCount != 0 && _rewardTaskCount != -1) {
+            [self.rewardedVideoAd showAdFromRootViewController:self
+                                                      ritScene:BURitSceneType_home_get_bonus
+                                              ritSceneDescribe:nil];
+            
+            self.isShowRewardViedo = YES;
+            [[CheckUtil shareInstance]addShowRewardWithType:REWARDVIEDO platform:CHUANSHANJIA];
+            
+        }
+        
         if (!self.isFirstLanuch && !self.isShowRewardViedo && (_gdtSecondsCount ==0)) {
             //开屏广告初始化并展示代码
             if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
@@ -1426,20 +1434,9 @@
                 [self.buSplashAdView loadAdData];
                 
                 [[CheckUtil shareInstance]addShowRewardWithType:BACKSPLASH platform:CHUANSHANJIA];
-
             }
             
             return;
-        }
-        
-        if (_rewardTaskCount != 0) {
-            [self.rewardedVideoAd showAdFromRootViewController:self
-                                                      ritScene:BURitSceneType_home_get_bonus
-                                              ritSceneDescribe:nil];
-
-            self.isShowRewardViedo = YES;
-            [[CheckUtil shareInstance]addShowRewardWithType:REWARDVIEDO platform:CHUANSHANJIA];
-            
         }
     }
 
@@ -1507,8 +1504,6 @@
             self.rewardButton.hidden = YES;
             self.cmGameBtn.hidden = NO;
         }
-        
-
     }
 }
 
@@ -1517,6 +1512,7 @@
 }
 
 - (void)rewardedVideoAd:(BURewardedVideoAd *)rewardedVideoAd didFailWithError:(NSError *)error {
+    _rewardTaskCount = -1;
     NSLog(@"rewardedVideoAd data load fail");
 }
 
