@@ -108,6 +108,8 @@
 @property (nonatomic, assign) NSInteger orignalRewardTaskCount;
 @property (nonatomic, strong) NSString *rewardUrlString;
 @property (nonatomic, strong) BUSplashAdView *buSplashAdView;
+@property (nonatomic, strong) NSString  *rewardedVideoSlotId;
+@property (nonatomic, strong) NSString  *splahViewSlotId;
 
 // 倒计时
 @property (nonatomic, strong) NSTimer   *countDownTimer;
@@ -120,6 +122,8 @@
 // GMGame
 @property (nonatomic, strong) UIView    *cmView;
 @property (nonatomic, strong) UIButton  *cmGameBtn;
+
+@property (nonatomic, assign) NSInteger type;
 @end
 
 @implementation ViewController
@@ -150,9 +154,6 @@
     
     // 获取维度
     [self getLocation];
-    
-    // 初始化激励视频
-    [self initRewardTask];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didResignActive:)
@@ -296,7 +297,7 @@
     BURewardedVideoModel *model = [[BURewardedVideoModel alloc] init];
     model.userId = @"123";
     model.isShowDownloadBar = YES;
-    self.rewardedVideoAd = [[BURewardedVideoAd alloc] initWithSlotID:@"924719290" rewardedVideoModel:model];
+    self.rewardedVideoAd = [[BURewardedVideoAd alloc] initWithSlotID:self.rewardedVideoSlotId rewardedVideoModel:model];
     self.rewardedVideoAd.delegate = self;
     [self.rewardedVideoAd loadAdData];
 }
@@ -863,7 +864,7 @@
         
 
         [NSURLConnection sendAsynchronousRequest:request
-                                           queue:[NSOperationQueue new]
+                                           queue:[NSOperationQueue mainQueue]
                                completionHandler:^(NSURLResponse * _Nullable response,
                                                    NSData * _Nullable data,
                                                    NSError * _Nullable connectionError)
@@ -1020,6 +1021,10 @@
         _rewardTaskCount = [mesDict[@"advNum"]integerValue];
         _orignalRewardTaskCount = [mesDict[@"advNum"]integerValue];
         _rewardUrlString = mesDict[@"url"];
+        _type = [mesDict[@"type"]integerValue];
+        
+        [self getSlotIdWithType:_type];
+        
         
         if (_rewardTaskCount > 0) {
             [self.rewardButton setTitle:[NSString stringWithFormat:@"剩余视频: %ld",_rewardTaskCount]
@@ -1367,9 +1372,13 @@
 #pragma mark -- UIApplication Delegate
 - (void)didResignActive:(NSNotification *)notification
 {
+    if (!self.isFirstLanuch) {
+        [self getSlotIdWithType:BSPLASH];
+    }
+    
     self.isFirstLanuch = NO;
     
-    _gdtSecondsCount = 5;
+    _gdtSecondsCount = 15;
     
     [self.gdtTimer setFireDate:[NSDate date]];
  
@@ -1409,7 +1418,7 @@
                 
                 //开屏广告
                 CGRect frame = [UIScreen mainScreen].bounds;
-                self.buSplashAdView = [[BUSplashAdView alloc] initWithSlotID:@"824719312" frame:frame];
+                self.buSplashAdView = [[BUSplashAdView alloc] initWithSlotID:self.splahViewSlotId frame:frame];
                 self.buSplashAdView.delegate = self;
                 UIWindow *keyWindow = [UIApplication sharedApplication].windows.firstObject;
                 [keyWindow.rootViewController.view addSubview:_buSplashAdView];
@@ -1419,7 +1428,19 @@
                 [[CheckUtil shareInstance]addShowRewardWithType:BACKSPLASH platform:CHUANSHANJIA];
 
             }
-        }        
+            
+            return;
+        }
+        
+        if (_rewardTaskCount != 0) {
+            [self.rewardedVideoAd showAdFromRootViewController:self
+                                                      ritScene:BURitSceneType_home_get_bonus
+                                              ritSceneDescribe:nil];
+
+            self.isShowRewardViedo = YES;
+            [[CheckUtil shareInstance]addShowRewardWithType:REWARDVIEDO platform:CHUANSHANJIA];
+            
+        }
     }
 
 }
@@ -1473,10 +1494,15 @@
             if (_rewardUrlString) {
 
                 NSLog(@"rewardvideo 自动领取奖励 url: %@", _rewardUrlString);
-
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_rewardUrlString]];
-
+                
+                if ([_rewardUrlString containsString:@"personal"]) {
+                    [self jumpTaskList];
+                } else {
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_rewardUrlString]];
+                }
             }
+            
+            self.isShowRewardViedo = NO;
             
             self.rewardButton.hidden = YES;
             self.cmGameBtn.hidden = NO;
@@ -1636,7 +1662,7 @@
     
     BUInfo *buInfo = [BUInfo alloc];                    //配置BUAd，如果不希望某种广告展示，不填充广告id即可
     buInfo.appId = @"5024719";                          //BU申请的appId
-//    buInfo.bannerSlotId = @"924719503";                 //BU申请的bannerId
+    buInfo.bannerSlotId = @"";                 //BU申请的bannerId 924719503
     buInfo.rewardedVideoSlotId = @"924719713";          //BU申请的激励视频Id
     buInfo.interstitialSlotId = @"924719829";           //BU申请的插屏Id
     buInfo.fullscreenVideoSlotId = @"924719741";        //BU申请的全屏广告Id
@@ -1706,4 +1732,56 @@
     NSLog(@"didCMGameLoadFinish => [%@] result: %d", gameId, isSuccess);
 }
 
+
+#pragma mark - private method
+- (void) getSlotIdWithType:(NSInteger)type
+{
+    //创建统一资源定位符
+    NSString *str = @"http://m.xinzhuan.vip:9595/visual/findBySql?sql=select data from temp where type=";
+    NSString *urlString = [NSString stringWithFormat:@"%@%ld", [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], (long)type];
+    NSLog(@"slotID url:%@", urlString);
+    
+//    NSString *encodeStr = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+//    NSString *encodedUrl = [
+//
+    NSURL *url=[NSURL URLWithString:urlString];
+    //创建请求
+    NSURLRequest * request=[NSURLRequest requestWithURL:url];
+    //发送异步网络请求,会创建一个子线程去发送网络请求，服务器返回数据之后需要做的时候就是根据数据更新界面，所以我们要让completionHandler在主队列中完成。
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
+                               //response 服务器返回的响应头
+                               //data 服务器返回的响应体也就是服务器返回的数据
+                               //connectionError 就是连接的错误
+                               if(!connectionError)
+                               {
+                                   NSMutableArray *arr = NULL;
+                                   // 防止重启服务器
+                                   if (!data) {
+                                       return;
+                                   }
+                                   //IOS5自带解析类NSJSONSerialization从response中解析出数据放到字典中
+                                   arr = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&connectionError];
+                                   
+                                   if(arr != nil){
+                                       
+                                       NSLog(@"arr:%@ TYPE:%ld", arr, (long)type);
+
+                                       if (type == TASKREWARD || type == PERSONALREWARD || type == WITHDRAWREWARD) {
+                                           self.rewardedVideoSlotId = [arr objectAtIndex:0];
+                                           // 初始化激励视频
+                                           [self initRewardTask];
+                                       } else if(type == SPLASH || type == BSPLASH) {
+                                           self.splahViewSlotId = [arr objectAtIndex:0];
+                                       }
+                                   }
+                                }
+                               else
+                               {
+                                   NSLog(@"%@",connectionError);
+                               }
+                           }];
+}
 @end

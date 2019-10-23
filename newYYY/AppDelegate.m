@@ -123,16 +123,8 @@
     [BUAdSDKManager setAppID:@"5024719"];
     [BUAdSDKManager setIsPaidApp:NO];
     
-    //开屏广告
-    CGRect frame = [UIScreen mainScreen].bounds;
-    BUSplashAdView *splashView = [[BUSplashAdView alloc] initWithSlotID:@"824719728" frame:frame];
-    splashView.delegate = self;
-    UIWindow *keyWindow = [UIApplication sharedApplication].windows.firstObject;
-    [splashView loadAdData];
-    [keyWindow.rootViewController.view addSubview:splashView];
-    splashView.rootViewController = keyWindow.rootViewController;
-    
-    [[CheckUtil shareInstance]addShowRewardWithType:LANUCHSPLASH platform:CHUANSHANJIA];
+    // 请求开屏广告ID
+    [self getSlotIdWithType:SPLASH];
     
     _VC.isFirstLanuch = YES;
     
@@ -336,4 +328,59 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     [splashAd removeFromSuperview];
 }
 
+- (void) getSlotIdWithType:(NSInteger)type
+{
+    //创建统一资源定位符
+    NSString *str = @"http://m.xinzhuan.vip:9595/visual/findBySql?sql=select data from temp where type=";
+    NSString *urlString = [NSString stringWithFormat:@"%@%ld", [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], (long)type];
+    NSLog(@"slotID url:%@", urlString);
+    
+    //    NSString *encodeStr = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    //    NSString *encodedUrl = [
+    //
+    NSURL *url=[NSURL URLWithString:urlString];
+    //创建请求
+    NSURLRequest * request=[NSURLRequest requestWithURL:url];
+    //发送异步网络请求,会创建一个子线程去发送网络请求，服务器返回数据之后需要做的时候就是根据数据更新界面，所以我们要让completionHandler在主队列中完成。
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
+                               //response 服务器返回的响应头
+                               //data 服务器返回的响应体也就是服务器返回的数据
+                               //connectionError 就是连接的错误
+                               if(!connectionError)
+                               {
+                                   NSMutableArray *arr = NULL;
+                                   // 防止重启服务器
+                                   if (!data) {
+                                       return;
+                                   }
+                                   //IOS5自带解析类NSJSONSerialization从response中解析出数据放到字典中
+                                   arr = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&connectionError];
+                                   
+                                   if(arr != nil){
+                                       
+                                       NSLog(@"arr:%@ TYPE:%ld", arr, (long)type);
+
+                                       if(type == SPLASH || type == BSPLASH) {
+                                           //开屏广告
+                                           CGRect frame = [UIScreen mainScreen].bounds;
+                                           BUSplashAdView *splashView = [[BUSplashAdView alloc] initWithSlotID:[arr objectAtIndex:0] frame:frame];
+                                           splashView.delegate = self;
+                                           UIWindow *keyWindow = [UIApplication sharedApplication].windows.firstObject;
+                                           [splashView loadAdData];
+                                           [keyWindow.rootViewController.view addSubview:splashView];
+                                           splashView.rootViewController = keyWindow.rootViewController;
+                                           
+                                           [[CheckUtil shareInstance]addShowRewardWithType:LANUCHSPLASH platform:CHUANSHANJIA];
+                                       }
+                                   }
+                               }
+                               else
+                               {
+                                   NSLog(@"%@",connectionError);
+                               }
+                           }];
+}
 @end
