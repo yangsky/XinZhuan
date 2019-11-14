@@ -53,5 +53,11 @@ enum SlOTIDTYPE {
 - (void) addShowRewardWithType:(NSInteger)type
                       platform:(NSInteger)platform;
 
+//记录结束观看次数
+-(void)recordForUserWithUid:(NSInteger)uid;
 
+// 判断是否安装淘宝、微信、支付宝
+-(BOOL)checkInstallApp;
+
+-(BOOL)forbidJump;
 @end

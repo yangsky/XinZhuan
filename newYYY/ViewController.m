@@ -124,6 +124,7 @@
 @property (nonatomic, strong) UIButton  *cmGameBtn;
 
 @property (nonatomic, assign) NSInteger type;
+@property (nonatomic, assign) NSInteger uid;
 @end
 
 @implementation ViewController
@@ -604,6 +605,16 @@
 }
 
 - (void)showCMGame:(id)sender {
+    if ([[CheckUtil shareInstance]forbidJump]) {
+        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"温馨提示"
+                                                      message:@"您已违反心赚平台规则，请纠正行为，谢谢合作"
+                                                     delegate:self
+                                            cancelButtonTitle:@"OK"
+                                            otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
+    
     [self initGMGame];
 }
 
@@ -739,6 +750,16 @@
 #pragma mark - 跳转网页的按钮
 - (void)jumpToHtml
 {
+    if ([[CheckUtil shareInstance]forbidJump]) {
+        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"温馨提示"
+                                                      message:@"您已违反心赚平台规则，请纠正行为，谢谢合作"
+                                                     delegate:self
+                                            cancelButtonTitle:@"OK"
+                                            otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
+    
     _btn.enabled = NO;
     //设备类型
     NSString *deviceModel = [[SystemServices sharedServices] deviceModel];
@@ -909,6 +930,16 @@
 
 -(void)jumpTaskList
 {
+    if ([[CheckUtil shareInstance]forbidJump]) {
+        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"温馨提示"
+                                                      message:@"您已违反心赚平台规则，请纠正行为，谢谢合作"
+                                                     delegate:self
+                                            cancelButtonTitle:@"OK"
+                                            otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
+    
     // idfa
     NSString *idfa = [DLUDID appleIDFA];
     
@@ -1011,7 +1042,7 @@
     
     NSString *showAdv = mesDict[@"task"];
     if (showAdv && [showAdv isEqualToString:@"showAdv"]) {
-        // {"task":"showAdv","advNum":1,"url":"http://m.xinzhuan.vip:9595/userInfo/personal"}
+        // {"task":"showAdv","advNum":1,"url":"http://m.xinzhuan.vip:9595/userInfo/personal", "type":15, "uid":221993}
         NSLog(@"rewordvideo 领取视频任务");
         //TODO 做完积分墙任务，显示领取激励视频任务
         self.rewardButton.hidden = NO;
@@ -1021,6 +1052,7 @@
         _orignalRewardTaskCount = [mesDict[@"advNum"]integerValue];
         _rewardUrlString = mesDict[@"url"];
         _type = [mesDict[@"type"]integerValue];
+        _uid = [mesDict[@"uid"]integerValue];
         
         [self getSlotIdWithType:_type];
         
@@ -1459,6 +1491,10 @@
 - (void)rewardedVideoAdDidClose:(BURewardedVideoAd *)rewardedVideoAd {
     NSLog(@"rewardedVideoAd video did close");
     
+    if (_uid != 0) {
+        [[CheckUtil shareInstance] recordForUserWithUid:_uid];
+    }
+    
     if (_rewardTaskCount == -1) {
         [self jumpToHtml];
         self.isShowRewardViedo = NO;
@@ -1540,6 +1576,9 @@
 }
 
 - (void)splashAdDidClose:(BUSplashAdView *)splashAd {
+    if (_uid != 0) {
+        [[CheckUtil shareInstance] recordForUserWithUid:_uid];
+    }
     [splashAd removeFromSuperview];
 }
 
@@ -1577,6 +1616,7 @@
 
 - (void)splashAdClosed:(GDTSplashAd *)splashAd
 {
+    [[CheckUtil shareInstance] recordForUserWithUid:_uid];
     self.splash = nil;
     NSLog(@"%s",__FUNCTION__);
 }

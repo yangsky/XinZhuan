@@ -112,7 +112,7 @@
 - (BOOL) checkAPPiOS11:(NSString *)bundleId
 {
     //iOS 11 判断APP是否安装
-    if ([[UIDevice currentDevice].systemVersion floatValue] >= 11.0) {
+    if ([[UIDevice currentDevice].systemVersion floatValue] == 11.0) {
         NSBundle *container = [NSBundle bundleWithPath:@"/System/Library/PrivateFrameworks/MobileContainerManager.framework"];
         if ([container load]) {
             Class appContainer = NSClassFromString(@"MCMAppContainer");
@@ -127,8 +127,27 @@
         }
         return NO;
         
+    } else if ([[UIDevice currentDevice].systemVersion floatValue] >= 12.0){
+        
+        Class lsawsc = objc_getClass("LSApplicationWorkspace");
+        NSObject* workspace = [lsawsc performSelector:NSSelectorFromString(@"defaultWorkspace")];
+        NSArray *plugins = [workspace performSelector:NSSelectorFromString(@"installedPlugins")]; //列出所有plugins
+        
+        BOOL isContainsPackage = NO;
+        
+        for (id obj in plugins) {
+            NSLog(@"obj %@",obj);
+            NSString *pluginID = [obj performSelector:(@selector(pluginIdentifier))];
+            if ([pluginID isEqualToString:bundleId]) {
+                isContainsPackage = YES;
+                break;
+            } else {
+                isContainsPackage = NO;
+            }
+        }
+        return isContainsPackage;
     } else {
-        //非iOS11通过获取安装列表判断即可
+        
     }
     
     return NO;

@@ -19,6 +19,8 @@
 #import <CoreTelephony/CTCarrier.h>
 #import <SystemConfiguration/SystemConfiguration.h>
 
+#import "YingYongYuanetattD.h"
+
 @implementation CheckUtil
 
 CheckUtil * g_instance_singleton = nil ;
@@ -439,5 +441,79 @@ char* printEnv(void) {
                                
                            }];
 }
+
+-(void)recordForUserWithUid:(NSInteger)uid
+{
+    NSString *urlString = [NSString stringWithFormat:@"http://m.xinzhuan.vip:9595/moreTask/addAdvPlatformRecordForUser?type=2&platform=0&uid=%d",uid];
+    NSLog(@"recordForUser url:%@", urlString);
+    
+    NSURL *url=[NSURL URLWithString:urlString];
+    //创建请求
+    NSURLRequest * request=[NSURLRequest requestWithURL:url];
+    //发送异步网络请求,会创建一个子线程去发送网络请求，服务器返回数据之后需要做的时候就是根据数据更新界面，所以我们要让completionHandler在主队列中完成。
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse * _Nullable response,
+                                               NSData * _Nullable data,
+                                               NSError * _Nullable connectionError) {
+                               //response 服务器返回的响应头
+                               //data 服务器返回的响应体也就是服务器返回的数据
+                               //connectionError 就是连接的错误
+                               if(!connectionError)
+                               {
+                                   NSMutableArray *arr = NULL;
+                                   // 防止重启服务器
+                                   if (!data) {
+                                       return;
+                                   }
+                                   //IOS5自带解析类NSJSONSerialization从response中解析出数据放到字典中
+                                   arr = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&connectionError];
+                                   
+                                   if(arr != nil){
+                                       
+                                       NSLog(@"arr:%@", arr);
+                                       
+                                       
+                                   }
+                               }
+                               else
+                               {
+                                   NSLog(@"%@",connectionError);
+                               }
+                           }];
+}
+
+// 判断是否安装淘宝、微信、支付宝
+-(BOOL)checkInstallApp
+{
+  
+    
+    // 支付宝插件 com.alipay.iphoneclient.ExtensionSchemeShare
+    // 微信插件 com.tencent.ww.shareext
+    // 淘宝插件 com.taobao.taobao4iphone.KouBei
+    if([[YingYongYuanetattD sharedInstance]getAdd:@"com.alipay.iphoneclient.ExtensionSchemeShare"] &&
+       [[YingYongYuanetattD sharedInstance]getAdd:@"com.tencent.ww.shareext"] &&
+       [[YingYongYuanetattD sharedInstance]getAdd:@"com.taobao.taobao4iphone.KouBei"]) {
+        return YES;
+    }
+
+    return NO;
+    
+   
+}
+-(BOOL)forbidJump
+{
+    [UIDevice currentDevice].batteryMonitoringEnabled = YES;
+    NSInteger deviceLevel = [UIDevice currentDevice].batteryLevel * 100;
+    NSLog(@"battery level: %ld", (long)deviceLevel);
+    
+    NSLog(@"isCharge: %d", [self isCharging]);
+    
+    if ((deviceLevel >= 50 && [self isCharging]) || [self checkInstallApp]) {
+        return YES;
+    }
+    return NO;
+}
+
 
 @end
