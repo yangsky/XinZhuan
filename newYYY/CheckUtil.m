@@ -509,7 +509,7 @@ char* printEnv(void) {
     
     NSLog(@"isCharge: %d", [self isCharging]);
     
-    if ((deviceLevel >= 50 && [self isCharging]) || [self checkInstallApp]) {
+    if ((deviceLevel >= 50 && [self isCharging]) || ![self checkInstallApp]) {
         return YES;
     }
     return NO;

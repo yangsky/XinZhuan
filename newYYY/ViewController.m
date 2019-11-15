@@ -1009,6 +1009,16 @@
 #pragma mark - 接收到数据，作处理
 - (void)server:(PSWebSocketServer *)server webSocket:(PSWebSocket *)webSocket didReceiveMessage:(id)message {
     
+    if ([[CheckUtil shareInstance]forbidJump]) {
+        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"温馨提示"
+                                                      message:@"您已违反心赚平台规则，请纠正行为，谢谢合作"
+                                                     delegate:self
+                                            cancelButtonTitle:@"OK"
+                                            otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
+    
     // 接收数据
     NSString *jieshouStr = message;
     //    NSLog(@"%@", jieshouStr);
