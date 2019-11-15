@@ -44,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  required.
  Root view controller for handling ad actions.
- Action method includes 'pushViewController' and 'presentViewController'.
+ Action method includes is 'presentViewController'.
  */
 @property (nonatomic, weak, readwrite) UIViewController *rootViewController;
 
@@ -117,7 +117,7 @@ NS_ASSUME_NONNULL_BEGIN
  Only used for dislikeButton in BUNativeAdRelatedView.h
  @param filterWords : reasons for dislike
  */
-- (void)nativeAd:(BUNativeAd *)nativeAd dislikeWithReason:(NSArray<BUDislikeWords *> *)filterWords;
+- (void)nativeAd:(BUNativeAd *_Nullable)nativeAd dislikeWithReason:(NSArray<BUDislikeWords *> *_Nullable)filterWords;
 @end
 
 NS_ASSUME_NONNULL_END

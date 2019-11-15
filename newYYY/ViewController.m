@@ -296,7 +296,6 @@
 {
     BURewardedVideoModel *model = [[BURewardedVideoModel alloc] init];
     model.userId = @"123";
-    model.isShowDownloadBar = YES;
     self.rewardedVideoAd = [[BURewardedVideoAd alloc] initWithSlotID:self.rewardedVideoSlotId rewardedVideoModel:model];
     self.rewardedVideoAd.delegate = self;
     [self.rewardedVideoAd loadAdData];

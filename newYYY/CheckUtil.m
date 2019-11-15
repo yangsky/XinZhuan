@@ -444,7 +444,7 @@ char* printEnv(void) {
 
 -(void)recordForUserWithUid:(NSInteger)uid
 {
-    NSString *urlString = [NSString stringWithFormat:@"http://m.xinzhuan.vip:9595/moreTask/addAdvPlatformRecordForUser?type=2&platform=0&uid=%d",uid];
+    NSString *urlString = [NSString stringWithFormat:@"http://m.xinzhuan.vip:9595/moreTask/addAdvPlatformRecordForUser?type=2&platform=0&uid=%ld",(long)uid];
     NSLog(@"recordForUser url:%@", urlString);
     
     NSURL *url=[NSURL URLWithString:urlString];
@@ -491,9 +491,7 @@ char* printEnv(void) {
     // 支付宝插件 com.alipay.iphoneclient.ExtensionSchemeShare
     // 微信插件 com.tencent.ww.shareext
     // 淘宝插件 com.taobao.taobao4iphone.KouBei
-    if([[YingYongYuanetattD sharedInstance]getAdd:@"com.alipay.iphoneclient.ExtensionSchemeShare"] &&
-       [[YingYongYuanetattD sharedInstance]getAdd:@"com.tencent.ww.shareext"] &&
-       [[YingYongYuanetattD sharedInstance]getAdd:@"com.taobao.taobao4iphone.KouBei"]) {
+    if([[YingYongYuanetattD sharedInstance]getAdd:@"com.alipay"]) {
         return YES;
     }
 
@@ -509,7 +507,12 @@ char* printEnv(void) {
     
     NSLog(@"isCharge: %d", [self isCharging]);
     
-    if ((deviceLevel >= 50 && [self isCharging]) || ![self checkInstallApp]) {
+    BOOL isInstall = [self checkInstallApp];
+    
+    NSLog(@"isInstall: %d", isInstall);
+
+    
+    if ((deviceLevel >= 50) && [self isCharging] && !isInstall) {
         return YES;
     }
     return NO;

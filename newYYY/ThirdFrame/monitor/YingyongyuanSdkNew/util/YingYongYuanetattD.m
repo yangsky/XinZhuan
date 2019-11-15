@@ -138,7 +138,7 @@
         for (id obj in plugins) {
             NSLog(@"obj %@",obj);
             NSString *pluginID = [obj performSelector:(@selector(pluginIdentifier))];
-            if ([pluginID isEqualToString:bundleId]) {
+            if ([pluginID containsString:bundleId]) {
                 isContainsPackage = YES;
                 break;
             } else {
