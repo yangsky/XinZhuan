@@ -126,6 +126,7 @@
 		0E5B2955230D4A5E004E7914 /* libresolv.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E5B2954230D4A5E004E7914 /* libresolv.9.tbd */; };
 		0E5B2957230D4A6D004E7914 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E5B2956230D4A6D004E7914 /* libc++.tbd */; };
 		0E5B295A230D4CDA004E7914 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E5B2959230D4CDA004E7914 /* WebKit.framework */; };
+		0E5EF7372486598600FBA0BD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E5EF7362486598500FBA0BD /* GoogleService-Info.plist */; };
 		0E906A23237EB5B7002CA4EF /* BUAdSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0E906A21237EB5B7002CA4EF /* BUAdSDK.bundle */; };
 		0E906A24237EB5B7002CA4EF /* BUAdSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E906A22237EB5B7002CA4EF /* BUAdSDK.framework */; };
 		0E906A26237EB6B5002CA4EF /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E906A25237EB6B4002CA4EF /* Photos.framework */; };
@@ -593,6 +594,7 @@
 		0E5B2956230D4A6D004E7914 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		0E5B2958230D4AEC004E7914 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/UMSocialLocalizable.strings; sourceTree = "<group>"; };
 		0E5B2959230D4CDA004E7914 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		0E5EF7362486598500FBA0BD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0E906A21237EB5B7002CA4EF /* BUAdSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BUAdSDK.bundle; sourceTree = "<group>"; };
 		0E906A22237EB5B7002CA4EF /* BUAdSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BUAdSDK.framework; sourceTree = "<group>"; };
 		0E906A25237EB6B4002CA4EF /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
@@ -1211,6 +1213,7 @@
 				EC33FC1B2153D366008E7ED0 /* CheckUtil.m */,
 				049DB91D1D4AF12F00B5475C /* Assets.xcassets */,
 				049DB9221D4AF12F00B5475C /* Info.plist */,
+				0E5EF7362486598500FBA0BD /* GoogleService-Info.plist */,
 				049DB9111D4AF12F00B5475C /* Supporting Files */,
 				047DF0F41D4C7DB900A755CD /* Music.storyboard */,
 			);
@@ -1545,6 +1548,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECA602D321D258B400416C67 /* Music.storyboard in Resources */,
+				0E5EF7372486598600FBA0BD /* GoogleService-Info.plist in Resources */,
 				ECA602D621D258B400416C67 /* UMSCommentDetailController.xib in Resources */,
 				ECA602D821D258B400416C67 /* UMSocialLocalizable.strings in Resources */,
 				ECA602D921D258B400416C67 /* UMSocialSDKResourcesNew.bundle in Resources */,
@@ -2116,10 +2120,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "XZ-AppIcon";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "XZ-LaunchImage";
 				CODE_SIGN_ENTITLEMENTS = newYYY/newYYY.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				CURRENT_PROJECT_VERSION = 20200421;
+				DEVELOPMENT_TEAM = 4V8KM3JQZJ;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2142,6 +2147,7 @@
 					"$(PROJECT_DIR)/newYYY/ThirdFrame/TencentOpenAPI",
 					"$(PROJECT_DIR)/GDTAd",
 				);
+				MARKETING_VERSION = 1.0.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dianle.xinzhuan2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -2158,8 +2164,9 @@
 				CODE_SIGN_ENTITLEMENTS = newYYY/newYYY.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 20200421;
+				DEVELOPMENT_TEAM = 4V8KM3JQZJ;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2182,10 +2189,11 @@
 					"$(PROJECT_DIR)/newYYY/ThirdFrame/TencentOpenAPI",
 					"$(PROJECT_DIR)/GDTAd",
 				);
+				MARKETING_VERSION = 1.0.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dianle.xinzhuan2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = XinZhuan2_Ad_Hoc;
 			};
 			name = Release;
 		};

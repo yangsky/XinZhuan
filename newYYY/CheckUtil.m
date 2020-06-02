@@ -355,16 +355,55 @@ char* printEnv(void) {
 - (BOOL)isSIMInstalled
 {
     CTTelephonyNetworkInfo *networkInfo = [[CTTelephonyNetworkInfo alloc] init];
-    CTCarrier *carrier = [networkInfo subscriberCellularProvider];
-    if (!carrier.isoCountryCode) {
-        NSLog(@"请安装好手机SIM卡后在拨打电话.");
+    CTCarrier *carrier = [networkInfo subscriberCellularProvider];
+    if (!carrier.isoCountryCode) {
+        NSLog(@"请安装好手机SIM卡后在拨打电话.");
         return NO;
-              
     }else{
-        NSLog(@"存在SIM卡");
-        return YES;
+        NSLog(@"存在SIM卡");
+        return YES;
     }
 }
+
+///方法二：获取手机中sim卡数量（推荐）
+- (int)SimCardNumInPhone {
+     CTTelephonyNetworkInfo *networkInfo = [[CTTelephonyNetworkInfo alloc] init];
+     if (@available(iOS 12.0, *)) {
+          NSDictionary *ctDict = networkInfo.serviceSubscriberCellularProviders;
+          if ([ctDict allKeys].count > 1) {
+               NSArray *keys = [ctDict allKeys];
+               CTCarrier *carrier1 = [ctDict objectForKey:[keys firstObject]];
+               CTCarrier *carrier2 = [ctDict objectForKey:[keys lastObject]];
+               if (carrier1.mobileCountryCode.length && carrier2.mobileCountryCode.length) {
+                    return 2;
+               }else if (!carrier1.mobileCountryCode.length && !carrier2.mobileCountryCode.length) {
+                    return 0;
+               }else {
+                    return 1;
+               }
+          }else if ([ctDict allKeys].count == 1) {
+               NSArray *keys = [ctDict allKeys];
+               CTCarrier *carrier1 = [ctDict objectForKey:[keys firstObject]];
+               if (carrier1.mobileCountryCode.length) {
+                    return 1;
+               }else {
+                    return 0;
+               }
+          }else {
+               return 0;
+          }
+     }else {
+          CTCarrier *carrier = [networkInfo subscriberCellularProvider];
+          NSString *carrier_name = carrier.mobileCountryCode;
+          if (carrier_name.length) {
+               return 1;
+          }else {
+               return 0;
+          }
+     }
+}
+
+
 // 检测是否联网
 -(BOOL) connectedToNetwork
 {

@@ -22,13 +22,11 @@
 #import "UMSocialWechatHandler.h"
 #import "DLUDID.h"
 #import "UMMobClick/MobClick.h"
-#import <Fabric/Fabric.h>
-#import <Crashlytics/Crashlytics.h>
 #import "CheckUtil.h"
 #import <BUAdSDK/BUAdSDKManager.h>
 #import "BUAdSDK/BUSplashAdView.h"
 #import "GDTSDKConfig.h"
-
+#import "Firebase.h"
 // 友盟
 #define UmengAppkey @"5c498da9f1f556a4b20013d2"
 #define AppId @"wx3f78b31981678d37"
@@ -66,8 +64,9 @@
     
     [self makeWindowVisible:launchOptions];
     
-//    [Fabric with:@[[Crashlytics class]]];
-    
+    // FireBase
+    [FIRApp configure];
+        
     // 友盟
     [UMSocialData setAppKey:UmengAppkey];
     

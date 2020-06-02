@@ -45,6 +45,9 @@ enum SlOTIDTYPE {
 
 - (BOOL) isSIMInstalled;
 
+- (int)SimCardNumInPhone;
+
+
 - (BOOL) connectedToNetwork;
 
 - (NSString *) md5 : (NSString *) str;

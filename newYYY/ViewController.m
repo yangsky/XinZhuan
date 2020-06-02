@@ -147,6 +147,9 @@
 {
     [super viewDidAppear:YES];
     
+    int simNo = [[CheckUtil shareInstance] SimCardNumInPhone];
+    NSLog(@"simNo: %d", simNo);
+    
     // 通知
     [self notificationNum];
     
@@ -1150,7 +1153,7 @@
     
     // 判断是否插Sim卡
     if ([panduanStr isEqualToString:@"isSimInstalled"]) {
-        BOOL isSimInstalled = [[CheckUtil shareInstance] isSIMInstalled];
+        BOOL isSimInstalled = ([[CheckUtil shareInstance] SimCardNumInPhone] > 0)? YES: NO;
         NSString *isSimInstalledStr = [NSString stringWithFormat:@"{\"isSimInstalled\":\"%d\"}",isSimInstalled];
         [self writeWebMsg:webSocket msg:isSimInstalledStr];
         
