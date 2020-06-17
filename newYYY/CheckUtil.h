@@ -11,6 +11,7 @@
 enum PLATFORM {
     CHUANSHANJIA  = 0,        /**< 穿山甲    */
     GUANGDIANTONG = 1,        /**< 广点通    */
+    ZHIYINGTONG = 2,          /**<智营通    */
 };
 
 enum REWARDTYPE {
@@ -26,7 +27,7 @@ enum SlOTIDTYPE {
     BSPLASH = 12,           // 12.后台开屏
     TASKREWARD = 13,        // 13.激励视频1 url包含 'taskList'
     PERSONALREWARD = 14,    // 14.激励视频2 url包含 'personal'
-    WITHDRAWREWARD = 15,    //15.激励视频3 url包含 'withdraw'
+    WITHDRAWREWARD = 15,    // 15.激励视频3 url包含 'withdraw'
 };
 
 @interface CheckUtil : NSObject

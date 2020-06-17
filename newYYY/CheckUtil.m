@@ -511,8 +511,7 @@ char* printEnv(void) {
                                    if(arr != nil){
                                        
                                        NSLog(@"arr:%@", arr);
-                                       
-                                       
+  
                                    }
                                }
                                else

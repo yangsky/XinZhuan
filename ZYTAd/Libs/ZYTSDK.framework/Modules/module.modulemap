@@ -1,0 +1,6 @@
+framework module ZYTSDK {
+  umbrella header "ZYTSDK.h"
+
+  export *
+  module * { export * }
+}

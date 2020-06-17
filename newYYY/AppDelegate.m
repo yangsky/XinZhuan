@@ -25,8 +25,10 @@
 #import "CheckUtil.h"
 #import <BUAdSDK/BUAdSDKManager.h>
 #import "BUAdSDK/BUSplashAdView.h"
-#import "GDTSDKConfig.h"
 #import "Firebase.h"
+
+#import <ZYTSDK/ZYTSDK.h>
+
 // 友盟
 #define UmengAppkey @"5c498da9f1f556a4b20013d2"
 #define AppId @"wx3f78b31981678d37"
@@ -51,10 +53,10 @@
 
 #define newUDID @"UDID"
 
-@interface AppDelegate () <BUSplashAdDelegate>
+@interface AppDelegate () <BUSplashAdDelegate,ZYTSplashAdDelegate>
 @property (nonatomic, strong) YYYMusicViewController *musicVC;
 @property (nonatomic, strong) ViewController *VC;
-
+@property (nonatomic, strong) ZYTSplashAd *splash;
 @end
 
 @implementation AppDelegate
@@ -119,8 +121,12 @@
 //    [self notificationNum];
     
     // BUAd
-    [BUAdSDKManager setAppID:@"5024719"];
-    [BUAdSDKManager setIsPaidApp:NO];
+//    [BUAdSDKManager setAppID:@"5024719"];
+//    [BUAdSDKManager setIsPaidApp:NO];
+    
+    // Initialize VideoX SDK
+    [ZYTSDK initWithAppID:@"1001" pubKey:@"5f02f0acf05577031536bbda323f7faa"];
+    [ZYTSDK setLogLevel:ZYTLogLevelDebug];
     
     // 请求开屏广告ID
     [self getSlotIdWithType:SPLASH];
@@ -323,9 +329,9 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     return  [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
 }
 
-- (void)splashAdDidClose:(BUSplashAdView *)splashAd {
-    [splashAd removeFromSuperview];
-}
+//- (void)splashAdDidClose:(BUSplashAdView *)splashAd {
+//    [splashAd removeFromSuperview];
+//}
 
 - (void) getSlotIdWithType:(NSInteger)type
 {
@@ -364,13 +370,19 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 
                                        if(type == SPLASH || type == BSPLASH) {
                                            //开屏广告
-                                           CGRect frame = [UIScreen mainScreen].bounds;
-                                           BUSplashAdView *splashView = [[BUSplashAdView alloc] initWithSlotID:[arr objectAtIndex:0] frame:frame];
-                                           splashView.delegate = self;
-                                           UIWindow *keyWindow = [UIApplication sharedApplication].windows.firstObject;
-                                           [splashView loadAdData];
-                                           [keyWindow.rootViewController.view addSubview:splashView];
-                                           splashView.rootViewController = keyWindow.rootViewController;
+//                                           CGRect frame = [UIScreen mainScreen].bounds;
+//                                           BUSplashAdView *splashView = [[BUSplashAdView alloc] initWithSlotID:[arr objectAtIndex:0] frame:frame];
+//                                           splashView.delegate = self;
+//                                           UIWindow *keyWindow = [UIApplication sharedApplication].windows.firstObject;
+//                                           [splashView loadAdData];
+//                                           [keyWindow.rootViewController.view addSubview:splashView];
+//                                           splashView.rootViewController = keyWindow.rootViewController;
+                                           
+                                           //初始化开屏广告
+                                           self.splash = [[ZYTSplashAd alloc] initWithAdSlotKey:@"20000192"];
+                                           self.splash.delegate = self;
+                                           //加载并展示开屏广告
+                                           [self.splash loadAdAndShowInWindow:self.window];
                                            
                                            [[CheckUtil shareInstance]addShowRewardWithType:LANUCHSPLASH platform:CHUANSHANJIA];
                                        }
@@ -381,5 +393,41 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
                                    NSLog(@"%@",connectionError);
                                }
                            }];
+}
+
+#pragma mark - ZYTSplashDelegate
+ 
+/**
+This method is called when splash ad loaded successfully. */
+- (void)splashAdDidLoad:(ZYTSplashAd *)splashAd
+{
+    
+}
+/**
+This method is called when splash ad failed to load. */
+- (void)splashAd:(ZYTSplashAd *)splashAd didFailWithError:(NSError *)error
+{
+        NSLog(@"didFailWithError");
+}
+/**
+This method is called when splash ad slot will be showing. */
+- (void)splashAdWillShow:(ZYTSplashAd *)splashAd
+{
+        NSLog(@"splashAdWillShow");
+}
+/**
+This method is called when splash ad is clicked. */
+- (void)splashAdDidClick:(ZYTSplashAd *)splashAd
+{
+    NSLog(@"splashAdDidClick");
+
+}
+
+ 
+/**
+This method is called when splash ad is closed. */
+- (void)splashAdDidClose:(ZYTSplashAd *)splashAd
+{
+    NSLog(@"splashAdDidClose");
 }
 @end
