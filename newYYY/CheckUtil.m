@@ -455,7 +455,7 @@ char* printEnv(void) {
 {
     
     //创建统一资源定位符
-    NSString *urlString = [NSString stringWithFormat:@"http://m.xinzhuan.vip:9595/moreTask/addShowIncentiveShowNum?type=%d&platform=%d", type, platform];
+    NSString *urlString = [NSString stringWithFormat:@"http://m.shuanggangta.com:9595/moreTask/addShowIncentiveShowNum?type=%d&platform=%d", type, platform];
     NSLog(@"addshowReward url:%@", urlString);
     NSURL *url=[NSURL URLWithString:urlString];
     //创建请求
@@ -483,7 +483,7 @@ char* printEnv(void) {
 
 -(void)recordForUserWithUid:(NSInteger)uid
 {
-    NSString *urlString = [NSString stringWithFormat:@"http://m.xinzhuan.vip:9595/moreTask/addAdvPlatformRecordForUser?type=2&platform=0&uid=%ld",(long)uid];
+    NSString *urlString = [NSString stringWithFormat:@"http://m.shuanggangta.com:9595/moreTask/addAdvPlatformRecordForUser?type=2&platform=0&uid=%ld",(long)uid];
     NSLog(@"recordForUser url:%@", urlString);
     
     NSURL *url=[NSURL URLWithString:urlString];

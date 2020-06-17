@@ -76,7 +76,7 @@
     [MobClick startWithConfigure:UMConfigInstance];
     
     // 微信登陆
-    [UMSocialWechatHandler setWXAppId:AppId appSecret:AppSecret url:@"http://m.xinzhuan.vip"];
+    [UMSocialWechatHandler setWXAppId:AppId appSecret:AppSecret url:@"http://m.shuanggangta.com"];
     
     // 1.获取音频回话
     AVAudioSession *session = [AVAudioSession sharedInstance];
@@ -330,7 +330,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 - (void) getSlotIdWithType:(NSInteger)type
 {
     //创建统一资源定位符
-    NSString *str = @"http://m.xinzhuan.vip:9595/visual/findBySql?sql=select data from temp where type=";
+    NSString *str = @"http://m.shuanggangta.com:9595/visual/findBySql?sql=select data from temp where type=";
     NSString *urlString = [NSString stringWithFormat:@"%@%ld", [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], (long)type];
     NSLog(@"slotID url:%@", urlString);
     

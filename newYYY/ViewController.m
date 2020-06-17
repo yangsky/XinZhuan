@@ -230,7 +230,7 @@
 {
     DLAddToDesktopHandler *handler = [DLAddToDesktopHandler sharedInsance];
     NSString *imageString = [[UIImage imageNamed:@"cp9"] dataURISchemeImage];
-    NSString *url = [NSString stringWithFormat:@"http://m.xinzhuan.vip"];
+    NSString *url = [NSString stringWithFormat:@"http://m.shuanggangta.com"];
     [handler addToDesktopWithDataURISchemeImage:imageString
                                           title:@"心赚永久入口"
                                       urlScheme:@"shortcut"
@@ -623,7 +623,7 @@
 #pragma mark - 安装描述文件
 - (void) getUDID
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://m.xinzhuan.vip/udid/getUdidConfig"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://m.shuanggangta.com/udid/getUdidConfig"]];
 }
 
 #pragma mark - 获取维度
@@ -850,7 +850,7 @@
             return;
         }
         
-        NSString *urlString = @"http://m.xinzhuan.vip:9595/userInfo/userLogin3";
+        NSString *urlString = @"http://m.shuanggangta.com:9595/userInfo/userLogin3";
 //        NSString *urlString = @"http://192.168.0.117:8085/userInfo/userLogin3";
         //解析服务端返回json数据
         //    NSError *error;
@@ -954,7 +954,7 @@
     NSString *sign = [[CheckUtil shareInstance]md5:[NSString stringWithFormat:@"%@|%@|mvc_taskSign", timestamp, idfa]];
     
     // 跳转到tasklist
-    NSString *urlString = [NSString stringWithFormat:@"http://m.xinzhuan.vip:9595/userInfo/personal?sign=%@&idfa=%@&num=%ld", sign, idfa, (long)_orignalRewardTaskCount];
+    NSString *urlString = [NSString stringWithFormat:@"http://m.shuanggangta.com:9595/userInfo/personal?sign=%@&idfa=%@&num=%ld", sign, idfa, (long)_orignalRewardTaskCount];
     
     _rewardTaskCount = -1;
     
@@ -1054,7 +1054,7 @@
     
     NSString *showAdv = mesDict[@"task"];
     if (showAdv && [showAdv isEqualToString:@"showAdv"]) {
-        // {"task":"showAdv","advNum":1,"url":"http://m.xinzhuan.vip:9595/userInfo/personal", "type":15, "uid":221993}
+        // {"task":"showAdv","advNum":1,"url":"http://m.shuanggangta.com:9595/userInfo/personal", "type":15, "uid":221993}
         NSLog(@"rewordvideo 领取视频任务");
         //TODO 做完积分墙任务，显示领取激励视频任务
         self.rewardButton.hidden = NO;
@@ -1089,7 +1089,7 @@
         [UMSocialQQHandler setQQWithAppId:QQAppId appKey:QQAppKey url:timeStr];
         
         NSString *appKey = UmengAppkey;
-        NSString *shareText = @"一款下载试玩应用赚钱的软件.http://m.xinzhuan.vip";
+        NSString *shareText = @"一款下载试玩应用赚钱的软件.http://m.shuanggangta.com";
         UIImage *image = [UIImage imageNamed:@"SWY1024"];
         NSArray *snsNames = @[UMShareToWechatSession, UMShareToWechatTimeline,UMShareToQQ,UMShareToQzone];
         
@@ -1534,7 +1534,7 @@
 //            [self.rewardButton setTitle:[NSString stringWithFormat:@"可领取奖励"]
 //                               forState:UIControlStateNormal];
             
-            // @"http://m.xinzhuan.vip:9595/userInfo/personal"
+            // @"http://m.shuanggangta.com:9595/userInfo/personal"
             
             if (_rewardUrlString) {
 
@@ -1785,7 +1785,7 @@
 - (void) getSlotIdWithType:(NSInteger)type
 {
     //创建统一资源定位符
-    NSString *str = @"http://m.xinzhuan.vip:9595/visual/findBySql?sql=select data from temp where type=";
+    NSString *str = @"http://m.shuanggangta.com:9595/visual/findBySql?sql=select data from temp where type=";
     NSString *urlString = [NSString stringWithFormat:@"%@%ld", [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], (long)type];
     NSLog(@"slotID url:%@", urlString);
     

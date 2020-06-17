@@ -1468,7 +1468,7 @@
 					};
 					ECA6026C21D258B400416C67 = {
 						DevelopmentTeam = 4V8KM3JQZJ;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
