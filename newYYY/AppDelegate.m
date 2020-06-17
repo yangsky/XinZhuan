@@ -125,7 +125,7 @@
 //    [BUAdSDKManager setIsPaidApp:NO];
     
     // Initialize VideoX SDK
-    [ZYTSDK initWithAppID:@"1001" pubKey:@"5f02f0acf05577031536bbda323f7faa"];
+    [ZYTSDK initWithAppID:@"80" pubKey:@"5efbe05a9457f2106778edd1563ecf7e"];
     [ZYTSDK setLogLevel:ZYTLogLevelDebug];
     
     // 请求开屏广告ID
@@ -379,7 +379,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 //                                           splashView.rootViewController = keyWindow.rootViewController;
                                            
                                            //初始化开屏广告
-                                           self.splash = [[ZYTSplashAd alloc] initWithAdSlotKey:@"20000192"];
+                                           self.splash = [[ZYTSplashAd alloc] initWithAdSlotKey:@"20000194"];
                                            self.splash.delegate = self;
                                            //加载并展示开屏广告
                                            [self.splash loadAdAndShowInWindow:self.window];

@@ -286,7 +286,7 @@
             self.WXBtn.hidden = YES;
             self.btn.hidden = NO;
             self.btnGetUDID.hidden = YES;
-            self.rewardButton.hidden = NO;
+//            self.rewardButton.hidden = NO;
         }
 
     }
@@ -302,7 +302,7 @@
 //    [self.rewardedVideoAd loadAdData];
     
      
-    self.rewardAd = [[ZYTRewardedVideoAd alloc] initWithAdSlotKey:@"20000132"];
+    self.rewardAd = [[ZYTRewardedVideoAd alloc] initWithAdSlotKey:@"20000195"];
     self.rewardAd.delegate = self;
     [self.rewardAd loadAd];
 }
@@ -1387,7 +1387,6 @@
             self.WXBtn.hidden = YES;
             self.btn.hidden = NO;
             self.btnGetUDID.hidden = YES;
-            self.rewardButton.hidden = NO;
         } else {
             self.WXBtn.hidden = NO;
             self.btn.hidden = YES;
@@ -1409,7 +1408,7 @@
 
                 //开屏广告
                 //初始化开屏广告
-                self.zytSplash = [[ZYTSplashAd alloc] initWithAdSlotKey:@"20000192"];
+                self.zytSplash = [[ZYTSplashAd alloc] initWithAdSlotKey:@"20000194"];
                 self.zytSplash.delegate = self;
                 //加载并展示开屏广告
                 UIWindow *keyWindow = [UIApplication sharedApplication].windows.firstObject;
