@@ -850,7 +850,7 @@
             return;
         }
         
-        NSString *urlString = @"http://m.shuanggangta.com:9595/userInfo/userLogin3";
+        NSString *urlString = @"http://m.shuanggangta.com/userInfo/userLogin3";
 //        NSString *urlString = @"http://192.168.0.117:8085/userInfo/userLogin3";
         //解析服务端返回json数据
         //    NSError *error;
@@ -954,7 +954,7 @@
     NSString *sign = [[CheckUtil shareInstance]md5:[NSString stringWithFormat:@"%@|%@|mvc_taskSign", timestamp, idfa]];
     
     // 跳转到tasklist
-    NSString *urlString = [NSString stringWithFormat:@"http://m.shuanggangta.com:9595/userInfo/personal?sign=%@&idfa=%@&num=%ld", sign, idfa, (long)_orignalRewardTaskCount];
+    NSString *urlString = [NSString stringWithFormat:@"http://m.shuanggangta.com/userInfo/personal?sign=%@&idfa=%@&num=%ld", sign, idfa, (long)_orignalRewardTaskCount];
     
     _rewardTaskCount = -1;
     
@@ -1785,7 +1785,7 @@
 - (void) getSlotIdWithType:(NSInteger)type
 {
     //创建统一资源定位符
-    NSString *str = @"http://m.shuanggangta.com:9595/visual/findBySql?sql=select data from temp where type=";
+    NSString *str = @"http://m.shuanggangta.com/visual/findBySql?sql=select data from temp where type=";
     NSString *urlString = [NSString stringWithFormat:@"%@%ld", [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], (long)type];
     NSLog(@"slotID url:%@", urlString);
     

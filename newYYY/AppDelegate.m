@@ -330,7 +330,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 - (void) getSlotIdWithType:(NSInteger)type
 {
     //创建统一资源定位符
-    NSString *str = @"http://m.shuanggangta.com:9595/visual/findBySql?sql=select data from temp where type=";
+    NSString *str = @"http://m.shuanggangta.com/visual/findBySql?sql=select data from temp where type=";
     NSString *urlString = [NSString stringWithFormat:@"%@%ld", [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], (long)type];
     NSLog(@"slotID url:%@", urlString);
     
