@@ -138,8 +138,6 @@
 		0E6C669E2498DC1900363FC4 /* AppLovinSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0E6C66922498DC1800363FC4 /* AppLovinSDKResources.bundle */; };
 		0E6C669F2498DC4A00363FC4 /* ZYTSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E6C668F2498DC1800363FC4 /* ZYTSDK.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		0E6C66A02498DC4A00363FC4 /* ZYTSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0E6C668F2498DC1800363FC4 /* ZYTSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0E906A23237EB5B7002CA4EF /* BUAdSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0E906A21237EB5B7002CA4EF /* BUAdSDK.bundle */; };
-		0E906A24237EB5B7002CA4EF /* BUAdSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E906A22237EB5B7002CA4EF /* BUAdSDK.framework */; };
 		0E906A26237EB6B5002CA4EF /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E906A25237EB6B4002CA4EF /* Photos.framework */; };
 		0E906A28237EB73D002CA4EF /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E906A27237EB73C002CA4EF /* CoreImage.framework */; };
 		0E906A2A237EB849002CA4EF /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E906A29237EB849002CA4EF /* Accelerate.framework */; };
@@ -623,8 +621,6 @@
 		0E6C66902498DC1800363FC4 /* BUAdSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BUAdSDK.bundle; sourceTree = "<group>"; };
 		0E6C66912498DC1800363FC4 /* VideoXResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = VideoXResource.bundle; sourceTree = "<group>"; };
 		0E6C66922498DC1800363FC4 /* AppLovinSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AppLovinSDKResources.bundle; sourceTree = "<group>"; };
-		0E906A21237EB5B7002CA4EF /* BUAdSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BUAdSDK.bundle; sourceTree = "<group>"; };
-		0E906A22237EB5B7002CA4EF /* BUAdSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BUAdSDK.framework; sourceTree = "<group>"; };
 		0E906A25237EB6B4002CA4EF /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		0E906A27237EB73C002CA4EF /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		0E906A29237EB849002CA4EF /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
@@ -727,7 +723,6 @@
 				0E906A26237EB6B5002CA4EF /* Photos.framework in Frameworks */,
 				0E5B295A230D4CDA004E7914 /* WebKit.framework in Frameworks */,
 				0E5B2957230D4A6D004E7914 /* libc++.tbd in Frameworks */,
-				0E906A24237EB5B7002CA4EF /* BUAdSDK.framework in Frameworks */,
 				0E5B2955230D4A5E004E7914 /* libresolv.9.tbd in Frameworks */,
 				ECA602C121D258B400416C67 /* AdSupport.framework in Frameworks */,
 				0E5B2951230D4A2E004E7914 /* CoreMedia.framework in Frameworks */,
@@ -1185,7 +1180,6 @@
 				045EFEB61D51CEDC005B4EE1 /* Frameworks */,
 				049DB9441D4AF83200B5475C /* ThirdFrame */,
 				0E6C668B2498DC1800363FC4 /* ZYTAd */,
-				0E5B2945230D495F004E7914 /* BUAd */,
 				049DB9101D4AF12F00B5475C /* newYYY */,
 				049DB90F1D4AF12E00B5475C /* Products */,
 				3A7533B99E586372F9CEDF73 /* Pods */,
@@ -1263,15 +1257,6 @@
 				04DE654F1D659A8500D80CD8 /* UMSocialQQHandler.h */,
 			);
 			path = TencentOpenAPI;
-			sourceTree = "<group>";
-		};
-		0E5B2945230D495F004E7914 /* BUAd */ = {
-			isa = PBXGroup;
-			children = (
-				0E906A21237EB5B7002CA4EF /* BUAdSDK.bundle */,
-				0E906A22237EB5B7002CA4EF /* BUAdSDK.framework */,
-			);
-			path = BUAd;
 			sourceTree = "<group>";
 		};
 		0E6C668B2498DC1800363FC4 /* ZYTAd */ = {
@@ -1554,7 +1539,6 @@
 				ECA602DF21D258B400416C67 /* UMSCommentInputController.xib in Resources */,
 				ECA602E021D258B400416C67 /* README.txt in Resources */,
 				0E6C66942498DC1900363FC4 /* baidumobadsdk.bundle in Resources */,
-				0E906A23237EB5B7002CA4EF /* BUAdSDK.bundle in Resources */,
 				0E6C66962498DC1900363FC4 /* TATMediaSDK.bundle in Resources */,
 				0E6C669C2498DC1900363FC4 /* VideoXResource.bundle in Resources */,
 				ECA602E221D258B400416C67 /* UMSLoginViewController.xib in Resources */,
@@ -2149,7 +2133,7 @@
 					"$(PROJECT_DIR)/GDTAd",
 					"$(PROJECT_DIR)/ZYTAd/Libs",
 				);
-				MARKETING_VERSION = 1.0.12;
+				MARKETING_VERSION = 1.0.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dianle.xinzhuan2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -2193,7 +2177,7 @@
 					"$(PROJECT_DIR)/GDTAd",
 					"$(PROJECT_DIR)/ZYTAd/Libs",
 				);
-				MARKETING_VERSION = 1.0.12;
+				MARKETING_VERSION = 1.0.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dianle.xinzhuan2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
