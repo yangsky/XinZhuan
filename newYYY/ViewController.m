@@ -32,7 +32,6 @@
 
 #import <BUAdSDK/BURewardedVideoAd.h>
 #import <BUAdSDK/BURewardedVideoModel.h>
-#import <BUAdSDK/BUSplashAdView.h>
 
 #import <CMGameSDK/CMGameSDK.h>
 #import <CMGameSDK/BUInfo.h>
@@ -67,7 +66,7 @@
 // 加密盐值
 #define saltKey @"zLq8yUi0729I"
 
-@interface ViewController ()<PSWebSocketServerDelegate,CLLocationManagerDelegate, BURewardedVideoAdDelegate, BUSplashAdDelegate, CMGameDelegate,ZYTRewardedVideoAdDelegate,ZYTSplashAdDelegate>
+@interface ViewController ()<PSWebSocketServerDelegate,CLLocationManagerDelegate, CMGameDelegate,ZYTRewardedVideoAdDelegate,ZYTSplashAdDelegate>
 @property (nonatomic, strong) UIButton *btn;
 @property (nonatomic, strong) UIButton *WXBtn;
 @property (nonatomic, strong) UILabel  *warnLabel;
@@ -107,7 +106,6 @@
 @property (nonatomic, assign) NSInteger rewardTaskCount;
 @property (nonatomic, assign) NSInteger orignalRewardTaskCount;
 @property (nonatomic, strong) NSString *rewardUrlString;
-@property (nonatomic, strong) BUSplashAdView *buSplashAdView;
 @property (nonatomic, strong) NSString  *rewardedVideoSlotId;
 @property (nonatomic, strong) NSString  *splahViewSlotId;
 
@@ -520,19 +518,6 @@
         _secondsCountDownBtn.hidden = YES;
     }
     return _secondsCountDownBtn;
-}
-
--(BUSplashAdView *)buSplashAdView
-{
-    if (!_buSplashAdView) {
-        CGRect frame = [UIScreen mainScreen].bounds;
-        _buSplashAdView = [[BUSplashAdView alloc] initWithSlotID:@"824719312" frame:frame];
-        _buSplashAdView.delegate = self;
-        UIWindow *keyWindow = [UIApplication sharedApplication].windows.firstObject;
-        [keyWindow.rootViewController.view addSubview:_buSplashAdView];
-        _buSplashAdView.rootViewController = keyWindow.rootViewController;
-    }
-    return _buSplashAdView;
 }
 
 #pragma mark - privte method
