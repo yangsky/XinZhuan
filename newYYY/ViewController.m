@@ -1398,8 +1398,11 @@
                 //加载并展示开屏广告
                 UIWindow *keyWindow = [UIApplication sharedApplication].windows.firstObject;
                 [self.zytSplash loadAdAndShowInWindow:keyWindow];
-
+                
                 [[CheckUtil shareInstance]addShowRewardWithType:BACKSPLASH platform:CHUANSHANJIA];
+                
+                self.isShowRewardViedo = YES;
+
             }
             
             return;
@@ -1597,13 +1600,18 @@ This method is called when splash ad loaded successfully. */
 This method is called when splash ad failed to load. */
 - (void)splashAd:(ZYTSplashAd *)splashAd didFailWithError:(NSError *)error
 {
-        NSLog(@"didFailWithError");
+    NSLog(@"didFailWithError");
+    self.isShowRewardViedo = NO;
+
 }
 /**
 This method is called when splash ad slot will be showing. */
 - (void)splashAdWillShow:(ZYTSplashAd *)splashAd
 {
-        NSLog(@"splashAdWillShow");
+    NSLog(@"splashAdWillShow");
+    
+    self.isShowRewardViedo = YES;
+
 }
 /**
 This method is called when splash ad is clicked. */
@@ -1619,7 +1627,8 @@ This method is called when splash ad is closed. */
 - (void)splashAdDidClose:(ZYTSplashAd *)splashAd
 {
     NSLog(@"splashAdDidClose");
-    
+    self.isShowRewardViedo = NO;
+
 //    if (_uid != 0) {
 //        [[CheckUtil shareInstance] recordForUserWithUid:_uid];
 //    }
