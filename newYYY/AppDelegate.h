@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+#define BUAdID @"5097378"
+#define bUAdSplashID @"887368651"
+#define bUAdRewardVideoID @"945390857"
+
+#define BUD_Log(frmt, ...)   \
+do {                                                      \
+NSLog(@"【BUAdDemo】%@", [NSString stringWithFormat:frmt,##__VA_ARGS__]);  \
+} while(0)
+
 // 极光
 static NSString *appKey = @"73aa1fa64c266d785f90be9b";
 

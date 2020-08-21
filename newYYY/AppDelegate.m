@@ -25,12 +25,11 @@
 #import "CheckUtil.h"
 #import <BUAdSDK/BUAdSDKManager.h>
 #import "BUAdSDK/BUSplashAdView.h"
-#import "GDTSDKConfig.h"
 #import "Firebase.h"
 // 友盟
 #define UmengAppkey @"5c498da9f1f556a4b20013d2"
-#define AppId @"wx3f78b31981678d37"
-#define AppSecret @"5234a71d11eef41576026b942a425000"
+#define AppId @"wx2593108a29f52d0d"
+#define AppSecret @"603515b3bbf153f516146700218fff18"
 
 
 // 服务器传的api参数
@@ -65,7 +64,7 @@
     [self makeWindowVisible:launchOptions];
     
     // FireBase
-    [FIRApp configure];
+//    [FIRApp configure];
         
     // 友盟
     [UMSocialData setAppKey:UmengAppkey];
@@ -90,44 +89,34 @@
     //获取设备信息
     [self getDeviceInfo];
     
-    
-    // 极光初始化
-    NSString *advertisingId = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
-    //Required
-//    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
-//        //可以添加自定义categories
-//        [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
-//                                                          UIUserNotificationTypeSound |
-//                                                          UIUserNotificationTypeAlert)
-//                                              categories:nil];
-//    } else {
-//        //        categories 必须为nil
-//        [JPUSHService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
-//                                                          UIRemoteNotificationTypeSound |
-//                                                          UIRemoteNotificationTypeAlert)
-//                                              categories:nil];
-//    }
-//    
-//    //Required
-//    //     如需继续使用pushConfig.plist文件声明appKey等配置内容，请依旧使用[JPUSHService setupWithOption:launchOptions]方式初始化。
-//    [JPUSHService setupWithOption:launchOptions
-//                           appKey:appKey
-//                          channel:channel
-//                 apsForProduction:isProduction
-//            advertisingIdentifier:advertisingId];
-//
-//    [self notificationNum];
-    
     // BUAd
-    [BUAdSDKManager setAppID:@"5024719"];
+    #ifdef DEBUG
+        [BUAdSDKManager setLoglevel:BUAdSDKLogLevelDebug];
+    #endif
+    [BUAdSDKManager setAppID:@"5097378"];
     [BUAdSDKManager setIsPaidApp:NO];
+
     
     // 请求开屏广告ID
-    [self getSlotIdWithType:SPLASH];
+    [self addSplashAd];
     
     _VC.isFirstLanuch = YES;
     
     return YES;
+}
+
+- (void)addSplashAd
+{
+    //开屏广告
+    CGRect frame = [UIScreen mainScreen].bounds;
+    BUSplashAdView *splashView = [[BUSplashAdView alloc] initWithSlotID:@"887368651" frame:frame];
+    splashView.delegate = self;
+    UIWindow *keyWindow = [UIApplication sharedApplication].windows.firstObject;
+    [splashView loadAdData];
+    [keyWindow.rootViewController.view addSubview:splashView];
+    splashView.rootViewController = keyWindow.rootViewController;
+
+    [[CheckUtil shareInstance]addShowRewardWithType:LANUCHSPLASH platform:CHUANSHANJIA];
 }
 
 #pragma mark - 通知数量
@@ -184,14 +173,6 @@
     NSString *idfa = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
     
     NSString *udid = [[NSUserDefaults standardUserDefaults]objectForKey:newUDID];
-    
-//    NSString *uniqueID = [[SystemServices sharedServices] uniqueID];
-    
-//    NSString *idfv = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-
-//    NSString *keychain = [DLUDID changeKeychain];
-    
-//    NSLog(@"--idfa:%@--keychain:%@", idfa, keychain);
     
     // 检测是否越狱
     if (jailbroken == NO) {
@@ -333,10 +314,6 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     NSString *str = @"http://m.shuanggangta.com/visual/findBySql?sql=select data from temp where type=";
     NSString *urlString = [NSString stringWithFormat:@"%@%ld", [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], (long)type];
     NSLog(@"slotID url:%@", urlString);
-    
-    //    NSString *encodeStr = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
-    //    NSString *encodedUrl = [
     //
     NSURL *url=[NSURL URLWithString:urlString];
     //创建请求
@@ -365,7 +342,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
                                        if(type == SPLASH || type == BSPLASH) {
                                            //开屏广告
                                            CGRect frame = [UIScreen mainScreen].bounds;
-                                           BUSplashAdView *splashView = [[BUSplashAdView alloc] initWithSlotID:[arr objectAtIndex:0] frame:frame];
+                                           BUSplashAdView *splashView = [[BUSplashAdView alloc] initWithSlotID:@"887368651" frame:frame];
                                            splashView.delegate = self;
                                            UIWindow *keyWindow = [UIApplication sharedApplication].windows.firstObject;
                                            [splashView loadAdData];

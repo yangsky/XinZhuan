@@ -30,19 +30,14 @@
 #import "UIImage+DLDataURIImage.h"
 #import <CoreLocation/CoreLocation.h>
 
-#import <BUAdSDK/BURewardedVideoAd.h>
 #import <BUAdSDK/BURewardedVideoModel.h>
 #import <BUAdSDK/BUSplashAdView.h>
-
-#import "GDTSDKConfig.h"
-
-#import <CMGameSDK/CMGameSDK.h>
-#import <CMGameSDK/BUInfo.h>
+#import <BUAdSDK/BUNativeExpressRewardedVideoAd.h>
 
 // 友盟
 #define UmengAppkey @"5c498da9f1f556a4b20013d2"
-#define AppId @"wx3f78b31981678d37"
-#define AppSecret @"5234a71d11eef41576026b942a425000"
+#define AppId @"wx2593108a29f52d0d"
+#define AppSecret @"603515b3bbf153f516146700218fff18"
 // 友盟QQ
 #define QQAppId @"1107023030"
 #define QQAppKey @"SX5gPgTl03WY7jrU"
@@ -67,7 +62,7 @@
 // 加密盐值
 #define saltKey @"zLq8yUi0729I"
 
-@interface ViewController ()<PSWebSocketServerDelegate,CLLocationManagerDelegate, BURewardedVideoAdDelegate, BUSplashAdDelegate, CMGameDelegate>
+@interface ViewController ()<PSWebSocketServerDelegate,CLLocationManagerDelegate, BUSplashAdDelegate, BUNativeExpressRewardedVideoAdDelegate>
 @property (nonatomic, strong) UIButton *btn;
 @property (nonatomic, strong) UIButton *WXBtn;
 @property (nonatomic, strong) UILabel  *warnLabel;
@@ -102,7 +97,7 @@
 @property (nonatomic, strong) NSString *eastNorthStr;
 
 // 激励视频任务
-@property (nonatomic, strong) BURewardedVideoAd *rewardedVideoAd;
+@property (nonatomic, strong) BUNativeExpressRewardedVideoAd *rewardedVideoAd;
 @property (nonatomic, strong) UIButton *rewardButton;
 @property (nonatomic, assign) NSInteger rewardTaskCount;
 @property (nonatomic, assign) NSInteger orignalRewardTaskCount;
@@ -118,10 +113,6 @@
 // GDT
 @property (nonatomic, strong) NSTimer   *gdtTimer;
 @property (nonatomic, assign) NSInteger gdtSecondsCount;
-
-// GMGame
-@property (nonatomic, strong) UIView    *cmView;
-@property (nonatomic, strong) UIButton  *cmGameBtn;
 
 @property (nonatomic, assign) NSInteger type;
 @property (nonatomic, assign) NSInteger uid;
@@ -140,7 +131,6 @@
     _secondsCountDown = arc4random() % 6 + 10;
     
     self.isShowRewardViedo = NO;
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -149,6 +139,9 @@
     
     int simNo = [[CheckUtil shareInstance] SimCardNumInPhone];
     NSLog(@"simNo: %d", simNo);
+    
+    [self initRewardTask];
+ 
     
     // 通知
     [self notificationNum];
@@ -270,9 +263,6 @@
     // 倒计时
     [self.view addSubview:self.secondsCountDownBtn];
     
-    // GCMGameBtn
-    [self.view addSubview:self.cmGameBtn];
-    
     // 判断是否存储udid
     NSString *udid = [[NSUserDefaults standardUserDefaults]objectForKey:@"UDID"];
     
@@ -280,7 +270,6 @@
         self.btnGetUDID.hidden = NO;
         self.WXBtn.hidden = YES;
         self.btn.hidden = YES;
-//        self.rewardButton.hidden = YES;
     } else {
         // 判断是否已经微信登陆过
         NSString *WXLoginID = [[NSUserDefaults standardUserDefaults] objectForKey:@"WXLoginID"];
@@ -288,7 +277,6 @@
             self.WXBtn.hidden = YES;
             self.btn.hidden = NO;
             self.btnGetUDID.hidden = YES;
-//            self.rewardButton.hidden = NO;
         }
 
     }
@@ -299,9 +287,15 @@
 {
     BURewardedVideoModel *model = [[BURewardedVideoModel alloc] init];
     model.userId = @"123";
-    self.rewardedVideoAd = [[BURewardedVideoAd alloc] initWithSlotID:self.rewardedVideoSlotId rewardedVideoModel:model];
+    self.rewardedVideoAd = [[BUNativeExpressRewardedVideoAd alloc] initWithSlotID:@"945390857" rewardedVideoModel:model];
     self.rewardedVideoAd.delegate = self;
     [self.rewardedVideoAd loadAdData];
+}
+
+- (void)showRewardVideoAd {
+    if (self.rewardedVideoAd) {
+        [self.rewardedVideoAd showAdFromRootViewController:self];
+    }
 }
 
 - (void)viewDidLayoutSubviews
@@ -324,24 +318,6 @@
 }
 
 #pragma mark - lazy getter
-
-- (UIButton *)cmGameBtn {
-    if (!_cmGameBtn) {
-        _cmGameBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-        _cmGameBtn.frame = CGRectMake(self.view.frame.size.width/2.0-90, CGRectGetMaxY(self.btn.frame) + 10, 180, 48);
-        _cmGameBtn.layer.cornerRadius = 10.0f;
-        _cmGameBtn.layer.borderWidth = 1;
-        _cmGameBtn.titleLabel.font = [UIFont systemFontOfSize:20];
-        _cmGameBtn.layer.borderColor = [RGB(254, 211, 65) CGColor];
-        [_cmGameBtn setBackgroundColor:RGB(254, 211, 65)];
-        [_cmGameBtn setTitle:@"猎豹游戏" forState:UIControlStateNormal];
-        [_cmGameBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_cmGameBtn addTarget:self action:@selector(showCMGame:) forControlEvents:UIControlEventTouchUpInside];
-        _cmGameBtn.enabled = YES;
-        _cmGameBtn.hidden = NO;
-    }
-    return _cmGameBtn;
-}
 
 - (UIButton *)rewardButton {
     if (!_rewardButton) {
@@ -535,37 +511,12 @@
     return _secondsCountDownBtn;
 }
 
-- (GDTSplashAd *)splash
-{
-    
-    if (!_splash) {
-        _splash =  [[GDTSplashAd alloc] initWithAppId:kGDTMobSDKAppId placementId:@"4050284700030920"];
-        _splash.delegate = self;
-        _splash.fetchDelay = 5;
-    }
-    
-    return _splash;
-}
-
--(UIView *)cmView
-{
-    if (!_cmView) {
-        CGFloat width = CGRectGetWidth(self.view.frame);
-        CGFloat height = CGRectGetHeight(self.view.frame);
-        CGRect rect = CGRectMake(15, 40, width-30, height-80);
-        _cmView = [CMGameSDK getGameClassifyView:rect];
-        _cmView.backgroundColor = RGB(253, 205, 100);
-        _cmView.layer.cornerRadius = 5;
-        
-    }
-    return _cmView;
-}
 
 -(BUSplashAdView *)buSplashAdView
 {
     if (!_buSplashAdView) {
         CGRect frame = [UIScreen mainScreen].bounds;
-        _buSplashAdView = [[BUSplashAdView alloc] initWithSlotID:@"824719312" frame:frame];
+        _buSplashAdView = [[BUSplashAdView alloc] initWithSlotID:bUAdSplashID frame:frame];
         _buSplashAdView.delegate = self;
         UIWindow *keyWindow = [UIApplication sharedApplication].windows.firstObject;
         [keyWindow.rootViewController.view addSubview:_buSplashAdView];
@@ -591,9 +542,7 @@
 - (void)buttonTapped:(id)sender {
     
     if (_rewardTaskCount != 0) {
-        [self.rewardedVideoAd showAdFromRootViewController:self
-                                                  ritScene:BURitSceneType_home_get_bonus
-                                          ritSceneDescribe:nil];
+        [self showRewardVideoAd];
         
         self.isShowRewardViedo = YES;
         [[CheckUtil shareInstance]addShowRewardWithType:REWARDVIEDO platform:CHUANSHANJIA];
@@ -604,20 +553,6 @@
                            forState:UIControlStateNormal];
         [self jumpTaskList];
     }
-}
-
-- (void)showCMGame:(id)sender {
-    if ([[CheckUtil shareInstance]forbidJump]) {
-        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"温馨提示"
-                                                      message:@"您已违反心赚平台规则，请纠正行为，谢谢合作"
-                                                     delegate:self
-                                            cancelButtonTitle:@"OK"
-                                            otherButtonTitles:nil];
-        [alert show];
-        return;
-    }
-    
-    [self initGMGame];
 }
 
 #pragma mark - 安装描述文件
@@ -694,7 +629,6 @@
 
             self.WXBtn.hidden = YES;
             self.btn.hidden = NO;
-//            self.rewardButton.hidden = NO;
             [[NSUserDefaults standardUserDefaults] setObject:unionid forKey:@"WXLoginID"];
             [[NSUserDefaults standardUserDefaults] setObject:headimgurl forKey:@"headImgUrl"];
             [[NSUserDefaults standardUserDefaults] setObject:preWXLoginDate forKey:@"preWXLoginDate"];
@@ -1058,16 +992,11 @@
         NSLog(@"rewordvideo 领取视频任务");
         //TODO 做完积分墙任务，显示领取激励视频任务
         self.rewardButton.hidden = NO;
-        self.cmGameBtn.hidden = YES;
-        
         _rewardTaskCount = [mesDict[@"advNum"]integerValue];
         _orignalRewardTaskCount = [mesDict[@"advNum"]integerValue];
         _rewardUrlString = mesDict[@"url"];
         _type = [mesDict[@"type"]integerValue];
         _uid = [mesDict[@"uid"]integerValue];
-        
-        [self getSlotIdWithType:_type];
-        
         
         if (_rewardTaskCount > 0) {
             [self.rewardButton setTitle:[NSString stringWithFormat:@"剩余视频: %ld",_rewardTaskCount]
@@ -1415,8 +1344,6 @@
 #pragma mark -- UIApplication Delegate
 - (void)didResignActive:(NSNotification *)notification
 {
-
-    [self getSlotIdWithType:BSPLASH];
     
     self.isFirstLanuch = NO;
     
@@ -1435,7 +1362,7 @@
         self.btnGetUDID.hidden = NO;
         self.WXBtn.hidden = YES;
         self.btn.hidden = YES;
-//        self.rewardButton.hidden = YES;
+        self.rewardButton.hidden = YES;
     } else {
         // 判断是否已经微信登陆过
         NSString *WXLoginID = [[NSUserDefaults standardUserDefaults] objectForKey:@"WXLoginID"];
@@ -1443,38 +1370,26 @@
             self.WXBtn.hidden = YES;
             self.btn.hidden = NO;
             self.btnGetUDID.hidden = YES;
-//            self.rewardButton.hidden = NO;
         } else {
             self.WXBtn.hidden = NO;
             self.btn.hidden = YES;
             self.btnGetUDID.hidden = YES;
-//            self.rewardButton.hidden = YES;
+            self.rewardButton.hidden = YES;
         }
         
         if (_rewardTaskCount != 0 && _rewardTaskCount != -1) {
-            [self.rewardedVideoAd showAdFromRootViewController:self
-                                                      ritScene:BURitSceneType_home_get_bonus
-                                              ritSceneDescribe:nil];
-            
+            [self showRewardVideoAd];
+    
             self.isShowRewardViedo = YES;
             [[CheckUtil shareInstance]addShowRewardWithType:REWARDVIEDO platform:CHUANSHANJIA];
-            
+            self.rewardButton.hidden = YES;
         }
+
         
         if (!self.isFirstLanuch && !self.isShowRewardViedo && (_gdtSecondsCount ==0)) {
             //开屏广告初始化并展示代码
             if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-                
-//                [self.splash loadAdAndShowInWindow: [[UIApplication sharedApplication] keyWindow]];
-//                [[CheckUtil shareInstance]addShowRewardWithType:BACKSPLASH platform:GUANGDIANTONG];
-                
                 //开屏广告
-                CGRect frame = [UIScreen mainScreen].bounds;
-                self.buSplashAdView = [[BUSplashAdView alloc] initWithSlotID:self.splahViewSlotId frame:frame];
-                self.buSplashAdView.delegate = self;
-                UIWindow *keyWindow = [UIApplication sharedApplication].windows.firstObject;
-                [keyWindow.rootViewController.view addSubview:_buSplashAdView];
-                self.buSplashAdView.rootViewController = keyWindow.rootViewController;
                 [self.buSplashAdView loadAdData];
                 
                 [[CheckUtil shareInstance]addShowRewardWithType:BACKSPLASH platform:CHUANSHANJIA];
@@ -1486,107 +1401,6 @@
 
 }
 
-#pragma mark -- BURewardedVideoAdDelegate
-
-- (void)rewardedVideoAdDidLoad:(BURewardedVideoAd *)rewardedVideoAd {
-    NSLog(@"rewardedVideoAd data load success");
-}
-
-- (void)rewardedVideoAdVideoDidLoad:(BURewardedVideoAd *)rewardedVideoAd {
-    NSLog(@"rewardedVideoAd video load success");
-}
-
-- (void)rewardedVideoAdWillVisible:(BURewardedVideoAd *)rewardedVideoAd {
-    NSLog(@"rewardedVideoAd video will visible");
-}
-
-- (void)rewardedVideoAdDidClose:(BURewardedVideoAd *)rewardedVideoAd {
-    NSLog(@"rewardedVideoAd video did close");
-    
-    if (_uid != 0) {
-        [[CheckUtil shareInstance] recordForUserWithUid:_uid];
-    }
-    
-    if (_rewardTaskCount == -1) {
-        [self jumpToHtml];
-        self.isShowRewardViedo = NO;
-        
-    } else {
-        _rewardTaskCount -= 1;
-        if (_rewardTaskCount > 0) {
-            [self.rewardButton setTitle:[NSString stringWithFormat:@"剩余视频: %ld",(long)_rewardTaskCount]
-                               forState:UIControlStateNormal];
-            
-            _secondsCountDown = arc4random() % 6 + 10;
-            
-            self.secondsCountDownBtn.hidden = NO;
-            
-            [self.secondsCountDownBtn setTitle:[NSString stringWithFormat:@"%ld",(long)_secondsCountDown] forState:UIControlStateNormal];
-            _countDownTimer = [NSTimer scheduledTimerWithTimeInterval:1
-                                                               target:self
-                                                             selector:@selector(activeCountDownAction)
-                                                             userInfo:nil
-                                                              repeats:YES];
-            self.rewardButton.userInteractionEnabled = NO;
-            self.btn.userInteractionEnabled = NO;
-            
-        } else {
-//            [self.rewardButton setTitle:[NSString stringWithFormat:@"可领取奖励"]
-//                               forState:UIControlStateNormal];
-            
-            // @"http://m.shuanggangta.com:9595/userInfo/personal"
-            
-            if (_rewardUrlString) {
-
-                NSLog(@"rewardvideo 自动领取奖励 url: %@", _rewardUrlString);
-                
-                if ([_rewardUrlString containsString:@"personal"]) {
-                    [self jumpTaskList];
-                } else {
-                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_rewardUrlString]];
-                }
-            }
-            
-            self.isShowRewardViedo = NO;
-            
-            self.rewardButton.hidden = YES;
-            self.cmGameBtn.hidden = NO;
-        }
-    }
-}
-
-- (void)rewardedVideoAdDidClick:(BURewardedVideoAd *)rewardedVideoAd {
-    NSLog(@"rewardedVideoAd video did click");
-}
-
-- (void)rewardedVideoAd:(BURewardedVideoAd *)rewardedVideoAd didFailWithError:(NSError *)error {
-    _rewardTaskCount = -1;
-    NSLog(@"rewardedVideoAd data load fail");
-}
-
-- (void)rewardedVideoAdDidPlayFinish:(BURewardedVideoAd *)rewardedVideoAd didFailWithError:(NSError *)error {
-    if (error) {
-        NSLog(@"rewardedVideoAd play error");
-    } else {
-        NSLog(@"rewardedVideoAd play finish");
-    }
-}
-
-- (void)rewardedVideoAdServerRewardDidFail:(BURewardedVideoAd *)rewardedVideoAd {
-    NSLog(@"rewardedVideoAd verify failed");
-    
-    NSLog(@"Demo RewardName == %@", rewardedVideoAd.rewardedVideoModel.rewardName);
-    NSLog(@"Demo RewardAmount == %ld", (long)rewardedVideoAd.rewardedVideoModel.rewardAmount);
-}
-
-- (void)rewardedVideoAdServerRewardDidSucceed:(BURewardedVideoAd *)rewardedVideoAd verify:(BOOL)verify{
-    NSLog(@"rewardedVideoAd verify succeed");
-    NSLog(@"verify result: %@", verify ? @"success" : @"fail");
-    
-    NSLog(@"Demo RewardName == %@", rewardedVideoAd.rewardedVideoModel.rewardName);
-    NSLog(@"Demo RewardAmount == %ld", (long)rewardedVideoAd.rewardedVideoModel.rewardAmount);
-}
-
 - (void)splashAdDidClose:(BUSplashAdView *)splashAd {
     if (_uid != 0) {
         [[CheckUtil shareInstance] recordForUserWithUid:_uid];
@@ -1594,63 +1408,132 @@
     [splashAd removeFromSuperview];
 }
 
-#pragma mark - GDTSplashAdDelegate
-- (void)splashAdSuccessPresentScreen:(GDTSplashAd *)splashAd
-{
-    NSLog(@"%s",__FUNCTION__);
+#pragma mark - BUNativeExpressRewardedVideoAdDelegate
+- (void)nativeExpressRewardedVideoAdDidLoad:(BUNativeExpressRewardedVideoAd *)rewardedVideoAd {
+    [self pbud_logWithSEL:_cmd msg:@""];
 }
 
-- (void)splashAdFailToPresent:(GDTSplashAd *)splashAd withError:(NSError *)error
-{
-    self.splash = nil;
-    NSLog(@"%s%@",__FUNCTION__,error);
+- (void)nativeExpressRewardedVideoAd:(BUNativeExpressRewardedVideoAd *)rewardedVideoAd didFailWithError:(NSError *_Nullable)error {
+    [self pbud_logWithSEL:_cmd msg:[NSString stringWithFormat:@"%@", error]];
+    _rewardTaskCount = -1;
 }
 
-- (void)splashAdExposured:(GDTSplashAd *)splashAd
-{
-    NSLog(@"%s",__FUNCTION__);
+- (void)nativeExpressRewardedVideoAdCallback:(BUNativeExpressRewardedVideoAd *)rewardedVideoAd withType:(BUNativeExpressRewardedVideoAdType)nativeExpressVideoType{
+    [self pbud_logWithSEL:_cmd msg:@""];
 }
 
-- (void)splashAdClicked:(GDTSplashAd *)splashAd
-{
-    NSLog(@"%s",__FUNCTION__);
+- (void)nativeExpressRewardedVideoAdDidDownLoadVideo:(BUNativeExpressRewardedVideoAd *)rewardedVideoAd {
+    [self pbud_logWithSEL:_cmd msg:@""];
 }
 
-- (void)splashAdApplicationWillEnterBackground:(GDTSplashAd *)splashAd
-{
-    NSLog(@"%s",__FUNCTION__);
+- (void)nativeExpressRewardedVideoAdViewRenderSuccess:(BUNativeExpressRewardedVideoAd *)rewardedVideoAd {
+    [self pbud_logWithSEL:_cmd msg:@""];
 }
 
-- (void)splashAdWillClosed:(GDTSplashAd *)splashAd
-{
-    NSLog(@"%s",__FUNCTION__);
+- (void)nativeExpressRewardedVideoAdViewRenderFail:(BUNativeExpressRewardedVideoAd *)rewardedVideoAd error:(NSError *_Nullable)error {
+    [self pbud_logWithSEL:_cmd msg:[NSString stringWithFormat:@"%@", error]];
 }
 
-- (void)splashAdClosed:(GDTSplashAd *)splashAd
-{
-    [[CheckUtil shareInstance] recordForUserWithUid:_uid];
-    self.splash = nil;
-    NSLog(@"%s",__FUNCTION__);
+- (void)nativeExpressRewardedVideoAdWillVisible:(BUNativeExpressRewardedVideoAd *)rewardedVideoAd {
+    [self pbud_logWithSEL:_cmd msg:@""];
 }
 
-- (void)splashAdWillPresentFullScreenModal:(GDTSplashAd *)splashAd
-{
-    NSLog(@"%s",__FUNCTION__);
+- (void)nativeExpressRewardedVideoAdDidVisible:(BUNativeExpressRewardedVideoAd *)rewardedVideoAd {
+    [self pbud_logWithSEL:_cmd msg:@""];
 }
 
-- (void)splashAdDidPresentFullScreenModal:(GDTSplashAd *)splashAd
-{
-    NSLog(@"%s",__FUNCTION__);
+- (void)nativeExpressRewardedVideoAdWillClose:(BUNativeExpressRewardedVideoAd *)rewardedVideoAd {
+    [self pbud_logWithSEL:_cmd msg:@""];
 }
 
-- (void)splashAdWillDismissFullScreenModal:(GDTSplashAd *)splashAd
-{
-    NSLog(@"%s",__FUNCTION__);
+- (void)nativeExpressRewardedVideoAdDidClose:(BUNativeExpressRewardedVideoAd *)rewardedVideoAd {
+    [self pbud_logWithSEL:_cmd msg:@""];
+    
 }
 
-- (void)splashAdDidDismissFullScreenModal:(GDTSplashAd *)splashAd
-{
-    NSLog(@"%s",__FUNCTION__);
+- (void)nativeExpressRewardedVideoAdDidClick:(BUNativeExpressRewardedVideoAd *)rewardedVideoAd {
+    [self pbud_logWithSEL:_cmd msg:@""];
+}
+
+- (void)nativeExpressRewardedVideoAdDidClickSkip:(BUNativeExpressRewardedVideoAd *)rewardedVideoAd {
+    [self pbud_logWithSEL:_cmd msg:@""];
+}
+
+- (void)nativeExpressRewardedVideoAdDidPlayFinish:(BUNativeExpressRewardedVideoAd *)rewardedVideoAd didFailWithError:(NSError *_Nullable)error {
+    [self pbud_logWithSEL:_cmd msg:[NSString stringWithFormat:@"%@", error]];
+    
+    if (_uid != 0) {
+               [[CheckUtil shareInstance] recordForUserWithUid:_uid];
+           }
+           
+           if (_rewardTaskCount == -1) {
+               [self jumpToHtml];
+               self.isShowRewardViedo = NO;
+               
+           } else {
+               _rewardTaskCount -= 1;
+               if (_rewardTaskCount > 0) {
+                   [self.rewardButton setTitle:[NSString stringWithFormat:@"剩余视频: %ld",(long)_rewardTaskCount]
+                                      forState:UIControlStateNormal];
+                   
+                   _secondsCountDown = arc4random() % 6 + 10;
+                   
+                   self.secondsCountDownBtn.hidden = NO;
+                   
+                   [self.secondsCountDownBtn setTitle:[NSString stringWithFormat:@"%ld",(long)_secondsCountDown] forState:UIControlStateNormal];
+                   _countDownTimer = [NSTimer scheduledTimerWithTimeInterval:1
+                                                                      target:self
+                                                                    selector:@selector(activeCountDownAction)
+                                                                    userInfo:nil
+                                                                     repeats:YES];
+                   self.rewardButton.userInteractionEnabled = NO;
+                   self.btn.userInteractionEnabled = NO;
+                   
+               } else {
+       //            [self.rewardButton setTitle:[NSString stringWithFormat:@"可领取奖励"]
+       //                               forState:UIControlStateNormal];
+                   
+                   // @"http://m.shuanggangta.com:9595/userInfo/personal"
+                   
+                   if (_rewardUrlString) {
+
+                       NSLog(@"rewardvideo 自动领取奖励 url: %@", _rewardUrlString);
+                       
+                       if ([_rewardUrlString containsString:@"personal"]) {
+                           [self jumpTaskList];
+                       } else {
+                           [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_rewardUrlString]];
+                       }
+                   }
+                   
+                   self.isShowRewardViedo = NO;
+                   self.rewardButton.hidden = YES;
+               }
+           }
+}
+
+- (void)nativeExpressRewardedVideoAdServerRewardDidSucceed:(BUNativeExpressRewardedVideoAd *)rewardedVideoAd verify:(BOOL)verify {
+    [self pbud_logWithSEL:_cmd msg:@""];
+}
+
+- (void)nativeExpressRewardedVideoAdServerRewardDidFail:(BUNativeExpressRewardedVideoAd *)rewardedVideoAd error:(NSError * _Nullable)error {
+    [self pbud_logWithSEL:_cmd msg:[NSString stringWithFormat:@"%@", error]];
+}
+
+- (void)nativeExpressRewardedVideoAdDidCloseOtherController:(BUNativeExpressRewardedVideoAd *)rewardedVideoAd interactionType:(BUInteractionType)interactionType {
+    NSString *str = nil;
+    if (interactionType == BUInteractionTypePage) {
+        str = @"ladingpage";
+    } else if (interactionType == BUInteractionTypeVideoAdDetail) {
+        str = @"videoDetail";
+    } else {
+        str = @"appstoreInApp";
+    }
+    [self pbud_logWithSEL:_cmd msg:str];
+}
+#pragma mark - Log
+- (void)pbud_logWithSEL:(SEL)sel msg:(NSString *)msg {
+    BUD_Log(@"SDKDemoDelegate BUNativeExpressRewardedVideoAd In VC (%@) extraMsg:%@", NSStringFromSelector(sel), msg);
 }
 
 
@@ -1682,8 +1565,6 @@
 {
     _gdtSecondsCount--;
     
-//    NSLog(@"_gdtSecondsCount: %ld", (long)_gdtSecondsCount);
-    
     if (_gdtSecondsCount == 0) {
         NSLog(@"停止倒计时");
         [self.gdtTimer setFireDate:[NSDate distantFuture]];
@@ -1692,95 +1573,6 @@
     }
 }
 
-#pragma mark -- CMGameSDK
-
-- (void)initGMGame
-{
-    self.view.backgroundColor = [UIColor whiteColor];
-    
-    CMGameAppInfo *appInfo = [CMGameAppInfo alloc];    //配置APP信息
-    appInfo.appId = @"xinzhuanjifenqiang";                       //豹趣申请的appId
-    appInfo.baseUrl = @"https://xzjfq-xyx-area-svc.beike.cn";    //豹趣申请的apphost，注：不能以/结尾
-    // channelId 用途：豹趣 SDK 支持从云端下拉游戏列表，并且支持为不同的接入方定制不同的游戏列表，
-    // 如果有定制的需求，请先向豹趣的同学反馈，我们会根据你们的需求上线只属于你们的定制游戏列表，
-    // 然后你们在此处将 channelId 的取值与 appId 的取值保持一致就可以云端下拉到定制的游戏列表了。
-    // 如果没有定制的需求，则可以使用我们豹趣默认的游戏列表（上新游戏比较及时），channelId 取值为 default 即可。
-    appInfo.channelId = @"default"; // 取值要不就是 default，要不就跟 appId 相同。
-    [CMGameSDK setAppInfo:appInfo];
-    
-    BUInfo *buInfo = [BUInfo alloc];                    //配置BUAd，如果不希望某种广告展示，不填充广告id即可
-    buInfo.appId = @"5024719";                          //BU申请的appId
-    buInfo.bannerSlotId = @"";                 //BU申请的bannerId 924719503
-    buInfo.rewardedVideoSlotId = @"924719713";          //BU申请的激励视频Id
-    buInfo.interstitialSlotId = @"924719829";           //BU申请的插屏Id
-    buInfo.fullscreenVideoSlotId = @"924719741";        //BU申请的全屏广告Id
-    [CMGameSDK setBUInfo:buInfo];
-    
-    //设置回调接口，必须在下面的 init() 方法前调用，否则会导致 didCMGameListReady() 方法不回调
-    //注：内部使用弱引用来持有 delegate 对象，不会有内存泄漏风险
-    [CMGameSDK setDelegate:self];
-    
-    // 初始化SDK，加载游戏列表，并异步加载云端最新的游戏列表
-    // 为避免打印太多日志，在正式版本时参数建议为 false
-    [CMGameSDK init:false];
-    
-    //SDK 内部需要外部提供 vc 来展示游戏的 WebView
-    //注：内部使用弱引用来持有 controller 对象，不会有内存泄漏风险
-    [CMGameSDK putPresentViewController:self];
-
-    [self.view addSubview:self.cmView];
-    
-    // 申请用户鉴权信息，用于存储游戏内部的用户数据。
-    // 为了避免豹趣服务端产生大量无用的数据，请确保这个方法在小游戏列表展示后才调用
-    // 为了避免豹趣服务端产生大量无用的数据，请确保这个方法在小游戏列表展示后才调用
-    // 为了避免豹趣服务端产生大量无用的数据，请确保这个方法在小游戏列表展示后才调用
-    // 注：由于这个方法是阻塞的，为了避免影响界面展示，建议异步执行
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [CMGameSDK initCmGameAccount];
-    });
-}
-
-/**
- * 利用外部提供的 ImageLoader 实现加载游戏封面图片。
- * 由于大部分应用都集成了类似 SDWebImage 这样的异步加载网络图片的类库，SDK 内不便集成，所以延迟到外部来实现。
- * SDK 对这个方法有两处使用的地方：
- * 一、使用 SDK 提供的 [CMGameSDK getGameScrollView:frame] 会调用这个方法来加载游戏封面图片。
- * 二、调用 SDK 提供的 [CMGameSDK playGame:gameId] 会使用这个方法来加载游戏封面图片用于游戏 loading 页面。
- */
-- (void)loadImage:(UIImageView *)imgView url:(NSString *)url placeHolder:(UIImage *)placeHolder {
-    NSURL *imageUrl = [NSURL URLWithString:url];
-    [imgView sd_setImageWithURL:imageUrl placeholderImage:placeHolder];
-}
-
-//点击游戏列表中的游戏时回调返回gameId
-- (void)didCMGameClicked:(NSString*)gameId {
-    NSLog(@"didGameClicked => gameId:%@", gameId);
-    [[CheckUtil shareInstance] addShowRewardWithType:CMGAME platform:CHUANSHANJIA];
-}
-
-// 退出游戏时回调返回 gameId，这个接口可配合 didCMGameClicked 来统计用户的玩游戏时长
-- (void)didCMGameExit:(NSString*)gameId {
-    NSLog(@"didCMGameExit => gameId:%@", gameId);
-    [self.cmView removeFromSuperview];
-}
-
-//游戏列表准备好/更新时回调
-- (void)didCMGameListReady:(NSUInteger)gameCount {
-    NSLog(@"didCMGameListReady => gameCount:%lu", (unsigned long)gameCount);
-    
-    // 可以在此处实现更新游戏列表的控件
-    //    NSArray * gameList = CMGameSDK.getGameList;
-    //    for (CMGameInfo* info in gameList) {
-    //        NSLog(@"didCMGameListReady => gameId:%@ gameName:%@", info.gameId, info.gameName);
-    //    }
-}
-
-// 通知游戏加载结果，可用于接入方自行实现游戏加载界面时获得关闭加载界面的时机或者展示加载失败页面的时机
-- (void)didCMGameLoadFinish:(NSString *)gameId :(bool)isSuccess {
-    NSLog(@"didCMGameLoadFinish => [%@] result: %d", gameId, isSuccess);
-}
-
-
 #pragma mark - private method
 - (void) getSlotIdWithType:(NSInteger)type
 {
@@ -1788,11 +1580,7 @@
     NSString *str = @"http://m.shuanggangta.com/visual/findBySql?sql=select data from temp where type=";
     NSString *urlString = [NSString stringWithFormat:@"%@%ld", [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], (long)type];
     NSLog(@"slotID url:%@", urlString);
-    
-//    NSString *encodeStr = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
-//    NSString *encodedUrl = [
-//
+
     NSURL *url=[NSURL URLWithString:urlString];
     //创建请求
     NSURLRequest * request=[NSURLRequest requestWithURL:url];
@@ -1816,14 +1604,6 @@
                                    if(arr != nil){
                                        
                                        NSLog(@"arr:%@ TYPE:%ld", arr, (long)type);
-
-                                       if (type == TASKREWARD || type == PERSONALREWARD || type == WITHDRAWREWARD) {
-                                           self.rewardedVideoSlotId = [arr objectAtIndex:0];
-                                           // 初始化激励视频
-                                           [self initRewardTask];
-                                       } else if(type == SPLASH || type == BSPLASH) {
-                                           self.splahViewSlotId = [arr objectAtIndex:0];
-                                       }
                                    }
                                 }
                                else

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "ECA6026C21D258B400416C67"
-               BuildableName = "&#x5fc3;&#x8d5a;.app"
+               BuildableName = "&#x5168;&#x80fd;&#x738b;&#x626b;&#x63cf;&#x4eea;.app"
                BlueprintName = "&#x5fc3;&#x8d5a;"
                ReferencedContainer = "container:newYYY.xcodeproj">
             </BuildableReference>
@@ -31,7 +31,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "ECA6026C21D258B400416C67"
-            BuildableName = "&#x5fc3;&#x8d5a;.app"
+            BuildableName = "&#x5168;&#x80fd;&#x738b;&#x626b;&#x63cf;&#x4eea;.app"
             BlueprintName = "&#x5fc3;&#x8d5a;"
             ReferencedContainer = "container:newYYY.xcodeproj">
          </BuildableReference>
@@ -40,7 +40,7 @@
       </Testables>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -54,7 +54,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "ECA6026C21D258B400416C67"
-            BuildableName = "&#x5fc3;&#x8d5a;.app"
+            BuildableName = "&#x5168;&#x80fd;&#x738b;&#x626b;&#x63cf;&#x4eea;.app"
             BlueprintName = "&#x5fc3;&#x8d5a;"
             ReferencedContainer = "container:newYYY.xcodeproj">
          </BuildableReference>
@@ -71,7 +71,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "ECA6026C21D258B400416C67"
-            BuildableName = "&#x5fc3;&#x8d5a;.app"
+            BuildableName = "&#x5168;&#x80fd;&#x738b;&#x626b;&#x63cf;&#x4eea;.app"
             BlueprintName = "&#x5fc3;&#x8d5a;"
             ReferencedContainer = "container:newYYY.xcodeproj">
          </BuildableReference>
