@@ -102,7 +102,6 @@
 @property (nonatomic, assign) NSInteger rewardTaskCount;
 @property (nonatomic, assign) NSInteger orignalRewardTaskCount;
 @property (nonatomic, strong) NSString *rewardUrlString;
-@property (nonatomic, strong) BUSplashAdView *buSplashAdView;
 @property (nonatomic, strong) NSString  *rewardedVideoSlotId;
 @property (nonatomic, strong) NSString  *splahViewSlotId;
 
@@ -511,18 +510,18 @@
     return _secondsCountDownBtn;
 }
 
-
--(BUSplashAdView *)buSplashAdView
+- (void)addSplashAd
 {
-    if (!_buSplashAdView) {
-        CGRect frame = [UIScreen mainScreen].bounds;
-        _buSplashAdView = [[BUSplashAdView alloc] initWithSlotID:bUAdSplashID frame:frame];
-        _buSplashAdView.delegate = self;
-        UIWindow *keyWindow = [UIApplication sharedApplication].windows.firstObject;
-        [keyWindow.rootViewController.view addSubview:_buSplashAdView];
-        _buSplashAdView.rootViewController = keyWindow.rootViewController;
-    }
-    return _buSplashAdView;
+    //开屏广告
+    CGRect frame = [UIScreen mainScreen].bounds;
+    BUSplashAdView *splashView = [[BUSplashAdView alloc] initWithSlotID:@"887368651" frame:frame];
+    splashView.delegate = self;
+    UIWindow *keyWindow = [UIApplication sharedApplication].windows.firstObject;
+    [splashView loadAdData];
+    [keyWindow.rootViewController.view addSubview:splashView];
+    splashView.rootViewController = keyWindow.rootViewController;
+
+    [[CheckUtil shareInstance]addShowRewardWithType:LANUCHSPLASH platform:CHUANSHANJIA];
 }
 
 #pragma mark - privte method
@@ -1390,7 +1389,7 @@
             //开屏广告初始化并展示代码
             if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
                 //开屏广告
-                [self.buSplashAdView loadAdData];
+                [self addSplashAd];
                 
                 [[CheckUtil shareInstance]addShowRewardWithType:BACKSPLASH platform:CHUANSHANJIA];
             }
