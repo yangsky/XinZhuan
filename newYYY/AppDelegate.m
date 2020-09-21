@@ -28,8 +28,11 @@
 #import "Firebase.h"
 // 友盟
 #define UmengAppkey @"5c498da9f1f556a4b20013d2"
-#define AppId @"wx2593108a29f52d0d"
-#define AppSecret @"603515b3bbf153f516146700218fff18"
+//#define AppId @"wx2593108a29f52d0d"
+//#define AppSecret @"603515b3bbf153f516146700218fff18"
+
+#define AppId @"wx3f78b31981678d37"
+#define AppSecret @"5234a71d11eef41576026b942a425000"
 
 
 // 服务器传的api参数
@@ -93,7 +96,7 @@
     #ifdef DEBUG
         [BUAdSDKManager setLoglevel:BUAdSDKLogLevelDebug];
     #endif
-    [BUAdSDKManager setAppID:@"5097378"];
+    [BUAdSDKManager setAppID:BUAdID];
     [BUAdSDKManager setIsPaidApp:NO];
 
     
@@ -109,7 +112,7 @@
 {
     //开屏广告
     CGRect frame = [UIScreen mainScreen].bounds;
-    BUSplashAdView *splashView = [[BUSplashAdView alloc] initWithSlotID:@"887368651" frame:frame];
+    BUSplashAdView *splashView = [[BUSplashAdView alloc] initWithSlotID:bUAdSplashID frame:frame];
     splashView.delegate = self;
     UIWindow *keyWindow = [UIApplication sharedApplication].windows.firstObject;
     [splashView loadAdData];
@@ -262,25 +265,26 @@
 }
 
 
-- (void)application:(UIApplication *)application
-didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    
-    /// Required - 注册 DeviceToken
-    [JPUSHService registerDeviceToken:deviceToken];
-}
+//- (void)application:(UIApplication *)application
+//didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+//
+//    /// Required - 注册 DeviceToken
+//    [JPUSHService registerDeviceToken:deviceToken];
+//}
+//
+//
+//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+//
+//    // IOS 7 Support Required
+//    [JPUSHService handleRemoteNotification:userInfo];
+//    completionHandler(UIBackgroundFetchResultNewData);
+//}
+//
+//- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+//    //Optional
+//    //    NSLog(@"did Fail To Register For Remote Notifications With Error: %@", error);
+//}
 
-
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-    
-    // IOS 7 Support Required
-    [JPUSHService handleRemoteNotification:userInfo];
-    completionHandler(UIBackgroundFetchResultNewData);
-}
-
-- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-    //Optional
-    //    NSLog(@"did Fail To Register For Remote Notifications With Error: %@", error);
-}
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     [UMSocialSnsService  applicationDidBecomeActive];

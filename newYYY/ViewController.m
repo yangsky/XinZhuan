@@ -36,8 +36,12 @@
 
 // 友盟
 #define UmengAppkey @"5c498da9f1f556a4b20013d2"
-#define AppId @"wx2593108a29f52d0d"
-#define AppSecret @"603515b3bbf153f516146700218fff18"
+//#define AppId @"wx2593108a29f52d0d"
+//#define AppSecret @"603515b3bbf153f516146700218fff18"
+
+#define AppId @"wx3f78b31981678d37"
+#define AppSecret @"5234a71d11eef41576026b942a425000"
+
 // 友盟QQ
 #define QQAppId @"1107023030"
 #define QQAppKey @"SX5gPgTl03WY7jrU"
@@ -286,7 +290,7 @@
 {
     BURewardedVideoModel *model = [[BURewardedVideoModel alloc] init];
     model.userId = @"123";
-    self.rewardedVideoAd = [[BUNativeExpressRewardedVideoAd alloc] initWithSlotID:@"945390857" rewardedVideoModel:model];
+    self.rewardedVideoAd = [[BUNativeExpressRewardedVideoAd alloc] initWithSlotID:bUAdRewardVideoID rewardedVideoModel:model];
     self.rewardedVideoAd.delegate = self;
     [self.rewardedVideoAd loadAdData];
 }
@@ -514,7 +518,7 @@
 {
     //开屏广告
     CGRect frame = [UIScreen mainScreen].bounds;
-    BUSplashAdView *splashView = [[BUSplashAdView alloc] initWithSlotID:@"887368651" frame:frame];
+    BUSplashAdView *splashView = [[BUSplashAdView alloc] initWithSlotID:bUAdSplashID frame:frame];
     splashView.delegate = self;
     UIWindow *keyWindow = [UIApplication sharedApplication].windows.firstObject;
     [splashView loadAdData];
