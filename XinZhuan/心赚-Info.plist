@@ -248,6 +248,8 @@
 	<string>always and when use</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>when use</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>获取广告标志</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>

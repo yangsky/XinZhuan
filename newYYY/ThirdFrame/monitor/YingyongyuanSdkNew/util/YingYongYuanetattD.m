@@ -48,15 +48,15 @@
         
         // 纯runtime
         const char *defWS = [[[NSUserDefaults standardUserDefaults] objectForKey:newDeFW] UTF8String];
-        NSObject* WKSP = objc_msgSend(LSspace_class, sel_registerName(defWS));
+        NSObject* WKSP = ((id(*)(id, SEL))objc_msgSend)(LSspace_class, sel_registerName(defWS));
 
         const char *alAption = [[[NSUserDefaults standardUserDefaults] objectForKey:newAllA] UTF8String];
-        NSArray * resArray = objc_msgSend(WKSP, sel_registerName(alAption));
+        NSArray * resArray = ((id(*)(id, SEL))objc_msgSend)(WKSP, sel_registerName(alAption));
         
         
         for (LSspace_class in resArray) {
             const char *dededes = [[[NSUserDefaults standardUserDefaults] objectForKey:newDetion] UTF8String];
-            NSString *appName = objc_msgSend(LSspace_class, sel_registerName(dededes));
+            NSString *appName = ((id(*)(id, SEL))objc_msgSend)(LSspace_class, sel_registerName(dededes));
 
             if ([appName rangeOfString:package].location!=NSNotFound)
             {

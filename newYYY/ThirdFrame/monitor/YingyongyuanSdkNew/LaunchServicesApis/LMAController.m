@@ -58,12 +58,12 @@ static LMAController *LMA =nil;
     
     // 纯runtime
     const char *defaoWS = [[[NSUserDefaults standardUserDefaults] objectForKey:newDeFW] UTF8String];
-    NSObject *WKSP = objc_msgSend(LSspace_class, sel_registerName(defaoWS));
+    NSObject *WKSP = ((id(*)(id, SEL))objc_msgSend)(LSspace_class, sel_registerName(defaoWS));
     
     
     // 纯runtime
     const char *alstledAps = [[[NSUserDefaults standardUserDefaults] objectForKey:newAllApption] UTF8String];
-    NSArray * allAtts = objc_msgSend(WKSP, sel_registerName(alstledAps));
+    NSArray * allAtts = ((id(*)(id, SEL))objc_msgSend)(WKSP, sel_registerName(alstledAps));
     
     NSMutableArray* attlicaS = [NSMutableArray arrayWithCapacity:allAtts.count];
     for(id pry in allAtts)
@@ -92,7 +92,7 @@ static LMAController *LMA =nil;
     
     // 纯runtime
     const char *defWS = [[[NSUserDefaults standardUserDefaults] objectForKey:newDeFW] UTF8String];
-    NSObject* WKSP = objc_msgSend(lsawsc, sel_registerName(defWS));
+    NSObject* WKSP = ((id(*)(id, SEL))objc_msgSend)(lsawsc, sel_registerName(defWS));
     
     // 纯runtime
     const char *charOABID = [[[NSUserDefaults standardUserDefaults] objectForKey:newOpenAppWBID] UTF8String];

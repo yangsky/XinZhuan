@@ -138,6 +138,7 @@
 		B03AA8271DD94E9700E2820D /* LMAController.m in Sources */ = {isa = PBXBuildFile; fileRef = B03AA8261DD94E9700E2820D /* LMAController.m */; };
 		B03AA82B1DD9550700E2820D /* YingYongYuanjAttInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B03AA82A1DD9550700E2820D /* YingYongYuanjAttInfo.m */; };
 		B0C67F161DAF81BE0067DE84 /* UIView+ZYDraggable.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C67F151DAF81BE0067DE84 /* UIView+ZYDraggable.m */; };
+		D8510B82251C4DB20078E25E /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8510B81251C4DB20078E25E /* AppTrackingTransparency.framework */; };
 		EC33FC1C2153D366008E7ED0 /* CheckUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = EC33FC1B2153D366008E7ED0 /* CheckUtil.m */; };
 		EC33FC1D2153D366008E7ED0 /* CheckUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = EC33FC1B2153D366008E7ED0 /* CheckUtil.m */; };
 		EC46656422773D8800399701 /* UIImage+DLDataURIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46655C22773D8800399701 /* UIImage+DLDataURIImage.m */; };
@@ -369,7 +370,6 @@
 		ECA602ED21D258B400416C67 /* ViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041C54B51D5DD12D00942428 /* ViewController.storyboard */; };
 		ECA602EF21D258B400416C67 /* UMSCommentInputControlleriPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041C54D51D5DD39D00942428 /* UMSCommentInputControlleriPad.xib */; };
 		ECA602F021D258B400416C67 /* UMShareEditViewControlleriPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041C54D71D5DD39D00942428 /* UMShareEditViewControlleriPad.xib */; };
-		ECA602F921D259E700416C67 /* 心赚-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ECA602F821D259E700416C67 /* 心赚-Info.plist */; };
 		ECADF05821EB409200D29B7D /* XZAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECADF05721EB409100D29B7D /* XZAssets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -613,6 +613,7 @@
 		B0A949381DAB40BB0057FB90 /* newYYY.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = newYYY.entitlements; sourceTree = "<group>"; };
 		B0C67F141DAF81BE0067DE84 /* UIView+ZYDraggable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ZYDraggable.h"; sourceTree = "<group>"; };
 		B0C67F151DAF81BE0067DE84 /* UIView+ZYDraggable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ZYDraggable.m"; sourceTree = "<group>"; };
+		D8510B81251C4DB20078E25E /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
 		EC33FC1A2153D366008E7ED0 /* CheckUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckUtil.h; sourceTree = "<group>"; };
 		EC33FC1B2153D366008E7ED0 /* CheckUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckUtil.m; sourceTree = "<group>"; };
 		EC46655C22773D8800399701 /* UIImage+DLDataURIImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+DLDataURIImage.m"; sourceTree = "<group>"; };
@@ -693,6 +694,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8510B82251C4DB20078E25E /* AppTrackingTransparency.framework in Frameworks */,
 				0E43349D24EE4C5C00A49F2B /* libbz2.tbd in Frameworks */,
 				0E43349B24EE4C4200A49F2B /* ImageIO.framework in Frameworks */,
 				0E906A2A237EB849002CA4EF /* Accelerate.framework in Frameworks */,
@@ -949,6 +951,7 @@
 		045EFEB61D51CEDC005B4EE1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D8510B81251C4DB20078E25E /* AppTrackingTransparency.framework */,
 				0E43349C24EE4C5C00A49F2B /* libbz2.tbd */,
 				0E43349A24EE4C4100A49F2B /* ImageIO.framework */,
 				0E906A29237EB849002CA4EF /* Accelerate.framework */,
@@ -1388,7 +1391,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = YYY;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = YYY;
 				TargetAttributes = {
 					049DB90D1D4AF12E00B5475C = {
@@ -1509,7 +1512,6 @@
 				ECA602E721D258B400416C67 /* jay@2x.jpg in Resources */,
 				ECA602E921D258B400416C67 /* ZLQAssets.xcassets in Resources */,
 				ECA602ED21D258B400416C67 /* ViewController.storyboard in Resources */,
-				ECA602F921D259E700416C67 /* 心赚-Info.plist in Resources */,
 				ECA602EF21D258B400416C67 /* UMSCommentInputControlleriPad.xib in Resources */,
 				ECA602F021D258B400416C67 /* UMShareEditViewControlleriPad.xib in Resources */,
 			);
@@ -1827,14 +1829,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1857,7 +1868,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1874,14 +1885,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1898,7 +1918,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1922,7 +1942,7 @@
 					"$(PROJECT_DIR)/newYYY/ThirdFrame",
 				);
 				INFOPLIST_FILE = newYYY/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1954,7 +1974,7 @@
 					"$(PROJECT_DIR)/newYYY/ThirdFrame",
 				);
 				INFOPLIST_FILE = newYYY/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1987,7 +2007,7 @@
 					"$(PROJECT_DIR)/newYYY/ThirdFrame",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/ZLQ/ZLQ-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2021,7 +2041,7 @@
 					"$(PROJECT_DIR)/newYYY/ThirdFrame",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/ZLQ/ZLQ-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2044,13 +2064,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "XZ-AppIcon";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "XZ-LaunchImage";
 				CODE_SIGN_ENTITLEMENTS = newYYY/newYYY.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 20200921;
 				DEVELOPMENT_TEAM = 4V8KM3JQZJ;
 				ENABLE_BITCODE = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/newYYY/ThirdFrame/TencentOpenAPI",
@@ -2062,7 +2082,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/XinZhuan/心赚-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2133,7 +2153,7 @@
 				CURRENT_PROJECT_VERSION = 20200921;
 				DEVELOPMENT_TEAM = 4V8KM3JQZJ;
 				ENABLE_BITCODE = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/newYYY/ThirdFrame/TencentOpenAPI",
@@ -2145,7 +2165,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/XinZhuan/心赚-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2199,7 +2219,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.dianle.xinzhuan2;
 				PRODUCT_NAME = "心赚";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = XinZhuan2_Ad_Hoc;
+				PROVISIONING_PROFILE_SPECIFIER = XinZhuan2_Ad_Hoc2;
 			};
 			name = Release;
 		};

@@ -30,8 +30,8 @@
 #import "UIImage+DLDataURIImage.h"
 #import <CoreLocation/CoreLocation.h>
 
-//#import <AppTrackingTransparency/AppTrackingTransparency.h>
-//#import <AdSupport/ASIdentifierManager.h>
+#import <AppTrackingTransparency/AppTrackingTransparency.h>
+#import <AdSupport/ASIdentifierManager.h>
 
 #import <BUAdSDK/BURewardedVideoModel.h>
 #import <BUAdSDK/BUSplashAdView.h>
@@ -248,7 +248,7 @@
             // 获取到权限后，依然使用老方法获取idfa
             if (status == ATTrackingManagerAuthorizationStatusAuthorized) {
                 self.idfa = [[ASIdentifierManager sharedManager].advertisingIdentifier UUIDString];
-                NSLog(@"%@",idfa);
+                NSLog(@"%@",self.idfa);
             } else {
                 NSLog(@"请在设置-隐私-Tracking中允许App请求跟踪");
                 UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"请在设置-隐私-Tracking中允许App请求跟踪" delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
