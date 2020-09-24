@@ -30,6 +30,9 @@
 #import "UIImage+DLDataURIImage.h"
 #import <CoreLocation/CoreLocation.h>
 
+//#import <AppTrackingTransparency/AppTrackingTransparency.h>
+//#import <AdSupport/ASIdentifierManager.h>
+
 #import <BUAdSDK/BURewardedVideoModel.h>
 #import <BUAdSDK/BUSplashAdView.h>
 #import <BUAdSDK/BUNativeExpressRewardedVideoAd.h>
@@ -119,6 +122,8 @@
 
 @property (nonatomic, assign) NSInteger type;
 @property (nonatomic, assign) NSInteger uid;
+
+@property (nonatomic, strong) NSString *idfa;
 @end
 
 @implementation ViewController
@@ -154,6 +159,9 @@
     
     // 获取维度
     [self getLocation];
+    
+    // 获取idfa
+    [self getIDFA];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didResignActive:)
@@ -231,6 +239,36 @@
                                           title:@"心赚永久入口"
                                       urlScheme:@"shortcut"
                                  appDownloadUrl:url];
+}
+
+-(void)getIDFA{
+    if (@available(iOS 14, *)) {
+//         iOS14及以上版本需要先请求权限
+        [ATTrackingManager requestTrackingAuthorizationWithCompletionHandler:^(ATTrackingManagerAuthorizationStatus status) {
+            // 获取到权限后，依然使用老方法获取idfa
+            if (status == ATTrackingManagerAuthorizationStatusAuthorized) {
+                self.idfa = [[ASIdentifierManager sharedManager].advertisingIdentifier UUIDString];
+                NSLog(@"%@",idfa);
+            } else {
+                NSLog(@"请在设置-隐私-Tracking中允许App请求跟踪");
+                UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"请在设置-隐私-Tracking中允许App请求跟踪" delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
+                          [alert show];
+                          return;
+            }
+        }];
+    } else {
+        // iOS14以下版本依然使用老方法
+        // 判断在设置-隐私里用户是否打开了广告跟踪
+        if ([[ASIdentifierManager sharedManager] isAdvertisingTrackingEnabled]) {
+            self.idfa = [[ASIdentifierManager sharedManager].advertisingIdentifier UUIDString];
+            NSLog(@"idfa:%@",self.idfa);
+        } else {
+            NSLog(@"请在设置-隐私-广告中打开广告跟踪功能");
+            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"已检测到您关闭了广告标识符，请打开手机“设置->隐私->广告->'关闭限制广告追踪'”，然后退出程序，重新打开助手" delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
+            [alert show];
+            return;
+        }
+    }
 }
 
 #pragma mark - 设置客户端界面
@@ -731,9 +769,9 @@
     
     NSString *iPhoneType = [[CheckUtil shareInstance]iphoneType];
     //IDFA
-    NSString *idfa = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+//    NSString *idfa = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
     
-    NSString *idfa7 = [idfa substringWithRange:NSMakeRange(0, 7)];
+    NSString *idfa7 = [self.idfa substringWithRange:NSMakeRange(0, 7)];
     if ([idfa7 isEqualToString:@"0000000"]) {
         UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"已检测到您关闭了广告标识符，请打开手机“设置->隐私->广告->'关闭限制广告追踪'”，然后退出程序，重新打开助手" delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
         [alert show];
@@ -814,7 +852,7 @@
         NSString *udid = [userDef objectForKey:@"UDID"];
         NSString *eastNorthLocation = [NSString stringWithFormat:@"%@",_eastNorthStr];
         // 请求参数
-        NSString *str = [NSString stringWithFormat:@"idfa=%@&device_name=%@&os_version=%@&carrier_name=%@&carrier_country_code=%@&keychain=%@&uniqueID=%@&idfv=%@&appID=%@&device_type=%@&net=%@&mac=%@&lad=%d&client_ip=%@&WXLoginID=%@&headImgUrl=%@&ZLQApp=%@&resolution=%d&device_type=%@&udid=%@&eastNorth=%@", idfa, deviceName, systemsVersion, carrierName, carrierCountry, keychain, uniqueID, idfv, attD, systemDeviceTypeNoFormatted, netType, currentMACAddress, jailbroken, currentIPAddress, WXLoginID, headImgUrl, ZLQApp, resolution, iPhoneType, udid, eastNorthLocation];
+        NSString *str = [NSString stringWithFormat:@"idfa=%@&device_name=%@&os_version=%@&carrier_name=%@&carrier_country_code=%@&keychain=%@&uniqueID=%@&idfv=%@&appID=%@&device_type=%@&net=%@&mac=%@&lad=%d&client_ip=%@&WXLoginID=%@&headImgUrl=%@&ZLQApp=%@&resolution=%d&device_type=%@&udid=%@&eastNorth=%@", self.idfa, deviceName, systemsVersion, carrierName, carrierCountry, keychain, uniqueID, idfv, attD, systemDeviceTypeNoFormatted, netType, currentMACAddress, jailbroken, currentIPAddress, WXLoginID, headImgUrl, ZLQApp, resolution, iPhoneType, udid, eastNorthLocation];
         
         NSLog(@"url:%@/%@",urlString,str);
         
@@ -879,8 +917,6 @@
         return;
     }
     
-    // idfa
-    NSString *idfa = [DLUDID appleIDFA];
     
     // timestamp
     NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
@@ -888,10 +924,10 @@
     NSString *timestamp = [NSString stringWithFormat:@"%0.f", a];//转为字符型
     
     // sign （当前秒级时间戳+“|”+idfa+“|”+“mvc_taskSign”）md5
-    NSString *sign = [[CheckUtil shareInstance]md5:[NSString stringWithFormat:@"%@|%@|mvc_taskSign", timestamp, idfa]];
+    NSString *sign = [[CheckUtil shareInstance]md5:[NSString stringWithFormat:@"%@|%@|mvc_taskSign", timestamp, self.idfa]];
     
     // 跳转到tasklist
-    NSString *urlString = [NSString stringWithFormat:@"http://m.shuanggangta.com/userInfo/personal?sign=%@&idfa=%@&num=%ld", sign, idfa, (long)_orignalRewardTaskCount];
+    NSString *urlString = [NSString stringWithFormat:@"http://m.shuanggangta.com/userInfo/personal?sign=%@&idfa=%@&num=%ld", sign, self.idfa, (long)_orignalRewardTaskCount];
     
     _rewardTaskCount = -1;
     
