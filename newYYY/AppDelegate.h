@@ -12,9 +12,13 @@
 //#define bUAdSplashID @"887368651"
 //#define bUAdRewardVideoID @"945390857"
 
-#define BUAdID @"5024719"
-#define bUAdSplashID @"887383161"
-#define bUAdRewardVideoID @"945494922"
+//#define BUAdID @"5024719"
+//#define bUAdSplashID @"887383161"
+//#define bUAdRewardVideoID @"945494922"
+
+#define BUAdID @"5108853"
+#define bUAdSplashID @"887386138"
+#define bUAdRewardVideoID @"945514854"
 
 #define BUD_Log(frmt, ...)   \
 do {                                                      \

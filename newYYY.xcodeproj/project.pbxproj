@@ -1412,7 +1412,7 @@
 						ProvisioningStyle = Manual;
 					};
 					ECA6026C21D258B400416C67 = {
-						DevelopmentTeam = 4V8KM3JQZJ;
+						DevelopmentTeam = 287U66BN2G;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -2068,7 +2068,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 20200921;
-				DEVELOPMENT_TEAM = 4V8KM3JQZJ;
+				DEVELOPMENT_TEAM = 287U66BN2G;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2133,7 +2133,7 @@
 					"-framework",
 					"\"UIKit\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.dianle.xinzhuan2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gouyufyq;
 				PRODUCT_NAME = "心赚";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2148,10 +2148,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "XZ-LaunchImage";
 				CODE_SIGN_ENTITLEMENTS = newYYY/newYYY.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 20200921;
-				DEVELOPMENT_TEAM = 4V8KM3JQZJ;
+				DEVELOPMENT_TEAM = 287U66BN2G;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2216,10 +2216,10 @@
 					"-framework",
 					"\"UIKit\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.dianle.xinzhuan2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gouyufyq;
 				PRODUCT_NAME = "心赚";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = XinZhuan2_Ad_Hoc2;
+				PROVISIONING_PROFILE_SPECIFIER = gouyu_adHoc;
 			};
 			name = Release;
 		};
