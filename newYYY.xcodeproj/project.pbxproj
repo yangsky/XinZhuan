@@ -116,9 +116,6 @@
 		04DE65501D659A8500D80CD8 /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DE654C1D659A8500D80CD8 /* libSocialQQ.a */; };
 		04DE65511D659A8500D80CD8 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DE654D1D659A8500D80CD8 /* TencentOpenAPI.framework */; };
 		04DE65521D659A8500D80CD8 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04DE654E1D659A8500D80CD8 /* TencentOpenApi_IOS_Bundle.bundle */; };
-		0E43349724EE483F00A49F2B /* BUAdSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E43349424EE483F00A49F2B /* BUAdSDK.framework */; };
-		0E43349824EE483F00A49F2B /* BUFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E43349524EE483F00A49F2B /* BUFoundation.framework */; };
-		0E43349924EE483F00A49F2B /* BUAdSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0E43349624EE483F00A49F2B /* BUAdSDK.bundle */; };
 		0E43349B24EE4C4200A49F2B /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E43349A24EE4C4100A49F2B /* ImageIO.framework */; };
 		0E43349D24EE4C5C00A49F2B /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E43349C24EE4C5C00A49F2B /* libbz2.tbd */; };
 		0E5B294B230D4A06004E7914 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E5B294A230D4A05004E7914 /* StoreKit.framework */; };
@@ -139,6 +136,9 @@
 		B03AA82B1DD9550700E2820D /* YingYongYuanjAttInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B03AA82A1DD9550700E2820D /* YingYongYuanjAttInfo.m */; };
 		B0C67F161DAF81BE0067DE84 /* UIView+ZYDraggable.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C67F151DAF81BE0067DE84 /* UIView+ZYDraggable.m */; };
 		D8510B82251C4DB20078E25E /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8510B81251C4DB20078E25E /* AppTrackingTransparency.framework */; };
+		D873CC31253D96050000F700 /* BUAdSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D873CC2E253D96040000F700 /* BUAdSDK.bundle */; };
+		D873CC32253D96050000F700 /* BUAdSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D873CC2F253D96050000F700 /* BUAdSDK.framework */; };
+		D873CC33253D96050000F700 /* BUFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D873CC30253D96050000F700 /* BUFoundation.framework */; };
 		EC33FC1C2153D366008E7ED0 /* CheckUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = EC33FC1B2153D366008E7ED0 /* CheckUtil.m */; };
 		EC33FC1D2153D366008E7ED0 /* CheckUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = EC33FC1B2153D366008E7ED0 /* CheckUtil.m */; };
 		EC46656422773D8800399701 /* UIImage+DLDataURIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46655C22773D8800399701 /* UIImage+DLDataURIImage.m */; };
@@ -583,9 +583,6 @@
 		04DE654D1D659A8500D80CD8 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		04DE654E1D659A8500D80CD8 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		04DE654F1D659A8500D80CD8 /* UMSocialQQHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialQQHandler.h; sourceTree = "<group>"; };
-		0E43349424EE483F00A49F2B /* BUAdSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BUAdSDK.framework; sourceTree = "<group>"; };
-		0E43349524EE483F00A49F2B /* BUFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BUFoundation.framework; sourceTree = "<group>"; };
-		0E43349624EE483F00A49F2B /* BUAdSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BUAdSDK.bundle; sourceTree = "<group>"; };
 		0E43349A24EE4C4100A49F2B /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		0E43349C24EE4C5C00A49F2B /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
 		0E5B294A230D4A05004E7914 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -614,6 +611,9 @@
 		B0C67F141DAF81BE0067DE84 /* UIView+ZYDraggable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ZYDraggable.h"; sourceTree = "<group>"; };
 		B0C67F151DAF81BE0067DE84 /* UIView+ZYDraggable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ZYDraggable.m"; sourceTree = "<group>"; };
 		D8510B81251C4DB20078E25E /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
+		D873CC2E253D96040000F700 /* BUAdSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BUAdSDK.bundle; sourceTree = "<group>"; };
+		D873CC2F253D96050000F700 /* BUAdSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BUAdSDK.framework; sourceTree = "<group>"; };
+		D873CC30253D96050000F700 /* BUFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BUFoundation.framework; sourceTree = "<group>"; };
 		EC33FC1A2153D366008E7ED0 /* CheckUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckUtil.h; sourceTree = "<group>"; };
 		EC33FC1B2153D366008E7ED0 /* CheckUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckUtil.m; sourceTree = "<group>"; };
 		EC46655C22773D8800399701 /* UIImage+DLDataURIImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+DLDataURIImage.m"; sourceTree = "<group>"; };
@@ -697,17 +697,16 @@
 				D8510B82251C4DB20078E25E /* AppTrackingTransparency.framework in Frameworks */,
 				0E43349D24EE4C5C00A49F2B /* libbz2.tbd in Frameworks */,
 				0E43349B24EE4C4200A49F2B /* ImageIO.framework in Frameworks */,
+				D873CC32253D96050000F700 /* BUAdSDK.framework in Frameworks */,
 				0E906A2A237EB849002CA4EF /* Accelerate.framework in Frameworks */,
 				0E906A28237EB73D002CA4EF /* CoreImage.framework in Frameworks */,
 				0E5B2953230D4A4B004E7914 /* CoreMotion.framework in Frameworks */,
 				0E906A26237EB6B5002CA4EF /* Photos.framework in Frameworks */,
 				0E5B295A230D4CDA004E7914 /* WebKit.framework in Frameworks */,
 				0E5B2957230D4A6D004E7914 /* libc++.tbd in Frameworks */,
-				0E43349824EE483F00A49F2B /* BUFoundation.framework in Frameworks */,
 				0E5B2955230D4A5E004E7914 /* libresolv.9.tbd in Frameworks */,
 				ECA602C121D258B400416C67 /* AdSupport.framework in Frameworks */,
 				0E5B2951230D4A2E004E7914 /* CoreMedia.framework in Frameworks */,
-				0E43349724EE483F00A49F2B /* BUAdSDK.framework in Frameworks */,
 				0E5B294F230D4A21004E7914 /* MediaPlayer.framework in Frameworks */,
 				0E5B294D230D4A16004E7914 /* MobileCoreServices.framework in Frameworks */,
 				0E5B294B230D4A06004E7914 /* StoreKit.framework in Frameworks */,
@@ -725,6 +724,7 @@
 				ECA602C221D258B400416C67 /* Foundation.framework in Frameworks */,
 				ECA602C821D258B400416C67 /* CFNetwork.framework in Frameworks */,
 				ECA602C921D258B400416C67 /* CoreFoundation.framework in Frameworks */,
+				D873CC33253D96050000F700 /* BUFoundation.framework in Frameworks */,
 				ECA602CA21D258B400416C67 /* CoreTelephony.framework in Frameworks */,
 				ECA602CB21D258B400416C67 /* SystemConfiguration.framework in Frameworks */,
 				ECA602CC21D258B400416C67 /* UMMobClick.framework in Frameworks */,
@@ -1246,9 +1246,9 @@
 		0E43349324EE483F00A49F2B /* BUAd */ = {
 			isa = PBXGroup;
 			children = (
-				0E43349424EE483F00A49F2B /* BUAdSDK.framework */,
-				0E43349524EE483F00A49F2B /* BUFoundation.framework */,
-				0E43349624EE483F00A49F2B /* BUAdSDK.bundle */,
+				D873CC2E253D96040000F700 /* BUAdSDK.bundle */,
+				D873CC2F253D96050000F700 /* BUAdSDK.framework */,
+				D873CC30253D96050000F700 /* BUFoundation.framework */,
 			);
 			path = BUAd;
 			sourceTree = "<group>";
@@ -1502,9 +1502,9 @@
 				ECA602DC21D258B400416C67 /* lkq@2x.jpg in Resources */,
 				ECADF05821EB409200D29B7D /* XZAssets.xcassets in Resources */,
 				ECA602DE21D258B400416C67 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
+				D873CC31253D96050000F700 /* BUAdSDK.bundle in Resources */,
 				ECA602DF21D258B400416C67 /* UMSCommentInputController.xib in Resources */,
 				ECA602E021D258B400416C67 /* README.txt in Resources */,
-				0E43349924EE483F00A49F2B /* BUAdSDK.bundle in Resources */,
 				ECA602E221D258B400416C67 /* UMSLoginViewController.xib in Resources */,
 				EC73C802227EA3EC00F8FD9A /* bgMusic.mp3 in Resources */,
 				ECA602E321D258B400416C67 /* UMSShareListController.xib in Resources */,
