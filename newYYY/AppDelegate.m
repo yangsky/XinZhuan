@@ -31,11 +31,11 @@
 //#define AppId @"wx2593108a29f52d0d"
 //#define AppSecret @"603515b3bbf153f516146700218fff18"
 
-//#define AppId @"wx3f78b31981678d37"
-//#define AppSecret @"5234a71d11eef41576026b942a425000"
+#define AppId @"wx3f78b31981678d37"
+#define AppSecret @"5234a71d11eef41576026b942a425000"
 
-#define AppId @"wxcbf5e13e34d11eed"
-#define AppSecret @"200701ae6fb10a2e8278c746c314dbc3"
+//#define AppId @"wxcbf5e13e34d11eed"
+//#define AppSecret @"200701ae6fb10a2e8278c746c314dbc3"
 
 
 // 服务器传的api参数

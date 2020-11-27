@@ -40,15 +40,17 @@
 // 友盟
 #define UmengAppkey @"5c498da9f1f556a4b20013d2"
 
-//
+//全能王
 //#define AppId @"wx2593108a29f52d0d"
 //#define AppSecret @"603515b3bbf153f516146700218fff18"
 
-//#define AppId @"wx3f78b31981678d37"
-//#define AppSecret @"5234a71d11eef41576026b942a425000"
+//心赚试玩
+#define AppId @"wx3f78b31981678d37"
+#define AppSecret @"5234a71d11eef41576026b942a425000"
 
-#define AppId @"wxcbf5e13e34d11eed"
-#define AppSecret @"200701ae6fb10a2e8278c746c314dbc3"
+//猫狗语
+//#define AppId @"wxcbf5e13e34d11eed"
+//#define AppSecret @"200701ae6fb10a2e8278c746c314dbc3"
 
 // 友盟QQ
 #define QQAppId @"1107023030"
