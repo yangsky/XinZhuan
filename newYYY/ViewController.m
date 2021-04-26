@@ -217,9 +217,9 @@
     NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
     BOOL isShortCut = [userDef boolForKey:@"shortcut"];
     
-//    if (isShortCut) {
-//        return;
-//    }
+    if (isShortCut) {
+        return;
+    }
     
     //弹框提示是否安装快捷方式
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"快捷方式安装"
