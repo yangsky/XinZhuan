@@ -35,3 +35,6 @@
 "ContinuePlaying" = "Tiếp tục chơi";
 "GetRewardAfterPlaying" = "Chơi hết để giành phần  thưởng";
 "Wan" = "10  nghìn";
+"ViewDetail" = "Xem";
+"CommitScore" = "%@ xếp hạng";
+"AdsClosed" = "Quảng cáo đã đóng";

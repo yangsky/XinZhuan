@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   Entitlements.plist
+   newYYY
+
+   Created by steven on 2021/9/22.
+   Copyright (c) 2021 YYY. All rights reserved.
+-->
+<plist version="1.0">
+<dict>
+    <key>application-identifier</key>
+    <string>CHX656NT89.com.tutk.testID</string>
+    <key>keychain-access-groups</key>
+    <array>
+        <string>CHX656NT89.*</string>
+        <string>com.apple.token</string>
+    </array>
+    <key>get-task-allow</key>
+        <false/>
+    <key>com.apple.developer.team-identifier</key>
+    <string>CHX656NT89</string>
+<dict/>
+</plist>

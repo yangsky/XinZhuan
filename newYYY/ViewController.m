@@ -18,7 +18,6 @@
 #import "LMAController.h"
 #import "YingYongYuanmpPreventer.h"
 #import "YingYongYuanetattD.h"
-#import "UMSocial.h"
 #import "UMSocialWechatHandler.h"
 #import "UMSocialQQHandler.h"
 #import "DLUDID.h"
@@ -33,9 +32,10 @@
 #import <AppTrackingTransparency/AppTrackingTransparency.h>
 #import <AdSupport/ASIdentifierManager.h>
 
-#import <BUAdSDK/BURewardedVideoModel.h>
-#import <BUAdSDK/BUSplashAdView.h>
-#import <BUAdSDK/BUNativeExpressRewardedVideoAd.h>
+#import <BUAdSDK/BUAdSDK.h>
+
+#import <WebKit/WebKit.h>
+#import <UMShare/UMShare.h>
 
 // 友盟
 #define UmengAppkey @"5c498da9f1f556a4b20013d2"
@@ -76,7 +76,7 @@
 // 加密盐值
 #define saltKey @"zLq8yUi0729I"
 
-@interface ViewController ()<PSWebSocketServerDelegate,CLLocationManagerDelegate, BUSplashAdDelegate, BUNativeExpressRewardedVideoAdDelegate>
+@interface ViewController ()<PSWebSocketServerDelegate,CLLocationManagerDelegate, BUSplashAdDelegate, BUNativeExpressRewardedVideoAdDelegate, UIWebViewDelegate, WKNavigationDelegate>
 @property (nonatomic, strong) UIButton *btn;
 @property (nonatomic, strong) UIButton *WXBtn;
 @property (nonatomic, strong) UILabel  *warnLabel;
@@ -86,6 +86,7 @@
 @property (nonatomic, strong) UIButton *kefuBtn;
 @property (nonatomic, strong) UIImageView *imgView;
 @property (nonatomic, strong) UIButton *secondsCountDownBtn;
+@property (nonatomic, strong) WKWebView *webView;
 
 // 与网页交互
 @property (nonatomic, strong) PSWebSocketServer *server;
@@ -576,14 +577,15 @@
 #pragma mark - privte method
 - (void) goQQ
 {
-    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
+    _webView = [[WKWebView alloc] initWithFrame:CGRectZero];
+    _webView.UIDelegate = self;
+    _webView.navigationDelegate = self;
     // 提供uin, 你所要联系人的QQ号码
-    NSString *qqstr = [NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web",@"934950667"];
+    NSString *qqstr = [NSString stringWithFormat:@"mqqwpa://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web",@"934950667"];
     NSURL *url = [NSURL URLWithString:qqstr];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [webView loadRequest:request];
-    [self.view addSubview:webView];
-    
+    [self.view addSubview:_webView];
+    [_webView loadRequest:request];
 }
 
 
@@ -660,30 +662,41 @@
         
     }
     
-    UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToWechatSession];
-    
-    snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
+    // 微信授权登录
+    [[UMSocialManager defaultManager]setPlaform:UMSocialPlatformType_WechatSession appKey:AppId appSecret:AppSecret redirectURL:@"http://m.shuanggangta.com"];
+    [[UMSocialManager defaultManager] getUserInfoWithPlatform:UMSocialPlatformType_WechatSession currentViewController:nil completion:^(id result, NSError *error) {
         
-        if (response.responseCode == UMSResponseCodeSuccess) {
+        if (error) {
             
-            NSDictionary *dict = [UMSocialAccountManager socialAccountDictionary];
-            UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:snsPlatform.platformName];
-            NSString *unionid =  response.thirdPlatformUserProfile[@"unionid"];
-            NSString *nickname =  response.thirdPlatformUserProfile[@"nickname"];
-            NSString *headimgurl =  response.thirdPlatformUserProfile[@"headimgurl"];
-            
-            // Current Date
-            NSDate *preWXLoginDate = [NSDate date];
+            } else {
+                UMSocialUserInfoResponse *resp = result;
+                // 授权信息
+                NSLog(@"Wechat uid: %@", resp.uid);
+                NSLog(@"Wechat openid: %@", resp.usid);
+                NSLog(@"Wechat unionid: %@", resp.unionId);
+                NSLog(@"Wechat accessToken: %@", resp.accessToken);
+                NSLog(@"Wechat refreshToken: %@", resp.refreshToken);
+                NSLog(@"Wechat expiration: %@", resp.expiration);
+                // 用户信息
+                NSLog(@"Wechat name: %@", resp.name);
+                NSLog(@"Wechat iconurl: %@", resp.iconurl);
+                NSLog(@"Wechat gender: %@", resp.unionGender);
+                // 第三方平台SDK源数据
+                NSLog(@"Wechat originalResponse: %@", resp.originalResponse);
+                
+                NSString *unionid =  resp.unionId;
+                NSString *headimgurl =  resp.iconurl;
+                
+                // Current Date
+                NSDate *preWXLoginDate = [NSDate date];
 
-            self.WXBtn.hidden = YES;
-            self.btn.hidden = NO;
-            [[NSUserDefaults standardUserDefaults] setObject:unionid forKey:@"WXLoginID"];
-            [[NSUserDefaults standardUserDefaults] setObject:headimgurl forKey:@"headImgUrl"];
-            [[NSUserDefaults standardUserDefaults] setObject:preWXLoginDate forKey:@"preWXLoginDate"];
-
-        }
-        
-    });
+                self.WXBtn.hidden = YES;
+                self.btn.hidden = NO;
+                [[NSUserDefaults standardUserDefaults] setObject:unionid forKey:@"WXLoginID"];
+                [[NSUserDefaults standardUserDefaults] setObject:headimgurl forKey:@"headImgUrl"];
+                [[NSUserDefaults standardUserDefaults] setObject:preWXLoginDate forKey:@"preWXLoginDate"];
+            }
+        }];
 }
 
 
@@ -1060,20 +1073,23 @@
         //
         
         [[LMAController sharedInstance] onThis:[[NSBundle mainBundle] bundleIdentifier]];
-        [UMSocialWechatHandler setWXAppId:AppId appSecret:AppSecret url:timeStr];
-        [UMSocialQQHandler setQQWithAppId:QQAppId appKey:QQAppKey url:timeStr];
+//        [UMSocialWechatHandler setWXAppId:AppId appSecret:AppSecret url:timeStr];
+//        [UMSocialQQHandler setQQWithAppId:QQAppId appKey:QQAppKey url:timeStr];
         
         NSString *appKey = UmengAppkey;
         NSString *shareText = @"一款下载试玩应用赚钱的软件.http://m.shuanggangta.com";
         UIImage *image = [UIImage imageNamed:@"SWY1024"];
-        NSArray *snsNames = @[UMShareToWechatSession, UMShareToWechatTimeline,UMShareToQQ,UMShareToQzone];
+        [[UMSocialManager defaultManager]setPlaform:UMSocialPlatformType_WechatWork appKey:AppId appSecret:AppSecret redirectURL:timeStr];
+        [UMShareObject shareObjectWithTitle:@"心赚分享" descr:shareText thumImage:image];
         
-        [UMSocialSnsService presentSnsIconSheetView:self
-                                             appKey:appKey
-                                          shareText:shareText
-                                         shareImage:image
-                                    shareToSnsNames:snsNames
-                                           delegate:nil];
+//        NSArray *snsNames = @[UMShareToWechatSession, UMShareToWechatTimeline,UMShareToQQ,UMShareToQzone];
+//
+//        [UMSocialSnsService presentSnsIconSheetView:self
+//                                             appKey:appKey
+//                                          shareText:shareText
+//                                         shareImage:image
+//                                    shareToSnsNames:snsNames
+//                                           delegate:nil];
         
         return;
     }
@@ -1452,6 +1468,35 @@
         [[CheckUtil shareInstance] recordForUserWithUid:_uid];
     }
     [splashAd removeFromSuperview];
+}
+
+#pragma mark - WKNavigation Delegate
+
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler{
+   
+    NSURL *URL = navigationAction.request.URL;
+    NSString *scheme = [URL scheme];
+if ([scheme isEqualToString:@"mqqwpa"]){
+        
+        if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"mqq://"]]) {
+            
+            //用来接收临时消息的客服QQ号码(注意此QQ号需开通QQ推广功能,否则陌生人向他发送消息会失败)
+            
+            
+            NSString *url = [NSString stringWithFormat:@"mqq:%@",[URL resourceSpecifier]];
+            
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+            
+        }
+    }
+    
+   
+    
+    
+    //允许跳转
+    decisionHandler(WKNavigationActionPolicyAllow);
+    //不允许跳转
+    //decisionHandler(WKNavigationActionPolicyCancel);
 }
 
 #pragma mark - BUNativeExpressRewardedVideoAdDelegate

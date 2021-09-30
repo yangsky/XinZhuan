@@ -18,10 +18,11 @@
 #import <arpa/inet.h>
 #import <AdSupport/AdSupport.h>
 #import "JPUSHService.h"
-#import "UMSocial.h"
+#import <UMCommon/UMCommon.h>
+#import <UMCommon/MobClick.h>
+#import "WXApi.h"
 #import "UMSocialWechatHandler.h"
 #import "DLUDID.h"
-#import "UMMobClick/MobClick.h"
 #import "CheckUtil.h"
 #import <BUAdSDK/BUAdSDKManager.h>
 #import "BUAdSDK/BUSplashAdView.h"
@@ -73,16 +74,23 @@
 //    [FIRApp configure];
         
     // 友盟
-    [UMSocialData setAppKey:UmengAppkey];
-    
-    UMConfigInstance.appKey = UmengAppkey;
-    UMConfigInstance.channelId = @"App Store";
-    
-    [MobClick startWithConfigure:UMConfigInstance];
+    [UMConfigure initWithAppkey:UmengAppkey channel:nil];
+    [[UMSocialManager defaultManager] openLog:YES];
+    [UMSocialGlobal shareInstance].isClearCacheWhenGetUserInfo = NO;
+    [[UMSocialGlobal shareInstance] setIsUsingHttpsWhenShareContent:NO];
+
+//    UMConfigInstance.appKey = UmengAppkey;
+//    UMConfigInstance.channelId = @"App Store";
+//
+    [MobClick profileSignOff];
+    [MobClick setAutoPageEnabled:YES];
     
     // 微信登陆
-    [UMSocialWechatHandler setWXAppId:AppId appSecret:AppSecret url:@"http://m.shuanggangta.com"];
-    
+//    [UMSocialWechatHandler setWXAppId:AppId appSecret:AppSecret url:@"http://m.shuanggangta.com"];
+    [WXApi registerApp:AppId universalLink:@"https://m.shuanggangta.com/"];
+    [[UMSocialManager defaultManager]setPlaform:UMSocialPlatformType_WechatSession appKey:AppId appSecret:AppSecret redirectURL:@"https://m.shuanggangta.com/"];
+    [[UMSocialManager defaultManager] removePlatformProviderWithPlatformTypes:@[@(UMSocialPlatformType_WechatFavorite)]];
+
     // 1.获取音频回话
     AVAudioSession *session = [AVAudioSession sharedInstance];
 
@@ -123,6 +131,54 @@
     splashView.rootViewController = keyWindow.rootViewController;
 
     [[CheckUtil shareInstance]addShowRewardWithType:LANUCHSPLASH platform:CHUANSHANJIA];
+}
+
+#pragma mark - 设置系统回调
+
+// 支持所有iOS系统
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+
+{
+
+    return [self openLiveOpenURL:url];
+
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+
+    return [self openLiveOpenURL:url];
+
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options NS_AVAILABLE_IOS(9_0){
+
+    return [self openLiveOpenURL:url];
+
+}
+
+- (BOOL)openLiveOpenURL:(NSURL *)url {
+    
+    if (!url) return NO;
+
+    NSString *urlString = [url absoluteString];
+    
+    if ([url.scheme isEqualToString:@"shotcut"]) {
+        return YES;
+    }
+
+    NSString *udidstr = [[CheckUtil shareInstance] getParamByName:@"udid" URLString:url.absoluteString];
+    if (udidstr && udidstr.length > 0) {
+        [[NSUserDefaults standardUserDefaults] setObject:udidstr  forKey:newUDID];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+
+    if ([urlString hasPrefix:@"wx"]) {
+        [[UMSocialManager defaultManager] handleOpenURL:url];
+    }
+
+    return YES;
+
 }
 
 #pragma mark - 通知数量
@@ -268,47 +324,9 @@
 }
 
 
-//- (void)application:(UIApplication *)application
-//didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-//
-//    /// Required - 注册 DeviceToken
-//    [JPUSHService registerDeviceToken:deviceToken];
-//}
-//
-//
-//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-//
-//    // IOS 7 Support Required
-//    [JPUSHService handleRemoteNotification:userInfo];
-//    completionHandler(UIBackgroundFetchResultNewData);
-//}
-//
-//- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-//    //Optional
-//    //    NSLog(@"did Fail To Register For Remote Notifications With Error: %@", error);
-//}
-
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    [UMSocialSnsService  applicationDidBecomeActive];
-}
 
-- (BOOL)application:(UIApplication *)application
-            openURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication
-         annotation:(id)annotation
-{
-    if ([url.scheme isEqualToString:@"shotcut"]) {
-        return YES;
-    }
-    
-    NSString *udidstr = [[CheckUtil shareInstance] getParamByName:@"udid" URLString:url.absoluteString];
-    if (udidstr && udidstr.length > 0) {
-        [[NSUserDefaults standardUserDefaults] setObject:udidstr  forKey:newUDID];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    }
-   
-    return  [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
 }
 
 - (void)splashAdDidClose:(BUSplashAdView *)splashAd {

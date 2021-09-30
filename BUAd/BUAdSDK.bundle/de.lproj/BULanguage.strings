@@ -35,4 +35,7 @@
 "ContinuePlaying" = "Weiter wiedergeben";
 "GetRewardAfterPlaying" = "Bis zum Ende wiedergeben,  um Prämien zu erhalten";
 "Wan" = "Zehntausend";
+"ViewDetail" = "Ansehen";
+"CommitScore" = "%@ Rating(s)";
+"AdsClosed" = "Anzeigen geschlossen";
 // Icon

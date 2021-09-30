@@ -1,5 +1,96 @@
 重要!
 
+SDK1.9.2
+1. 新增发起企微客服会话能力
+
+SDK1.9.1
+1. 音乐视频分享类型增加运营H5字段
+
+SDK1.8.9
+1. 增加音乐视频分享类型
+
+SDK1.8.8
+1. 增加游戏直播消息类型
+
+SDK1.8.7.1
+1. 修复Xcode11以下编译不通过
+
+SDK1.8.7
+1. 修复iPadOS，未安装微信的情况下，因为UA问题无法授权登录
+2. 修复未安装微信的情况下, 适配了UIScene的App因为UIAlertView Crash
+3. 增加Universal Link检测函数
+
+SDK1.8.6.2
+1. 修改包含"UIWebView"字符的类名
+
+SDK1.8.6.1
+1.短信授权登录使用的UIWebview切换成WKWebview
+
+SDK1.8.6
+1. 支持Universal Link拉起微信以及返回App
+2. SDK移除MTA库
+
+SDK1.8.5
+1. 更换MTA库:取消对剪切板的访问, 防止和其他SDK竞争导致crash
+2. NSMutableArray的MTA分类方法改名，减少命名冲突
+3. 不含支付功能版本移除非税支付和医保支付接口
+4. 分享音乐支持填写歌词和高清封面图
+
+SDK1.8.4
+1. 调整分享图片大小限制
+2. 新增openBusinessView接口
+
+SDK1.8.3
+1. SDK增加调起微信刷卡支付接口
+2. SDK增加小程序订阅消息接口
+3. 修复小程序订阅消息接口没有resp的问题
+
+SDK1.8.2
+1. SDK增加开发票授权 WXInvoiceAuthInsert
+2. SDK增加非税接口   WXNontaxPay
+3. SDK增加医保接口   WXPayInsurance
+4. 更换MTA库
+
+SDK1.8.1
+1. SDK打开小程序支持指定版本（体验，开发，正式版）
+2. SDK分享小程序支持指定版本（体验，开发，正式版）
+3. SDK支持输出log日志
+
+SDK1.8.0
+1. SDK支持打开小程序
+2. SDK分享小程序支持shareTicket
+
+SDK1.7.9
+1. SDK订阅一次性消息
+
+SDK1.7.8
+1 SDK分享小程序支持大图
+
+SDK1.7.7
+1 增加SDK分享小程序
+2 增加选择发票接口
+
+SDK1.7.6
+1. 提高稳定性
+1 修复mta崩溃
+2  新增接口支持开发者关闭mta数据统计上报
+
+SDK1.7.5
+1. 提高稳定性
+2. 加快registerApp接口启动速度
+
+SDK1.7.4
+1. 更新支持iOS启用 ATS(App Transport Security)
+2. 需要在工程中链接CFNetwork.framework
+3. 在工程配置中的”Other Linker Flags”中加入”-Objc -all_load”
+
+SDK1.7.3
+1. 增强稳定性，适配iOS10
+2. 修复小于32K的jpg格式缩略图设置失败的问题
+
+SDK1.7.2
+1. 修复因CTTeleponyNetworkInfo引起的崩溃问题
+
 SDK1.7.1
 1. 支持兼容ipv6(提升稳定性)
 2. xCode Version 7.3.1 (7D1014) 编译

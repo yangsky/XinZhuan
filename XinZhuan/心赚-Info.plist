@@ -70,6 +70,14 @@
 				<string>shotcut</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>5c498da9f1f556a4b20013d2</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
@@ -115,6 +123,7 @@
 		<string>mqzoneopensdkapi</string>
 		<string>mqqbrowser</string>
 		<string>mttbrowser</string>
+		<string>weixinULAPI</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
