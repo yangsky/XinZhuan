@@ -96,15 +96,15 @@
     [self getDeviceInfo];
     
     // BUAd
-    #ifdef DEBUG
-        [BUAdSDKManager setLoglevel:BUAdSDKLogLevelDebug];
-    #endif
-    [BUAdSDKManager setAppID:BUAdID];
-    [BUAdSDKManager setIsPaidApp:NO];
+//    #ifdef DEBUG
+//        [BUAdSDKManager setLoglevel:BUAdSDKLogLevelDebug];
+//    #endif
+//    [BUAdSDKManager setAppID:BUAdID];
+//    [BUAdSDKManager setIsPaidApp:NO];
 
     
     // 请求开屏广告ID
-    [self addSplashAd];
+//    [self addSplashAd];
     
     _VC.isFirstLanuch = YES;
     

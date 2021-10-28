@@ -155,7 +155,7 @@
     int simNo = [[CheckUtil shareInstance] SimCardNumInPhone];
     NSLog(@"simNo: %d", simNo);
     
-    [self initRewardTask];
+//    [self initRewardTask];
  
     
     // 通知
@@ -1432,17 +1432,17 @@
         }
 
         
-        if (!self.isFirstLanuch && !self.isShowRewardViedo && (_gdtSecondsCount ==0)) {
-            //开屏广告初始化并展示代码
-            if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+//        if (!self.isFirstLanuch && !self.isShowRewardViedo && (_gdtSecondsCount ==0)) {
+//            //开屏广告初始化并展示代码
+//            if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
                 //开屏广告
-                [self addSplashAd];
-                
-                [[CheckUtil shareInstance]addShowRewardWithType:BACKSPLASH platform:CHUANSHANJIA];
-            }
-            
-            return;
-        }
+//                [self addSplashAd];
+//
+//                [[CheckUtil shareInstance]addShowRewardWithType:BACKSPLASH platform:CHUANSHANJIA];
+//            }
+//
+//            return;
+//        }
     }
 
 }
