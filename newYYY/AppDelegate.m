@@ -112,7 +112,7 @@
 
     
     // 请求开屏广告ID
-    [self addSplashAd];
+//    [self addSplashAd];
     
     _VC.isFirstLanuch = YES;
     
